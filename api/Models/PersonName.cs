@@ -1,6 +1,6 @@
 ﻿namespace api.Models
 {
-    public struct Name
+    public struct PersonName
     {
         public string LastName { get; set; }
         public string FirstName { get; set; }

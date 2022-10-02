@@ -21,6 +21,7 @@ namespace api.Models
 
         [Required]
         public RecordStatus Status { get; set; } = RecordStatus.UNPAID;
+
         [Required]
         public DateTime TimeIn { get; set; }
         public DateTime TimeOut { get; set; }
