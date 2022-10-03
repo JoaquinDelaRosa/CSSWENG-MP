@@ -1,4 +1,5 @@
 ﻿using api.Models;
+using api.Views;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
@@ -9,11 +10,40 @@ namespace api.Controllers
     public class VehicleController : Controller
     {
         [HttpGet("all")]
-        public async Task<IEnumerable<Vehicle>> GetAll()
+        public async Task<IEnumerable<VehicleDetailView>> GetAll()
         {
-            List<Vehicle> list = new List<Vehicle>();
+            List<Vehicle> vehicles = new List<Vehicle>();
+            vehicles.Add(new Vehicle()
+            {
+                Id = 1,
+                LicensePlate = "ABC1234",
+                Manufacturer = "Ford",
+                Model = "Everest",
+                YearManufactured = 2012
+            });
+            vehicles.Add(new Vehicle()
+            {
+                Id = 2,
+                LicensePlate = "EUL1024",
+                Manufacturer = "Honda",
+                Model = "Civic",
+                YearManufactured = 2017
+            });
+            vehicles.Add(new Vehicle()
+            {
+                Id = 3,
+                LicensePlate = "XXX0000",
+                Manufacturer = "Isuzu",
+                Model = "Elf",
+                YearManufactured = 2013
+            });
 
-            return list;
+
+            List<VehicleDetailView> view = new List<VehicleDetailView>();
+            view.Add(new VehicleDetailView(vehicles[0]));
+            view.Add(new VehicleDetailView(vehicles[1]));
+            view.Add(new VehicleDetailView(vehicles[2]));
+            return view;
         }
 
         [HttpGet("id")]
@@ -25,9 +55,9 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<Vehicle>> GetByPredicate(Predicate<Vehicle> predicate)
+        public async Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)
         {
-            IEnumerable<Vehicle> filtered = GetAll().Result;
+            IEnumerable<VehicleDetailView> filtered = GetAll().Result;
 
             return filtered;
         }

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import CustomersView from "./components/CustomersView";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import VehiclesView from "./components/VehiclesView";
 import AppState from "./utils/AppState";
 
 export const Main = (props: AppState) => {
@@ -21,6 +22,12 @@ export const Main = (props: AppState) => {
                 path="/customers"
                 element={<CustomersView/> }
             />
+
+            <Route 
+                path="/vehicles"
+                element={<VehiclesView/> }
+            />
+
         </Routes>
     );
 }

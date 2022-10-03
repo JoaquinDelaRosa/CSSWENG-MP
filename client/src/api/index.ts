@@ -4,7 +4,8 @@ export const BASE_URL = 'https://localhost:5000/'
 
 export const ENDPOINTS = {
     login: 'Customer/all',
-    customers: 'Customer/all'
+    customers: 'Customer/all',
+    vehicles: 'Vehicle/all'
 }
 
 export const createAPIEndpoint = (endpoint : string) => {

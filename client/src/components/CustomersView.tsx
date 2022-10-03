@@ -36,7 +36,6 @@ const CustomersView = () => {
                     return customer;
                 });
 
-                console.log(customerList);
                 return customerList
             })
             .then((list) => {
@@ -45,11 +44,11 @@ const CustomersView = () => {
             .catch((err) => {
                 console.log(err);
             });
-    }
+    };
 
     useEffect(() => {
         fetchCustomers();
-    }, [])
+    }, []);
 
 
     return (
