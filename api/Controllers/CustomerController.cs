@@ -1,4 +1,5 @@
 ﻿using api.Models;
+using api.Views;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
@@ -10,7 +11,7 @@ namespace api.Controllers
     public class CustomerController : Controller
     {
         [HttpGet("all")]
-        public async Task<IEnumerable<Customer>> GetAll()
+        public async Task<IEnumerable<CustomerDetailView>> GetAll()
         {
             List<Customer> list = new List<Customer>();
             list.Add(new Customer
@@ -36,7 +37,11 @@ namespace api.Controllers
                 Type = CustomerType.FLEET,
             });
 
-            return list;
+            List<CustomerDetailView> view = new List<CustomerDetailView>();
+            view.Add(new CustomerDetailView(list[0]));
+            view.Add(new CustomerDetailView(list[1]));
+
+            return view;
         }
 
         [HttpGet("id")]
@@ -48,9 +53,9 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<Customer>> GetByPredicate(Predicate<Customer> predicate)
+        public async Task<IEnumerable<CustomerDetailView>> GetByPredicate(Predicate<Customer> predicate)
         {
-            IEnumerable<Customer> filtered = GetAll().Result;
+            IEnumerable<CustomerDetailView> filtered = GetAll().Result;
 
             return filtered;
         }

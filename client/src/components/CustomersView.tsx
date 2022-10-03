@@ -1,29 +1,8 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
-import { makeName } from "../utils/PersonName";
-
-enum CustomerType {
-    PERSONAL,
-    WALK_IN,
-    FLEET,
-    INSURANCE,
-    OTHER
-};
-
-const CustomerTypeToString = (type: CustomerType): string => {
-    switch (type) {
-        case CustomerType.PERSONAL: return "Personal";
-        case CustomerType.WALK_IN: return "Walk In";
-        case CustomerType.FLEET: return "Fleet";
-        case CustomerType.INSURANCE: return "Insurance";
-        case CustomerType.OTHER: return "Other";
-    }
-    return " "
-}
-
 interface Customer {
     name: string,
-    type: CustomerType
+    type: string
     company? : string
 }
 
@@ -31,7 +10,7 @@ const CustomerRecord = (props : { customer: Customer }) => {
     return (
         <tr>
             <td> {props.customer.name} </td>
-            <td> {CustomerTypeToString(props.customer.type)} </td>
+            <td> {props.customer.type} </td>
             <td> {props.customer.company} </td>
         </tr> 
      );
@@ -50,7 +29,7 @@ const CustomersView = () => {
                 const customerList = data.map((value: any) => {
                     let customer: Customer;
                     customer = {
-                        name: makeName(value.name),
+                        name: value.name,
                         type: value.type,
                         company: value.company
                     };

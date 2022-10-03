@@ -155,3 +155,5 @@ api/obj/staticwebassets.pack.sentinel
 *.vsidx
 *.v2
 /data
+/api/obj/Debug/net6.0/api.RazorAssemblyInfo.cs
+/api/obj/Debug/net6.0/project.razor.vs.json
