@@ -13,6 +13,28 @@ namespace api.Controllers
         public async Task<IEnumerable<Customer>> GetAll()
         {
             List<Customer> list = new List<Customer>();
+            list.Add(new Customer
+            {
+                Id = 1,
+                Name = new PersonName
+                {
+                    FirstName = "John",
+                    LastName = "Doe"
+                },
+                Type = CustomerType.PERSONAL,
+                Company = "Company X",
+            });
+
+            list.Add(new Customer
+            {
+                Id = 2,
+                Name = new PersonName
+                {
+                    FirstName = "Jane",
+                    LastName = "Doe"
+                },
+                Type = CustomerType.FLEET,
+            });
 
             return list;
         }
