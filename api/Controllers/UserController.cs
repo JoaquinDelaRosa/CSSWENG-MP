@@ -6,46 +6,46 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
         [HttpGet("all")]
-        public async Task<IEnumerable<Customer>> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            List<Customer> list = new List<Customer>();
+            List<User> list = new List<User>();
 
             return list;
         }
 
         [HttpGet("id")]
-        public async Task<Customer> GetById(int id)
+        public async Task<User> GetById(int id)
         {
-            Customer c = new Customer();
+            User c = new User();
 
             return c;
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<Customer>> GetByPredicate(Predicate<Customer> predicate)
+        public async Task<IEnumerable<User>> GetByPredicate(Predicate<User> predicate)
         {
-            IEnumerable<Customer> filtered = GetAll().Result;
+            IEnumerable<User> filtered = GetAll().Result;
 
             return filtered;
         }
 
         [HttpPut("create")]
-        public async Task<Customer> Create(Customer c)
+        public async Task<User> Create(User c)
         {
             return c;
         }
 
         [HttpPatch("update")]
-        public async Task<Customer> Update(int id, Customer c)
+        public async Task<User> Update(int id, User c)
         {
             return c;
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, Customer c)
+        public async Task<bool> Delete(int id, User c)
         {
             bool isDeleteSuccessful = true;
 

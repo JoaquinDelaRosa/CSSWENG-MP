@@ -6,46 +6,46 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class CustomerController : Controller
+    public class VehicleController : Controller
     {
         [HttpGet("all")]
-        public async Task<IEnumerable<Customer>> GetAll()
+        public async Task<IEnumerable<Vehicle>> GetAll()
         {
-            List<Customer> list = new List<Customer>();
+            List<Vehicle> list = new List<Vehicle>();
 
             return list;
         }
 
         [HttpGet("id")]
-        public async Task<Customer> GetById(int id)
+        public async Task<Vehicle> GetById(int id)
         {
-            Customer c = new Customer();
+            Vehicle c = new Vehicle();
 
             return c;
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<Customer>> GetByPredicate(Predicate<Customer> predicate)
+        public async Task<IEnumerable<Vehicle>> GetByPredicate(Predicate<Vehicle> predicate)
         {
-            IEnumerable<Customer> filtered = GetAll().Result;
+            IEnumerable<Vehicle> filtered = GetAll().Result;
 
             return filtered;
         }
 
         [HttpPut("create")]
-        public async Task<Customer> Create(Customer c)
+        public async Task<Vehicle> Create(Vehicle c)
         {
             return c;
         }
 
         [HttpPatch("update")]
-        public async Task<Customer> Update(int id, Customer c)
+        public async Task<Vehicle> Update(int id, Vehicle c)
         {
             return c;
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, Customer c)
+        public async Task<bool> Delete(int id, Vehicle c)
         {
             bool isDeleteSuccessful = true;
 

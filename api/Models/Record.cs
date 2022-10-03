@@ -30,6 +30,8 @@ namespace api.Models
         public int CustomerId { get; set; }
         [Required]
         public int VehicleId { get; set; }
+
+        public int InvoiceId { get; set; }
         
         public string? EstimateNumber { get; set; }
         public string? ScopeOfWork { get; set; }
