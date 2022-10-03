@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "ESGHf2K81dcXj7UuXIDCukTry/Q1FUu2mPf+vlbxp1LSBHr/BA2jyZSFoGUh+mvUKJd6Ce48EoN3z1/mYmtVOg==",
-  "success": true,
+  "dgSpecHash": "mNd8bi39LqF5WbdOGNddVZCI/ZjFmZOJa3uLi02WhCgL31AaP4kbowQldIuZIREexNJzBV+Zh8vIZ6m4Rheutg==",
+  "success": false,
   "projectFilePath": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.9\\microsoft.aspnet.cors.5.2.9.nupkg.sha512",
@@ -101,6 +101,15 @@
     "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\client\\client.esproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\client\\client.esproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

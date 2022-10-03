@@ -154,3 +154,4 @@ api/obj/staticwebassets.pack.sentinel
 .vs/AutoWorks/v17/.suo
 *.vsidx
 *.v2
+/data

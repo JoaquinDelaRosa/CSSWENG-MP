@@ -29,9 +29,6 @@ const Login = () => {
     const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).fetch();
         event.preventDefault();
-
-        const formData = new FormData(form.current)
-        fetch('/api')
     };
 
     return (

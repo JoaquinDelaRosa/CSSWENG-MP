@@ -27,7 +27,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\client\\client.esproj": {
+                "projectPath": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\client\\client.esproj"
+              }
+            }
           }
         },
         "warningProperties": {
