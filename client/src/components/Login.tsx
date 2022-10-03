@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { log } from 'console';
 import React, { useEffect, useState } from 'react';
+import { createAPIEndpoint, ENDPOINTS } from '../api';
 
 type LoginState = {
     username: string;
@@ -28,15 +29,16 @@ const Login = () => {
     }
 
     const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-        axios.post('/api/login', state);
+        createAPIEndpoint(ENDPOINTS.login).post(state);
+        event.preventDefault();
     }
 
     return (
-        <form>
+        <div>
             <input type='text' name="username" value={state.username} onChange={onUsernameChange} /> <br />
             <input type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br />
             <input type='submit' name="submit" onClick={onSubmit} />
-        </form>
+        </div>
     );
 }
 
