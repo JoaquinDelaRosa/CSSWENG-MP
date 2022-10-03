@@ -21,8 +21,4 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\client\client.esproj" />
-  </ItemGroup>
-
 </Project>

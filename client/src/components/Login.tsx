@@ -33,9 +33,19 @@ const Login = () => {
 
     return (
         <div>
-            <input type='text' name="username" value={state.username} onChange={onUsernameChange} /> <br />
-            <input type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br />
-            <input type='submit' name="submit" onClick={onSubmit} />
+            <span>
+                <p> Username </p>
+                <input type='text' name="username" value={state.username} onChange={onUsernameChange} /> <br />
+            </span>
+
+            <span>
+                <p> Password </p>
+                <input type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br />
+            </span>
+
+            <span>
+                <input type='submit' name="submit" onClick={onSubmit} value={"submit"} />
+            </span>
         </div>
     );
 }
