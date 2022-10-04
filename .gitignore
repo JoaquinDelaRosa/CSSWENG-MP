@@ -158,3 +158,4 @@ api/obj/staticwebassets.pack.sentinel
 *.lock
 /api/obj
 *.1
+*.sln
