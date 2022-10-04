@@ -20,15 +20,15 @@ namespace api.Models
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = "";
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string MiddleName { get; set; }
+        public string MiddleName { get; set; } = "";
 
         [Required]
         public UserType Type { get; set; } = UserType.EMPLOYEE;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public enum CustomerTypes
+    public enum CustomerTypesEnum
     {
         PERSONAL,
         WALK_IN,
@@ -31,7 +31,7 @@ namespace api.Models
 
         [Required]
         [ForeignKey("CustomerType")]
-        public CustomerTypes CustomerTypeId { get; set; }
+        public CustomerTypesEnum CustomerTypeId { get; set; }
 
         // Casting enum to string might need to be in the set method too unsure
 

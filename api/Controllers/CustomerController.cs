@@ -22,7 +22,7 @@ namespace api.Controllers
                 FirstName = "John",
                 LastName = "Doe",
                 
-                CustomerTypeId = 0,
+                CustomerTypeId = CustomerTypesEnum.PERSONAL,
                 Company = "Company X",
             });
 
@@ -33,7 +33,7 @@ namespace api.Controllers
                 FirstName = "Jane",
                 LastName = "Doe",
                 
-                CustomerTypeId = 1,
+                CustomerTypeId = CustomerTypesEnum.FLEET,
             });
 
             List<CustomerDetailView> view = new List<CustomerDetailView>();
