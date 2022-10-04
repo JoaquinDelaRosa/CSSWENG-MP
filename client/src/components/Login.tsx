@@ -26,8 +26,14 @@ const Login = () => {
         })
     };
 
-    const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-        createAPIEndpoint(ENDPOINTS.login).fetch();
+    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
+        createAPIEndpoint(ENDPOINTS.login).post(state)
+            .then((response: any) => {
+                console.log(response?.data);
+            })
+            .catch((err: any) => {
+                console.log(err);
+            });
         event.preventDefault();
     };
 
@@ -44,7 +50,7 @@ const Login = () => {
             </span>
 
             <span>
-                <input type='submit' name="submit" onClick={onSubmit} value={"submit"} />
+                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
             </span>
         </div>
     );

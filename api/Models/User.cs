@@ -16,6 +16,9 @@ namespace api.Models
         public ulong Id { get; set; }
 
         [Required]
+        public string? Username { get; set; }
+
+        [Required]
         public PersonName Name { get; set; }
 
         [Required]
