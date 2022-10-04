@@ -156,3 +156,4 @@ api/obj/staticwebassets.pack.sentinel
 /api/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
 /api/obj/Debug/net6.0
 *.lock
+/api/obj
