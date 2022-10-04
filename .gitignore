@@ -147,3 +147,9 @@ api/obj/staticwebassets.pack.sentinel
 /data
 /api/obj/Debug/net6.0/api.RazorAssemblyInfo.cs
 /api/obj/Debug/net6.0/project.razor.vs.json
+*.editorconfig
+*.cache
+*.props
+*.cache
+*.cache
+*.cache
