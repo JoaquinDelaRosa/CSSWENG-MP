@@ -6,10 +6,23 @@ namespace api.Models
     public class Invoice
     {
         [Key]
-        public int Id { get; set; }
-        
+        public int InvoiceId { get; set; }
+
+        [Required]
         public float Amount { get; set; }
+        [Required]
         public float DeductibleDue { get; set; }
-        public PersonName AgentName { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string? AgentFirstName { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string? AgentLastName { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string? AgentMiddleName { get; set; }
     }
 }

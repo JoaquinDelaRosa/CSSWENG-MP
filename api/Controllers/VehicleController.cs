@@ -15,7 +15,7 @@ namespace api.Controllers
             List<Vehicle> vehicles = new List<Vehicle>();
             vehicles.Add(new Vehicle()
             {
-                Id = 1,
+                VehicleId = 1,
                 LicensePlate = "ABC1234",
                 Manufacturer = "Ford",
                 Model = "Everest",
@@ -23,7 +23,7 @@ namespace api.Controllers
             });
             vehicles.Add(new Vehicle()
             {
-                Id = 2,
+                VehicleId = 2,
                 LicensePlate = "EUL1024",
                 Manufacturer = "Honda",
                 Model = "Civic",
@@ -31,7 +31,7 @@ namespace api.Controllers
             });
             vehicles.Add(new Vehicle()
             {
-                Id = 3,
+                VehicleId = 3,
                 LicensePlate = "XXX0000",
                 Manufacturer = "Isuzu",
                 Model = "Elf",

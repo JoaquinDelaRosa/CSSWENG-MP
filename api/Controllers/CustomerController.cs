@@ -17,25 +17,23 @@ namespace api.Controllers
             List<Customer> list = new List<Customer>();
             list.Add(new Customer
             {
-                Id = 1,
-                Name = new PersonName   
-                {
-                    FirstName = "John",
-                    LastName = "Doe"
-                },
-                Type = CustomerType.PERSONAL,
+                CustomerId = 1,
+                
+                FirstName = "John",
+                LastName = "Doe",
+                
+                CustomerTypeId = 0,
                 Company = "Company X",
             });
 
             list.Add(new Customer
             {
-                Id = 2,
-                Name = new PersonName
-                {
-                    FirstName = "Jane",
-                    LastName = "Doe"
-                },
-                Type = CustomerType.FLEET,
+                CustomerId = 2,
+                
+                FirstName = "Jane",
+                LastName = "Doe",
+                
+                CustomerTypeId = 1,
             });
 
             List<CustomerDetailView> view = new List<CustomerDetailView>();
