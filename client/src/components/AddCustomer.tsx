@@ -3,16 +3,26 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import axios from 'axios'
 
-function AddCustomer() {
+interface CreateCustomerState {
+    name: {
+        firstname: string,
+        lastname: string,
+        middlenme?: string
+    },
+    customerType: string,
+    company?: string
+}
+
+const AddCustomer = () => {
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        axios.post(ENDPOINTS.addCustomer, {
+        createAPIEndpoint(ENDPOINTS.addCustomer).post({
             Name: {
                 firstname: "John",
                 lastname: "Doe",
                 middlename: "Very"
             },
-            CustomerType: "PERSONAL",
+            CustomerType: 1,
             Company: "IMC"
         })
             .then(function (response) {

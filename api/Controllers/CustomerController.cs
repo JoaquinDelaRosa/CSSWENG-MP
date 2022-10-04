@@ -61,12 +61,23 @@ namespace api.Controllers
             return filtered;
         }
 
-      
-
+     
         [HttpPost("create")]
         public async Task<Customer> Create(Customer c)
         {
-            return c;
+            Customer customer = new Customer()
+            {
+                Name = new PersonName()
+                {
+                    FirstName = c.Name.FirstName,
+                    LastName = c.Name.LastName,
+                    MiddleName = c.Name.MiddleName
+                },
+                Type = (CustomerType)c.Type,
+                Company = c.Company,
+                Id = 1
+            };
+            return customer;
         }
 
         [HttpPatch("update")]
