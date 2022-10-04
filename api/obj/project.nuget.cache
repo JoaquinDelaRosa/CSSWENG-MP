@@ -1,6 +1,7 @@
 {
   "version": 2,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "dgSpecHash": "bbKBGGKG3WjGc6F+KK+zwrz80tbCjktUmB9f2XkIU89ar62pURpMwDOudaLDYVYa1f7xuI7AmZTtpd4psu7GnA==",
 =======
   "dgSpecHash": "vd1DMZsuImJaypFX1FrZPrKfgHt9RB8qg1cKthydMyci4APYwrRKyWosLYIQWUJ8GKfECestpiP7jDZ1ICyoCg==",
@@ -144,6 +145,12 @@
     "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
 =======
+=======
+  "dgSpecHash": "vd1DMZsuImJaypFX1FrZPrKfgHt9RB8qg1cKthydMyci4APYwrRKyWosLYIQWUJ8GKfECestpiP7jDZ1ICyoCg==",
+  "success": true,
+  "projectFilePath": "D:\\Programming\\Git\\CSSWENG-MP\\api\\api.csproj",
+  "expectedPackageFiles": [
+>>>>>>> Stashed changes
     "C:\\Users\\sakki\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sakki\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.9\\microsoft.aspnet.cors.5.2.9.nupkg.sha512",
     "C:\\Users\\sakki\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
@@ -278,6 +285,9 @@
     "C:\\Users\\sakki\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\sakki\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\sakki\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   ],
   "logs": [
