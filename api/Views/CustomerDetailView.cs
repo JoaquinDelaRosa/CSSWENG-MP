@@ -18,15 +18,15 @@ namespace api.Views
         public string Type { get; set; }
         public string Company { get; set; }
 
-        private string TypeToString(int type)
+        private string TypeToString(CustomerTypes type)
         {
             switch (type)
             {
-                case 0: return "Personal";
-                case 1: return "Walk in";
-                case 2: return "Fleet";
-                case 3: return "Insurance";
-                case 4: return "Other";
+                case CustomerTypes.PERSONAL: return "Personal";
+                case CustomerTypes.WALK_IN: return "Walk in";
+                case CustomerTypes.FLEET: return "Fleet";
+                case CustomerTypes.INSURANCE: return "Insurance";
+                case CustomerTypes.OTHER: return "Other";
             }
 
             return "";

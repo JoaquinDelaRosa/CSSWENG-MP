@@ -3,6 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
+    public enum CustomerTypes
+    {
+        PERSONAL,
+        WALK_IN,
+        FLEET,
+        INSURANCE,
+        OTHER
+    }
 
     public class Customer
     {
@@ -23,18 +31,9 @@ namespace api.Models
 
         [Required]
         [ForeignKey("CustomerType")]
-        public int CustomerTypeId { get; set; }
+        public CustomerTypes CustomerTypeId { get; set; }
 
         // Casting enum to string might need to be in the set method too unsure
-
-        public enum CustomerTypes
-        {
-            PERSONAL = 0,
-            WALK_IN = 1,
-            FLEET = 2,
-            INSURANCE = 3,
-            OTHER = 4
-        }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
