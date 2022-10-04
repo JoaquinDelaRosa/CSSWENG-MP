@@ -7498,19 +7498,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\": {}
+    "C:\\Users\\sakki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\api\\api.csproj",
+      "projectUniqueName": "D:\\Programming\\Git\\CSSWENG-MP\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\JOAQUIN DELA ROSA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JOAQUIN DELA ROSA\\OneDrive\\Desktop\\LaSalle\\CURR\\CSSWENG\\MP\\AutoWorks\\api\\obj\\",
+      "projectPath": "D:\\Programming\\Git\\CSSWENG-MP\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\sakki\\.nuget\\packages\\",
+      "outputPath": "D:\\Programming\\Git\\CSSWENG-MP\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\JOAQUIN DELA ROSA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sakki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
