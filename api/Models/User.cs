@@ -19,7 +19,16 @@ namespace api.Models
         public string? Username { get; set; }
 
         [Required]
-        public PersonName Name { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Column(TypeName = "nvarchar(100)")]
+        public string MiddleName { get; set; }
 
         [Required]
         public UserType Type { get; set; } = UserType.EMPLOYEE;

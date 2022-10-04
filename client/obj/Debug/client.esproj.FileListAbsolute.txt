@@ -1,2 +1,4 @@
 C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
 C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache

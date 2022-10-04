@@ -27,10 +27,12 @@ namespace api.Models
         public DateTime TimeOut { get; set; }
 
         [Required]
+        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         [Required]
+        [ForeignKey("Vehicle")]
         public int VehicleId { get; set; }
-
+        [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }
         
         public string? EstimateNumber { get; set; }

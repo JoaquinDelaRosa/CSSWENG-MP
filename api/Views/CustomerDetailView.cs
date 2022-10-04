@@ -6,11 +6,11 @@ namespace api.Views
     {
         public CustomerDetailView(Customer customer)
         {
-            Name = customer.Name.FirstName + " " + 
-                (customer.Name.MiddleName == null ? ""  :customer.Name.MiddleName + " ") + 
-                customer.Name.LastName;
+            Name = customer.FirstName + " " + 
+                (customer.MiddleName == null ? ""  :customer.MiddleName + " ") + 
+                customer.LastName;
 
-            Type = TypeToString(customer.Type);
+            Type = TypeToString(customer.CustomerTypeId);
             Company = (customer.Company == null ? "" : customer.Company);
         }
 
@@ -18,15 +18,15 @@ namespace api.Views
         public string Type { get; set; }
         public string Company { get; set; }
 
-        private string TypeToString(CustomerType type)
+        private string TypeToString(int type)
         {
             switch (type)
             {
-                case CustomerType.PERSONAL: return "Personal";
-                case CustomerType.WALK_IN: return "Walk in";
-                case CustomerType.FLEET: return "Fleet";
-                case CustomerType.INSURANCE: return "Insurance";
-                case CustomerType.OTHER: return "Other";
+                case 0: return "Personal";
+                case 1: return "Walk in";
+                case 2: return "Fleet";
+                case 3: return "Insurance";
+                case 4: return "Other";
             }
 
             return "";
