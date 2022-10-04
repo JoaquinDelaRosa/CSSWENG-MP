@@ -153,3 +153,5 @@ api/obj/staticwebassets.pack.sentinel
 *.cache
 *.cache
 *.cache
+*.editorconfig
+*.cache
