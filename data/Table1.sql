@@ -1,4 +1,0 @@
-﻿CREATE TABLE [dbo].[Table1]
-(
-	[id] INT NOT NULL PRIMARY KEY
-)

@@ -57,10 +57,7 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.CustomerType", b =>
                 {
                     b.Property<int>("CustomerTypeId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerTypeId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()

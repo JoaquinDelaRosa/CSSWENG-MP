@@ -12,7 +12,7 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221004102519_InitialCreate")]
+    [Migration("20221004214753_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,10 +59,7 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.CustomerType", b =>
                 {
                     b.Property<int>("CustomerTypeId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerTypeId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
