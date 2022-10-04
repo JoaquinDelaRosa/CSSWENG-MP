@@ -157,3 +157,4 @@ api/obj/staticwebassets.pack.sentinel
 /api/obj/Debug/net6.0
 *.lock
 /api/obj
+*.1
