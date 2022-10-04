@@ -3,6 +3,7 @@ using api.Views;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace api.Controllers
 {
@@ -17,7 +18,7 @@ namespace api.Controllers
             list.Add(new Customer
             {
                 Id = 1,
-                Name = new PersonName
+                Name = new PersonName   
                 {
                     FirstName = "John",
                     LastName = "Doe"
@@ -60,7 +61,9 @@ namespace api.Controllers
             return filtered;
         }
 
-        [HttpPut("create")]
+      
+
+        [HttpPost("create")]
         public async Task<Customer> Create(Customer c)
         {
             return c;

@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import AddCustomer from "./components/AddCustomer";
 import CustomersView from "./components/CustomersView";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -26,6 +27,11 @@ export const Main = (props: AppState) => {
             <Route 
                 path="/vehicles"
                 element={<VehiclesView/> }
+            />
+
+            <Route
+                path="/addcustomer"
+                element={<AddCustomer/> }
             />
 
         </Routes>
