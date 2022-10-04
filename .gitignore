@@ -151,3 +151,8 @@ api/obj/staticwebassets.pack.sentinel
 *.cache
 *.editorconfig
 
+/api/obj/Debug/net6.0/api.GlobalUsings.g.cs
+/api/obj/Debug/net6.0/api.AssemblyInfo.cs
+/api/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+/api/obj/Debug/net6.0
+*.lock
