@@ -20,31 +20,33 @@ namespace api.Models
                     return;
                 }
 
-                context.CustomerType.AddRange(
-                    new CustomerType
+                context.Customers.AddRange(
+                    new Customer
                     {
+                        CustomerId = 1,
+                        LastName = "CAM",
+                        MiddleName = null,
+                        FirstName = "RON",
                         CustomerTypeId = CustomerTypesEnum.PERSONAL,
-                        Name = "PERSONAL"
+                        Company = null         
                     },
-                    new CustomerType
+                    new Customer
                     {
+                        CustomerId = 2,
+                        LastName = "ARQUILLO",
+                        MiddleName = null,
+                        FirstName = "GERRY",
                         CustomerTypeId = CustomerTypesEnum.WALK_IN,
-                        Name = "WALK_IN"
+                        Company = null
                     },
-                    new CustomerType
+                    new Customer
                     {
-                        CustomerTypeId = CustomerTypesEnum.FLEET,
-                        Name = "FLEET"
-                    },
-                    new CustomerType
-                    {
+                        CustomerId = 3,
+                        LastName = "BULAND",
+                        MiddleName = null,
+                        FirstName = "JOANA",
                         CustomerTypeId = CustomerTypesEnum.INSURANCE,
-                        Name = "INSURANCE"
-                    },
-                    new CustomerType
-                    {
-                        CustomerTypeId = CustomerTypesEnum.OTHER,
-                        Name = "OTHER"
+                        Company = null
                     }
                );
 

@@ -16,10 +16,8 @@ namespace api.Controllers
         {
             List<Customer> list = new List<Customer>();
            
-
             List<CustomerDetailView> view = new List<CustomerDetailView>();
             
-
             return view;
         }
 
