@@ -21,8 +21,6 @@ namespace api.Controllers
         [HttpGet("all")]
         public async Task<IEnumerable<CustomerDetailView>> GetAll()
         {
-            List<Customer> list = new List<Customer>();
-
             List<CustomerDetailView> view = new List<CustomerDetailView>();
 
             foreach (Customer customer in customerRepository.GetAll())
@@ -34,11 +32,9 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<Customer> GetById(int id)
+        public async Task<Customer> GetById(ulong id)
         {
-            Customer c = new Customer();
-
-            return c;
+            return await customerRepository.Get<ulong>(id);
         }
 
         [HttpGet("filter")]
