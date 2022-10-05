@@ -15,30 +15,10 @@ namespace api.Controllers
         public async Task<IEnumerable<CustomerDetailView>> GetAll()
         {
             List<Customer> list = new List<Customer>();
-            list.Add(new Customer
-            {
-                CustomerId = 1,
-                
-                FirstName = "John",
-                LastName = "Doe",
-                
-                CustomerTypeId = CustomerTypesEnum.PERSONAL,
-                Company = "Company X",
-            });
-
-            list.Add(new Customer
-            {
-                CustomerId = 2,
-                
-                FirstName = "Jane",
-                LastName = "Doe",
-                
-                CustomerTypeId = CustomerTypesEnum.FLEET,
-            });
+           
 
             List<CustomerDetailView> view = new List<CustomerDetailView>();
-            view.Add(new CustomerDetailView(list[0]));
-            view.Add(new CustomerDetailView(list[1]));
+            
 
             return view;
         }
