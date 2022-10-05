@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace api.Models
+namespace api.Models.Seeds
 {
-    public static class CustomerTypeDbSeed
+    public static class CustomerDbSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -10,12 +10,12 @@ namespace api.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<AutoworksDBContext>>()))
             {
-                if (context == null || context.CustomerType == null)
+                if (context == null || context.Customers == null)
                 {
                     throw new ArgumentNullException("Null Context for Seed");
-                }    
+                }
 
-                if (context.CustomerType.Any())
+                if (context.Customers.Any())
                 {
                     return;
                 }
@@ -23,36 +23,27 @@ namespace api.Models
                 context.Customers.AddRange(
                     new Customer
                     {
-                        CustomerId = 1,
                         LastName = "CAM",
-                        MiddleName = null,
                         FirstName = "RON",
                         CustomerTypeId = CustomerTypesEnum.PERSONAL,
-                        Company = null         
                     },
                     new Customer
                     {
-                        CustomerId = 2,
                         LastName = "ARQUILLO",
-                        MiddleName = null,
                         FirstName = "GERRY",
                         CustomerTypeId = CustomerTypesEnum.WALK_IN,
-                        Company = null
                     },
                     new Customer
                     {
-                        CustomerId = 3,
                         LastName = "BULAND",
-                        MiddleName = null,
                         FirstName = "JOANA",
                         CustomerTypeId = CustomerTypesEnum.INSURANCE,
-                        Company = null
                     }
                );
 
                 context.SaveChanges();
             }
         }
-            
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace api.Models
+namespace api.Models.Seeds
 {
     public static class CustomerTypeDbSeed
     {
@@ -13,7 +13,7 @@ namespace api.Models
                 if (context == null || context.CustomerType == null)
                 {
                     throw new ArgumentNullException("Null Context for Seed");
-                }    
+                }
 
                 if (context.CustomerType.Any())
                 {
@@ -51,6 +51,6 @@ namespace api.Models
                 context.SaveChanges();
             }
         }
-            
+
     }
 }

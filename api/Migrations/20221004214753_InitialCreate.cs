@@ -17,9 +17,9 @@ namespace api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     CustomerTypeId = table.Column<int>(type: "int", nullable: false),
-                    Company = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                    Company = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,7 +85,7 @@ namespace api.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

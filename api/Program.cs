@@ -1,4 +1,6 @@
+using api.Data;
 using api.Models;
+using api.Models.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AutoworksDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AutoWorksConnection") ?? throw new InvalidOperationException("Connection string not found")));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,7 +35,6 @@ builder.Services.AddCors(options =>
 });
 
 
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -40,6 +42,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     CustomerTypeDbSeed.Initialize(services);
+    CustomerDbSeed.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.

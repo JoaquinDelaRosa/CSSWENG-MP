@@ -1,4 +1,5 @@
-﻿using api.Models;
+﻿using api.Data;
+using api.Models;
 using api.Views;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +12,24 @@ namespace api.Controllers
     [Route("api/[Controller]")]
     public class CustomerController : Controller
     {
+        private readonly CustomerRepository customerRepository;
+        public CustomerController(CustomerRepository rep)
+        {
+            this.customerRepository = rep;
+        }
+
         [HttpGet("all")]
         public async Task<IEnumerable<CustomerDetailView>> GetAll()
         {
             List<Customer> list = new List<Customer>();
-           
+
             List<CustomerDetailView> view = new List<CustomerDetailView>();
-            
+
+            foreach (Customer customer in customerRepository.GetAll())
+            {
+                view.Add(new CustomerDetailView(customer));
+            }
+
             return view;
         }
 
@@ -41,7 +53,8 @@ namespace api.Controllers
         [HttpPost("create")]
         public async Task<Customer> Create(Customer c)
         {
-            Customer customer = new Customer();
+            Customer customer = c;
+
             return customer;
         }
 

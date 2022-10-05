@@ -4,8 +4,6 @@ using System.Text.Json;
 
 namespace api.Controllers
 {
-
-
     [ApiController]
     [Route("api/[Controller]")]
     public class LoginController : ControllerBase

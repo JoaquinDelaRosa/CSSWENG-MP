@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace api.Data
 {
-    public abstract class Repository<T> where T : class
+    public abstract class Repository<T> : IRepository<T> where T : class 
     {
         protected readonly DbContext dbContext;
         private DbSet<T>  dbSet;
