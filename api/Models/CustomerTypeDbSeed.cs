@@ -47,6 +47,8 @@ namespace api.Models
                         Name = "OTHER"
                     }
                );
+
+                context.SaveChanges();
             }
         }
             
