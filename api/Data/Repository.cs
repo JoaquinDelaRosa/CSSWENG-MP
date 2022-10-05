@@ -40,10 +40,14 @@ namespace api.Data
         public async void Create(IEnumerable<T> objects)
         {
             await dbSet.AddRangeAsync(objects);
+            await dbContext.SaveChangesAsync();
         }
 
         public void Remove(T obj)
         {
+            if (obj == null)
+                return;
+
             dbSet.Remove(obj);
             dbContext.SaveChanges();
         }

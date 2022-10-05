@@ -42,6 +42,7 @@ namespace api.Controllers
         {
             IEnumerable<CustomerDetailView> filtered = GetAll().Result;
 
+
             return filtered;
         }
 
@@ -49,9 +50,9 @@ namespace api.Controllers
         [HttpPost("create")]
         public async Task<Customer> Create(Customer c)
         {
-            Customer customer = c;
+            customerRepository.Create(c);
 
-            return customer;
+            return c;
         }
 
         [HttpPatch("update")]
@@ -61,11 +62,10 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, Customer c)
+        public async Task<bool> Delete(ulong id)
         {
-            bool isDeleteSuccessful = true;
-
-            return isDeleteSuccessful;
+            customerRepository.Remove(await GetById(id));
+            return true;
         }
     }
 }
