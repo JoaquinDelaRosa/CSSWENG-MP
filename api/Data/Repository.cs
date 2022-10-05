@@ -16,7 +16,7 @@ namespace api.Data
             dbSet = dbContext.Set<T>();
         }
 
-        public async Task<T?> Get(int id)
+        public async Task<T?> Get<Key>(Key id)
         {
             return await dbSet.FindAsync(id);
         }

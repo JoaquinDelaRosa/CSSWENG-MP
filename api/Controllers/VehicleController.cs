@@ -62,7 +62,7 @@ namespace api.Controllers
             return filtered;
         }
 
-        [HttpPut("create")]
+        [HttpPost("create")]
         public async Task<Vehicle> Create(Vehicle c)
         {
             return c;
