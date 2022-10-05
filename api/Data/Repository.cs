@@ -34,6 +34,7 @@ namespace api.Data
         public async void Create(T obj)
         {
             await dbSet.AddAsync(obj);
+            dbContext.SaveChanges();
         }
 
         public async void Create(IEnumerable<T> objects)
