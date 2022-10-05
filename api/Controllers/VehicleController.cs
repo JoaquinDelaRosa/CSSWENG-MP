@@ -1,4 +1,5 @@
-﻿using api.Models;
+﻿using api.Data;
+using api.Models;
 using api.Views;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
@@ -9,40 +10,25 @@ namespace api.Controllers
     [Route("api/[Controller]")]
     public class VehicleController : Controller
     {
+
+        private readonly VehicleRepository vehicleRepository;
+        public VehicleController(AutoworksDBContext ctx)
+        {
+            this.vehicleRepository = new VehicleRepository(ctx);
+        }
         [HttpGet("all")]
         public async Task<IEnumerable<VehicleDetailView>> GetAll()
         {
             List<Vehicle> vehicles = new List<Vehicle>();
-            vehicles.Add(new Vehicle()
-            {
-                VehicleId = 1,
-                LicensePlate = "ABC1234",
-                Manufacturer = "Ford",
-                Model = "Everest",
-                YearManufactured = 2012
-            });
-            vehicles.Add(new Vehicle()
-            {
-                VehicleId = 2,
-                LicensePlate = "EUL1024",
-                Manufacturer = "Honda",
-                Model = "Civic",
-                YearManufactured = 2017
-            });
-            vehicles.Add(new Vehicle()
-            {
-                VehicleId = 3,
-                LicensePlate = "XXX0000",
-                Manufacturer = "Isuzu",
-                Model = "Elf",
-                YearManufactured = 2013
-            });
-
-
+       
             List<VehicleDetailView> view = new List<VehicleDetailView>();
-            view.Add(new VehicleDetailView(vehicles[0]));
-            view.Add(new VehicleDetailView(vehicles[1]));
-            view.Add(new VehicleDetailView(vehicles[2]));
+
+            foreach (Vehicle vehicle in vehicleRepository.GetAll())
+            {
+                view.Add(new VehicleDetailView(vehicle));
+            }
+
+
             return view;
         }
 
@@ -63,9 +49,11 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<Vehicle> Create(Vehicle c)
+        public async Task<Vehicle> Create(Vehicle v)
         {
-            return c;
+            vehicleRepository.Create(v);
+
+            return v;
         }
 
         [HttpPatch("update")]

@@ -6,8 +6,11 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
+
+
     public class UserController : Controller
     {
+
         [HttpGet("all")]
         public async Task<IEnumerable<User>> GetAll()
         {
