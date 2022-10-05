@@ -34,7 +34,7 @@ namespace api.Data
         public async void Create(T obj)
         {
             await dbSet.AddAsync(obj);
-            await dbContext.SaveChangesAsync();
+            dbContext.SaveChanges();
         }
 
         public async void Create(IEnumerable<T> objects)
@@ -45,7 +45,11 @@ namespace api.Data
 
         public void Remove(T obj)
         {
+            if (obj == null)
+                return;
+
             dbSet.Remove(obj);
+            dbContext.SaveChanges();
         }
         public void Remove(IEnumerable<T> obj)
         {

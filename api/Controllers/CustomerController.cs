@@ -62,11 +62,10 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, Customer c)
+        public async Task<bool> Delete(ulong id)
         {
-            bool isDeleteSuccessful = true;
-
-            return isDeleteSuccessful;
+            customerRepository.Remove(await GetById(id));
+            return true;
         }
     }
 }
