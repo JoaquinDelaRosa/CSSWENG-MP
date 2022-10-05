@@ -8,9 +8,9 @@ using System.Collections;
 
 namespace api.Data
 {
-    public class CustomerRepository : Repository<Customer>
+    public class VehicleRepository : Repository<Vehicle>
     {
-        public CustomerRepository(DbContext context) : base(context)
+        public VehicleRepository(DbContext context) : base(context)
         {
 
         }

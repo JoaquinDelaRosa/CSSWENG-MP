@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 
 namespace api.Data
 {
-
     public abstract class Repository<T> where T : class
     {
         protected readonly DbContext dbContext;
@@ -16,6 +15,7 @@ namespace api.Data
             dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             dbSet = dbContext.Set<T>();
         }
+
         public async Task<T?> Get(int id)
         {
             return await dbSet.FindAsync(id);
