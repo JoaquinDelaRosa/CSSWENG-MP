@@ -12,7 +12,7 @@ namespace api.Data
 
         public Repository(DbContext _context)
         {
-            dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            dbContext = _context ?? throw new ArgumentNullException(nameof(dbContext));
             dbSet = dbContext.Set<T>();
         }
 

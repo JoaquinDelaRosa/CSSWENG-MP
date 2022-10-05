@@ -13,9 +13,9 @@ namespace api.Controllers
     public class CustomerController : Controller
     {
         private readonly CustomerRepository customerRepository;
-        public CustomerController(CustomerRepository rep)
+        public CustomerController(AutoworksDBContext ctx)
         {
-            this.customerRepository = rep;
+            this.customerRepository = new CustomerRepository(ctx);
         }
 
         [HttpGet("all")]
