@@ -43,6 +43,16 @@ namespace api.Data
             await dbContext.SaveChangesAsync();
         }
 
+        public void Update<Key>(Key id, T obj)
+        {
+            var result = dbSet.SingleOrDefault(o => o == obj);
+            if (result != null)
+            {
+                result = obj;
+                dbContext.SaveChanges();
+            }
+        }
+
         public void Remove(T obj)
         {
             if (obj == null)

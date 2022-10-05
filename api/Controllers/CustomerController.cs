@@ -56,8 +56,9 @@ namespace api.Controllers
         }
 
         [HttpPatch("update")]
-        public async Task<Customer> Update(int id, Customer c)
+        public async Task<Customer> Update(ulong id, Customer c)
         {
+            customerRepository.Update(id, c);
             return c;
         }
 

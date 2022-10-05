@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
@@ -38,9 +39,15 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? Company { get; set; }
 
+        public static bool operator ==(Customer x, Customer y)
+        {
+            return x.CustomerId == y.CustomerId;
+        }
 
-        
-
+        public static bool operator !=(Customer x, Customer y)
+        {
+            return x.CustomerId != y.CustomerId;
+        }
 
     }
 }
