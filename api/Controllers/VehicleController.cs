@@ -35,9 +35,7 @@ namespace api.Controllers
         [HttpGet("id")]
         public async Task<Vehicle> GetById(int id)
         {
-            Vehicle c = new Vehicle();
-
-            return c;
+            return await vehicleRepository.Get<int>(id);
         }
 
         [HttpGet("filter")]
@@ -63,9 +61,10 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, Vehicle c)
+        public async Task<bool> Delete(int id)
         {
-            bool isDeleteSuccessful = true;
+            vehicleRepository.Remove(await GetById(id));
+            var isDeleteSuccessful = true;
 
             return isDeleteSuccessful;
         }

@@ -45,6 +45,7 @@ namespace api.Data
         public void Remove(T obj)
         {
             dbSet.Remove(obj);
+            dbContext.SaveChanges();
         }
         public void Remove(IEnumerable<T> obj)
         {
