@@ -42,6 +42,7 @@ namespace api.Controllers
         {
             IEnumerable<CustomerDetailView> filtered = GetAll().Result;
 
+
             return filtered;
         }
 
@@ -49,9 +50,9 @@ namespace api.Controllers
         [HttpPost("create")]
         public async Task<Customer> Create(Customer c)
         {
-            Customer customer = c;
+            customerRepository.Create(c);
 
-            return customer;
+            return c;
         }
 
         [HttpPatch("update")]
