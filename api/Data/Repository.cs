@@ -2,6 +2,7 @@
 
 using api.Models;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Data
 {
@@ -43,14 +44,10 @@ namespace api.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public void Update<Key>(Key id, T obj)
+        public void Update(T obj)
         {
-            var result = dbSet.SingleOrDefault(o => o == obj);
-            if (result != null)
-            {
-                result = obj;
-                dbContext.SaveChanges();
-            }
+            dbSet.Attach(obj);
+            dbContext.Entry(obj).State = EntityState.Modified;
         }
 
         public void Remove(T obj)
@@ -64,6 +61,11 @@ namespace api.Data
         public void Remove(IEnumerable<T> obj)
         {
             dbSet.RemoveRange(obj);
+        }
+
+        public void Save()
+        {
+            dbContext.SaveChanges();
         }
     }
 }

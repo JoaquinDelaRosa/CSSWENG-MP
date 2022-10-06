@@ -14,9 +14,11 @@ namespace api.Data
 
         public void Create(IEnumerable<T> objects);
 
-        public void Update<Key>(Key id, T obj);
+        public void Update(T obj);
 
         public void Remove(T obj);
         public void Remove(IEnumerable<T> obj);
+
+        public void Save();
     }
 }

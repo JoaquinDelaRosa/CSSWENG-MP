@@ -55,11 +55,20 @@ namespace api.Controllers
             return c;
         }
 
-        [HttpPatch("update")]
-        public async Task<Customer> Update(ulong id, Customer c)
+
+        [HttpPost("update")]
+        public bool Update(ulong id, Customer newCustomer)
         {
-            customerRepository.Update(id, c);
-            return c;
+            Customer toModify = GetById(id).Result;
+            customerRepository.Update(toModify);
+            toModify.FirstName = newCustomer.FirstName;
+            toModify.LastName = newCustomer.LastName;
+            toModify.MiddleName = newCustomer.MiddleName;
+            toModify.CustomerTypeId = newCustomer.CustomerTypeId;
+            toModify.Company = newCustomer.Company;
+
+            customerRepository.Save();
+            return true;
         }
 
         [HttpDelete("delete")]

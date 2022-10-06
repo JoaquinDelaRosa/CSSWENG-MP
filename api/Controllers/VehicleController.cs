@@ -54,10 +54,18 @@ namespace api.Controllers
             return v;
         }
 
-        [HttpPatch("update")]
-        public async Task<Vehicle> Update(int id, Vehicle c)
+        [HttpPost("update")]
+        public bool Update(int id, Vehicle newVehicle)
         {
-            return c;
+            Vehicle toModify = GetById(id).Result;
+            vehicleRepository.Update(toModify);
+            toModify.YearManufactured = newVehicle.YearManufactured;
+            toModify.Manufacturer = newVehicle.Manufacturer;
+            toModify.LicensePlate = newVehicle.LicensePlate;
+            toModify.Model = newVehicle.Model;
+
+            vehicleRepository.Save();
+            return true;
         }
 
         [HttpDelete("delete")]
