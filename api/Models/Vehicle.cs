@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace api.Models
 {
@@ -18,5 +19,18 @@ namespace api.Models
         public string Model { get; set; } = "";
         [Required]
         public int YearManufactured { get; set; }
+
+        public bool IsEqual(Vehicle other)
+        {
+            return VehicleId == other.VehicleId;
+        }
+
+        public void AssignTo(Vehicle other)
+        {
+            YearManufactured = other.YearManufactured;
+            Manufacturer = other.Manufacturer;
+            LicensePlate = other.LicensePlate;
+            Model = other.Model;
+        }
     }
 }

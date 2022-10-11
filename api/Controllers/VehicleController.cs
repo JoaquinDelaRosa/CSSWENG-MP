@@ -59,10 +59,7 @@ namespace api.Controllers
         {
             Vehicle toModify = GetById(id).Result;
             vehicleRepository.Update(toModify);
-            toModify.YearManufactured = newVehicle.YearManufactured;
-            toModify.Manufacturer = newVehicle.Manufacturer;
-            toModify.LicensePlate = newVehicle.LicensePlate;
-            toModify.Model = newVehicle.Model;
+            toModify.AssignTo(newVehicle);
 
             vehicleRepository.Save();
             return true;

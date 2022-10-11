@@ -38,16 +38,6 @@ namespace api.Models
 
         [Column(TypeName = "nvarchar(100)")]
         public string? Company { get; set; }
-
-        public static bool operator ==(Customer x, Customer y)
-        {
-            return x.CustomerId == y.CustomerId;
-        }
-
-        public static bool operator !=(Customer x, Customer y)
-        {
-            return x.CustomerId != y.CustomerId;
-        }
         
         public void AssignTo(Customer other)
         {
@@ -56,6 +46,11 @@ namespace api.Models
             MiddleName = other.MiddleName;
             CustomerTypeId = other.CustomerTypeId;
             Company = other.Company;
+        }
+
+        public bool IsEqual(Customer other)
+        {
+            return CustomerId == other.CustomerId;
         }
     }
 }
