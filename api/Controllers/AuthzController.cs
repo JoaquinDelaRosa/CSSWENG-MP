@@ -59,7 +59,13 @@ namespace api.Controllers
         [HttpPost("login")]
         public async Task<User?> Login(LoginRequest request)
         {
+            User user = userRepository.GetByUsername(request.Username);
+            if(user == null)
+                return null;
+            if(encrypterManager.IsEqual(request.Password, user.Password))
+                return user;
 
+            
             return null;
         }
 
