@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace api.Data
 {
-    public class UserRepository : Repository<Vehicle>
+    public class UserRepository : Repository<User>
     {
         public UserRepository(DbContext context) : base(context)
         {

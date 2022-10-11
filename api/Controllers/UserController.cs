@@ -1,4 +1,6 @@
-﻿using api.Models;
+﻿using api.Data;
+using api.Models;
+using api.Views;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
@@ -10,27 +12,35 @@ namespace api.Controllers
 
     public class UserController : Controller
     {
+        private readonly UserRepository userRepository;
+        public UserController(AutoworksDBContext ctx)
+        {
+            this.userRepository = new UserRepository(ctx);
+        }
 
         [HttpGet("all")]
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<UserDetailView>> GetAll()
         {
-            List<User> list = new List<User>();
+            List<UserDetailView> view = new List<UserDetailView>();
 
-            return list;
+            foreach (User user in userRepository.GetAll())
+            {
+                view.Add(new UserDetailView(user));
+            }
+
+            return view;
         }
 
         [HttpGet("id")]
         public async Task<User> GetById(int id)
         {
-            User c = new User();
-
-            return c;
+            return await userRepository.Get(id);
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<User>> GetByPredicate(Predicate<User> predicate)
+        public async Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
         {
-            IEnumerable<User> filtered = GetAll().Result;
+            IEnumerable<UserDetailView> filtered = GetAll().Result;
 
             return filtered;
         }
@@ -38,21 +48,26 @@ namespace api.Controllers
         [HttpPut("create")]
         public async Task<User> Create(User c)
         {
+            userRepository.Create(c);
             return c;
         }
 
         [HttpPatch("update")]
-        public async Task<User> Update(int id, User c)
+        public bool Update(int id, User u)
         {
-            return c;
+            User toModify = GetById(id).Result;
+            userRepository.Update(toModify);
+            toModify.AssignTo(u);
+
+            userRepository.Save();
+            return true;
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(int id, User c)
+        public async Task<bool> Delete(int id)
         {
-            bool isDeleteSuccessful = true;
-
-            return isDeleteSuccessful;
+            userRepository.Remove(await GetById(id));
+            return true;
         }
     }
 }

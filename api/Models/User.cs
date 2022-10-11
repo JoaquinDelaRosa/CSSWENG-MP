@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace api.Models
 {
@@ -36,5 +37,15 @@ namespace api.Models
         [Required]
         [PasswordPropertyText]
         public string? Password { get; set; }
+
+        public void AssignTo(User other)
+        {
+            Username = other.Username;
+            FirstName = other.FirstName;
+            LastName = other.LastName;
+            MiddleName = other.MiddleName;
+            Password = other.Password;
+            Type = other.Type;
+        }
     }
 }

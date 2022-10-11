@@ -35,7 +35,7 @@ namespace api.Controllers
         [HttpGet("id")]
         public async Task<Vehicle> GetById(int id)
         {
-            return await vehicleRepository.Get<int>(id);
+            return await vehicleRepository.Get(id);
         }
 
         [HttpGet("filter")]
@@ -55,11 +55,11 @@ namespace api.Controllers
         }
 
         [HttpPost("update")]
-        public bool Update(int id, Vehicle newVehicle)
+        public bool Update(int id, Vehicle v)
         {
             Vehicle toModify = GetById(id).Result;
             vehicleRepository.Update(toModify);
-            toModify.AssignTo(newVehicle);
+            toModify.AssignTo(v);
 
             vehicleRepository.Save();
             return true;

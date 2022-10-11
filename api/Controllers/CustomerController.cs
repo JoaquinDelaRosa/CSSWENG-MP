@@ -34,7 +34,7 @@ namespace api.Controllers
         [HttpGet("id")]
         public async Task<Customer> GetById(ulong id)
         {
-            return await customerRepository.Get<ulong>(id);
+            return await customerRepository.Get(id);
         }
 
         [HttpGet("filter")]
@@ -57,11 +57,11 @@ namespace api.Controllers
 
 
         [HttpPost("update")]
-        public bool Update(ulong id, Customer newCustomer)
+        public bool Update(ulong id, Customer c)
         {
             Customer toModify = GetById(id).Result;
             customerRepository.Update(toModify);
-            toModify.AssignTo(newCustomer);
+            toModify.AssignTo(c);
 
             customerRepository.Save();
             return true;
