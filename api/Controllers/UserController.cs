@@ -45,13 +45,6 @@ namespace api.Controllers
             return filtered;
         }
 
-        [HttpPut("create")]
-        public async Task<User> Create(User c)
-        {
-            userRepository.Create(c);
-            return c;
-        }
-
         [HttpPatch("update")]
         public bool Update(int id, User u)
         {

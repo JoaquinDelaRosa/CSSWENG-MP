@@ -3,7 +3,7 @@ import axios from "axios";
 export const BASE_URL = 'https://localhost:5000/'
 
 export const ENDPOINTS = {
-    login: 'Login',
+    login: 'Authz/Login',
     customers: 'Customer/all',
     vehicles: 'Vehicle/all',
     addCustomer: 'Customer/create'

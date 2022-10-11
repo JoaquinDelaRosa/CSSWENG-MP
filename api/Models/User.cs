@@ -47,5 +47,7 @@ namespace api.Models
             Password = other.Password;
             Type = other.Type;
         }
+
+        
     }
 }
