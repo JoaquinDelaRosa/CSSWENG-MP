@@ -17,7 +17,7 @@ namespace api.Data
 
         public User? GetByUsername(string Username)
         {
-            return (User)dbSet.Where(x => x.Username == Username);
+            return dbSet.Where(x => x.Username == Username).First<User>();
         }
     }
 }
