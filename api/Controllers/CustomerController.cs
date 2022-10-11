@@ -61,11 +61,7 @@ namespace api.Controllers
         {
             Customer toModify = GetById(id).Result;
             customerRepository.Update(toModify);
-            toModify.FirstName = newCustomer.FirstName;
-            toModify.LastName = newCustomer.LastName;
-            toModify.MiddleName = newCustomer.MiddleName;
-            toModify.CustomerTypeId = newCustomer.CustomerTypeId;
-            toModify.Company = newCustomer.Company;
+            toModify.AssignTo(newCustomer);
 
             customerRepository.Save();
             return true;

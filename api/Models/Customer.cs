@@ -48,6 +48,14 @@ namespace api.Models
         {
             return x.CustomerId != y.CustomerId;
         }
-
+        
+        public void AssignTo(Customer other)
+        {
+            FirstName = other.FirstName;
+            LastName = other.LastName;
+            MiddleName = other.MiddleName;
+            CustomerTypeId = other.CustomerTypeId;
+            Company = other.Company;
+        }
     }
 }
