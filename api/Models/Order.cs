@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public enum RecordStatus
+    public enum OrderStatus
     {
         PAID,
         UNPAID,
@@ -14,13 +14,13 @@ namespace api.Models
         FOR_LOA_OR_INVOICE
     }
 
-    public class Record
+    public class Order
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public RecordStatus Status { get; set; } = RecordStatus.UNPAID;
+        public OrderStatus Status { get; set; } = OrderStatus.UNPAID;
 
         [Required]
         public DateTime TimeIn { get; set; }
