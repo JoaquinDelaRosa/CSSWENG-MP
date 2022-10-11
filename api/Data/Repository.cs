@@ -9,7 +9,7 @@ namespace api.Data
     public abstract class Repository<T> : IRepository<T> where T : class 
     {
         protected readonly DbContext dbContext;
-        private DbSet<T>  dbSet;
+        protected DbSet<T>  dbSet;
 
         public Repository(DbContext _context)
         {
