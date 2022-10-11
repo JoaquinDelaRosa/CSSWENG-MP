@@ -11,9 +11,9 @@ namespace api.Controllers.Crypto
             return Encoding.UTF8.GetString(encrypted);
         }
 
-        public override bool IsEqual(string x, string y)
+        public override bool IsEqual(string unencrypted, string encrypted)
         {
-            return Encrypt(x) == Encrypt(y);
+            return Encrypt(unencrypted) == encrypted;
         }
     }
 }

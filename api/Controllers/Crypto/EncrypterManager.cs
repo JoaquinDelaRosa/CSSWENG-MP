@@ -9,9 +9,9 @@ namespace api.Controllers.Crypto
             this.strategy = strategy;
         }
 
-        public bool IsEqual(string x, string y)
+        public bool IsEqual(string unecrypted, string encrypted)
         {
-            return strategy.IsEqual(x, y);
+            return strategy.IsEqual(unecrypted, encrypted);
         }
 
         public string Encrypt(string s)
