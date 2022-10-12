@@ -1,4 +1,4 @@
-﻿using api.Data;
+using api.Data;
 using api.Models;
 using api.Views;
 using Microsoft.AspNetCore.Cors;
@@ -32,7 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<Customer?> GetById(ulong id)
+        public async Task<Customer?> GetById(int id)
         {
             return await customerRepository.Get(id);
         }
@@ -57,7 +57,7 @@ namespace api.Controllers
 
 
         [HttpPost("update")]
-        public bool Update(ulong id, Customer c)
+        public bool Update(int id, Customer c)
         {
             Customer? toModify = GetById(id).Result;
             if (toModify == null)
@@ -71,7 +71,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<bool> Delete(ulong id)
+        public async Task<bool> Delete(int id)
         {
             Customer? toRemove = await GetById(id);
             if (toRemove == null)
