@@ -127,6 +127,12 @@ dist
 .pnp.*
 
 # MSVS
+.vs/AutoWorks/FileContentIndex/0d414746-ea42-4703-b2ac-bbae7bbbea44.vsidx
+.vs/AutoWorks/FileContentIndex/1057ad4a-0b4c-441a-9899-0db1403875d8.vsidx
+.vs/AutoWorks/FileContentIndex/124bd2d0-359e-4cf7-8e16-6b72a055b72e.vsidx
+.vs/AutoWorks/FileContentIndex/2180fedc-8665-4bbf-8d13-b2e0bfadfe2e.vsidx
+.vs/AutoWorks/FileContentIndex/52eee513-5915-480e-8230-3c09c4dfc728.vsidx
+.vs/AutoWorks/FileContentIndex/b74e4942-a6d9-46cb-aafc-6d389bbc9d18.vsidx
 *.vsidx
 *.dll
 *.exe
@@ -137,25 +143,11 @@ api/bin/Debug/net6.0/api.deps.json
 api/bin/Debug/net6.0/api.runtimeconfig.json
 api/bin/Debug/net6.0/appsettings.Development.json
 api/bin/Debug/net6.0/appsettings.json
+.vs/AutoWorks/v17/.suo
 api/obj/Debug/net6.0/api.csproj.FileListAbsolute.txt
 api/obj/Debug/net6.0/api.MvcApplicationPartsAssemblyInfo.cs
 api/obj/Debug/net6.0/staticwebassets.build.json
 api/obj/staticwebassets.pack.sentinel
-*.suo
-*.vsidx
-*.v2
-/data
-/api/obj/Debug/net6.0/api.RazorAssemblyInfo.cs
-/api/obj/Debug/net6.0/project.razor.vs.json
-*.props
-*.cache
-*.editorconfig
-
-/api/obj/Debug/net6.0/api.GlobalUsings.g.cs
-/api/obj/Debug/net6.0/api.AssemblyInfo.cs
-/api/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
-/api/obj/Debug/net6.0
-*.lock
-/api/obj
-*.1
-*.sln
+.vs/AutoWorks/v17/.suo
+.vs/AutoWorks/v17/.suo
+.vs/AutoWorks/v17/.suo
