@@ -141,6 +141,9 @@ api/obj/Debug/net6.0/api.csproj.FileListAbsolute.txt
 api/obj/Debug/net6.0/api.MvcApplicationPartsAssemblyInfo.cs
 api/obj/Debug/net6.0/staticwebassets.build.json
 api/obj/staticwebassets.pack.sentinel
+
+test\obj\project.assets.json
+
 *.suo
 *.vsidx
 *.v2
@@ -161,3 +164,5 @@ api/obj/staticwebassets.pack.sentinel
 *.sln
 .vs/AutoWorks/v17/TestStore/0/000.testlog
 .vs/AutoWorks/v17/TestStore/0/testlog.manifest
+*.csproj
+test/obj/test.csproj.nuget.dgspec.json
