@@ -27,9 +27,6 @@ namespace api.Models
         public string? LastName { get; set; }
 
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string? MiddleName { get; set; }
-
         [Required]
         [ForeignKey("CustomerType")]
         public CustomerTypesEnum CustomerTypeId { get; set; }
@@ -43,7 +40,6 @@ namespace api.Models
         {
             FirstName = other.FirstName;
             LastName = other.LastName;
-            MiddleName = other.MiddleName;
             CustomerTypeId = other.CustomerTypeId;
             Company = other.Company;
         }

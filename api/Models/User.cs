@@ -27,12 +27,10 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; } = "";
 
-        [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public string MiddleName { get; set; } = "";
 
         [Required]
         public UserType Type { get; set; } = UserType.EMPLOYEE;
+
 
         [Required]
         [PasswordPropertyText]
@@ -43,7 +41,6 @@ namespace api.Models
             Username = other.Username;
             FirstName = other.FirstName;
             LastName = other.LastName;
-            MiddleName = other.MiddleName;
             Password = other.Password;
             Type = other.Type;
         }

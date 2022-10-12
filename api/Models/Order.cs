@@ -17,7 +17,7 @@ namespace api.Models
     public class Order
     {
         [Key]
-        public int Id { get; set; }
+        public int OrderId { get; set; }
 
         [Required]
         public OrderStatus Status { get; set; } = OrderStatus.UNPAID;
@@ -28,7 +28,7 @@ namespace api.Models
 
         [Required]
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public ulong CustomerId { get; set; }
         [Required]
         [ForeignKey("Vehicle")]
         public int VehicleId { get; set; }

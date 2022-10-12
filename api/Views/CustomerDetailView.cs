@@ -6,9 +6,7 @@ namespace api.Views
     {
         public CustomerDetailView(Customer customer)
         {
-            Name = customer.FirstName + " " + 
-                (customer.MiddleName == null ? ""  :customer.MiddleName + " ") + 
-                customer.LastName;
+            Name = customer.FirstName + " " + customer.LastName;
 
             Type = TypeToString(customer.CustomerTypeId);
             Company = (customer.Company == null ? "" : customer.Company);
