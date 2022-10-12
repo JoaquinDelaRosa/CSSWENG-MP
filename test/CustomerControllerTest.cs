@@ -1,11 +1,12 @@
 namespace test
 {
-    public class UnitTest1
+    public class CustomerControllerTest
     {
         [Fact]
-        public void Test1()
+        public void BasicTest()
         {
-
+            Assert.True(true);
         }
+
     }
 }
