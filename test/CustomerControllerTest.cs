@@ -1,6 +1,3 @@
-using api.Views;
-using Microsoft.EntityFrameworkCore;
-
 namespace test
 {
     public class CustomerControllerTest
