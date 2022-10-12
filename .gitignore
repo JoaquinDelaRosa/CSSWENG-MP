@@ -142,7 +142,8 @@ api/obj/Debug/net6.0/api.MvcApplicationPartsAssemblyInfo.cs
 api/obj/Debug/net6.0/staticwebassets.build.json
 api/obj/staticwebassets.pack.sentinel
 
-test\obj\project.assets.json
+test/bin
+test/obj
 
 *.suo
 *.vsidx
