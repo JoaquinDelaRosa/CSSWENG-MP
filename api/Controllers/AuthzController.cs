@@ -1,7 +1,10 @@
 ﻿using api.Controllers.Crypto;
 using api.Data;
 using api.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Text.Json;
 
 namespace api.Controllers
@@ -62,11 +65,31 @@ namespace api.Controllers
             User user = userRepository.GetByUsername(request.Username);
             if(user == null)
                 return null;
-            if(encrypterManager.IsEqual(request.Password, user.Password))
-                return user;
+            if (!encrypterManager.IsEqual(request.Password, user.Password))
+                return null;
 
-            
-            return null;
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+            };
+
+            var authProperties = new AuthenticationProperties
+            {
+                AllowRefresh = true,
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(10),
+                IsPersistent = true,
+                IssuedUtc = DateTime.UtcNow.AddMinutes(0),
+                RedirectUri = "api/login" + user.Username
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties)
+             ;
+
+            return user;
         }
 
         [HttpPost("register")]
