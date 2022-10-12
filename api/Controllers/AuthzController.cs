@@ -73,7 +73,7 @@ namespace api.Controllers
             return NotFound("User Not Found");
         }
 
-        private string Generate(User user)
+        private string? Generate(User user)
         {
             if (user == null)
                 return null;
@@ -103,19 +103,20 @@ namespace api.Controllers
             return userType.ToString();
         }
 
-        private User Authenticate(LoginRequest request)
+        private User? Authenticate(LoginRequest request)
         {
-            User currentUser = userRepository.GetByUsername(request.Username);
-            if(currentUser != null)
-            {
-                if (encrypterManager.IsEqual(request.Password, currentUser.Password))
-                    return currentUser;
-            }
+            User? currentUser = userRepository.GetByUsername(request.Username);
+            if (currentUser == null)
+                return null;
+
+            if (encrypterManager.IsEqual(request.Password, currentUser.Password))
+                return currentUser;
+            
             return null;
         }
 
         [HttpPost("register")]
-        public async Task<bool> Register(RegistrationRequest request)
+        public bool Register(RegistrationRequest request)
         {
             User user = UserFactoryMethod(request);
             userRepository.Create(user);

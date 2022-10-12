@@ -17,7 +17,7 @@ namespace api.Models
         public ulong Id { get; set; }
 
         [Required]
-        public string? Username { get; set; }
+        public string Username { get; set; } = "";
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
@@ -34,7 +34,7 @@ namespace api.Models
 
         [Required]
         [PasswordPropertyText]
-        public string? Password { get; set; }
+        public string Password { get; set; } = "";
 
         public void AssignTo(User other)
         {
