@@ -165,5 +165,5 @@ test/obj
 *.sln
 .vs/AutoWorks/v17/TestStore/0/000.testlog
 .vs/AutoWorks/v17/TestStore/0/testlog.manifest
-*.csproj
+
 test/obj/test.csproj.nuget.dgspec.json
