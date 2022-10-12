@@ -159,3 +159,5 @@ api/obj/staticwebassets.pack.sentinel
 /api/obj
 *.1
 *.sln
+.vs/AutoWorks/v17/TestStore/0/000.testlog
+.vs/AutoWorks/v17/TestStore/0/testlog.manifest
