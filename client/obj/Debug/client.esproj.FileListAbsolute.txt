@@ -4,3 +4,5 @@ D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRed
 D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
 C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
 C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
