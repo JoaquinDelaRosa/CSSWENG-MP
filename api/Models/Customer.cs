@@ -16,7 +16,7 @@ namespace api.Models
     public class Customer
     {
         [Key]
-        public int CustomerId { get; set; }
+        public ulong CustomerId { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
@@ -25,6 +25,7 @@ namespace api.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string? LastName { get; set; }
+
 
         [Required]
         [ForeignKey("CustomerType")]

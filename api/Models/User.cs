@@ -27,12 +27,14 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; } = "";
 
+
         [Required]
         public UserType Type { get; set; } = UserType.EMPLOYEE;
 
+
         [Required]
         [PasswordPropertyText]
-        public string Password { get; set; } = "";
+        public string? Password { get; set; }
 
         public void AssignTo(User other)
         {

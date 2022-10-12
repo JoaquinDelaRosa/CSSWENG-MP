@@ -19,7 +19,7 @@ namespace api.Models.Seeds
                 {
                     return;
                 }
-
+                /*
                 context.Customers.AddRange(
                     new Customer
                     {
@@ -41,7 +41,7 @@ namespace api.Models.Seeds
                     }
                );
 
-                context.SaveChanges();
+                context.SaveChanges();*/
             }
         }
 
