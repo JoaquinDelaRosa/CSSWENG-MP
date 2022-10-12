@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
+import '../style/LoginFull.css';
+import '../style/LoginDiv.css';
 
 type LoginState = {
     username: string
@@ -38,20 +40,28 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <span>
-                <p> Username </p>
-                <input type='text' name="username" value={state.username} onChange={onUsernameChange} /> <br />
-            </span>
+        <div className="FullPage">
+            <div className="loginUI">
+                <h2>Insert Logo Here</h2>
+                <span>
+                    <input className="textField usernameField"
+                        name="username" value={state.username} onChange={onUsernameChange} /> <br /><br />
+                </span>
 
-            <span>
-                <p> Password </p>
-                <input type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br />
-            </span>
+                <span>
+                    <input className="textField"
+                        type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br /><br />
+                </span>
 
-            <span>
-                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
-            </span>
+                <span>
+                    <input className="loginButton"
+                        type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
+                </span>
+
+                <span className="redDialogue">
+                    <p >Extra Message Popup</p>
+                </span>
+            </div>
         </div>
     );
 }

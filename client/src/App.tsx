@@ -6,8 +6,8 @@ import { Main } from './Main';
 
 function App() {
   return (
-      <div className="App">
-          <header className="App-header">
+      <div >
+          <header >
               <Main id={1}/>
           </header>
       </div>
