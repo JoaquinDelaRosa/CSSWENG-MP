@@ -12,8 +12,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221005081933_Updated")]
-    partial class Updated
+    [Migration("20221012085513_Version-Two")]
+    partial class VersionTwo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Customer", b =>
                 {
-                    b.Property<decimal>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("CustomerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
 
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(100)");
@@ -44,9 +44,6 @@ namespace api.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CustomerId");
@@ -99,7 +96,7 @@ namespace api.Migrations
                     b.ToTable("Invoices");
                 });
 
-            modelBuilder.Entity("api.Models.Record", b =>
+            modelBuilder.Entity("api.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,10 +149,6 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 

@@ -44,9 +44,6 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(100)");
-
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
@@ -97,7 +94,7 @@ namespace api.Migrations
                     b.ToTable("Invoices");
                 });
 
-            modelBuilder.Entity("api.Models.Record", b =>
+            modelBuilder.Entity("api.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,10 +147,6 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 

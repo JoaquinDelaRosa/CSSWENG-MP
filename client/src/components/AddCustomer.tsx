@@ -20,7 +20,6 @@ const AddCustomer = () => {
             Name: {
                 firstname: "John",
                 lastname: "Doe",
-                middlename: "Very"
             },
             CustomerType: 1,
             Company: "IMC"

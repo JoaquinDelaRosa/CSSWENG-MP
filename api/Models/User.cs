@@ -28,22 +28,17 @@ namespace api.Models
         public string LastName { get; set; } = "";
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public string MiddleName { get; set; } = "";
-
-        [Required]
         public UserType Type { get; set; } = UserType.EMPLOYEE;
 
         [Required]
         [PasswordPropertyText]
-        public string? Password { get; set; }
+        public string Password { get; set; } = "";
 
         public void AssignTo(User other)
         {
             Username = other.Username;
             FirstName = other.FirstName;
             LastName = other.LastName;
-            MiddleName = other.MiddleName;
             Password = other.Password;
             Type = other.Type;
         }

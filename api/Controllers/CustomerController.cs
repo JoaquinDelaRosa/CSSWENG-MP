@@ -19,7 +19,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IEnumerable<CustomerDetailView>> GetAll()
+        public IEnumerable<CustomerDetailView> GetAll()
         {
             List<CustomerDetailView> view = new List<CustomerDetailView>();
 
@@ -32,15 +32,15 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<Customer> GetById(ulong id)
+        public async Task<Customer?> GetById(ulong id)
         {
             return await customerRepository.Get(id);
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<CustomerDetailView>> GetByPredicate(Predicate<Customer> predicate)
+        public IEnumerable<CustomerDetailView> GetByPredicate(Predicate<Customer> predicate)
         {
-            IEnumerable<CustomerDetailView> filtered = GetAll().Result;
+            IEnumerable<CustomerDetailView> filtered = GetAll();
 
 
             return filtered;
@@ -48,7 +48,7 @@ namespace api.Controllers
 
      
         [HttpPost("create")]
-        public async Task<Customer> Create(Customer c)
+        public Customer Create(Customer c)
         {
             customerRepository.Create(c);
 
@@ -59,7 +59,10 @@ namespace api.Controllers
         [HttpPost("update")]
         public bool Update(ulong id, Customer c)
         {
-            Customer toModify = GetById(id).Result;
+            Customer? toModify = GetById(id).Result;
+            if (toModify == null)
+                return false;
+
             customerRepository.Update(toModify);
             toModify.AssignTo(c);
 
@@ -70,7 +73,11 @@ namespace api.Controllers
         [HttpDelete("delete")]
         public async Task<bool> Delete(ulong id)
         {
-            customerRepository.Remove(await GetById(id));
+            Customer? toRemove = await GetById(id);
+            if (toRemove == null)
+                return false;
+
+            customerRepository.Remove(toRemove);
             return true;
         }
     }

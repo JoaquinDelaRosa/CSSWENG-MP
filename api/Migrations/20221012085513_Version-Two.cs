@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class VersionTwo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,10 @@ namespace api.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerId = table.Column<decimal>(type: "decimal(20,0)", nullable: false)
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     CustomerTypeId = table.Column<int>(type: "int", nullable: false),
                     Company = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
@@ -85,7 +84,6 @@ namespace api.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

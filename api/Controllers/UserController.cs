@@ -19,7 +19,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IEnumerable<UserDetailView>> GetAll()
+        public IEnumerable<UserDetailView> GetAll()
         {
             List<UserDetailView> view = new List<UserDetailView>();
 
@@ -32,15 +32,15 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<User> GetById(int id)
+        public async Task<User?> GetById(int id)
         {
             return await userRepository.Get(id);
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
+        public IEnumerable<UserDetailView> GetByPredicate(Predicate<User> predicate)
         {
-            IEnumerable<UserDetailView> filtered = GetAll().Result;
+            IEnumerable<UserDetailView> filtered = GetAll();
 
             return filtered;
         }
@@ -48,7 +48,10 @@ namespace api.Controllers
         [HttpPatch("update")]
         public bool Update(int id, User u)
         {
-            User toModify = GetById(id).Result;
+            User? toModify = GetById(id).Result;
+            if (toModify == null)
+                return false;
+
             userRepository.Update(toModify);
             toModify.AssignTo(u);
 
@@ -59,7 +62,10 @@ namespace api.Controllers
         [HttpDelete("delete")]
         public async Task<bool> Delete(int id)
         {
-            userRepository.Remove(await GetById(id));
+            User? toRemove = await GetById(id);
+            if (toRemove == null)
+                return false;
+            userRepository.Remove(toRemove);
             return true;
         }
     }

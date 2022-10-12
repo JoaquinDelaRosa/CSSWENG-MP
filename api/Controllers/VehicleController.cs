@@ -17,7 +17,7 @@ namespace api.Controllers
             this.vehicleRepository = new VehicleRepository(ctx);
         }
         [HttpGet("all")]
-        public async Task<IEnumerable<VehicleDetailView>> GetAll()
+        public IEnumerable<VehicleDetailView> GetAll()
         {
             List<Vehicle> vehicles = new List<Vehicle>();
        
@@ -33,21 +33,21 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<Vehicle> GetById(int id)
+        public async Task<Vehicle?> GetById(int id)
         {
             return await vehicleRepository.Get(id);
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)
+        public IEnumerable<VehicleDetailView> GetByPredicate(Predicate<Vehicle> predicate)
         {
-            IEnumerable<VehicleDetailView> filtered = GetAll().Result;
+            IEnumerable<VehicleDetailView> filtered = GetAll();
 
             return filtered;
         }
 
         [HttpPost("create")]
-        public async Task<Vehicle> Create(Vehicle v)
+        public Vehicle Create(Vehicle v)
         {
             vehicleRepository.Create(v);
 
@@ -57,7 +57,10 @@ namespace api.Controllers
         [HttpPost("update")]
         public bool Update(int id, Vehicle v)
         {
-            Vehicle toModify = GetById(id).Result;
+            Vehicle? toModify = GetById(id).Result;
+            if (toModify == null)
+                return false;
+
             vehicleRepository.Update(toModify);
             toModify.AssignTo(v);
 
@@ -68,10 +71,12 @@ namespace api.Controllers
         [HttpDelete("delete")]
         public async Task<bool> Delete(int id)
         {
-            vehicleRepository.Remove(await GetById(id));
-            var isDeleteSuccessful = true;
+            Vehicle? toRemove = await GetById(id);
+            if (toRemove == null)
+                return false;
 
-            return isDeleteSuccessful;
+            vehicleRepository.Remove(toRemove);
+            return true;
         }
     }
 }

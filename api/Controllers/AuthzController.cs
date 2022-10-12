@@ -47,7 +47,6 @@ namespace api.Controllers
         {
             User u = new User();
             u.FirstName = request.FirstName;
-            u.MiddleName = request.MiddleName;
             u.LastName = request.LastName;
 
             u.Username = request.Username;
@@ -57,9 +56,9 @@ namespace api.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<User?> Login(LoginRequest request)
+        public User? Login(LoginRequest request)
         {
-            User user = userRepository.GetByUsername(request.Username);
+            User? user = userRepository.GetByUsername(request.Username);
             if(user == null)
                 return null;
             if(encrypterManager.IsEqual(request.Password, user.Password))
@@ -70,7 +69,7 @@ namespace api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<bool> Register(RegistrationRequest request)
+        public bool Register(RegistrationRequest request)
         {
             User user = UserFactoryMethod(request);
             userRepository.Create(user);
