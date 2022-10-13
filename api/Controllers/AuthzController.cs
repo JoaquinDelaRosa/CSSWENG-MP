@@ -16,6 +16,14 @@ namespace api.Controllers
     [Route("api/[Controller]")]
     public class AuthzController : ControllerBase
     {
+
+        private IConfiguration _config;
+
+        public AuthzController(IConfiguration config)
+        {
+            _config = config;
+        }
+
         public class LoginRequest
         {
             public string Username { get; set; } = "";
@@ -77,7 +85,7 @@ namespace api.Controllers
         {
             if (user == null)
                 return null;
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("f3CljfxmYRklUltYHqo2I5tkLmmS26UluOlGdg4w"));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -88,8 +96,8 @@ namespace api.Controllers
                 new Claim(ClaimTypes.Role, UserTypeToRole(user.Type))
             };
 
-            var token = new JwtSecurityToken("https://localhost:5000/",
-                "https://localhost:5000/",
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
                 claims,
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);
@@ -98,7 +106,7 @@ namespace api.Controllers
         }
 
         [ApiExplorerSettings(IgnoreApi = true)] // fixes swagger
-        public string UserTypeToRole(UserType userType)
+        private string UserTypeToRole(UserType userType)
         {
             return userType.ToString();
         }

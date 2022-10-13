@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+var app = builder.Build();
+var config = app.Configuration;
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AutoworksDBContext>(options =>
@@ -28,9 +29,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = "https://localhost:5000/",
-        ValidAudience = "https://localhost:5000/",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("f3CljfxmYRklUltYHqo2I5tkLmmS26UluOlGdg4w"))
+        ValidIssuer = config["Jwt:Issuer"],
+        ValidAudience = config["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]))
     };
 });
 
