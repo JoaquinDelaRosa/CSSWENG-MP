@@ -1,25 +1,29 @@
+using api.Controllers;
 using api.Data;
 using api.Models;
 using api.Models.Seeds;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
 using System.Text;
 
+
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-
-var app = builder.Build();
-var config = app.Configuration;
-
 builder.Services.AddControllers();
+
+var Key = builder.Configuration.GetValue<string>("Jwt:Key");
+var Issuer = builder.Configuration.GetValue<string>("Jwt:Issuer");
+var Audience = builder.Configuration.GetValue<string>("Jwt:Audience");
+
 builder.Services.AddDbContext<AutoworksDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AutoWorksConnection") ?? throw new InvalidOperationException("Connection string not found")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -29,12 +33,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = config["Jwt:Issuer"],
-        ValidAudience = config["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]))
+        ValidIssuer = Issuer,
+        ValidAudience = Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key))
     };
 });
-
 
 
 builder.Services.AddCors(options =>
@@ -52,6 +55,10 @@ builder.Services.AddCors(options =>
         }
     );
 });
+
+
+var app = builder.Build();
+var config = app.Configuration;
 
 using (var scope = app.Services.CreateScope())
 {
@@ -80,3 +87,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

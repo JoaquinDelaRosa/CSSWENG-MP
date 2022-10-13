@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Text;
-using System.Text.Json;
 
 namespace api.Controllers
 {
@@ -18,11 +16,6 @@ namespace api.Controllers
     {
 
         private IConfiguration _config;
-
-        public AuthzController(IConfiguration config)
-        {
-            _config = config;
-        }
 
         public class LoginRequest
         {
@@ -42,10 +35,12 @@ namespace api.Controllers
 
         private readonly UserRepository userRepository;
         private readonly EncrypterManager encrypterManager;
-        public AuthzController(AutoworksDBContext ctx)
+        public AuthzController(AutoworksDBContext ctx, IConfiguration config)
         {
             this.userRepository = new UserRepository(ctx);
             this.encrypterManager = new EncrypterManager(new SHA());
+
+            _config = config;
         }
 
         private User UserFactoryMethod(LoginRequest request)
