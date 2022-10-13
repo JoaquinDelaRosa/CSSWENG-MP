@@ -16,7 +16,7 @@ namespace api.Models
     public class Customer
     {
         [Key]
-        public ulong CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
