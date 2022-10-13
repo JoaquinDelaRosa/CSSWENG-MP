@@ -105,7 +105,6 @@ namespace api.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)] // fixes swagger
         private string UserTypeToRole(UserType userType)
         {
             return userType.ToString();
