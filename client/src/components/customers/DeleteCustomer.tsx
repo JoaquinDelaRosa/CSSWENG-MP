@@ -7,7 +7,7 @@ const DeleteCustomer = () => {
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.deleteCustoemr).delete({"id" : deleteId})
+        createAPIEndpoint(ENDPOINTS.deleteCustomer).delete({"id" : deleteId})
             .then(function (response) {
                 console.log(response);
             })

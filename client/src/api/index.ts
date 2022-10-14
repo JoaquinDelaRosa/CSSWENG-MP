@@ -11,7 +11,7 @@ export const ENDPOINTS = {
     getCustomer: 'Customer/id',
     addCustomer: 'Customer/create',
     updateCustomer: 'Customer/update',
-    deleteCustoemr: 'Customer/delete',
+    deleteCustomer: 'Customer/delete',
 
     getVehicle: 'Vehicle/id',
     addVehicle: 'Vehicle/create',
