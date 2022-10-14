@@ -19,7 +19,6 @@ namespace api.Controllers
         [HttpGet("all")]
         public IEnumerable<VehicleDetailView> GetAll()
         {
-            List<Vehicle> vehicles = new List<Vehicle>();
        
             List<VehicleDetailView> view = new List<VehicleDetailView>();
 

@@ -11,7 +11,12 @@ export const ENDPOINTS = {
     getCustomer: 'Customer/id',
     addCustomer: 'Customer/create',
     updateCustomer: 'Customer/update',
-    deleteCustoemr: 'Customer/delete'
+    deleteCustoemr: 'Customer/delete',
+
+    getVehicle: 'Vehicle/id',
+    addVehicle: 'Vehicle/create',
+    updateVehicle: 'Vehicle/update',
+    deleteVehicle: 'Vehicle/delete'
 }
 
 export const createAPIEndpoint = (endpoint : string) => {

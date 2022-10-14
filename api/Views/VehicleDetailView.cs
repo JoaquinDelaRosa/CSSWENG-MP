@@ -12,7 +12,7 @@ namespace api.Views
             YearManufactured = vehicle.YearManufactured;
         }
 
-        public string LicensePlate { get; set; }
+        public string LicensePlate { get; set; } = "";
         public string Manufacturer { get; set; } = "";
         public string Model { get; set; } = "";
         public int YearManufactured { get; set; }
