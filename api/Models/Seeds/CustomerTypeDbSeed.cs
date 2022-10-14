@@ -23,27 +23,27 @@ namespace api.Models.Seeds
                 context.CustomerType.AddRange(
                     new CustomerType
                     {
-                        CustomerTypeId = CustomerTypesEnum.PERSONAL,
+                        CustomerTypeId = (int) CustomerTypesEnum.PERSONAL,
                         Name = "PERSONAL"
                     },
                     new CustomerType
                     {
-                        CustomerTypeId = CustomerTypesEnum.WALK_IN,
+                        CustomerTypeId = (int)CustomerTypesEnum.WALK_IN,
                         Name = "WALK IN"
                     },
                     new CustomerType
                     {
-                        CustomerTypeId = CustomerTypesEnum.FLEET,
+                        CustomerTypeId = (int)CustomerTypesEnum.FLEET,
                         Name = "FLEET"
                     },
                     new CustomerType
                     {
-                        CustomerTypeId = CustomerTypesEnum.INSURANCE,
+                        CustomerTypeId = (int)CustomerTypesEnum.INSURANCE,
                         Name = "INSURANCE"
                     },
                     new CustomerType
                     {
-                        CustomerTypeId = CustomerTypesEnum.OTHER,
+                        CustomerTypeId = (int)CustomerTypesEnum.OTHER,
                         Name = "OTHER"
                     }
                );

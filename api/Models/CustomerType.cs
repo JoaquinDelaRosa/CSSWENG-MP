@@ -5,7 +5,7 @@ namespace api.Models
     public class CustomerType : IDBEntity<CustomerType>
     {
         [Key]
-        public CustomerTypesEnum CustomerTypeId { get; set; }
+        public int CustomerTypeId { get; set; }
         [Required]
         public string Name { get; set; } = "";
 

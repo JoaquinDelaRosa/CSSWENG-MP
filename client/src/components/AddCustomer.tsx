@@ -6,12 +6,12 @@ import axios from 'axios'
 interface CreateCustomerState {
     firstName: string,
     lastName: string,
-    customerType: number,
+    customerTypeId: number,
     company?: string,
 }
 
 interface CustomerTypeKVP {
-    id: number, 
+    customerTypeId: number, 
     name: string
 }
 
@@ -20,7 +20,7 @@ const AddCustomer = () => {
     const [formState, setFormState] = useState<CreateCustomerState>({
         firstName: "",
         lastName: "",
-        customerType: 0,
+        customerTypeId: 0,
         company: ""
     });
 
@@ -31,23 +31,24 @@ const AddCustomer = () => {
             .then((response) => {
                 return response.data;
             })
-            .then((response) => {
+            .then((response: Array<CustomerTypeKVP>) => {
                 console.log(response);
                 setTypeIds(response);
             })
             .catch((err) => {
                 console.log(err);
             })
-    } , [])
+    }, [])
+
+    const onInputChange = (name: string, value: any) => {
+        setFormState(values => ({ ...values, [name]: value }));
+    }
+
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        createAPIEndpoint(ENDPOINTS.addCustomer).post({
-   
-            firstName: "John",
-            lastName: "Doe",
-            CustomerType: 1,
-            Company: "IMC"
-        })
+        console.log(formState)
+        event.preventDefault();
+        createAPIEndpoint(ENDPOINTS.addCustomer).post(formState)
             .then(function (response) {
                 console.log(response);
             })
@@ -58,16 +59,25 @@ const AddCustomer = () => {
 
       return (
           <form>
-              <label>Name</label>
-              <input type="text" name="Name" />
+              <label>First Name</label>
+              <input type="text"
+                  name = "firstName"
+                  onChange={(e) => { onInputChange("firstName", e.target.value); } } />
+              <br />
+
+              <label>Last Name</label>
+              <input type="text"
+                  name = "lastName"
+                  onChange={(e) => { onInputChange("lastName", e.target.value); }} />
               <br />
 
               <label>Customer Type</label>
-              <select>
+              <select onChange={(e) => { onInputChange("customerTypeId", parseInt(e.target.value)) }}>
                   {
-                      typeIds.map((value) => {
+                      typeIds.map((value, index) => {
                           return (
-                              <option value={value.id}> {value.name} </option>   
+                              <option key={index }
+                                  value={value.customerTypeId}> {value.name} </option>   
                           );
                       })
                   }
@@ -75,10 +85,15 @@ const AddCustomer = () => {
               <br />
 
               <label>Company</label>
-              <input type="text" name="Company" />
+              <input type="text"
+                  name="firstName"
+                  onChange={(e) => { onInputChange("company", e.target.value); }} />
               <br />
 
-              <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
+              <input type='button'
+                  name="submit"
+                  onClick={onSubmit}
+                  value={"submit"} />
           </form>
       );
 }
