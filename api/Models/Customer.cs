@@ -13,7 +13,7 @@ namespace api.Models
         OTHER
     }
 
-    public class Customer
+    public class Customer : IDBEntity<Customer>
     {
         [Key]
         public int CustomerId { get; set; }
@@ -36,7 +36,7 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? Company { get; set; }
         
-        public void AssignTo(Customer other)
+        public override void AssignTo(Customer other)
         {
             FirstName = other.FirstName;
             LastName = other.LastName;

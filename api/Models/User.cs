@@ -11,7 +11,7 @@ namespace api.Models
         EMPLOYEE
     }
 
-    public class User
+    public class User : IDBEntity<User>
     {
         [Key]
         public ulong Id { get; set; }
@@ -36,7 +36,7 @@ namespace api.Models
         [PasswordPropertyText]
         public string Password { get; set; } = "";
 
-        public void AssignTo(User other)
+        public override void AssignTo(User other)
         {
             Username = other.Username;
             FirstName = other.FirstName;

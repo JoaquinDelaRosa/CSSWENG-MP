@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Data
 {
-    public abstract class Repository<T> : IRepository<T> where T : class 
+    public abstract class Repository<T> : IRepository<T> where T : IDBEntity<T>
     {
         protected readonly DbContext dbContext;
-        protected DbSet<T>  dbSet;
+        protected DbSet<T> dbSet;
 
         public Repository(DbContext _context)
         {

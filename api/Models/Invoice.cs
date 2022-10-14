@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public class Invoice
+    public class Invoice : IDBEntity<Invoice>
     {
         [Key]
         public int InvoiceId { get; set; }
@@ -24,5 +24,10 @@ namespace api.Models
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string? AgentMiddleName { get; set; }
+
+        public override void AssignTo(Invoice other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

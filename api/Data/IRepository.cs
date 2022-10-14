@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace api.Data
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : IDBEntity<T>
     {
         public Task<T?> Get<Key>(Key id);
         IEnumerable<T> GetAll();

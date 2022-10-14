@@ -4,7 +4,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace api.Models
 {
-    public class Vehicle
+    public class Vehicle : IDBEntity<Vehicle>
     {
         [Key]
         public int VehicleId { get; set; }
@@ -25,7 +25,7 @@ namespace api.Models
             return VehicleId == other.VehicleId;
         }
 
-        public void AssignTo(Vehicle other)
+        public override void AssignTo(Vehicle other)
         {
             YearManufactured = other.YearManufactured;
             Manufacturer = other.Manufacturer;

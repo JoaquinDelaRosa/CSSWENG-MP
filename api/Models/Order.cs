@@ -14,7 +14,7 @@ namespace api.Models
         FOR_LOA_OR_INVOICE
     }
 
-    public class Order
+    public class Order : IDBEntity<Order>
     {
         [Key]
         public int OrderId { get; set; }
@@ -39,5 +39,9 @@ namespace api.Models
         public string? ScopeOfWork { get; set; }
         public float Expenses { get; set; }
 
+        public override void AssignTo(Order other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
