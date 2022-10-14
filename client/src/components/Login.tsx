@@ -14,20 +14,6 @@ const Login = () => {
         password: ""
     });
 
-    const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState({
-            username: event.target.value,
-            password: state.password
-        });
-    };
-
-    const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState({
-            username: state.username,
-            password: event.target.value
-        })
-    };
-
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
@@ -39,18 +25,33 @@ const Login = () => {
         event.preventDefault();
     };
 
+    const onInputChange = (name : string, value : any) => {
+        setState(values => ({ ...values, [name]: value }));
+    }
+
     return (
         <div className="FullPage">
             <div className="loginUI">
                 <h2>Insert Logo Here</h2>
                 <span>
                     <input className="textField usernameField"
-                        name="username" value={state.username} onChange={onUsernameChange} /> <br /><br />
+                        name="username"
+                        value={state.username}
+                        onChange={(e) => { onInputChange("username", e.target.value); }} />
+
+                    <br />
+                    <br />
                 </span>
 
                 <span>
                     <input className="textField"
-                        type="password" name="password" value={state.password} onChange={onPasswordChange} /> <br /><br />
+                        type="password"
+                        name="password"
+                        value={state.password}
+                        onChange={(e) => { onInputChange("password", e.target.value); }} />
+
+                    <br />
+                    <br />
                 </span>
 
                 <span>
