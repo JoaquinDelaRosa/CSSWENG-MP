@@ -2,10 +2,19 @@
 
 namespace api.Models
 {
+    public enum CustomerTypesEnum
+    {
+        PERSONAL,
+        WALK_IN,
+        FLEET,
+        INSURANCE,
+        OTHER
+    }
+
     public class CustomerType : IDBEntity<CustomerType>
     {
         [Key]
-        public int CustomerTypeId { get; set; }
+        public CustomerTypesEnum CustomerTypeId { get; set; }
         [Required]
         public string Name { get; set; } = "";
 

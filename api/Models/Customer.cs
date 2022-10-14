@@ -4,14 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public enum CustomerTypesEnum
-    {
-        PERSONAL,
-        WALK_IN,
-        FLEET,
-        INSURANCE,
-        OTHER
-    }
 
     public class Customer : IDBEntity<Customer>
     {
