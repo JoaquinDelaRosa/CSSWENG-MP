@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 
@@ -57,7 +58,7 @@ const UpdateCustomer = () => {
 
     const onModifiedIdChanged = (id: number) => {
         setModifiedId(id);
-        createAPIEndpoint(ENDPOINTS.getCustomer).fetch()
+        createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
             .then((response) => {
                 return response.data;
             })
