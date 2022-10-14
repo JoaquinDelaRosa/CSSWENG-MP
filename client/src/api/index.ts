@@ -8,7 +8,10 @@ export const ENDPOINTS = {
     vehicles: 'Vehicle/all',
     customerTypes: 'CustomerType/all',
 
-    addCustomer: 'Customer/create'
+    getCustomer: 'Customer/id',
+    addCustomer: 'Customer/create',
+    updateCustomer: 'Customer/update',
+    deleteCustoemr: 'Customer/delete'
 }
 
 export const createAPIEndpoint = (endpoint : string) => {
@@ -16,16 +19,16 @@ export const createAPIEndpoint = (endpoint : string) => {
     let url = BASE_URL + 'api/' + endpoint + '/';
 
     return {
-        fetch: () => axios.get(url),
+        fetch: (params?: any) => axios.get(url, {params}),
 
-        post: (data?: any, headers: any = {
+        post: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
-        }) => axios.post(url, data, headers),
+        }) => axios.post(url, data, { headers, "params": params }),
 
-        patch: (data?: any, headers: any = {
+        patch: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
-        }) => axios.patch(url, data, headers),
+        }) => axios.patch(url, data, {headers, "params" : params}),
 
-        delete: () => axios.delete(url)
+        delete: (params?: any) => axios.delete(url, {"params" : params})
     }
 }
