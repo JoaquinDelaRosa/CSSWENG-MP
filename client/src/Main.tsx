@@ -11,7 +11,7 @@ export const Main = (props: AppState) => {
         <Routes>
             <Route
                 path="/"
-                element={<Home />}
+                element={<CustomersView />}
             />
 
             <Route

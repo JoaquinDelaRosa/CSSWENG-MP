@@ -16,11 +16,10 @@ interface CreateCustomerState {
 const AddCustomer = () => {
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        createAPIEndpoint(ENDPOINTS.addCustomer).post({
-            Name: {
-                firstname: "John",
-                lastname: "Doe",
-            },
+        createAPIEndpoint(ENDPOINTS.AddCustomer).post({
+   
+            firstname: "John",
+            lastname: "Doe",
             CustomerType: 1,
             Company: "IMC"
         })
