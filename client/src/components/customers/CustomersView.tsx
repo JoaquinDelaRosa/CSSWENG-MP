@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../api";
+import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import AddCustomer from "./AddCustomer";
+import DeleteCustomer from "./DeleteCustomer";
+import UpdateCustomer from "./UpdateCustomer";
 interface Customer {
     name: string,
     type: string
@@ -61,7 +63,9 @@ const CustomersView = () => {
                     })}
                 </tbody>
             </table>
-            <AddCustomer/>
+            <AddCustomer />
+            <UpdateCustomer />
+            <DeleteCustomer />
         </div>      
     );
 }

@@ -54,7 +54,7 @@ namespace api.Controllers
             return v;
         }
 
-        [HttpPost("update")]
+        [HttpPatch("update")]
         public bool Update(int id, Vehicle v)
         {
             Vehicle? toModify = GetById(id).Result;

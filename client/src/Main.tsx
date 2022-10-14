@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import AddCustomer from "./components/AddCustomer";
-import CustomersView from "./components/CustomersView";
+import AddCustomer from "./components/customers/AddCustomer";
+import CustomersView from "./components/customers/CustomersView";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import VehiclesView from "./components/VehiclesView";

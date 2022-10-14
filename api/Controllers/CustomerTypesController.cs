@@ -56,7 +56,7 @@ namespace api.Controllers
         }
 
 
-        [HttpPost("update")]
+        [HttpPatch("update")]
         public bool Update(int id, CustomerType c)
         {
             CustomerType? toModify = GetById(id).Result;
