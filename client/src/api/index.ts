@@ -6,7 +6,9 @@ export const ENDPOINTS = {
     login: 'Authz/Login',
     customers: 'Customer/all',
     vehicles: 'Vehicle/all',
-    AddCustomer: 'Customer/create'
+    customerTypes: 'CustomerType/all',
+
+    addCustomer: 'Customer/create'
 }
 
 export const createAPIEndpoint = (endpoint : string) => {

@@ -29,7 +29,7 @@ namespace api.Models.Seeds
                     new CustomerType
                     {
                         CustomerTypeId = CustomerTypesEnum.WALK_IN,
-                        Name = "WALK_IN"
+                        Name = "WALK IN"
                     },
                     new CustomerType
                     {
