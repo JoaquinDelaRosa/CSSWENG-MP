@@ -80,7 +80,7 @@ const UpdateCustomer = () => {
                     name="id"
                     onChange={(e) => { onModifiedIdChanged(parseInt(e.target.value)); }}
                 />
-
+                <br/>
                 <label>First Name</label>
                 <input type="text"
                     name="firstName"

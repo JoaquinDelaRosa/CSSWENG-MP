@@ -14,7 +14,7 @@ const AddVehicle = () => {
 
     const year = (new Date()).getFullYear();
     const years = Array.from(new Array(100),( val, index) => year - index);
-    console.log(years)
+
     const [formState, setFormState] = useState<CreateVehicleState>({
         licensePlate: "",
         manufacturer: "",
