@@ -17,7 +17,8 @@ const Login = () => {
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
-                console.log(response?.data);
+                console.log(response.data.split("\""));
+                sessionStorage.setItem("key", response.data.split("\"")[0])
             })
             .catch((err: any) => {
                 console.log(err);

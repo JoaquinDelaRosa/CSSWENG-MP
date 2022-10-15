@@ -11,6 +11,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
+    [Authorize(Roles = "ADMIN")]
     public class CustomerController : Controller
     {
         private readonly CustomerRepository customerRepository;
