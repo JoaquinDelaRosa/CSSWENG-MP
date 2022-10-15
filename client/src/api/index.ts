@@ -25,20 +25,18 @@ export const ENDPOINTS = {
 export const createAPIEndpoint = (endpoint : string) => {
 
     let url = BASE_URL + 'api/' + endpoint + '/';
-
-    console.log({Authorization: `Bearer ${token}`})
     
     return {
-        fetch: (headers?:any, params?: any, ) => axios.get(url, {headers : {Authorization: `Bearer ${token}`}, params}),
+        fetch: (headers?:any, params?: any, ) => axios.get(url, {headers : {headers , Authorization: `Bearer ${token}`}, params}),
 
         post: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
-        }) => axios.post(url, data, { headers : {Authorization: `Bearer ${token}`}, "params": params }),
+        }) => axios.post(url, data, { headers : {headers, Authorization: `Bearer ${token}`}, "params": params }),
 
         patch: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
-        }) => axios.patch(url, data, {headers: {Authorization: `Bearer ${token}`}, "params" : params}),
+        }) => axios.patch(url, data, {headers: {headers, Authorization: `Bearer ${token}`}, "params" : params}),
 
-        delete: (headers: any, params?: any) => axios.delete(url, {headers: {Authorization: `Bearer ${token}`}, "params" : params})
+        delete: (headers: any, params?: any) => axios.delete(url, {headers: {headers, Authorization: `Bearer ${token}`}, "params" : params})
     }
 }
