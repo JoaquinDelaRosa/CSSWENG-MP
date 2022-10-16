@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class VersionThree : Migration
+    public partial class V4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,12 +29,12 @@ namespace api.Migrations
                 name: "CustomerType",
                 columns: table => new
                 {
-                    CustomerTypeId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerType", x => x.CustomerTypeId);
+                    table.PrimaryKey("PK_CustomerType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,8 +46,7 @@ namespace api.Migrations
                     Amount = table.Column<float>(type: "real", nullable: false),
                     DeductibleDue = table.Column<float>(type: "real", nullable: false),
                     AgentFirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    AgentLastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    AgentMiddleName = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                    AgentLastName = table.Column<string>(type: "nvarchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {

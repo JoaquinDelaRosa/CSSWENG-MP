@@ -21,13 +21,12 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? AgentLastName { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(100)")]
-        public string? AgentMiddleName { get; set; }
-
         public override void AssignTo(Invoice other)
         {
-            throw new NotImplementedException();
+            Amount = other.Amount;
+            AgentFirstName = other.AgentFirstName; 
+            AgentLastName = other.AgentLastName;
+            DeductibleDue = other.DeductibleDue;
         }
     }
 }

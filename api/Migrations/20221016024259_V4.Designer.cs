@@ -12,8 +12,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221015235638_Version-Three")]
-    partial class VersionThree
+    [Migration("20221016024259_V4")]
+    partial class V4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,14 +53,14 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.CustomerType", b =>
                 {
-                    b.Property<int>("CustomerTypeId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("CustomerType");
                 });
@@ -78,10 +78,6 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("AgentLastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AgentMiddleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 

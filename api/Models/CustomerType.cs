@@ -14,13 +14,13 @@ namespace api.Models
     public class CustomerType : IDBEntity<CustomerType>
     {
         [Key]
-        public CustomerTypesEnum CustomerTypeId { get; set; }
+        public CustomerTypesEnum Id { get; set; }
         [Required]
         public string Name { get; set; } = "";
 
         public override void AssignTo(CustomerType other)
         {
-            CustomerTypeId = other.CustomerTypeId;
+            Id = other.Id;
             Name = other.Name;
         }
     }

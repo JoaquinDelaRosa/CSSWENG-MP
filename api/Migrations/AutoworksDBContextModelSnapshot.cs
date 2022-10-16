@@ -51,14 +51,14 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.CustomerType", b =>
                 {
-                    b.Property<int>("CustomerTypeId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("CustomerType");
                 });
@@ -76,10 +76,6 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("AgentLastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("AgentMiddleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
