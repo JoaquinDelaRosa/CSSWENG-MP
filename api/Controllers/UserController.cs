@@ -10,20 +10,19 @@ namespace api.Controllers
     [Route("api/[Controller]")]
 
 
-    public class UserController : Controller
+    public class UserController : GenericItemController<User, UserDetailView>
     {
-        private readonly UserRepository userRepository;
-        public UserController(AutoworksDBContext ctx)
+        public UserController(AutoworksDBContext ctx) : base(new UserRepository(ctx))
         {
-            this.userRepository = new UserRepository(ctx);
+
         }
 
         [HttpGet("all")]
-        public IEnumerable<UserDetailView> GetAll()
+        public override IEnumerable<UserDetailView> GetAll()
         {
             List<UserDetailView> view = new List<UserDetailView>();
 
-            foreach (User user in userRepository.GetAll())
+            foreach (User user in repository.GetAll())
             {
                 view.Add(new UserDetailView(user));
             }
@@ -31,44 +30,12 @@ namespace api.Controllers
             return view;
         }
 
-        [HttpGet("id")]
-        public async Task<User?> GetById(int id)
-        {
-            return await userRepository.Get(id);
-        }
-
         [HttpGet("filter")]
-        public IEnumerable<UserDetailView> GetByPredicate(Predicate<User> predicate)
+        public override IEnumerable<UserDetailView> GetByPredicate(Predicate<User> predicate)
         {
             IEnumerable<UserDetailView> filtered = GetAll();
 
             return filtered;
-        }
-
-        [HttpPatch("update")]
-        public bool Update(int id, User u)
-        {
-            User? toModify = GetById(id).Result;
-            if (toModify == null)
-                return false;
-
-            userRepository.Update(toModify);
-            toModify.AssignTo(u);
-
-            userRepository.Save();
-            return true;
-        }
-
-        
-
-        [HttpDelete("delete")]
-        public async Task<bool> Delete(int id)
-        {
-            User? toRemove = await GetById(id);
-            if (toRemove == null)
-                return false;
-            userRepository.Remove(toRemove);
-            return true;
         }
     }
 }

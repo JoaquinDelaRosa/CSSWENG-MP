@@ -12,20 +12,18 @@ namespace api.Controllers
     [ApiController]
     [Route("api/[Controller]")]
     [Authorize(Roles = "ADMIN")]
-    public class CustomerController : Controller
+    public class CustomerController : GenericItemController<Customer, CustomerDetailView>
     {
-        private readonly CustomerRepository customerRepository;
-        public CustomerController(AutoworksDBContext ctx)
+        public CustomerController(AutoworksDBContext ctx) : base(new CustomerRepository(ctx))
         {
-            this.customerRepository = new CustomerRepository(ctx);
-        }
 
-        [HttpGet("all")]
-        public IEnumerable<CustomerDetailView> GetAll()
+        }
+        
+        public override IEnumerable<CustomerDetailView> GetAll()
         {
             List<CustomerDetailView> view = new List<CustomerDetailView>();
 
-            foreach (Customer customer in customerRepository.GetAll())
+            foreach (Customer customer in repository.GetAll())
             {
                 view.Add(new CustomerDetailView(customer));
             }
@@ -33,53 +31,11 @@ namespace api.Controllers
             return view;
         }
 
-        [HttpGet("id")]
-        public async Task<Customer?> GetById(int id)
-        {
-            return await customerRepository.Get(id);
-        }
-
-        [HttpGet("filter")]
-        public IEnumerable<CustomerDetailView> GetByPredicate(Predicate<Customer> predicate)
+        public override IEnumerable<CustomerDetailView> GetByPredicate(Predicate<Customer> predicate)
         {
             IEnumerable<CustomerDetailView> filtered = GetAll();
 
             return filtered;
-        }
-
-     
-        [HttpPost("create")]
-        public Customer Create(Customer c)
-        {
-            customerRepository.Create(c);
-
-            return c;
-        }
-
-
-        [HttpPatch("update")]
-        public bool Update(int id, Customer c)
-        {
-            Customer? toModify = GetById(id).Result;
-            if (toModify == null)
-                return false;
-
-            customerRepository.Update(toModify);
-            toModify.AssignTo(c);
-
-            customerRepository.Save();
-            return true;
-        }
-
-        [HttpDelete("delete")]
-        public async Task<bool> Delete(int id)
-        {
-            Customer? toRemove = await GetById(id);
-            if (toRemove == null)
-                return false;
-
-            customerRepository.Remove(toRemove);
-            return true;
         }
     }
 }
