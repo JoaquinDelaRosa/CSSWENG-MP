@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 
-
 const DeleteCustomer = () => {
     const [deleteId, setDeleteId] = useState<number>(-1);
 

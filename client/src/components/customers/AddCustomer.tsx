@@ -2,22 +2,13 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
+import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
 
-interface CreateCustomerState {
-    firstName: string,
-    lastName: string,
-    customerTypeId: number,
-    company?: string,
-}
 
-interface CustomerTypeKVP {
-    customerTypeId: number, 
-    name: string
-}
 
 const AddCustomer = () => {
 
-    const [formState, setFormState] = useState<CreateCustomerState>({
+    const [formState, setFormState] = useState<CustomerRequest>({
         firstName: "",
         lastName: "",
         customerTypeId: 0,

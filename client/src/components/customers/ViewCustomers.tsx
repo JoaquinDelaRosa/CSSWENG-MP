@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import AddCustomer from "./AddCustomer";
+import { Customer } from "./CustomerDetails";
 import DeleteCustomer from "./DeleteCustomer";
 import UpdateCustomer from "./UpdateCustomer";
-interface Customer {
-    name: string,
-    type: string
-    company? : string
-}
+
 
 const CustomerRecord = (props : { customer: Customer }) => {
     return (
@@ -19,7 +16,7 @@ const CustomerRecord = (props : { customer: Customer }) => {
      );
 }
 
-const CustomersView = () => {
+const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
 
@@ -70,4 +67,4 @@ const CustomersView = () => {
     );
 }
 
-export default CustomersView;
+export default ViewCustomers;

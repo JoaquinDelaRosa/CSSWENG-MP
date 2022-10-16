@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import AddCustomer from "./components/customers/AddCustomer";
-import CustomersView from "./components/customers/CustomersView";
+import ViewCustomers from "./components/customers/ViewCustomers";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import OrdersView from "./components/orders/OrdersView";
+import OrdersView from "./components/orders/ViewOrders";
 import RegisterUser from "./components/RegisterUser";
-import VehiclesView from "./components/vehicles/VehiclesView";
+import ViewVehicles from "./components/vehicles/ViewVehicles";
 import AppState from "./utils/AppState";
 
 export const Main = (props: AppState) => {
@@ -13,7 +13,7 @@ export const Main = (props: AppState) => {
         <Routes>
             <Route
                 path="/"
-                element={<CustomersView />}
+                element={<ViewCustomers />}
             />
 
             <Route
@@ -28,12 +28,12 @@ export const Main = (props: AppState) => {
 
             <Route
                 path="/customers"
-                element={<CustomersView/> }
+                element={<ViewCustomers /> }
             />
 
             <Route 
                 path="/vehicles"
-                element={<VehiclesView/> }
+                element={<ViewVehicles/> }
             />
 
             <Route

@@ -3,13 +3,8 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import AddVehicle from "./AddVehicle";
 import DeleteVehicle from "./DeleteVehicle";
 import UpdateVehicle from "./UpdateVehicle";
+import { Vehicle } from "./VehicleDetails";
 
-interface Vehicle {
-    licenseplate: string,
-    manufacturer: string,
-    model: string,
-    yearmanufactured: number
-}
 
 const VehicleRecord = (props : { vehicle: Vehicle }) => {
     return (
@@ -22,7 +17,7 @@ const VehicleRecord = (props : { vehicle: Vehicle }) => {
      );
 }
 
-const VehiclesView = () => {
+const ViewVehicles = () => {
 
     const [vehicles, setVehicles] = useState([]);
 
@@ -74,4 +69,4 @@ const VehiclesView = () => {
     )
 }
 
-export default VehiclesView;
+export default ViewVehicles;

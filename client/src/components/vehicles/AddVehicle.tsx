@@ -2,12 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
-interface CreateVehicleState {
-    licensePlate: string,
-    manufacturer: string,
-    model: string,
-    yearManufactured: Number
-}
+import { VehicleRequest } from './VehicleDetails';
 
 
 const AddVehicle = () => {
@@ -15,7 +10,7 @@ const AddVehicle = () => {
     const year = (new Date()).getFullYear();
     const years = Array.from(new Array(100),( val, index) => year - index);
 
-    const [formState, setFormState] = useState<CreateVehicleState>({
+    const [formState, setFormState] = useState<VehicleRequest>({
         licensePlate: "",
         manufacturer: "",
         model: "",
