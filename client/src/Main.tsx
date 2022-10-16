@@ -4,6 +4,7 @@ import CustomersView from "./components/customers/CustomersView";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import OrdersView from "./components/orders/OrdersView";
+import RegisterUser from "./components/RegisterUser";
 import VehiclesView from "./components/vehicles/VehiclesView";
 import AppState from "./utils/AppState";
 
@@ -18,6 +19,11 @@ export const Main = (props: AppState) => {
             <Route
                 path="/login"
                 element={<Login/>}
+            />
+
+            <Route
+                path="/register"
+                element={<RegisterUser/> }
             />
 
             <Route

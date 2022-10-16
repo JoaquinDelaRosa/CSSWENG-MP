@@ -5,6 +5,8 @@ export const BASE_URL = 'https://localhost:5000/'
 var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key") ! : "no token";
 export const ENDPOINTS = {
     login: 'Authz/Login',
+    register: 'Authz/Register',
+
     customers: 'Customer/all',
     vehicles: 'Vehicle/all',
     customerTypes: 'CustomerType/all',
