@@ -1,23 +1,13 @@
 import { create } from 'domain';
 import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
-
-interface CreateCustomerState {
-    firstName: string,
-    lastName: string,
-    customerTypeId: number,
-    company: string,
-}
-
-interface CustomerTypeKVP {
-    customerTypeId: number,
-    name: string
-}
+import { CustomerRequest } from '../customers/CustomerDetails';
+import { CustomerTypeKVP } from './CustomerDetails';
 
 
 const UpdateCustomer = () => {
     const [modifiedId, setModifiedId] = useState<number>(-1);
-    const [formState, setFormState] = useState<CreateCustomerState>({
+    const [formState, setFormState] = useState<CustomerRequest>({
         firstName: "",
         lastName: "",
         customerTypeId: 0,
