@@ -1,6 +1,5 @@
 ﻿using api.Data;
 using api.Models;
-using api.Views;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers

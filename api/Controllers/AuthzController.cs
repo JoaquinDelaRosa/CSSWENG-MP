@@ -42,15 +42,6 @@ namespace api.Controllers
             _config = config;
         }
 
-        private User UserFactoryMethod(LoginRequest request)
-        {
-            User u = new User();
-            u.Username = request.Username;
-            u.Password = encrypterManager.Encrypt(request.Password);
-
-            return u;
-        }
-
         private User UserFactoryMethod(RegistrationRequest request)
         {
             User u = new User();
