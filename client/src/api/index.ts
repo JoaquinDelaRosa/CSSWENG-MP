@@ -9,7 +9,8 @@ export const ENDPOINTS = {
 
     customers: 'Customer/all',
     vehicles: 'Vehicle/all',
-    orders: 'Orders/all',
+    orders: 'Order/all',
+    invoices: 'Invoice/all',
     customerTypes: 'CustomerType/all',
     orderStatuses: 'OrderStatus/all',
 
@@ -27,6 +28,11 @@ export const ENDPOINTS = {
     addOrder: "Order/create",
     updateOrder: "Order/update",
     deleteOrder: "Order/delete",
+
+    getInvoice: "Invoice/id",
+    addInvoice: "Invoice/create",
+    updateInvoice: "Invoice/update",
+    deleteInvoice: "Invoice/delete",
 
 }
 

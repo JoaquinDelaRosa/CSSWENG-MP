@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AddCustomer from "./components/customers/AddCustomer";
 import ViewCustomers from "./components/customers/ViewCustomers";
 import Home from "./components/Home";
+import ViewInvoices from "./components/invoice/ViewInvoices";
 import Login from "./components/Login";
 import OrdersView from "./components/orders/ViewOrders";
 import RegisterUser from "./components/RegisterUser";
@@ -41,6 +42,10 @@ export const Main = (props: AppState) => {
                 element={ <OrdersView/>}
             />
 
+            <Route 
+                path="/invoices"
+                element={<ViewInvoices />}
+            />
             <Route
                 path="/addcustomer"
                 element={<AddCustomer/> }
