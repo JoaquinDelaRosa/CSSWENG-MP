@@ -1,37 +1,30 @@
 import { create } from 'domain';
 import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
+import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 
-interface CreateCustomerState {
-    firstName: string,
-    lastName: string,
-    customerTypeId: number,
-    company: string,
-}
-
-interface CustomerTypeKVP {
-    customerTypeId: number,
-    name: string
-}
-
-
-const UpdateCustomer = () => {
+const UpdateOrder = () => {
     const [modifiedId, setModifiedId] = useState<number>(-1);
-    const [formState, setFormState] = useState<CreateCustomerState>({
-        firstName: "",
-        lastName: "",
-        customerTypeId: 0,
-        company: ""
+    const [formState, setFormState] = useState<OrderRequest>({
+        status: 0,
+        timeIn: new Date(),
+        timeOut: new Date(),
+        customerId: 0,
+        vehicleId: 0,
+        invoiceId: 0,
+        estimateNumber: "",
+        scopeOfWork: "",
+        expenses: 0
     });
 
-    const [typeIds, setTypeIds] = useState<Array<CustomerTypeKVP>>([]);
+    const [typeIds, setTypeIds] = useState<Array<OrderStatusKVP>>([]);
 
     useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.customerTypes).fetch()
+        createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
             .then((response) => {
                 return response.data;
             })
-            .then((response: Array<CustomerTypeKVP>) => {
+            .then((response: Array<OrderStatusKVP>) => {
                 console.log(response);
                 setTypeIds(response);
             })
@@ -47,7 +40,7 @@ const UpdateCustomer = () => {
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         console.log(formState)
         event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.updateCustomer).patch(formState, {"id": modifiedId})
+        createAPIEndpoint(ENDPOINTS.updateOrder).patch(formState, { "id": modifiedId })
             .then(function (response) {
                 console.log(response);
             })
@@ -58,7 +51,7 @@ const UpdateCustomer = () => {
 
     const onModifiedIdChanged = (id: number) => {
         setModifiedId(id);
-        createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
+        createAPIEndpoint(ENDPOINTS.getOrder).fetch({ "id": id })
             .then((response) => {
                 return response.data;
             })
@@ -81,35 +74,67 @@ const UpdateCustomer = () => {
                     onChange={(e) => { onModifiedIdChanged(parseInt(e.target.value)); }}
                 />
                 <br/>
-                <label>First Name</label>
-                <input type="text"
-                    name="firstName"
-                    onChange={(e) => { onInputChange("firstName", e.target.value); }} />
-                <br />
 
-                <label>Last Name</label>
-                <input type="text"
-                    name="lastName"
-                    onChange={(e) => { onInputChange("lastName", e.target.value); }} />
-                <br />
-
-                <label>Customer Type</label>
-                <select onChange={(e) => { onInputChange("customerTypeId", parseInt(e.target.value)) }}>
+                <label>Order Status</label>
+                <select onChange={(e) => { onInputChange("status", parseInt(e.target.value)) }}>
                     {
                         typeIds.map((value, index) => {
                             return (
                                 <option key={index}
-                                    value={value.customerTypeId}> {value.name} </option>
+                                    value={value.id}> {value.name} </option>
                             );
                         })
                     }
                 </select>
                 <br />
 
-                <label>Company</label>
-                <input type="text"
-                    name="firstName"
-                    onChange={(e) => { onInputChange("company", e.target.value); }} />
+                <label>timeIn</label>
+                <input type='date'
+                    name="timeIn"
+                    onChange={(e) => { onInputChange("timeIn", e.target.value); }} />
+                <br />
+
+                <label>timeOut</label>
+                <input type='date'
+                    name="timeOut"
+                    onChange={(e) => { onInputChange("timeOut", e.target.value); }} />
+                <br />
+
+                <label>customerId</label>
+                <input type='number'
+                    name="customerId"
+                    onChange={(e) => { onInputChange("customerId", e.target.value); }} />
+                <br />
+
+                <label>vehicleId</label>
+                <input type='number'
+                    name="vehicleId"
+                    onChange={(e) => { onInputChange("vehicleId", e.target.value); }} />
+                <br />
+
+
+                <label>invoiceId</label>
+                <input type='number'
+                    name="invoiceId"
+                    onChange={(e) => { onInputChange("invoiceId", e.target.value); }} />
+                <br />
+
+                <label>estimateNumber</label>
+                <input type='text'
+                    name="estimateNumber"
+                    onChange={(e) => { onInputChange("estimateNumber", e.target.value); }} />
+                <br />
+
+                <label>scopeOfWork</label>
+                <input type='text'
+                    name="scopeOfWork"
+                    onChange={(e) => { onInputChange("scopeOfWork", e.target.value); }} />
+                <br />
+
+                <label>expenses</label>
+                <input type='number'
+                    name="customerId"
+                    onChange={(e) => { onInputChange("expenses", e.target.value); }} />
                 <br />
 
                 <input type='button'
@@ -121,4 +146,4 @@ const UpdateCustomer = () => {
     );
 }
 
-export default UpdateCustomer;
+export default UpdateOrder;

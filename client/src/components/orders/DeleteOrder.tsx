@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 
 
-const DeleteCustomer = () => {
+const DeleteOrder = () => {
     const [deleteId, setDeleteId] = useState<number>(-1);
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.deleteCustomer).delete({"id" : deleteId})
+        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({ "id": deleteId })
             .then(function (response) {
                 console.log(response);
             })
@@ -35,4 +35,4 @@ const DeleteCustomer = () => {
     );
 }
 
-export default DeleteCustomer;
+export default DeleteOrder;
