@@ -3,16 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public enum OrderStatus
-    {
-        PAID,
-        UNPAID,
-        OK, 
-        PENDING,
-        WITH_BALANCE,
-        QUOTE_OR_CHECK,
-        FOR_LOA_OR_INVOICE
-    }
+
 
     public class Order : IDBEntity<Order>
     {
@@ -20,7 +11,7 @@ namespace api.Models
         public int OrderId { get; set; }
 
         [Required]
-        public OrderStatus Status { get; set; } = OrderStatus.UNPAID;
+        public OrderStatusEnum Status { get; set; } = OrderStatusEnum.UNPAID;
 
         [Required]
         public DateTime TimeIn { get; set; }
@@ -41,7 +32,15 @@ namespace api.Models
 
         public override void AssignTo(Order other)
         {
-            throw new NotImplementedException();
+            Status = other.Status;
+            TimeIn = other.TimeIn;
+            TimeOut = other.TimeOut;
+            CustomerId = other.CustomerId;
+            VehicleId = other.VehicleId;
+            InvoiceId = other.InvoiceId;
+            EstimateNumber = other.EstimateNumber;
+            ScopeOfWork = other.ScopeOfWork;
+            Expenses = other.Expenses;
         }
     }
 }

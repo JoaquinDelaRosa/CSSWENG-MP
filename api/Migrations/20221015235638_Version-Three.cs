@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class VersionTwo : Migration
+    public partial class VersionThree : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,15 +55,15 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Record",
+                name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: false),
                     TimeIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
                     VehicleId = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
                     EstimateNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -72,7 +72,19 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Record", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,7 +133,10 @@ namespace api.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Record");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "OrderStatuses");
 
             migrationBuilder.DropTable(
                 name: "Users");

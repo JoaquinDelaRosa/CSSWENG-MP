@@ -88,7 +88,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     CustomerTypeDbSeed.Initialize(services);
-    CustomerDbSeed.Initialize(services);
+    OrderStatusDbSeed.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.

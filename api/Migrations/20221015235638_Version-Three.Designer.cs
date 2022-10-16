@@ -12,8 +12,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221012194704_DeleteMiddleName")]
-    partial class DeleteMiddleName
+    [Migration("20221015235638_Version-Three")]
+    partial class VersionThree
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Customer", b =>
                 {
-                    b.Property<decimal>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(20,0)");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("CustomerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
 
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(100)");
@@ -133,7 +133,21 @@ namespace api.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Record");
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("api.Models.OrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderStatuses");
                 });
 
             modelBuilder.Entity("api.Models.User", b =>
