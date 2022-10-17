@@ -1,11 +1,11 @@
 import { createAPIEndpoint, ENDPOINTS } from "../api"
 
 
-export const CustomerExistsCheck = async (id : number) : Promise<boolean> => {
+export const CustomerExistsCheck = (id : number) : boolean => {
     let customerExists : boolean = false;
     if(id == null)
         return false;
-    await createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
+    createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
         .then((response) => {
             return response.data;   
         })

@@ -4,6 +4,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 import { CustomerExistsCheck } from '../../utils/CustomerErrorChecking';
+import FormError from '../../utils/FormError';
 
 const AddOrder = () => {
     const [formState, setFormState] = useState<OrderRequest>({
@@ -93,6 +94,8 @@ const AddOrder = () => {
                     
                     onChange={(e) => { onInputChange("customerId", e.target.value); }} />
                 <br />
+
+                <FormError error={CustomerExistsCheck(formState.customerId)} message={"Hello World"} />
 
                 <label>vehicleId</label>
                 <input type='number'
