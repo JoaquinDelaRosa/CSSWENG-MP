@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { OrderRequest, OrderStatusKVP } from './OrderDetails';
+import { CustomerExistsCheck } from '../../utils/CustomerErrorChecking';
 
 const AddOrder = () => {
     const [formState, setFormState] = useState<OrderRequest>({
@@ -35,7 +36,15 @@ const AddOrder = () => {
 
     const onInputChange = (name: string, value: any) => {
         setFormState(values => ({ ...values, [name]: value }));
+        console.log(formState);
+        // CustomerExistsCheck(formState.customerId)
+        //     .then((response) => {
+        //         console.log(response)
+        //     })
+        
     }
+
+
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         console.log(formState)
@@ -81,6 +90,7 @@ const AddOrder = () => {
                 <label>customerId</label>
                 <input type='number'
                     name="customerId"
+                    
                     onChange={(e) => { onInputChange("customerId", e.target.value); }} />
                 <br />
 

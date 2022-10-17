@@ -28,7 +28,7 @@ namespace api.Models
 
 
         [Required]
-        public UserType Type { get; set; } = UserType.EMPLOYEE;
+        public UserType Type { get; set; } = UserType.ADMIN;
 
 
         [Required]

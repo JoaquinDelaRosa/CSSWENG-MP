@@ -43,7 +43,7 @@ export const createAPIEndpoint = (endpoint : string) => {
     let url = BASE_URL + 'api/' + endpoint + '/';
     
     return {
-        fetch: (headers?:any, params?: any, ) => axios.get(url, {"headers" : {...headers , Authorization: `Bearer ${token}`}, "params": params}),
+        fetch: (params?: any, headers?:any) => axios.get(url, {"headers" : {...headers , Authorization: `Bearer ${token}`}, "params": params}),
 
         post: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
