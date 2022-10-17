@@ -4,7 +4,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 import { CustomerExistsCheck } from '../../utils/CustomerErrorChecking';
-import FormError from '../../utils/FormError';
+import { Form } from 'react-router-dom';
 
 const AddOrder = () => {
     const [formState, setFormState] = useState<OrderRequest>({
@@ -44,8 +44,6 @@ const AddOrder = () => {
         //     })
         
     }
-
-
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         console.log(formState)
@@ -95,7 +93,11 @@ const AddOrder = () => {
                     onChange={(e) => { onInputChange("customerId", e.target.value); }} />
                 <br />
 
-                <FormError error={CustomerExistsCheck(formState.customerId)} message={"Hello World"} />
+                {
+                    CustomerExistsCheck(formState.customerId) && <div>
+                        Hello World
+                    </div>
+                }
 
                 <label>vehicleId</label>
                 <input type='number'
