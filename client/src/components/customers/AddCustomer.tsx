@@ -70,7 +70,7 @@ const AddCustomer = () => {
                           typeIds.map((value, index) => {
                               return (
                                   <option key={index }
-                                      value={value.customerTypeId}> {value.name} </option>   
+                                      value={value.id}> {value.name} </option>   
                               );
                           })
                       }

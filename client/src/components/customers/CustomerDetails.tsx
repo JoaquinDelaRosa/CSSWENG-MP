@@ -6,7 +6,7 @@ export interface CustomerRequest {
 }
 
 export interface CustomerTypeKVP {
-    customerTypeId: number,
+    id: number,
     name: string
 }
 
