@@ -53,6 +53,6 @@ export const createAPIEndpoint = (endpoint : string) => {
             'Content-Type': 'application/json'
         }) => axios.patch(url, data, {"headers": {...headers, Authorization: `Bearer ${token}`}, "params" : params}),
 
-        delete: (headers: any, params?: any) => axios.delete(url, {"headers": {...headers, Authorization: `Bearer ${token}`}, "params" : params})
+        delete: (params?: any, headers?: any) => axios.delete(url, {"headers": {...headers, Authorization: `Bearer ${token}`}, "params" : params})
     }
 }
