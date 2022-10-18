@@ -57,11 +57,13 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label >Time In</label>
-                    <input type='date' name="timeIn"/>
+                    <input {...register('timeIn', {required: true})}
+                        type='date' name="timeIn" id ="timeIn"/>
                 </div>
                 <div>
                     <label>Time Out</label>
-                    <input type='date' name="timeOut"/>
+                    <input  {...register('timeOut', {required: true})}
+                        type='date' name="timeOut"/>
                 </div>
                 <div>
                     <label htmlFor="customerId">Customer ID</label>

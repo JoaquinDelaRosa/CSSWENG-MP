@@ -5,14 +5,17 @@ import DeleteOrder from "./DeleteOrder";
 import { Order } from "./OrderDetails";
 import UpdateOrder from "./UpdateOrder";
 
-const DateEntry = (props: { date: Date }) => {
-    console.log(typeof(props.date))
+const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+const DateEntry = (props: { date: string }) => {
+    const d: Date = new Date(props.date);
+
     return (
-        <div>
-            {/* <td> {props.date.getMonth()}</td>
-            <td> {props.date.getDay()}</td>
-            <td> {props.date.getFullYear()}</td> */}
-        </div>
+        <>
+            <td> {MONTHS[d.getMonth()]}</td>
+            <td> {d.getDate()}</td>
+            <td> {d.getFullYear()}</td> 
+        </>
     );
 }
 
@@ -81,6 +84,22 @@ const ViewOrders = () => {
     return (
         <div>
             <table>
+                <thead>
+                    <th> ID </th>
+                    <th> Status </th>
+                    <th> Time In Month </th>
+                    <th> Time In Day </th>
+                    <th> Time In Year </th>
+                    <th> Time Out Month </th>
+                    <th> Time Out Day </th>
+                    <th> Time Out Year </th>
+                    <th> Customer ID </th>
+                    <th> Vehicle ID </th>
+                    <th> Invoice ID </th>
+                    <th> Estimate Number </th>
+                    <th> Scope of Work </th>
+                    <th> Estimate </th>
+                </thead>
                 <tbody>
                     {orders.map((value, index) => {
                         return (<OrderRecord order={value} key={index } />);

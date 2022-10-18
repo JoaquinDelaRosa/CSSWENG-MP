@@ -6,8 +6,8 @@ export interface OrderStatusKVP {
 export interface Order {
     "orderId": number,
     "status": number, 
-    "timeIn": Date,
-    "timeOut": Date,
+    "timeIn": string,
+    "timeOut": string,
     "customerId": number,
     "vehicleId": number,
     "invoiceId": number,

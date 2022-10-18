@@ -76,20 +76,20 @@ namespace test
             return context;
         }
 
-        private void MakeOrderRelatedEntities(AutoworksDBContext context)
+        private async void MakeOrderRelatedEntities(AutoworksDBContext context)
         {
             CustomerController customerController = new CustomerController(context);
             VehicleController vehicleController = new VehicleController(context);
             InvoiceController invoiceController = new InvoiceController(context);
 
-            customerController.Create(new Customer() { 
+            await customerController.Create(new Customer() { 
                 CustomerId = TEST_CUSTOMER_ID,
                 FirstName = "Test", LastName = "User"
             });
-            vehicleController.Create(new Vehicle() { 
+            await vehicleController.Create(new Vehicle() { 
                 VehicleId = TEST_VEHICLE_ID
             });
-            invoiceController.Create(new Invoice() { 
+            await invoiceController.Create(new Invoice() { 
                 InvoiceId = TEST_INVOICE_ID,
                 AgentFirstName = "Test", AgentLastName = "Agent"
             });
@@ -101,11 +101,11 @@ namespace test
         {
             CreateNewContext();
 
-            controller.Create(first);
+            await controller.Create(first);
 
             Order? afterCreate = await controller.GetById(first.OrderId);
            
-            controller.Update(first.OrderId, second);
+            await controller.Update(first.OrderId, second);
             Order? afterUpdate = await controller.GetById(first.OrderId);
 
             await controller.Delete(first.OrderId);
@@ -149,7 +149,7 @@ namespace test
             Order? order = await controller.GetById(10245102);
             Assert.Null(order);
 
-            controller.Update(-1, new Order());
+            await controller.Update(-1, new Order());
             await controller.Delete(-1000);
         }
         [Fact]
@@ -178,7 +178,7 @@ namespace test
             AutoworksDBContext context = CreateNewContext();
             for (int i = 0; i < 1000; ++i)
             {
-                controller.Create(new Order()
+                await controller.Create(new Order()
                 {
                     OrderId = i + 1,
                     CustomerId = TEST_CUSTOMER_ID,
