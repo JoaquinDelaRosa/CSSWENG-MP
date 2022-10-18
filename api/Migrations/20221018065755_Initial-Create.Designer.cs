@@ -12,8 +12,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221016024259_V4")]
-    partial class V4
+    [Migration("20221018065755_Initial-Create")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,8 +100,8 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<decimal>("CustomerId")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EstimateNumber")
                         .HasColumnType("nvarchar(max)");

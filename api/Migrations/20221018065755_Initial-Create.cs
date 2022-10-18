@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace api.Migrations
 {
-    public partial class V4 : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,7 +62,7 @@ namespace api.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     TimeIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     VehicleId = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
                     EstimateNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),

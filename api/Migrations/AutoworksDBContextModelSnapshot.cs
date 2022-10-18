@@ -98,8 +98,8 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<decimal>("CustomerId")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EstimateNumber")
                         .HasColumnType("nvarchar(max)");

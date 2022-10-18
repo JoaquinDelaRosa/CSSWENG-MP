@@ -86,6 +86,11 @@ using (var scope = app.Services.CreateScope())
 
     CustomerTypeDbSeed.Initialize(services);
     OrderStatusDbSeed.Initialize(services);
+
+    InvoiceDbSeed.Initialize(services);
+    UserDbSeed.Initialize(services);
+    VehicelDbSeed.Initialize(services);
+    CustomeDbSeed.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.
