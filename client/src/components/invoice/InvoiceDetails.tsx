@@ -6,6 +6,7 @@ export interface InvoiceRequest {
 }
 
 export interface Invoice {
+    "invoiceId": number,
     "amount": number,
     "deductibleDue": number,
     "agentFirstName": string,

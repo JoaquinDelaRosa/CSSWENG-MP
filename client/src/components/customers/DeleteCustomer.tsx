@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
+import { isCustomerExists } from '../../utils/CheckFKExists';
+import { Customer } from './CustomerDetails';
 
 const DeleteCustomer = () => {
-    const [deleteId, setDeleteId] = useState<number>(-1);
+    const {register, handleSubmit, formState: {errors}} = useForm<Customer>();
+    const [customerExists, setCustomerExists] = useState<boolean>(true);
 
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.deleteCustomer).delete({"id" : deleteId})
-            .then(function (response) {
-                console.log(response);
+    const onSubmit = handleSubmit((data) => {
+        createAPIEndpoint(ENDPOINTS.deleteCustomer).delete({"id" : data.customerId})
+            .then((response) => {
+                console.log(response)
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((err) => {
+                console.log(err)
             })
-    };
+    })
 
     return (
         <div>
             <p> Delete </p>
-            <form>
-                <label> Id </label>
-                <input type="number"
-                    name="id"
-                    onChange={(e) => { setDeleteId(parseInt(e.target.value)); }}
-                />
-
-                <input type='button'
-                    name="submit"
-                    onClick={onSubmit}
-                    value={"submit"} />
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="customerId"> Input Order ID </label>
+                    <input {... register('customerId', {required : true,
+                    onChange: (e)=> {
+                        isCustomerExists(parseInt(e.target.value), setCustomerExists);
+                    }})} type="number" name="id"/>
+                    {errors.customerId && <p>Customer ID is required</p>}
+                </div>
+                <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );
+    //todo TEST
 }
 
 export default DeleteCustomer;

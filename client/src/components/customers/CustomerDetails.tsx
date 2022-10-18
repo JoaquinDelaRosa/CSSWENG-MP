@@ -11,6 +11,7 @@ export interface CustomerTypeKVP {
 }
 
 export interface Customer {
+    customerId: number
     name: string,
     type: string
     company?: string

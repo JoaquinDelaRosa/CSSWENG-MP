@@ -54,4 +54,23 @@ export const isInvoiceExists = (id: number, setter: any) => {
         })
 }
 
+export const isOrderExists = (id: number, setter: any) => {
+    if(Number.isNaN(id)) {
+        setter(false)
+        return
+    }
+            
+    createAPIEndpoint(ENDPOINTS.getOrder).fetch({"id" : id})
+        .then((response) => {
+            if(response.data)
+                setter(true)
+            else
+                setter(false)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+
 

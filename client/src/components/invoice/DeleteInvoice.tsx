@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
+import { isInvoiceExists } from '../../utils/CheckFKExists';
+import { Invoice } from './InvoiceDetails';
 
 const DeleteInvoice = () => {
-    const [deleteId, setDeleteId] = useState<number>(-1);
+    const {register, handleSubmit, formState: {errors}} = useForm<Invoice>();
+    const [invoiceExists, setInvoiceExists] = useState<boolean>(true);
 
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.deleteInvoice).delete({"id" : deleteId})
-            .then(function (response) {
-                console.log(response);
+    const onSubmit = handleSubmit((data) => {
+        createAPIEndpoint(ENDPOINTS.deleteInvoice).delete({"id" : data.invoiceId})
+            .then((response) => {
+                console.log(response)
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((err) => {
+                console.log(err)
             })
-    };
+    })
 
     return (
         <div>
             <p> Delete </p>
-            <form>
-                <label> Id </label>
-                <input type="number"
-                    name="id"
-                    onChange={(e) => { setDeleteId(parseInt(e.target.value)); }}
-                />
-
-                <input type='button'
-                    name="submit"
-                    onClick={onSubmit}
-                    value={"submit"} />
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="invoiceId"> Input Invoice ID </label>
+                    <input {... register('invoiceId', {required : true,
+                    onChange: (e)=> {
+                        isInvoiceExists(parseInt(e.target.value), setInvoiceExists);
+                    }})} type="number" name="id"/>
+                    {errors.invoiceId && <p>Invoice ID is required</p>}
+                </div>
+                <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );
+    //todo TEST
 }
 
 export default DeleteInvoice;
