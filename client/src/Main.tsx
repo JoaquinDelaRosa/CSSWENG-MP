@@ -8,6 +8,8 @@ import OrdersView from "./components/orders/ViewOrders";
 import RegisterUser from "./components/RegisterUser";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import AppState from "./utils/AppState";
+import "./style/formEdit.css";
+
 
 export const Main = (props: AppState) => {
     return (
