@@ -10,8 +10,8 @@ export const CustomerExistsCheck = (id : number) : boolean => {
             return response.data;   
         })
         .then((data) => {
-            console.log(data)
             customerExists = (data != "");
+            console.log(customerExists)
         })
         .catch((error) => {
             console.log(error);
