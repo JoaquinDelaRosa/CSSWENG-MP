@@ -3,19 +3,17 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { OrderRequest, OrderStatusKVP } from './OrderDetails';
-import { CustomerExistsCheck } from '../../utils/CustomerErrorChecking';
+import { isCustomerExists, isVehicleExists, isInvoiceExists } from '../../utils/CheckFKExists'; 
 import { Form } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const AddOrder = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
     const [typeIds, setTypeIds] = useState<Array<OrderStatusKVP>>([]);
-    const [exists, setExists] = useState<boolean>();
-
-    useEffect(() => {
-        console.log(exists)
-        setExists(exists)
-    }, [exists]) 
+    const [customerExists, setCustomerExists] = useState<boolean>(true);
+    const [vehicleExists, setVehicleExists] = useState<boolean>(true);
+    const [invoiceExists, setInvoiceExists] = useState<boolean>(true);
+    
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -31,7 +29,7 @@ const AddOrder = () => {
     }, [])
 
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.updateOrder).post(data)
+        createAPIEndpoint(ENDPOINTS.addOrder).post(data)
             .then(function (response) {
                 console.log(response);
             })
@@ -39,19 +37,6 @@ const AddOrder = () => {
                 console.log(error);
             })
     })
-
-    const testExistence = (id : number) => {
-        if(Number.isNaN(id))
-            return false
-        createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
-            .then((response) => {
-                setExists(response.data != null)
-                console.log("bomus")
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
 
     return (
         <div>
@@ -80,23 +65,32 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label htmlFor="customerId">Customer ID</label>
-                    <input {... register("customerId", {required : true})} 
-                        onChange={(e) => {
-                        testExistence(parseInt(e.target.value))
-                    }}
-                        type='number' name="customerId" id="customerId"/>
+                    <input {... register("customerId", {required : true, 
+                        onChange: (e) => {
+                            isCustomerExists(parseInt(e.target.value),setCustomerExists)
+                        }})}  
+                        type='number' name="customerId" id="customerId" />
                     {errors.customerId && <p>Customer ID is required</p>}
-                    <p hidden={exists}>Customer does not exist</p>
+                    <p hidden={customerExists}>Customer does not exist</p>
+               
                 </div>
                 <div> 
                     <label htmlFor="vehicleId">Vehicle ID</label>
-                    <input {... register("vehicleId", {required : true})} type='number' name="vehicleId" id="vehicleId"/>
+                    <input {... register("vehicleId", {required : true, 
+                    onChange: (e) => {
+                        isVehicleExists(parseInt(e.target.value),setVehicleExists)
+                    }})}  type='number' name="vehicleId" id="vehicleId"/>
                     {errors.vehicleId && <p>Vehicle ID is required</p>}
+                    <p hidden={vehicleExists}>Vehicle does not exist</p>
                 </div>
                 <div>
                     <label htmlFor="invoiceId">Invoice ID</label>
-                    <input {... register("invoiceId", {required : true})} type='number' name="invoiceId" id="invoiceId"/>
+                    <input {... register("invoiceId", {required : true,
+                    onChange: (e) => {
+                        isInvoiceExists(parseInt(e.target.value),setInvoiceExists)
+                    }})} type='number' name="invoiceId" id="invoiceId"/>
                     {errors.invoiceId && <p>Invoice ID is required</p>}
+                    <p hidden={invoiceExists}>Invoice does not exist</p>
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Number</label>
