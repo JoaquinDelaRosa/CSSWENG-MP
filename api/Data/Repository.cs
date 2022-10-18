@@ -18,7 +18,8 @@ namespace api.Data
 
         public async Task<T?> Get<Key>(Key id)
         {
-            return await dbSet.FindAsync(id);
+            T? result =  await dbSet.FindAsync(id);
+            return result;
         }
 
         public IEnumerable<T> GetAll()

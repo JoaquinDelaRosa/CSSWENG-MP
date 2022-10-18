@@ -1,3 +1,4 @@
+using api.Models;
 using System.Collections;
 using System.Runtime.InteropServices;
 using Xunit;
@@ -8,6 +9,14 @@ namespace test
     {
         private OrderController controller;
         private static int itr = 0;
+
+        private const int TEST_CUSTOMER_ID = 100;
+        private const int TEST_VEHICLE_ID = 200;
+        private const int TEST_INVOICE_ID = 300;
+
+        private const int TEST_NONEXISTENT_CUSTOMER_ID = 404;
+        private const int TEST_NONEXISTENT_VEHICLE_ID = 505;
+        private const int TEST_NONEXISTENT_INVOICE_ID = 606;
 
         public OrderControllerTest()
         {
@@ -26,9 +35,9 @@ namespace test
                         OrderId = 1000,
                         Status = OrderStatusEnum.UNPAID,
                         TimeIn = DateTime.Now,
-                        CustomerId = 1,
-                        VehicleId = 1,
-                        InvoiceId = 1,
+                        CustomerId = TEST_CUSTOMER_ID,
+                        VehicleId = TEST_VEHICLE_ID,
+                        InvoiceId = TEST_INVOICE_ID,
 
                         EstimateNumber = "Hello",
                         ScopeOfWork = "To do stuff",
@@ -40,9 +49,9 @@ namespace test
                         Status = OrderStatusEnum.PAID,
                         TimeOut = DateTime.Now,
                         TimeIn = DateTime.Now,
-                        CustomerId = 1,
-                        VehicleId = 1,
-                        InvoiceId = 1,
+                        CustomerId = TEST_CUSTOMER_ID,
+                        VehicleId = TEST_VEHICLE_ID,
+                        InvoiceId = TEST_INVOICE_ID,
 
                         EstimateNumber = "Hello",
                         ScopeOfWork = "To do stuff",
@@ -57,13 +66,33 @@ namespace test
         public AutoworksDBContext CreateNewContext()
         {
             var options = new DbContextOptionsBuilder<AutoworksDBContext>()
-                .UseInMemoryDatabase(databaseName: "Test" + itr.ToString())
+                .UseInMemoryDatabase(databaseName: nameof(OrderControllerTest) + itr.ToString())
                 .Options;
 
             ++itr;
             AutoworksDBContext context = new AutoworksDBContext(options);
             controller = new OrderController(context);
+            MakeOrderRelatedEntities(context);
             return context;
+        }
+
+        private void MakeOrderRelatedEntities(AutoworksDBContext context)
+        {
+            CustomerController customerController = new CustomerController(context);
+            VehicleController vehicleController = new VehicleController(context);
+            InvoiceController invoiceController = new InvoiceController(context);
+
+            customerController.Create(new Customer() { 
+                CustomerId = TEST_CUSTOMER_ID,
+                FirstName = "Test", LastName = "User"
+            });
+            vehicleController.Create(new Vehicle() { 
+                VehicleId = TEST_VEHICLE_ID
+            });
+            invoiceController.Create(new Invoice() { 
+                InvoiceId = TEST_INVOICE_ID,
+                AgentFirstName = "Test", AgentLastName = "Agent"
+            });
         }
 
         [Theory]
@@ -73,6 +102,7 @@ namespace test
             CreateNewContext();
 
             controller.Create(first);
+
             Order? afterCreate = await controller.GetById(first.OrderId);
            
             controller.Update(first.OrderId, second);
@@ -116,11 +146,30 @@ namespace test
         public async void GetDoesNotExist()
         {
             CreateNewContext();
-            Order? invoice = await controller.GetById(10245102);
-            Assert.Null(invoice);
+            Order? order = await controller.GetById(10245102);
+            Assert.Null(order);
 
             controller.Update(-1, new Order());
             await controller.Delete(-1000);
+        }
+        [Fact]
+        public async  void AddDoesNotExist()
+        {
+            AutoworksDBContext context = CreateNewContext();
+            const int id = -1;
+
+            Order o = new Order()
+            {
+                OrderId = id,
+                CustomerId = TEST_NONEXISTENT_CUSTOMER_ID,
+                InvoiceId = TEST_NONEXISTENT_INVOICE_ID,
+                VehicleId = TEST_NONEXISTENT_VEHICLE_ID
+            };
+
+            Assert.False(await controller.HasValidFK(o));
+
+            Order? order = await controller.GetById(id);
+            Assert.Null(order);
         }
 
         [Fact]
@@ -131,7 +180,10 @@ namespace test
             {
                 controller.Create(new Order()
                 {
-
+                    OrderId = i + 1,
+                    CustomerId = TEST_CUSTOMER_ID,
+                    VehicleId = TEST_VEHICLE_ID,
+                    InvoiceId = TEST_INVOICE_ID
                 });
             }
 

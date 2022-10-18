@@ -45,7 +45,7 @@ namespace test
         public AutoworksDBContext CreateNewContext()
         {
             var options = new DbContextOptionsBuilder<AutoworksDBContext>()
-                .UseInMemoryDatabase(databaseName: "Test" + itr.ToString())
+                .UseInMemoryDatabase(databaseName: nameof(InvoiceControllerTest) + itr.ToString())
                 .Options;
 
             ++itr;
@@ -60,10 +60,10 @@ namespace test
         {
             CreateNewContext();
 
-            controller.Create(first);
+            await controller.Create(first);
             Invoice? afterCreate = await controller.GetById(first.InvoiceId);
            
-            controller.Update(first.InvoiceId, second);
+            await controller.Update(first.InvoiceId, second);
             Invoice? afterUpdate = await controller.GetById(first.InvoiceId);
 
             await controller.Delete(first.InvoiceId);

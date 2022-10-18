@@ -28,7 +28,7 @@ namespace api.Controllers
         public abstract IEnumerable<View> GetByPredicate(Predicate<T> predicate);
 
         [HttpPost("create")]
-        public virtual T Create(T other)
+        public virtual async Task<T?> Create(T other)
         {
             repository.Create(other);
 
@@ -36,7 +36,7 @@ namespace api.Controllers
         }
 
         [HttpPatch("update")]
-        public virtual bool Update(int id, T entity)
+        public virtual async Task<bool> Update(int id, T entity)
         {
             T? toModify = GetById(id).Result;
             if (toModify == null)

@@ -19,7 +19,7 @@ namespace api.Models
 
         [Required]
         [ForeignKey("Customer")]
-        public ulong CustomerId { get; set; }
+        public int CustomerId { get; set; }
         [Required]
         [ForeignKey("Vehicle")]
         public int VehicleId { get; set; }

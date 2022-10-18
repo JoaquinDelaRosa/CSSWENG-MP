@@ -46,7 +46,7 @@ namespace test
         public AutoworksDBContext CreateNewContext()
         {
             var options = new DbContextOptionsBuilder<AutoworksDBContext>()
-                .UseInMemoryDatabase(databaseName: "Test" + itr.ToString())
+                .UseInMemoryDatabase(databaseName: nameof(VehicleControllerTest) + itr.ToString())
                 .Options;
 
             ++itr;
@@ -61,10 +61,10 @@ namespace test
         {
             CreateNewContext();
 
-            controller.Create(first);
+            await controller.Create(first);
             Vehicle? afterCreate = await controller.GetById(first.VehicleId);
            
-            controller.Update(first.VehicleId, second);
+            await controller.Update(first.VehicleId, second);
             Vehicle? afterUpdate = await controller.GetById(first.VehicleId);
 
             await controller.Delete(first.VehicleId);
@@ -98,7 +98,7 @@ namespace test
             Vehicle? vehicle = await controller.GetById(10245102);
             Assert.Null(vehicle);
 
-            controller.Update(-1, new Vehicle());
+            await controller.Update(-1, new Vehicle());
             await controller.Delete(-1000);
         }
 
@@ -109,7 +109,7 @@ namespace test
             AutoworksDBContext context = CreateNewContext();
             for (int i = 0; i < 1000; ++i)
             {
-                controller.Create(new Vehicle()
+                await controller.Create(new Vehicle()
                 {
                     VehicleId = i + 1
                 });
