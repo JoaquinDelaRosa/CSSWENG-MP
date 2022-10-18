@@ -40,6 +40,7 @@ namespace api.Controllers
             return filtered;
         }
 
+        [ApiExplorerSettings(IgnoreApi =true)]
         public async Task<bool> HasValidFK(Order order)
         {
             if (await customerController.GetById(order.CustomerId) == null)
