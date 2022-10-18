@@ -31,7 +31,6 @@ namespace test
                     },
                     new Customer()
                     {
-                        CustomerId = 999,
                         FirstName = "Jack",
                         LastName = "Black",
                         Company = "XYZ",
@@ -57,21 +56,18 @@ namespace test
 
         [Theory]
         [ClassData(typeof(Generator))]
-        public async void CustomerCRUDComplete(Customer first, Customer second)
+        public async void CRUDComplete(Customer first, Customer second)
         {
             CreateNewContext();
 
-            Customer c = first;
-            Customer u = second;
-
-            controller.Create(c);
-            Customer? beforeDelete = await controller.GetById(c.CustomerId);
+            controller.Create(first);
+            Customer? beforeDelete = await controller.GetById(first.CustomerId);
            
-            controller.Update(c.CustomerId, u);
-            Customer? afterUpdate = await controller.GetById(c.CustomerId);
+            controller.Update(first.CustomerId, second);
+            Customer? afterUpdate = await controller.GetById(first.CustomerId);
 
-            await controller.Delete(c.CustomerId);
-            Customer? afterDelete = await controller.GetById(c.CustomerId);
+            await controller.Delete(first.CustomerId);
+            Customer? afterDelete = await controller.GetById(first.CustomerId);
 
             Assert.NotNull(beforeDelete);
             Assert.NotNull(afterUpdate);
@@ -79,23 +75,23 @@ namespace test
             if (beforeDelete == null || afterUpdate == null)
                 return;
 
-            Assert.True(beforeDelete.CustomerId == c.CustomerId);
-            Assert.True(beforeDelete.FirstName == c.FirstName);
-            Assert.True(beforeDelete.LastName == c.LastName);
-            Assert.True(beforeDelete.Company == c.Company);
-            Assert.True(beforeDelete.CustomerTypeId == c.CustomerTypeId);
+            Assert.True(beforeDelete.CustomerId == first.CustomerId);
+            Assert.True(beforeDelete.FirstName == first.FirstName);
+            Assert.True(beforeDelete.LastName == first.LastName);
+            Assert.True(beforeDelete.Company == first.Company);
+            Assert.True(beforeDelete.CustomerTypeId == first.CustomerTypeId);
 
-            Assert.True(afterUpdate.CustomerId == c.CustomerId);
-            Assert.True(afterUpdate.FirstName == u.FirstName);
-            Assert.True(afterUpdate.LastName == u.LastName);
-            Assert.True(afterUpdate.Company == u.Company);
-            Assert.True(afterUpdate.CustomerTypeId == u.CustomerTypeId);
+            Assert.True(afterUpdate.CustomerId == first.CustomerId);
+            Assert.True(afterUpdate.FirstName == second.FirstName);
+            Assert.True(afterUpdate.LastName == second.LastName);
+            Assert.True(afterUpdate.Company == second.Company);
+            Assert.True(afterUpdate.CustomerTypeId == second.CustomerTypeId);
 
             Assert.Null(afterDelete);
         }
 
         [Fact]
-        public async void MultipleCustomers()
+        public async void GetAll()
         {
             AutoworksDBContext context = CreateNewContext();
             for (int i = 0; i < 1000; ++i)
