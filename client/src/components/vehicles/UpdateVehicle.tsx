@@ -38,9 +38,9 @@ const UpdateVehicle = () => {
             .then((response) => {
                 return response.data
             })
-            .then((response) => {
-                setFormState(response);
-                console.log(response);
+            .then((data) => {
+                setFormState(data);
+                console.log(data);
             })
             .catch((error) => {
                 console.log(error)

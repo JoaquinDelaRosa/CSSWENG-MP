@@ -6,11 +6,12 @@ import { Order } from "./OrderDetails";
 import UpdateOrder from "./UpdateOrder";
 
 const DateEntry = (props: { date: Date }) => {
+    console.log(typeof(props.date))
     return (
         <div>
-            <td> {props.date.getMonth() }</td>
-            <td> {props.date.getDay() }</td>
-            <td> {props.date.getFullYear()}</td>
+            {/* <td> {props.date.getMonth()}</td>
+            <td> {props.date.getDay()}</td>
+            <td> {props.date.getFullYear()}</td> */}
         </div>
     );
 }
