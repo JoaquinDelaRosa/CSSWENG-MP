@@ -56,6 +56,13 @@ const ViewInvoices = () => {
     return (
         <div>
             <table>
+                <thead>
+                    <th> Agent First Name </th>
+                    <th> Agent Last Name </th>
+                    <th> Amount </th>
+                    <th> Deductible Due </th>
+                </thead>
+
                 <tbody>
                     {invoices.map((value, index) => {
                         return (<InvoiceRecord invoice={value} key={index } />);

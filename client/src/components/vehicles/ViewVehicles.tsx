@@ -56,6 +56,14 @@ const ViewVehicles = () => {
     return (
         <div>
             <table>
+                <thead>
+                    <th> License Plate </th>
+                    <th> Manufacturer </th>
+                    <th> Model </th>
+                    <th> Year Manufactured </th>
+                </thead>
+
+
                 <tbody>
                     {vehicles.map((value, index) => {
                         return(<VehicleRecord vehicle={value} key={index}/>);

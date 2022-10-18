@@ -54,6 +54,12 @@ const ViewCustomers = () => {
     return (
         <div>
             <table>
+                <thead>
+                    <th> Name </th>
+                    <th> Type </th>
+                    <th> Company </th>
+                </thead>
+
                 <tbody>
                     {customers.map((value, index) => {
                         return (<CustomerRecord customer={value} key={index } />);
