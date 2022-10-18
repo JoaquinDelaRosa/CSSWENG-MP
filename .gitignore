@@ -167,3 +167,4 @@ test/obj
 .vs/AutoWorks/v17/TestStore/0/testlog.manifest
 
 test/obj/test.csproj.nuget.dgspec.json
+*.testlog
