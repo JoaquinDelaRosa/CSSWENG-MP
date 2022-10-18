@@ -61,7 +61,7 @@ namespace test
             CreateNewContext();
 
             controller.Create(first);
-            Customer? beforeDelete = await controller.GetById(first.CustomerId);
+            Customer? afterCreate = await controller.GetById(first.CustomerId);
            
             controller.Update(first.CustomerId, second);
             Customer? afterUpdate = await controller.GetById(first.CustomerId);
@@ -69,17 +69,17 @@ namespace test
             await controller.Delete(first.CustomerId);
             Customer? afterDelete = await controller.GetById(first.CustomerId);
 
-            Assert.NotNull(beforeDelete);
+            Assert.NotNull(afterCreate);
             Assert.NotNull(afterUpdate);
 
-            if (beforeDelete == null || afterUpdate == null)
+            if (afterCreate == null || afterUpdate == null)
                 return;
 
-            Assert.True(beforeDelete.CustomerId == first.CustomerId);
-            Assert.True(beforeDelete.FirstName == first.FirstName);
-            Assert.True(beforeDelete.LastName == first.LastName);
-            Assert.True(beforeDelete.Company == first.Company);
-            Assert.True(beforeDelete.CustomerTypeId == first.CustomerTypeId);
+            Assert.True(afterCreate.CustomerId == first.CustomerId);
+            Assert.True(afterCreate.FirstName == first.FirstName);
+            Assert.True(afterCreate.LastName == first.LastName);
+            Assert.True(afterCreate.Company == first.Company);
+            Assert.True(afterCreate.CustomerTypeId == first.CustomerTypeId);
 
             Assert.True(afterUpdate.CustomerId == first.CustomerId);
             Assert.True(afterUpdate.FirstName == second.FirstName);
@@ -88,6 +88,17 @@ namespace test
             Assert.True(afterUpdate.CustomerTypeId == second.CustomerTypeId);
 
             Assert.Null(afterDelete);
+        }
+
+        [Fact]
+        public async void GetDoesNotExist()
+        {
+            CreateNewContext();
+            Customer? customer = await controller.GetById(10245102);
+            Assert.Null(customer);
+
+            controller.Update(-1, new Customer());
+            await controller.Delete(-1000);
         }
 
         [Fact]

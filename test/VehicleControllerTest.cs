@@ -62,7 +62,7 @@ namespace test
             CreateNewContext();
 
             controller.Create(first);
-            Vehicle? beforeDelete = await controller.GetById(first.VehicleId);
+            Vehicle? afterCreate = await controller.GetById(first.VehicleId);
            
             controller.Update(first.VehicleId, second);
             Vehicle? afterUpdate = await controller.GetById(first.VehicleId);
@@ -70,7 +70,38 @@ namespace test
             await controller.Delete(first.VehicleId);
             Vehicle? afterDelete = await controller.GetById(first.VehicleId);
 
+            Assert.NotNull(afterCreate);
+            Assert.NotNull(afterUpdate);
+
+            if (afterCreate == null || afterUpdate == null)
+                return;
+
+            Assert.True(afterCreate.VehicleId == first.VehicleId);
+            Assert.True(afterCreate.Model == first.Model);
+            Assert.True(afterCreate.LicensePlate == first.LicensePlate);
+            Assert.True(afterCreate.Manufacturer == first.Manufacturer);
+            Assert.True(afterCreate.YearManufactured == first.YearManufactured);
+
+            Assert.True(afterUpdate.VehicleId == first.VehicleId);
+            Assert.True(afterUpdate.Model == second.Model);
+            Assert.True(afterUpdate.LicensePlate == second.LicensePlate);
+            Assert.True(afterUpdate.Manufacturer == second.Manufacturer);
+            Assert.True(afterUpdate.YearManufactured == second.YearManufactured);
+
+            Assert.Null(afterDelete);
         }
+
+        [Fact]
+        public async void GetDoesNotExist()
+        {
+            CreateNewContext();
+            Vehicle? vehicle = await controller.GetById(10245102);
+            Assert.Null(vehicle);
+
+            controller.Update(-1, new Vehicle());
+            await controller.Delete(-1000);
+        }
+
 
         [Fact]
         public async void GetAll()
