@@ -3,6 +3,7 @@ import { createAPIEndpoint, ENDPOINTS } from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../api/routes.';
 
 type LoginState = {
     username: string
@@ -25,7 +26,7 @@ const Login = () => {
                 sessionStorage.setItem("key", response.data.split("\"")[0])
             })
             .then(() => {
-                navigation("/orders");
+                navigation(ROUTES.orders);
             })
             .catch((err: any) => {
                 console.log(err);

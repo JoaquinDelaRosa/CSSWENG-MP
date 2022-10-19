@@ -9,6 +9,7 @@ import RegisterUser from "./components/RegisterUser";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import AppState from "./utils/AppState";
 import "./style/formEdit.css";
+import { ROUTES } from "./api/routes.";
 
 
 export const Main = (props: AppState) => {
@@ -20,37 +21,33 @@ export const Main = (props: AppState) => {
             />
 
             <Route
-                path="/login"
+                path={ROUTES.login}
                 element={<Login/> }
             />
 
             <Route
-                path="/register"
+                path={ROUTES.register }
                 element={<RegisterUser/> }
             />
 
             <Route
-                path="/customers"
+                path={ROUTES.customers }
                 element={<ViewCustomers/> }
             />
 
             <Route 
-                path="/vehicles"
+                path={ROUTES.vehicles }
                 element={<ViewVehicles/> }
             />
 
             <Route
-                path="/orders"
+                path={ROUTES.orders }
                 element={<OrdersView/> }
             />
 
             <Route 
-                path="/invoices"
+                path={ROUTES.invoices }
                 element={<ViewInvoices/> }
-            />
-            <Route
-                path="/addcustomer"
-                element={<AddCustomer/> }
             />
 
         </Routes>
