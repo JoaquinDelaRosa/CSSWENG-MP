@@ -73,20 +73,22 @@ const ViewOrders = () => {
         <div>
             <table>
                 <thead>
-                    <th> ID </th>
-                    <th> Status </th>
-                    <th> Time In Month </th>
-                    <th> Time In Day </th>
-                    <th> Time In Year </th>
-                    <th> Time Out Month </th>
-                    <th> Time Out Day </th>
-                    <th> Time Out Year </th>
-                    <th> Customer Name </th>
-                    <th> License Plate </th>
-                    <th> Invoice ID </th>
-                    <th> Estimate Number </th>
-                    <th> Scope of Work </th>
-                    <th> Estimate </th>
+                    <tr>
+                        <th> ID </th>
+                        <th> Status </th>
+                        <th> Time In Month </th>
+                        <th> Time In Day </th>
+                        <th> Time In Year </th>
+                        <th> Time Out Month </th>
+                        <th> Time Out Day </th>
+                        <th> Time Out Year </th>
+                        <th> Customer Name </th>
+                        <th> License Plate </th>
+                        <th> Invoice ID </th>
+                        <th> Estimate Number </th>
+                        <th> Scope of Work </th>
+                        <th> Estimate </th>
+                    </tr>
                 </thead>
                 <tbody>
                     {orders.map((value, index) => {

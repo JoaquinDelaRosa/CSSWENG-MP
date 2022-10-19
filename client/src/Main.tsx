@@ -16,12 +16,12 @@ export const Main = (props: AppState) => {
         <Routes>
             <Route
                 path="/"
-                element={<ViewCustomers />}
+                element={<Login/> }
             />
 
             <Route
                 path="/login"
-                element={<Login/>}
+                element={<Login/> }
             />
 
             <Route
@@ -31,7 +31,7 @@ export const Main = (props: AppState) => {
 
             <Route
                 path="/customers"
-                element={<ViewCustomers /> }
+                element={<ViewCustomers/> }
             />
 
             <Route 
@@ -41,12 +41,12 @@ export const Main = (props: AppState) => {
 
             <Route
                 path="/orders"
-                element={ <OrdersView/>}
+                element={<OrdersView/> }
             />
 
             <Route 
                 path="/invoices"
-                element={<ViewInvoices />}
+                element={<ViewInvoices/> }
             />
             <Route
                 path="/addcustomer"
