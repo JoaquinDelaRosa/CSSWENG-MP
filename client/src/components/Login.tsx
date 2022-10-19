@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS } from '../api';
+import { createAPIEndpoint, ENDPOINTS, updateToken } from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ const Login = () => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
                 console.log(response.data.split("\""));
-                sessionStorage.setItem("key", response.data.split("\"")[0])
+                updateToken(response.data.split("\"")[0]);
             })
             .then(() => {
                 navigation(ROUTES.orders);

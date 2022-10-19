@@ -36,6 +36,10 @@ export const ENDPOINTS = {
 
 }
 
+export const updateToken = (key: string) =>{
+    sessionStorage.setItem("key", key);
+    token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key")! : "no token";
+}
 
 
 export const createAPIEndpoint = (endpoint : string) => {
