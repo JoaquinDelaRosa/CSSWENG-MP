@@ -9,7 +9,7 @@ export interface OrderStatusKVP {
 
 export interface Order {
     orderId: number,
-    status: number, 
+    status: string, 
     timeIn: string,
     timeOut: string,
     customerDetails: Customer,
