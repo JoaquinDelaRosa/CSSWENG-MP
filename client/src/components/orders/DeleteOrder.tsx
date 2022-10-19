@@ -6,11 +6,11 @@ import { Order } from './OrderDetails';
 
 
 const DeleteOrder = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<Order>();
+    const { register, handleSubmit, formState: { errors } } = useForm<{ id: number }>();
     const [orderExists, setOrderExists] = useState<boolean>(true);
 
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : data.orderId})
+        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : data.id})
             .then((response) => {
                 console.log(response)
             })
@@ -25,17 +25,16 @@ const DeleteOrder = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="orderId"> Input Order ID </label>
-                    <input {... register('orderId', {required : true,
+                    <input {... register('id', {required : true,
                     onChange: (e)=> {
                         isOrderExists(parseInt(e.target.value), setOrderExists);
                     }})} type="number" name="id"/>
-                    {errors.orderId && <p>Order ID is required</p>}
+                    {errors.id && <p>Order ID is required</p>}
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );
-        //todo TEST
 }
 
 export default DeleteOrder;

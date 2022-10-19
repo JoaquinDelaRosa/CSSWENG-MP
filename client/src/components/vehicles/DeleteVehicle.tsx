@@ -5,11 +5,11 @@ import { isVehicleExists } from '../../utils/CheckFKExists';
 import { Vehicle } from './VehicleDetails';
 
 const DeleteVehicle = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<Vehicle>();
+    const { register, handleSubmit, formState: { errors } } = useForm<{id : number}>();
     const [vehicleExists, setVehicleExists] = useState<boolean>(true);
 
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : data.vehicleId})
+        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : data.id})
             .then((response) => {
                 console.log(response)
             })
@@ -24,17 +24,16 @@ const DeleteVehicle = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="vehicleId"> Input Vehicle ID </label>
-                    <input {... register('vehicleId', {required : true,
+                    <input {... register('id', {required : true,
                     onChange: (e)=> {
                         isVehicleExists(parseInt(e.target.value), setVehicleExists);
                     }})} type="number" name="id"/>
-                    {errors.vehicleId && <p>Vehicle ID is required</p>}
+                    {errors.id && <p>Vehicle ID is required</p>}
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );
-    //todo TEST
 }
 
 export default DeleteVehicle;

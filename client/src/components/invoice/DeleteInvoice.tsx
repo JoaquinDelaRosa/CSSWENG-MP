@@ -5,11 +5,11 @@ import { isInvoiceExists } from '../../utils/CheckFKExists';
 import { Invoice } from './InvoiceDetails';
 
 const DeleteInvoice = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<Invoice>();
+    const { register, handleSubmit, formState: { errors } } = useForm<{ id: number }>();
     const [invoiceExists, setInvoiceExists] = useState<boolean>(true);
 
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.deleteInvoice).delete({"id" : data.invoiceId})
+        createAPIEndpoint(ENDPOINTS.deleteInvoice).delete({"id" : data.id})
             .then((response) => {
                 console.log(response)
             })
@@ -24,17 +24,16 @@ const DeleteInvoice = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="invoiceId"> Input Invoice ID </label>
-                    <input {... register('invoiceId', {required : true,
+                    <input {... register('id', {required : true,
                     onChange: (e)=> {
                         isInvoiceExists(parseInt(e.target.value), setInvoiceExists);
                     }})} type="number" name="id"/>
-                    {errors.invoiceId && <p>Invoice ID is required</p>}
+                    {errors.id && <p>Invoice ID is required</p>}
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );
-    //todo TEST
 }
 
 export default DeleteInvoice;

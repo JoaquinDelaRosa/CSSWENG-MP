@@ -7,7 +7,6 @@ export interface VehicleRequest {
 
 
 export interface Vehicle {
-    vehicleId: number
     licenseplate: string,
     manufacturer: string,
     model: string,
