@@ -29,6 +29,14 @@ namespace api.Controllers
 
             return view;
         }
+        public async override Task<VehicleDetailView?> Get(int id)
+        {
+            Vehicle? v = await GetRaw(id);
+            if (v == null)
+                return null;
+
+            return new VehicleDetailView(v);
+        }
 
         [HttpGet("filter")]
         public async override Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)

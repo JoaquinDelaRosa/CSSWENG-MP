@@ -31,6 +31,15 @@ namespace api.Controllers
             return view;
         }
 
+        public async override Task<UserDetailView?> Get(int id)
+        {
+            User? u = await GetRaw(id);
+            if (u == null)
+                return null;
+
+            return new UserDetailView(u);
+        }
+
         [HttpGet("filter")]
         public async override Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
         {

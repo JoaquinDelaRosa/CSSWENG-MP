@@ -4,7 +4,6 @@ using api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace api.Controllers
 {
     [ApiController]
@@ -29,6 +28,15 @@ namespace api.Controllers
             }
 
             return view;
+        }
+
+        public async override Task<CustomerDetailView?> Get(int id)
+        {
+            Customer? c = await GetRaw(id);
+            if (c == null)
+                return null;
+
+            return new CustomerDetailView(c);
         }
 
         public async override Task<IEnumerable<CustomerDetailView>> GetByPredicate(Predicate<Customer> predicate)

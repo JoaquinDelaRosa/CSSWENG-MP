@@ -28,8 +28,11 @@ namespace api.Controllers
 
             return view;
         }
+        public async override Task<OrderStatus?> Get(int id)
+        {
+            return await GetRaw(id);
+        }
 
-        [HttpGet("filter")]
         public async override Task<IEnumerable<OrderStatus>> GetByPredicate(Predicate<OrderStatus> predicate)
         {
             IEnumerable<OrderStatus> filtered = await GetAll();

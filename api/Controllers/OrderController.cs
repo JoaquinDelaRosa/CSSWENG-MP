@@ -28,14 +28,28 @@ namespace api.Controllers
 
             foreach (Order order in repository.GetAll())
             {
-                Customer? customer = await customerController.GetById(order.CustomerId);
-                Vehicle? vehicle= await vehicleController.GetById(order.VehicleId);
-                Invoice? invoice = await invoiceController.GetById(order.InvoiceId);
-
-                view.Add(new OrderDetailView(order, customer, vehicle, invoice));
+                view.Add(await GetView(order));
             }
 
             return view;
+        }
+
+        private async Task<OrderDetailView> GetView(Order order)
+        {
+            Customer? customer = await customerController.GetRaw(order.CustomerId);
+            Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
+            Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
+
+            return new OrderDetailView(order, customer, vehicle, invoice);
+        }
+
+        public async override Task<OrderDetailView?> Get(int id)
+        {
+            Order? order = await GetRaw(id);
+            if (order == null)
+                return null;
+
+            return await GetView(order);
         }
 
         public async override Task<IEnumerable<OrderDetailView>> GetByPredicate(Predicate<Order> predicate)
@@ -45,16 +59,17 @@ namespace api.Controllers
             return filtered;
         }
 
+
         [ApiExplorerSettings(IgnoreApi =true)]
         public async Task<bool> HasValidFK(Order order)
         {
-            if (await customerController.GetById(order.CustomerId) == null)
+            if (await customerController.GetRaw(order.CustomerId) == null)
                 return false;
 
-            if (await vehicleController.GetById(order.VehicleId) == null)
+            if (await vehicleController.GetRaw(order.VehicleId) == null)
                 return false;
 
-            if (await invoiceController.GetById(order.InvoiceId) == null)
+            if (await invoiceController.GetRaw(order.InvoiceId) == null)
                 return false;
 
             return true;

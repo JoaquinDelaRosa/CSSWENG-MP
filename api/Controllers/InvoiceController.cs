@@ -29,6 +29,16 @@ namespace api.Controllers
             return view;
         }
 
+        public async override Task<InvoiceDetailView?> Get(int id)
+        {
+            Invoice? i = await GetRaw(id);
+            if (i == null)
+                return null;
+
+            return new InvoiceDetailView(i);
+        }
+
+
         public async override Task<IEnumerable<InvoiceDetailView>> GetByPredicate(Predicate<Invoice> predicate)
         {
             IEnumerable<InvoiceDetailView> filtered = await GetAll();

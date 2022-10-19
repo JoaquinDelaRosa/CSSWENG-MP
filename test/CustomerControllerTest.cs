@@ -61,13 +61,13 @@ namespace test
             CreateNewContext();
 
             await controller.Create(first);
-            Customer? afterCreate = await controller.GetById(first.CustomerId);
+            Customer? afterCreate = await controller.GetRaw(first.CustomerId);
            
             await controller.Update(first.CustomerId, second);
-            Customer? afterUpdate = await controller.GetById(first.CustomerId);
+            Customer? afterUpdate = await controller.GetRaw(first.CustomerId);
 
             await controller.Delete(first.CustomerId);
-            Customer? afterDelete = await controller.GetById(first.CustomerId);
+            Customer? afterDelete = await controller.GetRaw(first.CustomerId);
 
             Assert.NotNull(afterCreate);
             Assert.NotNull(afterUpdate);
@@ -94,7 +94,7 @@ namespace test
         public async void GetDoesNotExist()
         {
             CreateNewContext();
-            Customer? customer = await controller.GetById(10245102);
+            Customer? customer = await controller.GetRaw(10245102);
             Assert.Null(customer);
 
             await controller.Update(-1, new Customer());

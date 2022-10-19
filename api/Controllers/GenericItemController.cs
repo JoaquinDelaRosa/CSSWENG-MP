@@ -23,11 +23,20 @@ namespace api.Controllers
             return new List<View>();
         }
 
-        [HttpGet("id")]
-        public virtual async Task<T?> GetById(int id)
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public virtual async Task<T?> GetRaw(int id)
         {
             return await repository.Get(id);
         }
+
+        [HttpGet("id")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual async Task<View?> Get(int id)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            return default(View);
+        }
+
 
         [HttpGet("filter")]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -52,7 +61,7 @@ namespace api.Controllers
         public virtual async Task<bool> Update(int id, T entity)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            T? toModify = GetById(id).Result;
+            T? toModify = GetRaw(id).Result;
             if (toModify == null)
                 return false;
 
@@ -66,7 +75,7 @@ namespace api.Controllers
         [HttpDelete("delete")]
         public virtual async Task<bool> Delete(int id)
         {
-            T? toRemove = await GetById(id);
+            T? toRemove = await GetRaw(id);
             if (toRemove == null)
                 return false;
 

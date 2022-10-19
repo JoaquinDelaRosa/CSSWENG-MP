@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Views;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -14,7 +15,6 @@ namespace api.Controllers
 
         }
 
-        [HttpGet("all")]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async override Task<IEnumerable<CustomerType>> GetAll()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -29,7 +29,11 @@ namespace api.Controllers
             return view;
         }
 
-        [HttpGet("filter")]
+        public async override Task<CustomerType?> Get(int id)
+        {
+            return await GetRaw(id);
+        }
+
         public async override Task<IEnumerable<CustomerType>> GetByPredicate(Predicate<CustomerType> predicate)
         {
             IEnumerable<CustomerType> filtered = await GetAll();
