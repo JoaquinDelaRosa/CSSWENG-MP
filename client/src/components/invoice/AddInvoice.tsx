@@ -26,13 +26,13 @@ const AddInvoice = () => {
               <form onSubmit={onSubmit}>
                   <div>
                       <label htmlFor="agentFirstName"> Agent First Name </label>
-                      <input {...register('agentFirstName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
-                      type="text" name="firstName"/>
+                      <input {...register('agentFirstName', {required: true, pattern:/^[a-z ,.'-]+$/i })} 
+                      type="text" name="agentFirstName"/>
                       {errors.agentFirstName && <p> Agent First Name is required</p>}
                   </div>
                   <div>
                       <label htmlFor="agentLastName"> Agent Last Name </label>
-                      <input {...register('agentLastName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {...register('agentLastName', {required: true, pattern:/^[a-z ,.'-]+$/i })} 
                       type="text" name="agentLastName"/>
                       {errors.agentLastName && <p> Agent Last Name is required</p>}
                   </div>
