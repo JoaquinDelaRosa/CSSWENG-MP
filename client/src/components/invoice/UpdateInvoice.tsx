@@ -1,43 +1,35 @@
 import { create } from 'domain';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
+import { isInvoiceExists } from '../../utils/CheckFKExists';
 import { InvoiceRequest } from './InvoiceDetails';
 
 
 const UpdateInvoice = () => {
     const [modifiedId, setModifiedId] = useState<number>(-1);
+    const {register, handleSubmit, formState: {errors}} = useForm<InvoiceRequest>()
+    const [invoiceExists, setInvoiceExists] = useState<boolean>(true);
 
-    const [formState, setFormState] = useState<InvoiceRequest>({
-        agentFirstName: "",
-        agentLastName: "",
-        amount: 0,
-        deductibleDue: 0
-    });
-
-    const onInputChange = (name: string, value: any) => {
-        setFormState(values => ({ ...values, [name]: value }));
-    }
-
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        console.log(formState)
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.updateInvoice).patch(formState, { "id": modifiedId })
+    const onSubmit = handleSubmit((data) => {
+        createAPIEndpoint(ENDPOINTS.updateInvoice).patch(data, { "id": modifiedId })
             .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             })
-    };
+    });
 
     const onModifiedIdChanged = (id: number) => {
+        if(Number.isNaN(id))
+            return
         setModifiedId(id);
-        createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
+        createAPIEndpoint(ENDPOINTS.getInvoice).fetch({"id" : id})
             .then((response) => {
                 return response.data;
             })
             .then((response) => {
-                setFormState(response);
                 console.log(response);
             })
             .catch((error) => {
@@ -50,40 +42,37 @@ const UpdateInvoice = () => {
             <p> Update </p>
             <form>
                 <label> Id </label>
-                <input type="number"
-                    name="id"
-                    onChange={(e) => { onModifiedIdChanged(parseInt(e.target.value)); }}
-                />
-                <br />
-
-                <label>Agent First Name</label>
-                <input type="text"
-                    name="firstName"
-                    onChange={(e) => { onInputChange("agentFirstName", e.target.value); }} />
-                <br />
-
-                <label>Agent Last Name</label>
-                <input type="text"
-                    name="lastName"
-                    onChange={(e) => { onInputChange("agentLastName", e.target.value); }} />
-                <br />
-
-                <label>Amount</label>
-                <input type="number"
-                    name="amount"
-                    onChange={(e) => { onInputChange("amount", e.target.value); }} />
-                <br />
-
-                <label>Deductible Due</label>
-                <input type="number"
-                    name="deductibleDue"
-                    onChange={(e) => { onInputChange("deductibleDue", e.target.value); }} />
-                <br />
-
-                <input type='button'
-                    name="submit"
-                    onClick={onSubmit}
-                    value={"submit"} />
+                <input type="number" name="id" 
+                onChange={(e) => { 
+                    onModifiedIdChanged(parseInt(e.target.value));
+                    isInvoiceExists(parseInt(e.target.value),setInvoiceExists);
+                    }}/>
+                <p hidden={invoiceExists}>Invoice does not exist</p>
+                <div>
+                      <label htmlFor="agentFirstName"> Agent First Name </label>
+                      <input {...register('agentFirstName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
+                      type="text" name="agentFirstName"/>
+                      {errors.agentFirstName && <p> Agent First Name is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="agentLastName"> Agent Last Name </label>
+                      <input {...register('agentLastName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
+                      type="text" name="agentLastName"/>
+                      {errors.agentLastName && <p> Agent Last Name is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="amount"> Amount </label>
+                      <input {...register('amount', {required: true})} 
+                      type="number" name="amount"/>
+                      {errors.amount && <p> Amount </p>}
+                  </div>
+                  <div>
+                      <label htmlFor="deductibleDue"> Deductible Due </label>
+                      <input {...register('deductibleDue', {required: true})} 
+                      type="number" name="deductibleDue"/>
+                      {errors.deductibleDue && <p> Deductible Due is required</p>}
+                  </div>
+                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>  
     );
