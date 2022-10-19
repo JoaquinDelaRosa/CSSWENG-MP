@@ -97,7 +97,7 @@ namespace test
             Invoice? invoice = await controller.GetById(10245102);
             Assert.Null(invoice);
 
-            controller.Update(-1, new Invoice());
+            await controller.Update(-1, new Invoice());
             await controller.Delete(-1000);
         }
 
@@ -107,7 +107,7 @@ namespace test
             AutoworksDBContext context = CreateNewContext();
             for (int i = 0; i < 1000; ++i)
             {
-                controller.Create(new Invoice()
+                await controller.Create(new Invoice()
                 {
                     InvoiceId = i + 1,
                     AgentFirstName = "Sample",
@@ -116,9 +116,9 @@ namespace test
             }
 
             context.SaveChanges();
-            var result = controller.GetAll();
+            var result = await controller.GetAll();
 
-            Assert.IsAssignableFrom<IEnumerable<Invoice>>(result);
+            Assert.IsAssignableFrom<IEnumerable<InvoiceDetailView>>(result);
             Assert.True(result.Count() == 1000);
             
             for (int i = 0; i < 1000; ++i)
@@ -126,7 +126,7 @@ namespace test
                 await controller.Delete(i + 1);
             }
 
-            result = controller.GetAll();
+            result = await controller.GetAll();
             Assert.True(result.Count() == 0);
         }
     }

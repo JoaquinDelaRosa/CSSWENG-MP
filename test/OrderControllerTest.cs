@@ -188,9 +188,9 @@ namespace test
             }
 
             context.SaveChanges();
-            var result = controller.GetAll();
+            var result = await controller.GetAll();
 
-            Assert.IsAssignableFrom<IEnumerable<Order>>(result);
+            Assert.IsAssignableFrom<IEnumerable<OrderDetailView>>(result);
             Assert.True(result.Count() == 1000);
             
             for (int i = 0; i < 1000; ++i)
@@ -198,7 +198,7 @@ namespace test
                 await controller.Delete(i + 1);
             }
 
-            result = controller.GetAll();
+            result = await controller.GetAll();
             Assert.True(result.Count() == 0);
         }
     }

@@ -116,7 +116,7 @@ namespace test
             }
 
             context.SaveChanges();
-            var result = controller.GetAll();
+            var result = await controller.GetAll();
 
             Assert.IsAssignableFrom<IEnumerable<VehicleDetailView>>(result);
             Assert.True(result.Count() == 1000);
@@ -126,7 +126,7 @@ namespace test
                 await controller.Delete(i + 1);
             }
 
-            result = controller.GetAll();
+            result = await controller.GetAll();
             Assert.True(result.Count() == 0);
         }
     }

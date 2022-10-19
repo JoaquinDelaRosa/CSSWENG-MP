@@ -15,7 +15,9 @@ namespace api.Controllers
             this.orderStatusRepository = new OrderStatusRepository(ctx);
         }
 
-        public override IEnumerable<OrderStatus> GetAll()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async override Task<IEnumerable<OrderStatus>> GetAll()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<OrderStatus> view = new List<OrderStatus>();
 
@@ -28,9 +30,9 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public override IEnumerable<OrderStatus> GetByPredicate(Predicate<OrderStatus> predicate)
+        public async override Task<IEnumerable<OrderStatus>> GetByPredicate(Predicate<OrderStatus> predicate)
         {
-            IEnumerable<OrderStatus> filtered = GetAll();
+            IEnumerable<OrderStatus> filtered = await GetAll();
 
             return filtered;
         }

@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Views;
 using MessagePack.Formatters;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class OrderController : GenericItemController<Order, Order>
+    public class OrderController : GenericItemController<Order, OrderDetailView>
     {
         private readonly CustomerController customerController;
         private readonly VehicleController vehicleController;
@@ -21,21 +22,25 @@ namespace api.Controllers
             invoiceController = new InvoiceController(ctx);
         }
         
-        public override IEnumerable<Order> GetAll()
+        public async override Task<IEnumerable<OrderDetailView>> GetAll()
         {
-            List<Order> view = new List<Order>();
+            List<OrderDetailView> view = new List<OrderDetailView>();
 
             foreach (Order order in repository.GetAll())
             {
-                view.Add(order);
+                Customer? customer = await customerController.GetById(order.CustomerId);
+                Vehicle? vehicle= await vehicleController.GetById(order.VehicleId);
+                Invoice? invoice = await invoiceController.GetById(order.InvoiceId);
+
+                view.Add(new OrderDetailView(order, customer, vehicle, invoice));
             }
 
             return view;
         }
 
-        public override IEnumerable<Order> GetByPredicate(Predicate<Order> predicate)
+        public async override Task<IEnumerable<OrderDetailView>> GetByPredicate(Predicate<Order> predicate)
         {
-            IEnumerable<Order> filtered = GetAll();
+            IEnumerable<OrderDetailView> filtered = await GetAll();
 
             return filtered;
         }

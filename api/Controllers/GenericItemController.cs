@@ -16,7 +16,12 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public abstract IEnumerable<View> GetAll();
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual async Task<IEnumerable<View>> GetAll()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            return new List<View>();
+        }
 
         [HttpGet("id")]
         public virtual async Task<T?> GetById(int id)
@@ -25,10 +30,17 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public abstract IEnumerable<View> GetByPredicate(Predicate<T> predicate);
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual async Task<IEnumerable<View>> GetByPredicate(Predicate<T> predicate)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            return new List<View>();
+        }
 
         [HttpPost("create")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<T?> Create(T other)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             repository.Create(other);
 
@@ -36,7 +48,9 @@ namespace api.Controllers
         }
 
         [HttpPatch("update")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<bool> Update(int id, T entity)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             T? toModify = GetById(id).Result;
             if (toModify == null)

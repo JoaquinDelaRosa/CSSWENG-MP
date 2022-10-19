@@ -15,7 +15,9 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public override IEnumerable<CustomerType> GetAll()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async override Task<IEnumerable<CustomerType>> GetAll()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<CustomerType> view = new List<CustomerType>();
 
@@ -28,9 +30,9 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public override IEnumerable<CustomerType> GetByPredicate(Predicate<CustomerType> predicate)
+        public async override Task<IEnumerable<CustomerType>> GetByPredicate(Predicate<CustomerType> predicate)
         {
-            IEnumerable<CustomerType> filtered = GetAll();
+            IEnumerable<CustomerType> filtered = await GetAll();
 
             return filtered;
         }
