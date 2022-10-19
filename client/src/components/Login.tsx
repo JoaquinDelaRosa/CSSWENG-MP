@@ -31,38 +31,43 @@ const Login = () => {
     }
 
     return (
-        <div className="FullPage">
-            <div className="loginUI">
-                <h2>Insert Logo Here</h2>
-                <span>
-                    <input className="textField usernameField"
-                        name="username"
-                        value={state.username}
-                        onChange={(e) => { onInputChange("username", e.target.value); }} />
+        <div className="FullPage" >
 
-                    <br />
-                    <br />
-                </span>
+            <div className="loginBox">
+                <div className="loginUI">
+                    <h2>Insert Logo Here</h2>
+                    <span>
+                        <input className="textField usernameField"
+                            name="username"
+                            value={state.username}
+                            placeholder="Username"
+                            onChange={(e) => { onInputChange("username", e.target.value); }} />
 
-                <span>
-                    <input className="textField"
-                        type="password"
-                        name="password"
-                        value={state.password}
-                        onChange={(e) => { onInputChange("password", e.target.value); }} />
+                        <br />
+                        <br />
+                    </span>
 
-                    <br />
-                    <br />
-                </span>
+                    <span>
+                        <input className="textField passwordField"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={state.password}
+                            onChange={(e) => { onInputChange("password", e.target.value); }} />
 
-                <span>
-                    <input className="loginButton"
-                        type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
-                </span>
+                        <br />
+                        <br />
+                    </span>
 
-                <span className="redDialogue">
-                    <p >Extra Message Popup</p>
-                </span>
+                    <span>
+                        <input className="loginButton"
+                            type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
+                    </span>
+
+                    <span className="redDialogue">
+                        <p >Extra Message Popup</p>
+                    </span>
+                    </div>
             </div>
         </div>
     );
