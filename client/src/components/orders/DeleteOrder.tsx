@@ -30,6 +30,7 @@ const DeleteOrder = () => {
                         isOrderExists(parseInt(e.target.value), setOrderExists);
                     }})} type="number" name="id"/>
                     {errors.id && <p>Order ID is required</p>}
+                    <p hidden={orderExists}> Order does not exist</p>
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>

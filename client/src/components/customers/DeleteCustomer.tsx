@@ -29,6 +29,7 @@ const DeleteCustomer = () => {
                         isCustomerExists(parseInt(e.target.value), setCustomerExists);
                     }})} type="number" name="id"/>
                     {errors.id && <p>Customer ID is required</p>}
+                    <p hidden={customerExists}> Customer does not exist</p>
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>

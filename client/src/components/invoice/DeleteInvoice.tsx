@@ -29,6 +29,7 @@ const DeleteInvoice = () => {
                         isInvoiceExists(parseInt(e.target.value), setInvoiceExists);
                     }})} type="number" name="id"/>
                     {errors.id && <p>Invoice ID is required</p>}
+                    <p hidden={invoiceExists}> Invoice does not exist</p>
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>

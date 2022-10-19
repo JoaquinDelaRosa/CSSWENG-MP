@@ -29,6 +29,7 @@ const DeleteVehicle = () => {
                         isVehicleExists(parseInt(e.target.value), setVehicleExists);
                     }})} type="number" name="id"/>
                     {errors.id && <p>Vehicle ID is required</p>}
+                    <p hidden={vehicleExists}> Vehicle does not exist</p>
                 </div>
                 <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
