@@ -51,10 +51,12 @@ const ViewVehicles = () => {
         <div>
             <table>
                 <thead>
-                    <th> License Plate </th>
-                    <th> Manufacturer </th>
-                    <th> Model </th>
-                    <th> Year Manufactured </th>
+                    <tr>
+                        <th> License Plate </th>
+                        <th> Manufacturer </th>
+                        <th> Model </th>
+                        <th> Year Manufactured </th>
+                    </tr>
                 </thead>
 
 

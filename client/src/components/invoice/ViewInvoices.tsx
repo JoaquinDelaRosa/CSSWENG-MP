@@ -51,10 +51,12 @@ const ViewInvoices = () => {
         <div>
             <table>
                 <thead>
-                    <th> Agent First Name </th>
-                    <th> Agent Last Name </th>
-                    <th> Amount </th>
-                    <th> Deductible Due </th>
+                    <tr>
+                        <th> Agent First Name </th>
+                        <th> Agent Last Name </th>
+                        <th> Amount </th>
+                        <th> Deductible Due </th>
+                    </tr>
                 </thead>
 
                 <tbody>

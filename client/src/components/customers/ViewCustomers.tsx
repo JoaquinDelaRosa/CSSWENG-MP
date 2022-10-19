@@ -55,9 +55,11 @@ const ViewCustomers = () => {
         <div>
             <table>
                 <thead>
-                    <th> Name </th>
-                    <th> Type </th>
-                    <th> Company </th>
+                    <tr>
+                        <th> Name </th>
+                        <th> Type </th>
+                        <th> Company </th>
+                    </tr>
                 </thead>
 
                 <tbody>
