@@ -29,7 +29,7 @@ const OrderRecord = (props : { order: Order}) => {
             <DateEntry date={props.order.timeOut} />
 
             <td> {props.order.customerDetails.name}</td>
-            <td> {props.order.vehicleDetails.licenseplate }</td>
+            <td> {props.order.vehicleDetails.licensePlate }</td>
             <td> {props.order.invoiceDetails.invoiceId}</td>
 
             <td> {props.order.estimateNumber}</td>
