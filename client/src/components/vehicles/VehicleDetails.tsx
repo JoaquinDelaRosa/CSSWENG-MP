@@ -10,5 +10,5 @@ export interface Vehicle {
     licensePlate: string,
     manufacturer: string,
     model: string,
-    yearmanufactured: number
+    yearManufactured: number
 }

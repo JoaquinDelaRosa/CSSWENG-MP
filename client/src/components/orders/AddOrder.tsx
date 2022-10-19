@@ -44,11 +44,12 @@ const AddOrder = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
-                    <select>
+                    <select {...register('status', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                        <option value="DEFAULT" disabled>-- Select Status --</option>
                         {
                             typeIds.map((value, index) => {
                                 return (
-                                    <option key={index}
+                                    <option key={index + 1}
                                         value={value.id}> {value.name} </option>
                                 );
                             })

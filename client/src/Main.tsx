@@ -9,7 +9,7 @@ import RegisterUser from "./components/RegisterUser";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import AppState from "./utils/AppState";
 import "./style/formEdit.css";
-import { ROUTES } from "./api/routes.";
+import { ROUTES } from "./api/routes";
 
 
 export const Main = (props: AppState) => {

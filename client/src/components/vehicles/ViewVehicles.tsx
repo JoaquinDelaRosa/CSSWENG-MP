@@ -12,7 +12,7 @@ const VehicleRecord = (props : { vehicle: Vehicle }) => {
             <td> {props.vehicle.licensePlate} </td>
             <td> {props.vehicle.manufacturer} </td>
             <td> {props.vehicle.model} </td>
-            <td> {props.vehicle.yearmanufactured} </td>
+            <td> {props.vehicle.yearManufactured} </td>
         </tr> 
      );
 }

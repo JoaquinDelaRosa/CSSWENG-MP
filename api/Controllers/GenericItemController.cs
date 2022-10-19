@@ -1,11 +1,13 @@
 ﻿using api.Data;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
+    [Authorize]
     public abstract class GenericItemController<T, View> : Controller where T : IDBEntity<T>
     {
         protected readonly IRepository<T> repository;

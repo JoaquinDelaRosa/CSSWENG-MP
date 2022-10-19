@@ -3,7 +3,7 @@ import { createAPIEndpoint, ENDPOINTS } from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../api/routes.';
+import { ROUTES } from '../api/routes';
 
 type LoginState = {
     username: string

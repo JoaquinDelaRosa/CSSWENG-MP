@@ -3,18 +3,12 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
+import { useForm } from 'react-hook-form';
 
 
 
 const AddCustomer = () => {
-
-    const [formState, setFormState] = useState<CustomerRequest>({
-        firstName: "",
-        lastName: "",
-        customerTypeId: 0,
-        company: ""
-    });
-
+    const {register, handleSubmit, formState: {errors}} = useForm<CustomerRequest>()
     const [typeIds, setTypeIds] = useState<Array<CustomerTypeKVP>>([]);
 
     useEffect(() => {
@@ -31,65 +25,57 @@ const AddCustomer = () => {
             })
     }, [])
 
-    const onInputChange = (name: string, value: any) => {
-        setFormState(values => ({ ...values, [name]: value }));
-    }
-
-
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        console.log(formState)
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.addCustomer).post(formState)
+    const onSubmit = handleSubmit((data) => {
+        console.log("data")
+        console.log(data)
+        createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
             .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             })
-    };
+    });
 
     return (
           <div>
-            <p> Create </p>
-              <form>
-                  <label>First Name</label>
-                  <input type="text"
-                      name = "firstName"
-                      onChange={(e) => { onInputChange("firstName", e.target.value); } } />
-                  <br />
-
-                  <label>Last Name</label>
-                  <input type="text"
-                      name = "lastName"
-                      onChange={(e) => { onInputChange("lastName", e.target.value); }} />
-                  <br />
-
-                  <label>Customer Type</label>
-                  <select onChange={(e) => { onInputChange("customerTypeId", parseInt(e.target.value)) }}>
-                      {
-                          typeIds.map((value, index) => {
-                              return (
-                                  <option key={index }
-                                      value={value.id}> {value.name} </option>   
-                              );
-                          })
-                      }
-                  </select>
-                  <br />
-
-                  <label>Company</label>
-                  <input type="text"
-                      name="firstName"
-                      onChange={(e) => { onInputChange("company", e.target.value); }} />
-                  <br />
-
-                  <input type='button'
-                      name="submit"
-                      onClick={onSubmit}
-                      value={"submit"} />
+            <p> Create Customer </p>
+              <form onSubmit={onSubmit}>
+                  <div>
+                      <label htmlFor="firstName"> Customer First Name </label>
+                      <input {... register("firstName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      type="text" name = "firstName"/>
+                      {errors.firstName && <p>Customer First Name is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="lastName"> Customer Last Name </label>
+                      <input {... register("lastName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      type="text" name = "lastName"/>
+                      {errors.lastName && <p>Customer Last Name is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="customerTypeId"> Customer Type </label>
+                      <select {...register('customerTypeId', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                        <option key={0} value="DEFAULT" disabled>  -- Select Type -- </option>
+                          {
+                              typeIds.map((value, index) => {
+                                  return (
+                                    <option key={index + 1} value={value.id}> {value.name} </option>
+                                  );
+                              })
+                          }
+                      </select>
+                      {errors.customerTypeId && <p>Customer Type ID is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="company"> Customer Company </label>
+                      <input {... register("company", {required : true})} type="text" name="company"/>
+                      {errors.company && <p>Customer Company is required</p>}
+                  </div>
+                  <input type='button' name="submit" onClick={onSubmit}value={"submit"} />
                </form>
            </div>
       );
 }
-
+// TODO TEST
 export default AddCustomer;
