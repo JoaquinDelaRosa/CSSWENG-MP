@@ -58,12 +58,12 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label >Time In</label>
-                    <input {...register('timeIn', {required: true})}
+                    <input {...register('timeIn', {required: true, valueAsDate : true})}
                         type='date' name="timeIn" id ="timeIn"/>
                 </div>
                 <div>
                     <label>Time Out</label>
-                    <input  {...register('timeOut', {required: true})}
+                    <input  {...register('timeOut', {required: true,  valueAsDate : true})}
                         type='date' name="timeOut"/>
                 </div>
                 <div>
