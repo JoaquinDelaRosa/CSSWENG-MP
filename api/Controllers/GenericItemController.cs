@@ -25,13 +25,13 @@ namespace api.Controllers
             return new List<View>();
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("id")]
         public virtual async Task<T?> GetRaw(int id)
         {
             return await repository.Get(id);
         }
 
-        [HttpGet("id")]
+        [HttpGet("view")]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<View?> Get(int id)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously

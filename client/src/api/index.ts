@@ -15,21 +15,25 @@ export const ENDPOINTS = {
     orderStatuses: 'OrderStatus/all',
 
     getCustomer: 'Customer/id',
+    getCustomerView: 'Customer/view',
     addCustomer: 'Customer/create',
     updateCustomer: 'Customer/update',
     deleteCustomer: 'Customer/delete',
 
     getVehicle: 'Vehicle/id',
+    getVehicleView: 'Vehicle/view',
     addVehicle: 'Vehicle/create',
     updateVehicle: 'Vehicle/update',
     deleteVehicle: 'Vehicle/delete',
 
     getOrder: "Order/id",
+    getOrderView: 'Order/view',
     addOrder: "Order/create",
     updateOrder: "Order/update",
     deleteOrder: "Order/delete",
 
     getInvoice: "Invoice/id",
+    getInvoiceView: 'Invoice/view',
     addInvoice: "Invoice/create",
     updateInvoice: "Invoice/update",
     deleteInvoice: "Invoice/delete",
