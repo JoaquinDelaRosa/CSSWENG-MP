@@ -26,16 +26,16 @@ namespace api.Models.Seeds
                 context.Vehicles.AddRange(
                     new Vehicle()
                     {
-                        Manufacturer = "Lenovo",
-                        Model = "Dell",
-                        LicensePlate = "LNVDLL1",
-                        YearManufactured = 1960
+                        Manufacturer = "Honda",
+                        Model = "Civic",
+                        LicensePlate = "AAA111",
+                        YearManufactured = 2012
                     },
                     new Vehicle()
                     {
-                        Manufacturer = "Pear",
-                        Model = "WePhone",
-                        LicensePlate = "K1W1314",
+                        Manufacturer = "Mitsubishi Motors",
+                        Model = "Everest",
+                        LicensePlate = "AAA222",
                         YearManufactured = 2015
                     }
                ) ;

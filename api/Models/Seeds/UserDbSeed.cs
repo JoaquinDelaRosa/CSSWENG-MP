@@ -27,16 +27,16 @@ namespace api.Models.Seeds
                 context.Users.AddRange(
                     new User()
                     {
-                        FirstName = "Admin",
-                        LastName = "istrator",
+                        FirstName = "Homer",
+                        LastName = "Simpson",
                         Password = encrypterManager.Encrypt("admin"),
                         Type = UserType.ADMIN,
                         Username = "admin"
                     },
                     new User()
                     {
-                        FirstName = "Emp",
-                        LastName = "loyee",
+                        FirstName = "Mari",
+                        LastName = "Joy",
                         Password = encrypterManager.Encrypt("employee"),
                         Type = UserType.EMPLOYEE,
                         Username = "employee"

@@ -26,15 +26,29 @@ namespace api.Models.Seeds
                     {
                         FirstName = "John",
                         LastName = "Doe",
-                        Company = "X",
+                        Company = "International Company",
                         CustomerTypeId = CustomerTypesEnum.PERSONAL
                     },
                     new Customer()
                     {
                         FirstName = "Jack",
                         LastName = "Black",
-                        Company = "Hollywood",
+                        Company = "Acting Company",
                         CustomerTypeId = CustomerTypesEnum.FLEET
+                    },
+                    new Customer()
+                    {
+                        FirstName = "Shire",
+                        LastName = "Kaku",
+                        Company = "Blend Inc.",
+                        CustomerTypeId = CustomerTypesEnum.WALK_IN
+                    },
+                    new Customer()
+                    {
+                        FirstName = "Kaz",
+                        LastName = "Dokutah",
+                        Company = "Rhodes Pharmaceutical Company",
+                        CustomerTypeId = CustomerTypesEnum.INSURANCE
                     }
                );
 
