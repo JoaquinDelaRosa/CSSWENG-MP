@@ -48,7 +48,7 @@ const ViewVehicles = () => {
     }, []);
 
     return (
-        <div>
+        <div className="objectView">
             <table>
                 <thead>
                     <tr>
