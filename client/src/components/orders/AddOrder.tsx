@@ -6,6 +6,7 @@ import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 import { isCustomerExists, isVehicleExists, isInvoiceExists } from '../../utils/CheckFKExists'; 
 import { Form } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { isAlphanumeric } from '../../utils/Regex';
 
 const AddOrder = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
@@ -97,7 +98,7 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Number</label>
-                    <input {... register("estimateNumber", {required : true})} type='text' name="estimateNumber" id="estimateNumber"/>
+                    <input {... register("estimateNumber", {required : true, pattern: isAlphanumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
                     {errors.estimateNumber && <p>Estimate Number is required</p>}
                 </div>
                 <div>

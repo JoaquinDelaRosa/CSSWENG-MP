@@ -4,6 +4,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
 import { useForm } from 'react-hook-form';
+import { isAlphabetic } from '../../utils/Regex';
 
 
 
@@ -43,13 +44,13 @@ const AddCustomer = () => {
               <form onSubmit={onSubmit}>
                   <div>
                       <label htmlFor="firstName"> Customer First Name </label>
-                      <input {... register("firstName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
                       type="text" name = "firstName"/>
                       {errors.firstName && <p>Customer First Name is required</p>}
                   </div>
                   <div>
                       <label htmlFor="lastName"> Customer Last Name </label>
-                      <input {... register("lastName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
                       type="text" name = "lastName"/>
                       {errors.lastName && <p>Customer Last Name is required</p>}
                   </div>

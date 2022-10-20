@@ -4,6 +4,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { VehicleRequest } from './VehicleDetails';
 import { useForm } from 'react-hook-form';
+import { isAlphabetic, isAlphanumeric } from '../../utils/Regex';
 
 
 const AddVehicle = () => {
@@ -29,19 +30,19 @@ const AddVehicle = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
-                    <input {... register('licensePlate', {required: true})}
+                    <input {... register('licensePlate', {required: true, pattern: isAlphanumeric})}
                     type="text" name="licensePlate"/>
                     {errors.licensePlate && <p>License Plate is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='manufacturer'>Manufacturer</label>
-                    <input {... register('manufacturer', {required: true})}
+                    <input {... register('manufacturer', {required: true, pattern: isAlphabetic})}
                     type="text" name="manufacturer"/>
                     {errors.manufacturer && <p>Manufacturer is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='model'>Model</label>
-                    <input {... register('model', {required: true})}
+                    <input {... register('model', {required: true, pattern: isAlphabetic})}
                     type="text" name="model"/>
                     {errors.model && <p>Model is Required</p>}
                 </div>

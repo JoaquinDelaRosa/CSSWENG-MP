@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { isCustomerExists } from '../../utils/CheckFKExists';
+import { isAlphabetic } from '../../utils/Regex';
 import { CustomerRequest } from '../customers/CustomerDetails';
 import { CustomerTypeKVP } from './CustomerDetails';
 
@@ -66,13 +67,13 @@ const UpdateCustomer = () => {
                         <p hidden={customerExists}>Customer does not exist</p>
                  <div>
                       <label htmlFor="firstName"> Customer First Name </label>
-                      <input {... register("firstName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
                       type="text" name = "firstName"/>
                       {errors.firstName && <p>Customer First Name is required</p>}
                   </div>
                   <div>
                       <label htmlFor="lastName"> Customer Last Name </label>
-                      <input {... register("lastName", {required : true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
                       type="text" name = "lastName"/>
                       {errors.lastName && <p>Customer Last Name is required</p>}
                   </div>

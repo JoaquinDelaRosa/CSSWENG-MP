@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { isInvoiceExists } from '../../utils/CheckFKExists';
+import { isAlphabetic } from '../../utils/Regex';
 import { InvoiceRequest } from './InvoiceDetails';
 
 
@@ -50,13 +51,13 @@ const UpdateInvoice = () => {
                 <p hidden={invoiceExists}>Invoice does not exist</p>
                 <div>
                       <label htmlFor="agentFirstName"> Agent First Name </label>
-                      <input {...register('agentFirstName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {...register('agentFirstName', {required: true, pattern: isAlphabetic })} 
                       type="text" name="agentFirstName"/>
                       {errors.agentFirstName && <p> Agent First Name is required</p>}
                   </div>
                   <div>
                       <label htmlFor="agentLastName"> Agent Last Name </label>
-                      <input {...register('agentLastName', {required: true, pattern: /^[a-z ,.'-]+$/i })} 
+                      <input {...register('agentLastName', {required: true, pattern: isAlphabetic })} 
                       type="text" name="agentLastName"/>
                       {errors.agentLastName && <p> Agent Last Name is required</p>}
                   </div>

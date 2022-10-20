@@ -5,6 +5,7 @@ import axios from 'axios'
 import { VehicleRequest } from './VehicleDetails';
 import { useForm } from 'react-hook-form';
 import { isVehicleExists } from '../../utils/CheckFKExists';
+import { isAlphabetic, isAlphanumeric } from '../../utils/Regex';
 
 const year = (new Date()).getFullYear();
 const years = Array.from(new Array(100),( val, index) => year - index);
@@ -54,19 +55,19 @@ const UpdateVehicle = () => {
                         <p hidden={vehicleExists}>Vehicle does not exist</p>
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
-                    <input {... register('licensePlate', {required: true})}
+                    <input {... register('licensePlate', {required: true, pattern: isAlphanumeric})}
                     type="text" name="licensePlate"/>
                     {errors.licensePlate && <p>License Plate is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='manufacturer'>Manufacturer</label>
-                    <input {... register('manufacturer', {required: true})}
+                    <input {... register('manufacturer', {required: true, pattern: isAlphabetic})}
                     type="text" name="manufacturer"/>
                     {errors.manufacturer && <p>Manufacturer is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='model'>Model</label>
-                    <input {... register('model', {required: true})}
+                    <input {... register('model', {required: true, pattern: isAlphanumeric})}
                     type="text" name="model"/>
                     {errors.model && <p>Model is Required</p>}
                 </div>
