@@ -57,13 +57,15 @@ const UpdateCustomer = () => {
         <div>
             <p> Update </p>
             <form>
-                <label> Id </label>
-                <input type="number" name="id" 
-                    onChange={(e) => {
-                        onModifiedIdChanged(parseInt(e.target.value));
-                        isCustomerExists(parseInt(e.target.value),setCustomerExists);
-                        }}/>
-                        <p hidden={customerExists}>Customer does not exist</p>
+                <div>
+                    <label> Id </label>
+                    <input type="number" name="id"
+                        onChange={(e) => {
+                            onModifiedIdChanged(parseInt(e.target.value));
+                            isCustomerExists(parseInt(e.target.value),setCustomerExists);
+                            }}/>
+                            <p hidden={customerExists}>Customer does not exist</p>
+                </div>
                  <div>
                       <label htmlFor="firstName"> Customer First Name </label>
                       <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
@@ -95,7 +97,7 @@ const UpdateCustomer = () => {
                       <input {... register("company", {required : false})} type="text" name="company"/>
                       {errors.company && <p>Customer Company is required</p>}
                   </div>
-                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
+                <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>  
     );

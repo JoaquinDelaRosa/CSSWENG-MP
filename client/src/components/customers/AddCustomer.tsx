@@ -71,7 +71,7 @@ const AddCustomer = () => {
                       <input {... register("company", {required: false})} type="text" name="company"/>
                       {errors.company && <p>Customer Company is required</p>}
                   </div>
-                  <input type='button' name="submit" onClick={onSubmit}value={"submit"} />
+                  <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
                </form>
            </div>
       );

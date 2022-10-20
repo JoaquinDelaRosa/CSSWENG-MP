@@ -41,13 +41,15 @@ const UpdateInvoice = () => {
         <div>
             <p> Update </p>
             <form>
-                <label> Id </label>
-                <input type="number" name="id" 
-                onChange={(e) => { 
-                    onModifiedIdChanged(parseInt(e.target.value));
-                    isInvoiceExists(parseInt(e.target.value),setInvoiceExists);
-                    }}/>
-                <p hidden={invoiceExists}>Invoice does not exist</p>
+                <div>
+                    <label> Id </label>
+                    <input type="number" name="id"
+                    onChange={(e) => {
+                        onModifiedIdChanged(parseInt(e.target.value));
+                        isInvoiceExists(parseInt(e.target.value),setInvoiceExists);
+                        }}/>
+                    <p hidden={invoiceExists}>Invoice does not exist</p>
+                </div>
                 <div>
                       <label htmlFor="agentFirstName"> Agent First Name </label>
                       <input {...register('agentFirstName', {required: true, pattern: isAlphabetic })} 
@@ -72,7 +74,7 @@ const UpdateInvoice = () => {
                       type="number" name="deductibleDue"/>
                       {errors.deductibleDue && <p> Deductible Due is required</p>}
                   </div>
-                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
+                <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>  
     );

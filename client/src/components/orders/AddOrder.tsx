@@ -37,7 +37,7 @@ const AddOrder = () => {
     })
 
     return (
-        <div>
+        <div className="FormDiv">
             <p> Add </p>
             <form onSubmit={onSubmit}>
                 <div>
@@ -108,7 +108,7 @@ const AddOrder = () => {
                     <input {... register("expenses", {required : true})} type='number' name="expenses" id="expenses"/>
                     {errors.expenses && <p>Expenses is required</p>}
                 </div>
-                <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
+                <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>
     );
