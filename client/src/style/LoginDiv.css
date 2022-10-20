@@ -60,16 +60,17 @@
 }
 
 .rightBG {
-    width: 100.5%;
-    height: 100.5%;
+    width: 100%;
+    height: 100%;
     background-image: url(../style/images/hotwheels.png);
     background-position: right;
     background-position-x: 60rem;
-    background-position-y: -30rem;
+    background-position-y: -32rem;
     background-repeat: no-repeat;
     position: absolute;
     background-size: 75rem 105rem;
     opacity: 80%;
+    border-radius: 50px;
 }
 
 .loginBox {
@@ -81,6 +82,8 @@
     width: 90%;
     height: 90%;
     margin: auto;
+    padding: 0;
+    border:0
 }
 
 .loginLogo {
