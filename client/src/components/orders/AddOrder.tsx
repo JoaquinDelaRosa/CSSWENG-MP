@@ -89,7 +89,7 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label htmlFor="invoiceId">Invoice ID</label>
-                    <input {... register("invoiceId", {required : true,
+                    <input {... register("invoiceId", {required : false,
                     onChange: (e) => {
                         isInvoiceExists(parseInt(e.target.value),setInvoiceExists)
                     }})} type='number' name="invoiceId" id="invoiceId"/>

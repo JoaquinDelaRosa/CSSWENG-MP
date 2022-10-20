@@ -70,7 +70,7 @@ const AddCustomer = () => {
                   </div>
                   <div>
                       <label htmlFor="company"> Customer Company </label>
-                      <input {... register("company", {required : true})} type="text" name="company"/>
+                      <input {... register("company", {required: false})} type="text" name="company"/>
                       {errors.company && <p>Customer Company is required</p>}
                   </div>
                   <input type='button' name="submit" onClick={onSubmit}value={"submit"} />
