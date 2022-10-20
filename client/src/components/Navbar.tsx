@@ -1,8 +1,6 @@
 import { useNavigation } from "react-router-dom";
-import AppState from "../utils/AppState";
 
-
-const Navbar = (state: AppState) => {
+const Navbar = () => {
     const natvigation = useNavigation();
 
     return (

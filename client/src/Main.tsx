@@ -11,7 +11,7 @@ import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 
 
-export const Main = (props: AppState) => {
+export const Main = () => {
     return (
         <Routes>
             <Route
