@@ -1,7 +1,5 @@
-import React from 'react';
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import axios from 'axios'
 import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
 import { useForm } from 'react-hook-form';
 import { isAlphabetic } from '../../utils/Regex';

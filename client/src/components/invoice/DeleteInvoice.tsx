@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { isInvoiceExists } from '../../utils/CheckFKExists';
-import { Invoice } from './InvoiceDetails';
 
 const DeleteInvoice = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<{ id: number }>();

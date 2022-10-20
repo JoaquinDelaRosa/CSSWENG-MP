@@ -1,9 +1,9 @@
-import { create } from 'domain';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
-import { OrderRequest, OrderStatusKVP, Order } from './OrderDetails';
+import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 import { isCustomerExists, isVehicleExists, isInvoiceExists, isOrderExists } from '../../utils/CheckFKExists'; 
+import { isAlphaNumeric } from '../../utils/Regex';
 
 const UpdateOrder = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
@@ -123,7 +123,7 @@ const UpdateOrder = () => {
                 </div>
                 <div>
                     <label htmlFor='estimateNumber'>Estimate Code</label>
-                    <input {... register('estimateNumber', {required : true})} type='text' name="estimateNumber"/>
+                    <input {...register('estimateNumber', { required: true, pattern: isAlphaNumeric })} type='text' name="estimateNumber" />
                     {errors.estimateNumber && <p>Estimate Number is Required</p>}
                 </div>
                 <div>

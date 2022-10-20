@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { isVehicleExists } from '../../utils/CheckFKExists';
-import { Vehicle } from './VehicleDetails';
 
 const DeleteVehicle = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<{id : number}>();
