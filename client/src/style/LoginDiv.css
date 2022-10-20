@@ -1,9 +1,10 @@
 .loginUI {
 
     display: grid;
-    width: 60%;
+    width: 55%;
     border: none;
     justify-content: center;
+    padding-top: 20rem;
 
 }
 
@@ -37,7 +38,7 @@
 
 .loginButton {
 
-    width: 42.1rem;
+    width: 43rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     text-decoration: none;
@@ -58,8 +59,20 @@
 
 }
 
-.loginBox {
+.rightBG {
+    width: 100.5%;
+    height: 100.5%;
+    background-image: url(../style/images/hotwheels.png);
+    background-position: right;
+    background-position-x: 60rem;
+    background-position-y: -30rem;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: 75rem 105rem;
+    opacity: 80%;
+}
 
+.loginBox {
     position: relative;
     border-color: white;
     border-radius: 50px;
@@ -68,16 +81,17 @@
     width: 90%;
     height: 90%;
     margin: auto;
-
 }
 
 .loginLogo {
 
-    height: 60%;
+    padding-top: 15rem;
+    height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
     background-position: left;
+    background-position-x: 11rem;
     background-repeat: no-repeat;
-    background-size: cover;
-
+    background-size: 35rem 10rem;
+    position: absolute;
 }

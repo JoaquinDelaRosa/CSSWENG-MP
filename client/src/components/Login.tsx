@@ -43,6 +43,8 @@ const Login = () => {
             <div className="loginBox">
                 <div className="loginLogo">
                 </div>
+                <div className="rightBG">
+                </div>
                 <div className="loginUI">
  
                     <span>
