@@ -70,7 +70,7 @@ const ViewOrders = () => {
 
 
     return (
-        <div>
+        <div className="objectView">
             <table>
                 <thead>
                     <tr>
