@@ -1,5 +1,5 @@
 .loginUI {
-
+    z-index: 100;
     display: grid;
     width: 55%;
     border: none;
@@ -22,6 +22,11 @@
     background-color: #D0D0D0;
     border-radius: 2rem;
 
+}
+
+.loginForm {
+    position: relative;
+    z-index: 100;
 }
 
 .usernameField {
@@ -60,6 +65,7 @@
 }
 
 .rightBG {
+
     width: 100%;
     height: 100%;
     background-image: url(../style/images/hotwheels.png);

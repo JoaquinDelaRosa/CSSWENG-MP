@@ -124,7 +124,7 @@ const UpdateOrder = () => {
                 <div>
                     <label htmlFor='estimateNumber'>Estimate Code</label>
                     <input {...register('estimateNumber', { required: true, pattern: isAlphaNumeric })} type='text' name="estimateNumber" />
-                    {errors.estimateNumber && <p>Estimate Number is Required</p>}
+                    {errors.estimateNumber && <p>Estimate Code is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='scopeOfWork'>Scope of Work</label>

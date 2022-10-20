@@ -98,9 +98,9 @@ const AddOrder = () => {
                     <p hidden={invoiceExists}>Invoice does not exist</p>
                 </div>
                 <div>
-                    <label htmlFor="estimateNumber">Estimate Number</label>
+                    <label htmlFor="estimateNumber">Estimate Code</label>
                     <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
-                    {errors.estimateNumber && <p>Estimate Number is required</p>}
+                    {errors.estimateNumber && <p>Estimate Code is required</p>}
                 </div>
                 <div>
                     <label htmlFor="scopeOfWork">Scope of Work</label>
