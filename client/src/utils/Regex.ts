@@ -1,2 +1,2 @@
-export const isAlphabetic = /^[a-z ,.'-]+$/i;
-export const isAlphanumeric = /[^\w]|_/g;
+export const isAlphabetic = /^[a-z]+$/i;
+export const isAlphanumeric = /^[A-Z0-9]+$/;
