@@ -2,6 +2,7 @@
 
 namespace api.Models
 {
+    // Defines a model for a Vehicle entity in the database and sets up the generated Vehicle table.
     public class Vehicle : IDBEntity<Vehicle>
     {
         [Key]

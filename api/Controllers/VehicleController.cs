@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for Vehicle types . It allows for CRUD ops on the Vehicle Table
     [ApiController]
     [Route("api/[Controller]")]
     public class VehicleController : GenericItemController<Vehicle, VehicleDetailView>

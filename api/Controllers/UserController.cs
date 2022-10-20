@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for User types . It allows for CRUD ops on the User Table
     [ApiController]
     [Route("api/[Controller]")]
-
-
     public class UserController : GenericItemController<User, UserDetailView>
     {
         public UserController(AutoworksDBContext ctx) : base(new UserRepository(ctx))

@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-
-
+    // Defines a model for a Order entity in the database and sets up the generated Order table.
     public class Order : IDBEntity<Order>
     {
         [Key]

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for customer types . It allows for CRUD ops on the CustomerTypes Table
     [ApiController]
     [Route("api/[Controller]")]
     public class CustomerTypeController : GenericItemController<CustomerType, CustomerType>

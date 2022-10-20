@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for invoices. It allows for CRUD ops on the Invoices Table
     [ApiController]
     [Route("api/[Controller]")]
     public class InvoiceController : GenericItemController<Invoice, InvoiceDetailView>

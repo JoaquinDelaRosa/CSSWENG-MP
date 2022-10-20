@@ -2,6 +2,7 @@
 
 namespace api.Models.Seeds
 {
+    // Seeds the Customer table with Data. Used for ease of development and testing.
     public static class CustomeDbSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)

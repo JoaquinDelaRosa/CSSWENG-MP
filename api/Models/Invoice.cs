@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
+    // Defines a model for a Invoice entity in the database and sets up the generated Invoice table.
     public class Invoice : IDBEntity<Invoice>
     {
         [Key]

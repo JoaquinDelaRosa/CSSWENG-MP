@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
+    // Defines a model for a User entity in the database and sets up the generated User table.
     public enum UserType
     {
         ADMIN,

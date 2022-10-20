@@ -5,6 +5,8 @@ using System.Linq.Expressions;
 
 namespace api.Data
 {
+    // Implements the repository dsign pattern to allow for an interface to the DB without the controllers needing to know the exact queries
+    // being called to access the DB.
     public abstract class Repository<T> : IRepository<T> where T : IDBEntity<T>
     {
         protected readonly DbContext dbContext;

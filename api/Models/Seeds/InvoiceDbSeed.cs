@@ -4,6 +4,7 @@ using api.Controllers.Crypto;
 
 namespace api.Models.Seeds
 {
+    // Seeds the Invoice table with Data. Used for ease of development and testing.
     public static class InvoiceDbSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for Order Status types . It allows for CRUD ops on the OrderStatus Table
     [ApiController]
     [Route("api/[Controller]")]
     public class OrderStatusController : GenericItemController<OrderStatus, OrderStatus>

@@ -10,6 +10,7 @@ using System.Text;
 
 namespace api.Controllers
 {
+    // A controller that manages the login and registration of users. It provides tokens on a login. 
     [ApiController]
     [Route("api/[Controller]")]
     public class AuthzController : ControllerBase

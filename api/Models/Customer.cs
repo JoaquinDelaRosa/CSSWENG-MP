@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-
+    // Defines a model for a Customer entity in the database and sets up the generated Customer table.
     public class Customer : IDBEntity<Customer>
     {
         [Key]

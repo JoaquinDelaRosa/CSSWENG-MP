@@ -2,6 +2,8 @@
 
 namespace api.Models
 {
+    // Defines a model for a CustomerType entity in the database and sets up the generated CustoemrType table.
+
     public enum OrderStatusEnum
     {
         PAID,

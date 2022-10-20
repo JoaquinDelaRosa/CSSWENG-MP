@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 
 namespace api.Data
 {
+    // Defines a generic interface that is used by a repository instance.
     public interface IRepository<T> where T : IDBEntity<T>
     {
         public Task<T?> Get<Key>(Key id);

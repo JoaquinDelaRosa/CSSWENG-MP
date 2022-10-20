@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for customers. It allows for CRUD ops on the Customer Table
     [ApiController]
     [Route("api/[Controller]")]
     [Authorize(Roles = "ADMIN")]

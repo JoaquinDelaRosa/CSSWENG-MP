@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // Implementation of the controller for Orders . It allows for CRUD ops on the Orders table.
     [ApiController]
     [Route("api/[Controller]")]
     public class OrderController : GenericItemController<Order, OrderDetailView>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    // A templated implementation of a controller for performing CRUD ops on a table in the DB. It supports returning views as well.
     [ApiController]
     [Route("api/[Controller]")]
     [Authorize]

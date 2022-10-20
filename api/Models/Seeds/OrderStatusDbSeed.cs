@@ -2,6 +2,7 @@
 
 namespace api.Models.Seeds
 {
+    // Seeds the OrderStatus table with Data.  It initializes the OrderStatus table as an enum table.
     public static class OrderStatusDbSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)

@@ -2,6 +2,7 @@
 
 namespace api.Models.Seeds
 {
+    // Seeds the CustomerType table with Data. This seeds the table as an enum table.
     public static class CustomerTypeDbSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)
