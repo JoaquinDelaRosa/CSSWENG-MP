@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
+import { isVehicleExists } from '../../utils/CheckFKExists';
+import { Vehicle } from './VehicleDetails';
 
 const DeleteVehicle = () => {
-    const [deleteId, setDeleteId] = useState<number>(-1);
+    const { register, handleSubmit, formState: { errors } } = useForm<{id : number}>();
+    const [vehicleExists, setVehicleExists] = useState<boolean>(true);
 
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>)  => {
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : deleteId})
-            .then(function (response) {
-                console.log(response);
-            }) 
-            .catch(function (error) {
-                console.log(error)
+    const onSubmit = handleSubmit((data) => {
+        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : data.id})
+            .then((response) => {
+                console.log(response)
             })
-    }
+            .catch((err) => {
+                console.log(err)
+            })
+    })
 
     return (
         <div>
             <p> Delete </p>
-            <form>
-                <input type="number" name="id"
-                onChange={(e) => {setDeleteId(parseInt(e.target.value)); }} />
-
-                <input type="button" 
-                    name="submit" 
-                    onClick={onSubmit} 
-                    value={"submit"}/>
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="vehicleId"> Input Vehicle ID </label>
+                    <input {... register('id', {required : true,
+                    onChange: (e)=> {
+                        isVehicleExists(parseInt(e.target.value), setVehicleExists);
+                    }})} type="number" name="id"/>
+                    {errors.id && <p>Vehicle ID is required</p>}
+                    <p hidden={vehicleExists}> Vehicle does not exist</p>
+                </div>
+                <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
             </form>
         </div>
     );

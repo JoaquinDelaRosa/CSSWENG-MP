@@ -17,7 +17,9 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public override IEnumerable<UserDetailView> GetAll()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async override Task<IEnumerable<UserDetailView>> GetAll()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<UserDetailView> view = new List<UserDetailView>();
 
@@ -29,10 +31,19 @@ namespace api.Controllers
             return view;
         }
 
-        [HttpGet("filter")]
-        public override IEnumerable<UserDetailView> GetByPredicate(Predicate<User> predicate)
+        public async override Task<UserDetailView?> Get(int id)
         {
-            IEnumerable<UserDetailView> filtered = GetAll();
+            User? u = await GetRaw(id);
+            if (u == null)
+                return null;
+
+            return new UserDetailView(u);
+        }
+
+        [HttpGet("filter")]
+        public async override Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
+        {
+            IEnumerable<UserDetailView> filtered = await GetAll();
 
             return filtered;
         }

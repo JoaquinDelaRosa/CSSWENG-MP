@@ -9,10 +9,10 @@ import { Vehicle } from "./VehicleDetails";
 const VehicleRecord = (props : { vehicle: Vehicle }) => {
     return (
         <tr>
-            <td> {props.vehicle.licenseplate} </td>
+            <td> {props.vehicle.licensePlate} </td>
             <td> {props.vehicle.manufacturer} </td>
             <td> {props.vehicle.model} </td>
-            <td> {props.vehicle.yearmanufactured} </td>
+            <td> {props.vehicle.yearManufactured} </td>
         </tr> 
      );
 }
@@ -29,13 +29,7 @@ const ViewVehicles = () => {
             .then((data) => {
                 console.log(data)
                 const vehicleList = data.map((value: any) => {
-                    let vehicle: Vehicle;
-                    vehicle = {
-                        licenseplate: value.licensePlate,
-                        manufacturer: value.manufacturer,
-                        model: value.model,
-                        yearmanufactured: value.yearManufactured
-                    };
+                    let vehicle: Vehicle = value;
                     return vehicle;
                 });
                 console.log(vehicleList)
@@ -57,10 +51,12 @@ const ViewVehicles = () => {
         <div>
             <table>
                 <thead>
-                    <th> License Plate </th>
-                    <th> Manufacturer </th>
-                    <th> Model </th>
-                    <th> Year Manufactured </th>
+                    <tr>
+                        <th> License Plate </th>
+                        <th> Manufacturer </th>
+                        <th> Model </th>
+                        <th> Year Manufactured </th>
+                    </tr>
                 </thead>
 
 

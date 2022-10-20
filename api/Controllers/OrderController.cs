@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Views;
 using MessagePack.Formatters;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class OrderController : GenericItemController<Order, Order>
+    public class OrderController : GenericItemController<Order, OrderDetailView>
     {
         private readonly CustomerController customerController;
         private readonly VehicleController vehicleController;
@@ -21,35 +22,54 @@ namespace api.Controllers
             invoiceController = new InvoiceController(ctx);
         }
         
-        public override IEnumerable<Order> GetAll()
+        public async override Task<IEnumerable<OrderDetailView>> GetAll()
         {
-            List<Order> view = new List<Order>();
+            List<OrderDetailView> view = new List<OrderDetailView>();
 
             foreach (Order order in repository.GetAll())
             {
-                view.Add(order);
+                view.Add(await GetView(order));
             }
 
             return view;
         }
 
-        public override IEnumerable<Order> GetByPredicate(Predicate<Order> predicate)
+        private async Task<OrderDetailView> GetView(Order order)
         {
-            IEnumerable<Order> filtered = GetAll();
+            Customer? customer = await customerController.GetRaw(order.CustomerId);
+            Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
+            Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
+
+            return new OrderDetailView(order, customer, vehicle, invoice);
+        }
+
+        public async override Task<OrderDetailView?> Get(int id)
+        {
+            Order? order = await GetRaw(id);
+            if (order == null)
+                return null;
+
+            return await GetView(order);
+        }
+
+        public async override Task<IEnumerable<OrderDetailView>> GetByPredicate(Predicate<Order> predicate)
+        {
+            IEnumerable<OrderDetailView> filtered = await GetAll();
 
             return filtered;
         }
 
+
         [ApiExplorerSettings(IgnoreApi =true)]
         public async Task<bool> HasValidFK(Order order)
         {
-            if (await customerController.GetById(order.CustomerId) == null)
+            if (await customerController.GetRaw(order.CustomerId) == null)
                 return false;
 
-            if (await vehicleController.GetById(order.VehicleId) == null)
+            if (await vehicleController.GetRaw(order.VehicleId) == null)
                 return false;
 
-            if (await invoiceController.GetById(order.InvoiceId) == null)
+            if (await invoiceController.GetRaw(order.InvoiceId) == null)
                 return false;
 
             return true;

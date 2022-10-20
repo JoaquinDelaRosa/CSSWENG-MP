@@ -27,18 +27,12 @@ const ViewInvoices = () => {
                 return response.data;
             })
             .then((data) => {
-                const customerList = data.map((value: any) => {
-                    let customer: Invoice;
-                    customer = {
-                        agentFirstName: value.agentFirstName,
-                        agentLastName: value.agentLastName,
-                        amount: value.amount,
-                        deductibleDue: value.deductibleDue
-                    };
-                    return customer;
+                const invoiceList = data.map((value: any) => {
+                    let invoice: Invoice = value;
+                    return invoice;
                 });
 
-                return customerList
+                return invoiceList
             })
             .then((list) => {
                 setInvoices(list);
@@ -57,10 +51,12 @@ const ViewInvoices = () => {
         <div>
             <table>
                 <thead>
-                    <th> Agent First Name </th>
-                    <th> Agent Last Name </th>
-                    <th> Amount </th>
-                    <th> Deductible Due </th>
+                    <tr>
+                        <th> Agent First Name </th>
+                        <th> Agent Last Name </th>
+                        <th> Amount </th>
+                        <th> Deductible Due </th>
+                    </tr>
                 </thead>
 
                 <tbody>

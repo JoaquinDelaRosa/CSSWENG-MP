@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Views;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -7,28 +8,40 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class InvoiceController : GenericItemController<Invoice, Invoice>
+    public class InvoiceController : GenericItemController<Invoice, InvoiceDetailView>
     {
         public InvoiceController(AutoworksDBContext ctx) : base(new InvoiceRepository(ctx))
         {
 
         }
         
-        public override IEnumerable<Invoice> GetAll()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async override Task<IEnumerable<InvoiceDetailView>> GetAll()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            List<Invoice> view = new List<Invoice>();
+            List<InvoiceDetailView> view = new List<InvoiceDetailView>();
 
             foreach (Invoice invoice in repository.GetAll())
             {
-                view.Add(invoice);
+                view.Add(new InvoiceDetailView(invoice));
             }
 
             return view;
         }
 
-        public override IEnumerable<Invoice> GetByPredicate(Predicate<Invoice> predicate)
+        public async override Task<InvoiceDetailView?> Get(int id)
         {
-            IEnumerable<Invoice> filtered = GetAll();
+            Invoice? i = await GetRaw(id);
+            if (i == null)
+                return null;
+
+            return new InvoiceDetailView(i);
+        }
+
+
+        public async override Task<IEnumerable<InvoiceDetailView>> GetByPredicate(Predicate<Invoice> predicate)
+        {
+            IEnumerable<InvoiceDetailView> filtered = await GetAll();
 
             return filtered;
         }

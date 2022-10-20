@@ -21,7 +21,7 @@ namespace api.Models.Seeds
                 }
 
                 context.OrderStatuses.AddRange(
-                    new OrderStatus(){
+                    new OrderStatus() {
                         Id = OrderStatusEnum.PAID,
                         Name = "Paid"
                     },
@@ -39,6 +39,16 @@ namespace api.Models.Seeds
                     {
                         Id = OrderStatusEnum.WITH_BALANCE,
                         Name = "With Balance"
+                    },
+                    new OrderStatus()
+                    {
+                        Id = OrderStatusEnum.QUOTE_OR_CHECK,
+                        Name = "Quote or Check"
+                    },
+                    new OrderStatus()
+                    {
+                        Id = OrderStatusEnum.PENDING,
+                        Name = "Pending"
                     },
                     new OrderStatus()
                     {

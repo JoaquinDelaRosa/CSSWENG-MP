@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS } from '../api';
+import { createAPIEndpoint, ENDPOINTS, updateToken } from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../api/routes';
 
 type LoginState = {
     username: string
@@ -13,12 +15,18 @@ const Login = () => {
         username: "",
         password: ""
     });
+    
+    const navigation = useNavigate();
+
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
                 console.log(response.data.split("\""));
-                sessionStorage.setItem("key", response.data.split("\"")[0])
+                updateToken(response.data.split("\"")[0]);
+            })
+            .then(() => {
+                navigation(ROUTES.orders);
             })
             .catch((err: any) => {
                 console.log(err);

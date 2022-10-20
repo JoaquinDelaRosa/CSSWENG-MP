@@ -6,6 +6,7 @@ import { OrderRequest, OrderStatusKVP } from './OrderDetails';
 import { isCustomerExists, isVehicleExists, isInvoiceExists } from '../../utils/CheckFKExists'; 
 import { Form } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { isAlphanumeric } from '../../utils/Regex';
 
 const AddOrder = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
@@ -44,11 +45,12 @@ const AddOrder = () => {
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
-                    <select>
+                    <select {...register('status', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                        <option value="DEFAULT" disabled>-- Select Status --</option>
                         {
                             typeIds.map((value, index) => {
                                 return (
-                                    <option key={index}
+                                    <option key={index + 1}
                                         value={value.id}> {value.name} </option>
                                 );
                             })
@@ -57,12 +59,12 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label >Time In</label>
-                    <input {...register('timeIn', {required: true})}
+                    <input {...register('timeIn', {required: true, valueAsDate : true})}
                         type='date' name="timeIn" id ="timeIn"/>
                 </div>
                 <div>
                     <label>Time Out</label>
-                    <input  {...register('timeOut', {required: true})}
+                    <input  {...register('timeOut', {required: true,  valueAsDate : true})}
                         type='date' name="timeOut"/>
                 </div>
                 <div>
@@ -96,7 +98,7 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Number</label>
-                    <input {... register("estimateNumber", {required : true})} type='text' name="estimateNumber" id="estimateNumber"/>
+                    <input {... register("estimateNumber", {required : true, pattern: isAlphanumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
                     {errors.estimateNumber && <p>Estimate Number is required</p>}
                 </div>
                 <div>

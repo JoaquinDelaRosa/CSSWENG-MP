@@ -32,6 +32,11 @@ namespace api.Data
             return dbSet.Where(predicate);
         }
 
+        public IEnumerable<T> Filter(Predicate<T> predicate)
+        {
+            return dbSet.Where(x => predicate(x));
+        }
+
         public async void Create(T obj)
         {
             await dbSet.AddAsync(obj);

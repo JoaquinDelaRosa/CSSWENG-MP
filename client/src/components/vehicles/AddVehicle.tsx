@@ -3,72 +3,64 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import axios from 'axios'
 import { VehicleRequest } from './VehicleDetails';
+import { useForm } from 'react-hook-form';
+import { isAlphabetic, isAlphanumeric } from '../../utils/Regex';
 
 
 const AddVehicle = () => {
-
     const year = (new Date()).getFullYear();
     const years = Array.from(new Array(100),( val, index) => year - index);
 
-    const [formState, setFormState] = useState<VehicleRequest>({
-        licensePlate: "",
-        manufacturer: "",
-        model: "",
-        yearManufactured: 0,
-    })
-
-    const onInputChange = (name: string, value: any) => {
-        setFormState(values => ({ ...values, [name]: value }));
-    }
-
-    const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        console.log(formState)
-        event.preventDefault();
-        createAPIEndpoint(ENDPOINTS.addVehicle).post(formState)
+    const {register, handleSubmit, formState: {errors}} = useForm<VehicleRequest>()
+    
+    const onSubmit = handleSubmit((data) => {
+        createAPIEndpoint(ENDPOINTS.addVehicle).post(data)
             .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             })
-   };
+   });
         
     
     return (
         <div>
             <p>Create Vehicle</p>
-            <form>
-                <label>License Plate</label>
-                <input type="text" 
-                    name="licensePlate" 
-                    onChange={(e) => { onInputChange("licensePlate", e.target.value);}}/>
-                <br/>
-                <label>Manufacturer</label>
-                <input type="text" 
-                    name="manufacturer" 
-                    onChange={(e) => { onInputChange("manufacturer", e.target.value);}}/>
-                <br/>
-                <label>Model</label>
-                <input type="text" 
-                    name="model" 
-                    onChange={(e) => { onInputChange("model", e.target.value);}}/>
-                <br/>
-                <label>Year Manufactured</label>
-                <select onChange={(e) => {onInputChange("yearManufactured", parseInt(e.target.value)) }}>
-                    {
-                         years.map((year, index) => {
-                            return (
-                                <option key={index} value={year}> {year} </option>
-                            )
-                         })
-                    }
-                </select>
-                <br/>
-                <input type="button" 
-                name="submit" 
-                onClick={onSubmit} 
-                value={"submit"}/>
-
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor='licensePlate'>License Plate</label>
+                    <input {... register('licensePlate', {required: true, pattern: isAlphanumeric})}
+                    type="text" name="licensePlate"/>
+                    {errors.licensePlate && <p>License Plate is Required</p>}
+                </div>
+                <div>
+                    <label htmlFor='manufacturer'>Manufacturer</label>
+                    <input {... register('manufacturer', {required: true, pattern: isAlphabetic})}
+                    type="text" name="manufacturer"/>
+                    {errors.manufacturer && <p>Manufacturer is Required</p>}
+                </div>
+                <div>
+                    <label htmlFor='model'>Model</label>
+                    <input {... register('model', {required: true, pattern: isAlphabetic})}
+                    type="text" name="model"/>
+                    {errors.model && <p>Model is Required</p>}
+                </div>
+                <div>
+                    <label htmlFor='yearManufactured'>Year Manufactured</label>
+                    <select  {...register('yearManufactured', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                        <option key={0} value="DEFAULT" disabled>  -- Select Year -- </option>
+                        {
+                            years.map((year, index) => {
+                                return (
+                                    <option key={index + 1} value={year}> {year} </option>
+                                )
+                            })
+                        }
+                    </select>
+                    {errors.yearManufactured && <p>Year Manufactured is Required</p>}
+                </div>
+                <input type="button" name="submit" onClick={onSubmit} value={"submit"}/>
             </form>
         </div>
     )

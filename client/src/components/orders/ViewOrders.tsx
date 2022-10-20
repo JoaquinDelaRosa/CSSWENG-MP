@@ -28,9 +28,9 @@ const OrderRecord = (props : { order: Order}) => {
             <DateEntry date={props.order.timeIn} />
             <DateEntry date={props.order.timeOut} />
 
-            <td> {props.order.customerId }</td>
-            <td> {props.order.vehicleId }</td>
-            <td> {props.order.invoiceId}</td>
+            <td> {props.order.customerDetails.name}</td>
+            <td> {props.order.vehicleDetails.licensePlate }</td>
+            <td> {props.order.invoiceDetails.invoiceId}</td>
 
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork }</td>
@@ -50,19 +50,7 @@ const ViewOrders = () => {
             })
             .then((data) => {
                 const orderList = data.map((value: any) => {
-                    let order: Order;
-                    order = {
-                        orderId: value.orderId,
-                        status: value.status,
-                        timeIn: value.timeIn,
-                        timeOut: value.timeOut,
-                        customerId: value.customerId,
-                        vehicleId: value.vehicleId,
-                        invoiceId: value.invoiceId,
-                        estimateNumber: value.estimateNumber,
-                        scopeOfWork: value.scopeOfWork,
-                        expenses: value.expenses
-                    };
+                    const order: Order = value;
                     return order;
                 });
 
@@ -85,20 +73,22 @@ const ViewOrders = () => {
         <div>
             <table>
                 <thead>
-                    <th> ID </th>
-                    <th> Status </th>
-                    <th> Time In Month </th>
-                    <th> Time In Day </th>
-                    <th> Time In Year </th>
-                    <th> Time Out Month </th>
-                    <th> Time Out Day </th>
-                    <th> Time Out Year </th>
-                    <th> Customer ID </th>
-                    <th> Vehicle ID </th>
-                    <th> Invoice ID </th>
-                    <th> Estimate Number </th>
-                    <th> Scope of Work </th>
-                    <th> Estimate </th>
+                    <tr>
+                        <th> ID </th>
+                        <th> Status </th>
+                        <th> Time In Month </th>
+                        <th> Time In Day </th>
+                        <th> Time In Year </th>
+                        <th> Time Out Month </th>
+                        <th> Time Out Day </th>
+                        <th> Time Out Year </th>
+                        <th> Customer Name </th>
+                        <th> License Plate </th>
+                        <th> Invoice ID </th>
+                        <th> Estimate Number </th>
+                        <th> Scope of Work </th>
+                        <th> Estimate </th>
+                    </tr>
                 </thead>
                 <tbody>
                     {orders.map((value, index) => {

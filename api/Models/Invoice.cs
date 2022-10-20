@@ -15,11 +15,11 @@ namespace api.Models
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string? AgentFirstName { get; set; }
+        public string? AgentFirstName { get; set; } = "";
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
-        public string? AgentLastName { get; set; }
+        public string? AgentLastName { get; set; } = "";
 
         public override void AssignTo(Invoice other)
         {

@@ -62,13 +62,13 @@ namespace test
             CreateNewContext();
 
             await controller.Create(first);
-            Vehicle? afterCreate = await controller.GetById(first.VehicleId);
+            Vehicle? afterCreate = await controller.GetRaw(first.VehicleId);
            
             await controller.Update(first.VehicleId, second);
-            Vehicle? afterUpdate = await controller.GetById(first.VehicleId);
+            Vehicle? afterUpdate = await controller.GetRaw(first.VehicleId);
 
             await controller.Delete(first.VehicleId);
-            Vehicle? afterDelete = await controller.GetById(first.VehicleId);
+            Vehicle? afterDelete = await controller.GetRaw(first.VehicleId);
 
             Assert.NotNull(afterCreate);
             Assert.NotNull(afterUpdate);
@@ -95,7 +95,7 @@ namespace test
         public async void GetDoesNotExist()
         {
             CreateNewContext();
-            Vehicle? vehicle = await controller.GetById(10245102);
+            Vehicle? vehicle = await controller.GetRaw(10245102);
             Assert.Null(vehicle);
 
             await controller.Update(-1, new Vehicle());
@@ -116,7 +116,7 @@ namespace test
             }
 
             context.SaveChanges();
-            var result = controller.GetAll();
+            var result = await controller.GetAll();
 
             Assert.IsAssignableFrom<IEnumerable<VehicleDetailView>>(result);
             Assert.True(result.Count() == 1000);
@@ -126,7 +126,7 @@ namespace test
                 await controller.Delete(i + 1);
             }
 
-            result = controller.GetAll();
+            result = await controller.GetAll();
             Assert.True(result.Count() == 0);
         }
     }

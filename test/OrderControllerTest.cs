@@ -103,13 +103,13 @@ namespace test
 
             await controller.Create(first);
 
-            Order? afterCreate = await controller.GetById(first.OrderId);
+            Order? afterCreate = await controller.GetRaw(first.OrderId);
            
             await controller.Update(first.OrderId, second);
-            Order? afterUpdate = await controller.GetById(first.OrderId);
+            Order? afterUpdate = await controller.GetRaw(first.OrderId);
 
             await controller.Delete(first.OrderId);
-            Order? afterDelete = await controller.GetById(first.OrderId);
+            Order? afterDelete = await controller.GetRaw(first.OrderId);
 
             Assert.NotNull(afterCreate);
             Assert.NotNull(afterUpdate);
@@ -146,7 +146,7 @@ namespace test
         public async void GetDoesNotExist()
         {
             CreateNewContext();
-            Order? order = await controller.GetById(10245102);
+            Order? order = await controller.GetRaw(10245102);
             Assert.Null(order);
 
             await controller.Update(-1, new Order());
@@ -168,7 +168,7 @@ namespace test
 
             Assert.False(await controller.HasValidFK(o));
 
-            Order? order = await controller.GetById(id);
+            Order? order = await controller.GetRaw(id);
             Assert.Null(order);
         }
 
@@ -188,9 +188,9 @@ namespace test
             }
 
             context.SaveChanges();
-            var result = controller.GetAll();
+            var result = await controller.GetAll();
 
-            Assert.IsAssignableFrom<IEnumerable<Order>>(result);
+            Assert.IsAssignableFrom<IEnumerable<OrderDetailView>>(result);
             Assert.True(result.Count() == 1000);
             
             for (int i = 0; i < 1000; ++i)
@@ -198,7 +198,7 @@ namespace test
                 await controller.Delete(i + 1);
             }
 
-            result = controller.GetAll();
+            result = await controller.GetAll();
             Assert.True(result.Count() == 0);
         }
     }
