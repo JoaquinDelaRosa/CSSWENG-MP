@@ -3,7 +3,6 @@
 namespace api.Models
 {
     // Defines an interface for the Database that will be used to access the different tables on the localDB instance.
-  
     public class AutoworksDBContext:DbContext
     {
        public AutoworksDBContext(DbContextOptions<AutoworksDBContext> options) : base(options)

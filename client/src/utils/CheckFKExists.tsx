@@ -1,5 +1,6 @@
 import { createAPIEndpoint, ENDPOINTS } from "../api"
 
+// Contains methods to assert that a certain entity exists in the database so that we are not adding imaginary entities into form data.
 export const isCustomerExists = (id: number, setter: any) => {
     if(Number.isNaN(id)) {
         setter(false)

@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const BASE_URL = 'https://localhost:5000/'
 
+// Defines the token for session management, and constructs the different API endpoints to the backend.
 var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key") ! : "no token";
 export const ENDPOINTS = {
     login: 'Authz/Login',
