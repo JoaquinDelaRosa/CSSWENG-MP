@@ -8,7 +8,7 @@ function App() {
   return (
       <div >
           <header >
-              <Main id={1}/>
+              <Main/>
           </header>
       </div>
   );

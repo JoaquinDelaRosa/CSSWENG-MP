@@ -44,13 +44,15 @@ const UpdateVehicle = () => {
         <div>
             <p>Update Vehicle</p>
             <form>
-                <label> Id </label>
-                <input type="number" name="id" 
-                    onChange={(e) => {
-                        onModifiedIdChanged(parseInt(e.target.value))
-                        isVehicleExists(parseInt(e.target.value),setVehicleExists);
-                        }}/>
-                        <p hidden={vehicleExists}>Vehicle does not exist</p>
+                <div>
+                    <label> Id </label>
+                    <input type="number" name="id"
+                        onChange={(e) => {
+                            onModifiedIdChanged(parseInt(e.target.value))
+                            isVehicleExists(parseInt(e.target.value),setVehicleExists);
+                            }}/>
+                            <p hidden={vehicleExists}>Vehicle does not exist</p>
+                </div>
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
                     <input {... register('licensePlate', {required: true, pattern: isLicensePlate})}
@@ -86,7 +88,7 @@ const UpdateVehicle = () => {
                 <input type="button" 
                 name="submit" 
                 onClick={onSubmit} 
-                value={"submit"}/>
+                value={"Submit"}/>
 
             </form>
         </div>

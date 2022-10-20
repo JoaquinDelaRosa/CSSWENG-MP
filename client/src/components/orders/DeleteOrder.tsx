@@ -19,7 +19,7 @@ const DeleteOrder = () => {
     })
 
     return (
-        <div>
+        <div className="FormDiv">
             <p> Delete </p>
             <form onSubmit={onSubmit}>
                 <div>
@@ -31,7 +31,7 @@ const DeleteOrder = () => {
                     {errors.id && <p>Order ID is required</p>}
                     <p hidden={orderExists}> Order does not exist</p>
                 </div>
-                <input type='button'name="submit" onClick={onSubmit} value={"submit"} />
+                <input type='button'name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>
     );

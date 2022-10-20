@@ -7,12 +7,11 @@ import Login from "./components/Login";
 import OrdersView from "./components/orders/ViewOrders";
 import RegisterUser from "./components/RegisterUser";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
-import AppState from "./utils/AppState";
-import "./style/formEdit.css";
+import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 
 
-export const Main = (props: AppState) => {
+export const Main = () => {
     return (
         <Routes>
             <Route

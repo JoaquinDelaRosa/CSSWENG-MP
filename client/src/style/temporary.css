@@ -1,0 +1,73 @@
+
+body {
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 500px;
+}
+
+label {
+    padding: 10px;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+th, td {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 10px
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    font-size: 14px;
+    padding: 10px;
+    float: left;
+    clear: left;
+    width: 430px;
+    height: 20px;
+    text-align: right;
+}
+
+input[type=text] select {
+    border: none;
+    border-bottom: 1px solid;
+    margin-top: 20px;
+    float: left;
+    margin-top: 30px;
+    size: 5px;
+}
+
+p {
+    color: black;
+    font-weight: 800;
+}
+
+.FormDiv {
+    text-align: center;
+    min-height: 100px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+form > div {
+    min-height: 5px;
+    max-height: 80px;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: max-content 50% max-content;
+    grid-gap: 5px;
+}
+
+form > div > p {
+    font-size: 10px;
+    clear: both;
+    color: red
+}

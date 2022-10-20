@@ -46,7 +46,7 @@ const AddInvoice = () => {
                       type="number" name="deductibleDue"/>
                       {errors.deductibleDue && <p> Deductible Due is required</p>}
                   </div>
-                  <input type='button' name="submit" onClick={onSubmit} value={"submit"} />
+                  <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
                </form>
            </div>
       );
