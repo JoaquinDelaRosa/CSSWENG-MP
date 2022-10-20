@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { isAlphaNumeric, isLicensePlate } from '../../utils/Regex';
 
 const AddOrder = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
+    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>()
     const [typeIds, setTypeIds] = useState<Array<OrderStatusKVP>>([]);
     const [customerExists, setCustomerExists] = useState<boolean>(true);
     const [vehicleExists, setVehicleExists] = useState<boolean>(true);
@@ -61,7 +61,11 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label>Time Out</label>
-                    <input  {...register('timeOut', {required: true,  valueAsDate : true})}
+                    <input  {...register('timeOut', {
+                        required: true, valueAsDate: true, validate: {
+                            isBeforeTimeIn: v => v <= getValues("timeIn")
+                        }
+                    })}
                         type='date' name="timeOut"/>
                 </div>
                 <div>
