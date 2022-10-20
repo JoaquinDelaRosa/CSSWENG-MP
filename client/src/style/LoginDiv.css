@@ -1,9 +1,8 @@
 .loginUI {
 
     display: grid;
-    width: 50%;
+    width: 60%;
     border: none;
-    margin-top: 8%;
     justify-content: center;
 
 }
@@ -19,7 +18,7 @@
     background-position: 1rem;
     font-size: 24px;
     border: none;
-    background-color: #FFFFFF;
+    background-color: #D0D0D0;
     border-radius: 2rem;
 
 }
@@ -55,11 +54,30 @@
 
     color: #800000;
     justify-self: center;
+    text-decoration: underline;
 
 }
 
 .loginBox {
-    border-color: darkred;
+
+    position: relative;
+    border-color: white;
     border-radius: 50px;
     border-style: solid;
+    background-color: white;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+
+}
+
+.loginLogo {
+
+    height: 60%;
+    width: 100%;
+    background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }

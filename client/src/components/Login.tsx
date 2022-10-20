@@ -40,10 +40,11 @@ const Login = () => {
 
     return (
         <div className="FullPage" >
-
             <div className="loginBox">
+                <div className="loginLogo">
+                </div>
                 <div className="loginUI">
-                    <h2>Insert Logo Here</h2>
+ 
                     <span>
                         <input className="textField usernameField"
                             name="username"
@@ -72,10 +73,9 @@ const Login = () => {
                             type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                     </span>
 
-                    <span className="redDialogue">
-                        <p >Extra Message Popup</p>
-                    </span>
-                    </div>
+                    <p >Don't have an account? <span className="redDialogue">Sign up now.</span></p>
+
+                </div>
             </div>
         </div>
     );
