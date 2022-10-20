@@ -6,7 +6,7 @@ import { isCustomerExists, isVehicleExists, isInvoiceExists, isOrderExists } fro
 import { isAlphaNumeric } from '../../utils/Regex';
 
 const UpdateOrder = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
+    const {register, handleSubmit, formState: {errors}, getValues} = useForm<OrderRequest>()
     const [modifiedId, setModifiedId] = useState<number>(-1);
     const [customerExists, setCustomerExists] = useState<boolean>(true);
     const [vehicleExists, setVehicleExists] = useState<boolean>(true);
@@ -89,9 +89,14 @@ const UpdateOrder = () => {
                     {errors.timeIn && <p>Time In is Required</p>}
                 </div>
                 <div>
-                    <label htmlFor='timeOut'>Time Out</label>
-                    <input {... register('timeOut', {required : true, valueAsDate : true})} type='date' name="timeOut"/>
-                    {errors.timeOut && <p>Time Out is Required</p>}
+                <label>Time Out</label>
+                    <input  {...register('timeOut', {
+                        required: true, valueAsDate: true, validate: {
+                            isBeforeTimeIn: v => v >= getValues("timeIn")
+                        }
+                    })}
+                        type='date' name="timeOut"/>
+                    {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 <div>
                     <label htmlFor="customerId">Customer ID</label>

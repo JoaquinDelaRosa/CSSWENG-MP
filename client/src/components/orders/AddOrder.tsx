@@ -63,11 +63,12 @@ const AddOrder = () => {
                     <label>Time Out</label>
                     <input  {...register('timeOut', {
                         required: true, valueAsDate: true, validate: {
-                            isBeforeTimeIn: v => v <= getValues("timeIn")
+                            isBeforeTimeIn: v => v >= getValues("timeIn")
                         }
                     })}
                         type='date' name="timeOut"/>
-                </div>
+                    {errors.timeOut && <p>Time out is earlier than Time in</p>}
+                </div>  
                 <div>
                     <label htmlFor="customerId">Customer ID</label>
                     <input {... register("customerId", {required : true, 
