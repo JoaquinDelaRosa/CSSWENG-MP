@@ -1,7 +1,5 @@
-import React from 'react';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import axios from 'axios'
 import { VehicleRequest } from './VehicleDetails';
 import { useForm } from 'react-hook-form';
 import { isVehicleExists } from '../../utils/CheckFKExists';

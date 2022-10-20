@@ -1,5 +1,4 @@
-import { create } from 'domain';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { isCustomerExists } from '../../utils/CheckFKExists';
