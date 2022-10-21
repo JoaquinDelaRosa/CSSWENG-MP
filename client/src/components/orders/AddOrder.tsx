@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { isAlphaNumeric, isLicensePlate } from '../../utils/Regex';
 
 const AddOrder = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm<OrderRequest>()
+    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>()
     const [typeIds, setTypeIds] = useState<Array<OrderStatusKVP>>([]);
     const [customerExists, setCustomerExists] = useState<boolean>(true);
     const [vehicleExists, setVehicleExists] = useState<boolean>(true);
@@ -61,9 +61,14 @@ const AddOrder = () => {
                 </div>
                 <div>
                     <label>Time Out</label>
-                    <input  {...register('timeOut', {required: true,  valueAsDate : true})}
+                    <input  {...register('timeOut', {
+                        required: true, valueAsDate: true, validate: {
+                            isBeforeTimeIn: v => v >= getValues("timeIn")
+                        }
+                    })}
                         type='date' name="timeOut"/>
-                </div>
+                    {errors.timeOut && <p>Time out is earlier than Time in</p>}
+                </div>  
                 <div>
                     <label htmlFor="customerId">Customer ID</label>
                     <input {... register("customerId", {required : true, 
@@ -94,9 +99,9 @@ const AddOrder = () => {
                     <p hidden={invoiceExists}>Invoice does not exist</p>
                 </div>
                 <div>
-                    <label htmlFor="estimateNumber">Estimate Number</label>
+                    <label htmlFor="estimateNumber">Estimate Code</label>
                     <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
-                    {errors.estimateNumber && <p>Estimate Number is required</p>}
+                    {errors.estimateNumber && <p>Estimate Code is required</p>}
                 </div>
                 <div>
                     <label htmlFor="scopeOfWork">Scope of Work</label>

@@ -40,42 +40,39 @@ const Login = () => {
 
     return (
         <div className="FullPage" >
-
             <div className="loginBox">
-                <div className="loginUI">
-                    <h2>Insert Logo Here</h2>
-                    <span>
-                        <input className="textField usernameField"
-                            name="username"
-                            value={state.username}
-                            placeholder="Username"
-                            onChange={(e) => { onInputChange("username", e.target.value); }} />
-
-                        <br />
-                        <br />
-                    </span>
-
-                    <span>
-                        <input className="textField passwordField"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={state.password}
-                            onChange={(e) => { onInputChange("password", e.target.value); }} />
-
-                        <br />
-                        <br />
-                    </span>
-
-                    <span>
-                        <input className="loginButton"
-                            type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
-                    </span>
-
-                    <span className="redDialogue">
-                        <p >Extra Message Popup</p>
-                    </span>
-                    </div>
+                <div className="loginLogo">
+                </div>
+                <div className="rightBG">
+                </div>
+                <div className="loginForm">
+                    <form className="loginUI">
+                        <span>
+                            <input className="textField usernameField"
+                                name="username"
+                                value={state.username}
+                                placeholder="Username"
+                                onChange={(e) => { onInputChange("username", e.target.value); }} />
+                            <br />
+                            <br />
+                        </span>
+                        <span>
+                            <input className="textField passwordField"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                value={state.password}
+                                onChange={(e) => { onInputChange("password", e.target.value); }} />
+                            <br />
+                            <br />
+                        </span>
+                        <span>
+                            <input className="loginButton"
+                                type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
+                        </span>
+                        <p >Don't have an account? <span className="redDialogue">Sign up now.</span></p>
+                    </form>
+                </div>
             </div>
         </div>
     );

@@ -2,7 +2,6 @@
 body {
     box-sizing: border-box;
     text-align: center;
-    padding-bottom: 500px;
 }
 
 label {
@@ -70,4 +69,8 @@ form > div > p {
     font-size: 10px;
     clear: both;
     color: red
+}
+
+.objectView {
+    padding-bottom: 500px;
 }
