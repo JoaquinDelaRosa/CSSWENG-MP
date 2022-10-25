@@ -6,3 +6,5 @@ C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj
 C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
 C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
 C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache

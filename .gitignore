@@ -168,3 +168,12 @@ test/obj
 
 test/obj/test.csproj.nuget.dgspec.json
 *.testlog
+client/obj/Debug/_IsIncrementalBuild
+api/bin/Release/net6.0/api.deps.json
+api/bin/Release/net6.0/api.runtimeconfig.json
+api/bin/Release/net6.0/appsettings.json
+client/obj/Release/_IsIncrementalBuild
+client/obj/Debug/client.esproj.FileListAbsolute.txt
+client/obj/Release/client.esproj.FileListAbsolute.txt
+api/bin/Release/net6.0/appsettings.Development.json
+client/obj/Debug/client.esproj.FileListAbsolute.txt
