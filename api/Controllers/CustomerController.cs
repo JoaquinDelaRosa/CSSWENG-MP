@@ -8,7 +8,6 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    [Authorize(Roles = "ADMIN")]
     public class CustomerController : GenericItemController<Customer, CustomerDetailView>
     {
         public CustomerController(AutoworksDBContext ctx) : base(new CustomerRepository(ctx))

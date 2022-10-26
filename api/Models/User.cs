@@ -7,7 +7,8 @@ namespace api.Models
     public enum UserType
     {
         ADMIN,
-        EMPLOYEE
+        VIEW,
+        VIEW_EDIT,
     }
 
     public class User : IDBEntity<User>

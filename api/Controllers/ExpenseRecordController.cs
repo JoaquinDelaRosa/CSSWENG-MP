@@ -8,7 +8,6 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    [Authorize(Roles = "ADMIN")]
     public class ExpenseRecordController : GenericItemController<ExpenseRecord, ExpenseRecord>
     {
         public ExpenseRecordController(AutoworksDBContext ctx) : base(new ExpenseRecordRepository(ctx))

@@ -18,6 +18,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
+        [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<IEnumerable<View>> GetAll()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -26,12 +27,14 @@ namespace api.Controllers
         }
 
         [HttpGet("id")]
+        [Authorize(Roles =nameof(UserType.ADMIN))]
         public virtual async Task<T?> GetRaw(int id)
         {
             return await repository.Get(id);
         }
 
         [HttpGet("view")]
+        [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<View?> Get(int id)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -41,6 +44,7 @@ namespace api.Controllers
 
 
         [HttpGet("filter")]
+        [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<IEnumerable<View>> GetByPredicate(Predicate<T> predicate)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -49,6 +53,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles =nameof(UserType.ADMIN)+","+nameof(UserType.VIEW_EDIT))]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<T?> Create(T other)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -59,6 +64,7 @@ namespace api.Controllers
         }
 
         [HttpPatch("update")]
+        [Authorize(Roles = nameof(UserType.ADMIN) + "," + nameof(UserType.VIEW_EDIT))]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<bool> Update(int id, T entity)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -75,6 +81,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete")]
+        [Authorize(Roles = nameof(UserType.ADMIN) + "," + nameof(UserType.VIEW_EDIT))]
         public virtual async Task<bool> Delete(int id)
         {
             T? toRemove = await GetRaw(id);
