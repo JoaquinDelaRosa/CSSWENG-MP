@@ -1,5 +1,6 @@
 ﻿using api.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 using System.Threading;
 
 namespace api.Views
@@ -19,6 +20,10 @@ namespace api.Views
             invoice = (invoice == null) ? new Invoice() : invoice;
 
             CustomerDetails = new CustomerDetailView(customer);
+
+            CustomerType = TypeToString(order.CustomerTypeId);
+            Company = (order.Company == null) ? "" : order.Company;
+
             VehicleDetails = new VehicleDetailView(vehicle);
             InvoiceDetails = new InvoiceDetailView(invoice);
 
@@ -36,9 +41,12 @@ namespace api.Views
         public VehicleDetailView VehicleDetails { get; set; }
         public InvoiceDetailView InvoiceDetails { get; set; }
 
+        public string CustomerType { get; set; }
+        public string Company { get; set; }
+
         public string? EstimateNumber { get; set; }
         public string? ScopeOfWork { get; set; }
-        public float Expenses { get; set; }
+        public ICollection<ExpenseRecord> Expenses { get; set; }
 
         private string TypeToString(OrderStatusEnum status)
         {
@@ -52,6 +60,20 @@ namespace api.Views
                 case OrderStatusEnum.QUOTE_OR_CHECK: return "Quote Or Check";
                 case OrderStatusEnum.FOR_LOA_OR_INVOICE: return "For LOA or Invoice";
             }
+            return "";
+        }
+
+        private string TypeToString(CustomerTypesEnum type)
+        {
+            switch (type)
+            {
+                case CustomerTypesEnum.PERSONAL: return "Personal";
+                case CustomerTypesEnum.WALK_IN: return "Walk in";
+                case CustomerTypesEnum.FLEET: return "Fleet";
+                case CustomerTypesEnum.INSURANCE: return "Insurance";
+                case CustomerTypesEnum.OTHER: return "Other";
+            }
+
             return "";
         }
 

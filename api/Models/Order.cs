@@ -11,6 +11,7 @@ namespace api.Models
         public int OrderId { get; set; }
 
         [Required]
+        [ForeignKey("OrderStatus")]
         public OrderStatusEnum Status { get; set; } = OrderStatusEnum.UNPAID;
 
         [Required]
@@ -20,6 +21,16 @@ namespace api.Models
         [Required]
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
+
+        [Required]
+        [ForeignKey("CustomerType")]
+        public CustomerTypesEnum CustomerTypeId { get; set; }
+
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string? Company { get; set; }
+
+
         [Required]
         [ForeignKey("Vehicle")] 
         public int VehicleId { get; set; }
@@ -28,14 +39,18 @@ namespace api.Models
         
         public string? EstimateNumber { get; set; }
         public string? ScopeOfWork { get; set; }
-        public float Expenses { get; set; }
 
+        [ForeignKey("Expense")]
+        public ICollection<ExpenseRecord> Expenses { get; set; } = new List<ExpenseRecord>();
+        
         public override void AssignTo(Order other)
         {
             Status = other.Status;
             TimeIn = other.TimeIn;
             TimeOut = other.TimeOut;
             CustomerId = other.CustomerId;
+            CustomerTypeId = other.CustomerTypeId;
+            Company = other.Company;
             VehicleId = other.VehicleId;
             InvoiceId = other.InvoiceId;
             EstimateNumber = other.EstimateNumber;

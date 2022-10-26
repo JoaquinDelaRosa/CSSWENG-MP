@@ -41,7 +41,6 @@ namespace test
 
                         EstimateNumber = "Hello",
                         ScopeOfWork = "To do stuff",
-                        Expenses = 100
                     },
                     new Order()
                     {
@@ -55,7 +54,6 @@ namespace test
 
                         EstimateNumber = "Hello",
                         ScopeOfWork = "To do stuff",
-                        Expenses = 100
                     }
                 };
             }
