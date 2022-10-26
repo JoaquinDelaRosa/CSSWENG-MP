@@ -47,5 +47,10 @@ namespace api.Controllers
 
             return filtered;
         }
+        public async override Task<User?> Create(User other)
+        {
+            other.Username = other.FirstName.ToLower() + "_" + other.LastName.ToLower();
+            return await base.Create(other);
+        }
     }
 }
