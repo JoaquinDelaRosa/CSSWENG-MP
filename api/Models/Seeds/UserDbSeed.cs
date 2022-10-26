@@ -34,10 +34,18 @@ namespace api.Models.Seeds
                     },
                     new User()
                     {
+                        FirstName = "Homer",
+                        LastName = "Simpson",
+                        Password = encrypterManager.Encrypt("string"),
+                        Type = UserType.ADMIN,
+                        Username = "string"
+                    },
+                    new User()
+                    {
                         FirstName = "Mari",
                         LastName = "Joy",
                         Password = encrypterManager.Encrypt("employee"),
-                        Type = UserType.EMPLOYEE,
+                        Type = UserType.VIEW_EDIT,
                         Username = "employee"
                     }
                );
