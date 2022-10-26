@@ -14,9 +14,10 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string Description { get; set; } = "";
 
-
         public float Amount { get; set; }
 
+        [Required]
+        public int OrderId { get; set; }
         public override void AssignTo(ExpenseRecord other)
         {
             DateRecorded = other.DateRecorded;

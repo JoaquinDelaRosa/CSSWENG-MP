@@ -20,5 +20,10 @@ namespace api.Models
         public DbSet<Vehicle>? Vehicles { get; set; }
 
         public DbSet<ExpenseRecord>? ExpenseRecords { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
     }
 }

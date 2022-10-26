@@ -14,12 +14,14 @@ namespace api.Controllers
         private readonly CustomerController customerController;
         private readonly VehicleController vehicleController;
         private readonly InvoiceController invoiceController;
+        private readonly ExpenseRecordController expenseRecordController;
 
         public OrderController(AutoworksDBContext ctx) : base(new OrderRepository(ctx))
         {
             customerController = new CustomerController(ctx);
             vehicleController = new VehicleController(ctx);
             invoiceController = new InvoiceController(ctx);
+            expenseRecordController = new ExpenseRecordController(ctx);
         }
         
         public async override Task<IEnumerable<OrderDetailView>> GetAll()
