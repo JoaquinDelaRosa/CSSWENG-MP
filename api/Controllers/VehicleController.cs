@@ -9,7 +9,7 @@ namespace api.Controllers
     [Route("api/[Controller]")]
     public class VehicleController : GenericItemController<Vehicle, VehicleDetailView>
     {
-        public VehicleController(AutoworksDBContext ctx) : base (new VehicleRepository(ctx))
+        public VehicleController(AutoworksDBContext ctx) : base(new VehicleRepository(ctx))
         {
 
         }
@@ -18,7 +18,7 @@ namespace api.Controllers
         public async override Task<IEnumerable<VehicleDetailView>> GetAll()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-       
+
             List<VehicleDetailView> view = new List<VehicleDetailView>();
 
             foreach (Vehicle vehicle in repository.GetAll())
@@ -38,12 +38,17 @@ namespace api.Controllers
             return new VehicleDetailView(v);
         }
 
-        [HttpGet("filter")]
-        public async Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)
+        [HttpPost("filter")]
+        public async Task<IEnumerable<VehicleDetailView>> GetByVehicleDetails(Vehicle.Query vehicleQuery)
         {
-            IEnumerable<VehicleDetailView> filtered = await GetAll();
+            List<VehicleDetailView> view = new List<VehicleDetailView>();
 
-            return filtered;
+            foreach (Vehicle vehicle in (repository as VehicleRepository).GetByVehicleDetails(vehicleQuery))
+            {
+                view.Add(new VehicleDetailView(vehicle));
+            }
+
+            return view;
         }
     }
 }
