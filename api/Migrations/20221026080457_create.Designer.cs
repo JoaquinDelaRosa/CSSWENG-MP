@@ -12,8 +12,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(AutoworksDBContext))]
-    [Migration("20221026053823_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221026080457_create")]
+    partial class create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,9 @@ namespace api.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("Expense")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

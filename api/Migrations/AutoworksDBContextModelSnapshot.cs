@@ -84,6 +84,9 @@ namespace api.Migrations
                     b.Property<int?>("Expense")
                         .HasColumnType("int");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Expense");

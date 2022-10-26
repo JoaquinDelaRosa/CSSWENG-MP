@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -131,6 +131,7 @@ namespace api.Migrations
                     DateRecorded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Amount = table.Column<float>(type: "real", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     Expense = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
