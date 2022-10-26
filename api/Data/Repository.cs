@@ -2,6 +2,7 @@
 
 using api.Models;
 using System.Linq.Expressions;
+using api.Models.Queries;
 
 namespace api.Data
 {
@@ -27,14 +28,9 @@ namespace api.Data
             return dbSet.ToList<T>();
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        public virtual IEnumerable<T> Find<Query>(Query query) where Query : IModelQuery<T>
         {
-            return dbSet.Where(predicate);
-        }
-
-        public IEnumerable<T> Filter(Predicate<T> predicate)
-        {
-            return dbSet.Where(x => predicate(x));
+            return dbSet.ToList<T>();
         }
 
         public async void Create(T obj)

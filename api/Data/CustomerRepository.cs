@@ -11,9 +11,9 @@ namespace api.Data
 
         }
 
-        public List<Customer> GetByCustomerName(string customerName)
+        public override IEnumerable<Customer> Find<CustomerQuery>(CustomerQuery query)
         {
-           return dbSet.Where(x => (x.FirstName+" "+x.LastName).Contains(customerName)).ToList<Customer>();
+           return dbSet.Where(query.IsSatisfied).ToList<Customer>();
         }
     }
 }

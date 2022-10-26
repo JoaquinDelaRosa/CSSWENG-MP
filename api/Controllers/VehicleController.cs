@@ -1,6 +1,8 @@
 ﻿using api.Data;
 using api.Models;
+using api.Models.Queries;
 using api.Views;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -38,12 +40,15 @@ namespace api.Controllers
             return new VehicleDetailView(v);
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         [HttpPost("filter")]
-        public async Task<IEnumerable<VehicleDetailView>> GetByVehicleDetails(Vehicle.Query vehicleQuery)
+        [AllowAnonymous]
+        public async Task<IEnumerable<VehicleDetailView>> Find(VehicleQuery vehicleQuery)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<VehicleDetailView> view = new List<VehicleDetailView>();
 
-            foreach (Vehicle vehicle in (repository as VehicleRepository).GetByVehicleDetails(vehicleQuery))
+            foreach (Vehicle vehicle in repository.Find(vehicleQuery))
             {
                 view.Add(new VehicleDetailView(vehicle));
             }

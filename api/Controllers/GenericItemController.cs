@@ -1,5 +1,6 @@
 ﻿using api.Data;
 using api.Models;
+using api.Models.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using api.Models;
+using api.Models.Queries;
 
 namespace api.Data
 {
@@ -11,14 +12,9 @@ namespace api.Data
 
         }
 
-        public List<Vehicle> GetByVehicleDetails(Vehicle.Query query)
+        public override IEnumerable<Vehicle> Find<VehicleQuery>(VehicleQuery query) 
         {
-            return dbSet.Where(x => 
-                ((query.LicensePlate == "")? true : x.LicensePlate.Contains(query.LicensePlate)) &&
-                ((query.Manufacturer == "")? true : x.Manufacturer.Contains(query.Manufacturer)) &&
-                ((query.Model == "")? true : x.Model.Contains(query.Model)) &&
-                ((query.YearManufactured == -1)? true : x.YearManufactured == query.YearManufactured)
-            ).ToList<Vehicle>();
+            return dbSet.Where(query.IsSatisfied).ToList<Vehicle>();
         }
     }
 }

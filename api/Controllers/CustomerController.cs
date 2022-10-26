@@ -1,5 +1,6 @@
 using api.Data;
 using api.Models;
+using api.Models.Queries;
 using api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,12 +40,15 @@ namespace api.Controllers
             return new CustomerDetailView(c);
         }
 
-        [HttpGet("filter")]
-        public async Task<IEnumerable<CustomerDetailView>> GetByCustomerName(string customerName)
+        [HttpPost("filter")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<CustomerDetailView>> Find(CustomerQuery query)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<CustomerDetailView> view = new List<CustomerDetailView>();
 
-            foreach (Customer customer in (repository as CustomerRepository).GetByCustomerName(customerName))
+            foreach (Customer customer in repository.Find(query))
             {
                 view.Add(new CustomerDetailView(customer));
             }

@@ -1,5 +1,5 @@
 ﻿using api.Models;
-using System.Linq.Expressions;
+using api.Models.Queries;
 
 namespace api.Data
 {
@@ -7,7 +7,9 @@ namespace api.Data
     {
         public Task<T?> Get<Key>(Key id);
         IEnumerable<T> GetAll();
-        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+
+        public IEnumerable<T> Find<Query>(Query query) where Query : IModelQuery<T>;
+
         public void Create(T obj);
 
         public void Create(IEnumerable<T> objects);
