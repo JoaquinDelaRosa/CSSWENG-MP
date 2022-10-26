@@ -18,21 +18,20 @@ namespace api.Models
         public string? LastName { get; set; }
 
 
-        [Required]
-        [ForeignKey("CustomerType")]
-        public CustomerTypesEnum CustomerTypeId { get; set; }
-
-        // Casting enum to string might need to be in the set method too unsure
 
         [Column(TypeName = "nvarchar(100)")]
-        public string? Company { get; set; }
-        
+        public string? MobileNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        [EmailAddress]
+        public string? Email { get; set; }
+
         public override void AssignTo(Customer other)
         {
             FirstName = other.FirstName;
             LastName = other.LastName;
-            CustomerTypeId = other.CustomerTypeId;
-            Company = other.Company;
+            MobileNumber = other.MobileNumber;
+            Email = other.Email;
         }
 
         public bool IsEqual(Customer other)

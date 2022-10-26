@@ -26,15 +26,11 @@ namespace test
                         CustomerId = 999,
                         FirstName = "Bob",
                         LastName = "Doe",
-                        Company = "XYZ",
-                        CustomerTypeId = CustomerTypesEnum.WALK_IN
                     },
                     new Customer()
                     {
                         FirstName = "Jack",
                         LastName = "Black",
-                        Company = "XYZ",
-                        CustomerTypeId = CustomerTypesEnum.WALK_IN
                     }
                 };
             }
@@ -78,14 +74,10 @@ namespace test
             Assert.True(afterCreate.CustomerId == first.CustomerId);
             Assert.True(afterCreate.FirstName == first.FirstName);
             Assert.True(afterCreate.LastName == first.LastName);
-            Assert.True(afterCreate.Company == first.Company);
-            Assert.True(afterCreate.CustomerTypeId == first.CustomerTypeId);
 
             Assert.True(afterUpdate.CustomerId == first.CustomerId);
             Assert.True(afterUpdate.FirstName == second.FirstName);
             Assert.True(afterUpdate.LastName == second.LastName);
-            Assert.True(afterUpdate.Company == second.Company);
-            Assert.True(afterUpdate.CustomerTypeId == second.CustomerTypeId);
 
             Assert.Null(afterDelete);
         }
@@ -112,8 +104,6 @@ namespace test
                     CustomerId = i + 1,
                     FirstName = "Hello ",
                     LastName = i.ToString(),
-                    Company = "XYZ",
-                    CustomerTypeId = CustomerTypesEnum.FLEET
                 });
             }
 
