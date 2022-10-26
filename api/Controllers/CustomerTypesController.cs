@@ -34,7 +34,8 @@ namespace api.Controllers
             return await GetRaw(id);
         }
 
-        public async override Task<IEnumerable<CustomerType>> GetByPredicate(Predicate<CustomerType> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<CustomerType>> GetByPredicate(Predicate<CustomerType> predicate)
         {
             IEnumerable<CustomerType> filtered = await GetAll();
 

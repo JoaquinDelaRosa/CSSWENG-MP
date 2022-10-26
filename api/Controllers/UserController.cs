@@ -41,7 +41,7 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public async override Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
+        public async Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
         {
             IEnumerable<UserDetailView> filtered = await GetAll();
 
