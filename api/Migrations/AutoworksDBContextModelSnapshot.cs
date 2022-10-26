@@ -30,11 +30,8 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
 
-                    b.Property<string>("Company")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("CustomerTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -42,6 +39,9 @@ namespace api.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CustomerId");
@@ -63,6 +63,34 @@ namespace api.Migrations
                     b.ToTable("CustomerType");
                 });
 
+            modelBuilder.Entity("api.Models.ExpenseRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("DateRecorded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("Expense")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Expense");
+
+                    b.ToTable("ExpenseRecords");
+                });
+
             modelBuilder.Entity("api.Models.Invoice", b =>
                 {
                     b.Property<int>("InvoiceId")
@@ -70,6 +98,9 @@ namespace api.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceId"), 1L, 1);
+
+                    b.Property<float>("AgentCommission")
+                        .HasColumnType("real");
 
                     b.Property<string>("AgentFirstName")
                         .IsRequired()
@@ -81,6 +112,9 @@ namespace api.Migrations
 
                     b.Property<float>("Amount")
                         .HasColumnType("real");
+
+                    b.Property<DateTime>("DatePaid")
+                        .HasColumnType("datetime2");
 
                     b.Property<float>("DeductibleDue")
                         .HasColumnType("real");
@@ -98,14 +132,17 @@ namespace api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("EstimateNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Expenses")
-                        .HasColumnType("real");
 
                     b.Property<int>("InvoiceId")
                         .HasColumnType("int");
@@ -203,6 +240,18 @@ namespace api.Migrations
                     b.HasKey("VehicleId");
 
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("api.Models.ExpenseRecord", b =>
+                {
+                    b.HasOne("api.Models.Order", null)
+                        .WithMany("Expenses")
+                        .HasForeignKey("Expense");
+                });
+
+            modelBuilder.Entity("api.Models.Order", b =>
+                {
+                    b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618
         }
