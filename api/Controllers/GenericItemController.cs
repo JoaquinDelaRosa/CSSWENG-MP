@@ -39,15 +39,6 @@ namespace api.Controllers
             return default(View);
         }
 
-
-        [HttpGet("filter")]
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        public virtual async Task<IEnumerable<View>> GetByPredicate(Predicate<T> predicate)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-        {
-            return new List<View>();
-        }
-
         [HttpPost("create")]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task<T?> Create(T other)

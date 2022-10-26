@@ -33,7 +33,8 @@ namespace api.Controllers
             return await GetRaw(id);
         }
 
-        public async override Task<IEnumerable<OrderStatus>> GetByPredicate(Predicate<OrderStatus> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<OrderStatus>> GetByPredicate(Predicate<OrderStatus> predicate)
         {
             IEnumerable<OrderStatus> filtered = await GetAll();
 

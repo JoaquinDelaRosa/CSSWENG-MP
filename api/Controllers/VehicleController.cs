@@ -39,7 +39,7 @@ namespace api.Controllers
         }
 
         [HttpGet("filter")]
-        public async override Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)
+        public async Task<IEnumerable<VehicleDetailView>> GetByPredicate(Predicate<Vehicle> predicate)
         {
             IEnumerable<VehicleDetailView> filtered = await GetAll();
 

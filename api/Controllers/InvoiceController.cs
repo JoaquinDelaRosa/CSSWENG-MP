@@ -38,8 +38,8 @@ namespace api.Controllers
             return new InvoiceDetailView(i);
         }
 
-
-        public async override Task<IEnumerable<InvoiceDetailView>> GetByPredicate(Predicate<Invoice> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<InvoiceDetailView>> GetByPredicate(Predicate<Invoice> predicate)
         {
             IEnumerable<InvoiceDetailView> filtered = await GetAll();
 

@@ -39,7 +39,8 @@ namespace api.Controllers
             return e;
         }
 
-        public async override Task<IEnumerable<ExpenseRecord>> GetByPredicate(Predicate<ExpenseRecord> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<ExpenseRecord>> GetByPredicate(Predicate<ExpenseRecord> predicate)
         {
             IEnumerable<ExpenseRecord> filtered = await GetAll();
 

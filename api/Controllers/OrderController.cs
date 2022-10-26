@@ -54,7 +54,8 @@ namespace api.Controllers
             return await GetView(order);
         }
 
-        public async override Task<IEnumerable<OrderDetailView>> GetByPredicate(Predicate<Order> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<OrderDetailView>> GetByPredicate(Predicate<Order> predicate)
         {
             IEnumerable<OrderDetailView> filtered = await GetAll();
 

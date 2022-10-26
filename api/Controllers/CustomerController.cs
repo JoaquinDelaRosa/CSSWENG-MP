@@ -3,6 +3,7 @@ using api.Models;
 using api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace api.Controllers
 {
@@ -39,11 +40,17 @@ namespace api.Controllers
             return new CustomerDetailView(c);
         }
 
-        public async override Task<IEnumerable<CustomerDetailView>> GetByPredicate(Predicate<Customer> predicate)
+        [HttpGet("filter")]
+        public async Task<IEnumerable<CustomerDetailView>> GetByCustomerName(string customerName)
         {
-            IEnumerable<CustomerDetailView> filtered = await GetAll();
+            List<CustomerDetailView> view = new List<CustomerDetailView>();
 
-            return filtered;
+            foreach (Customer customer in (repository as CustomerRepository).GetByCustomerName(customerName))
+            {
+                view.Add(new CustomerDetailView(customer));
+            }
+
+            return view;
         }
     }
 }
