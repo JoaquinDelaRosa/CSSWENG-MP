@@ -21,12 +21,17 @@ namespace api.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? AgentLastName { get; set; } = "";
 
+        public DateTime DatePaid { get; set; }
+        public float AgentCommission { get; set; }
+
         public override void AssignTo(Invoice other)
         {
             Amount = other.Amount;
             AgentFirstName = other.AgentFirstName; 
             AgentLastName = other.AgentLastName;
             DeductibleDue = other.DeductibleDue;
+            DatePaid = other.DatePaid;
+            AgentCommission = other.AgentCommission;
         }
     }
 }
