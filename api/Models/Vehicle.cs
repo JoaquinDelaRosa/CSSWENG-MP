@@ -33,7 +33,7 @@ namespace api.Models
 
         public class Query
         {
-            public string LiscensePlate { get; set; } = "";
+            public string LicensePlate { get; set; } = "";
             public string Manufacturer { get; set; } = "";
             public string Model { get; set; } = "";
             public int YearManufactured { get; set; } = -1;
