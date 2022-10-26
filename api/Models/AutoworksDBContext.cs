@@ -18,5 +18,7 @@ namespace api.Models
         public DbSet<Order>? Orders { get; set; }
 
         public DbSet<Vehicle>? Vehicles { get; set; }
+
+        public DbSet<ExpenseRecord>? ExpenseRecords { get; set; }
     }
 }
