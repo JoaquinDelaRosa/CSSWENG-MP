@@ -1,5 +1,6 @@
 ﻿using api.Models;
 using api.Models.Queries;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Data
 {
@@ -9,6 +10,8 @@ namespace api.Data
         IEnumerable<T> GetAll();
 
         public IEnumerable<T> Find<Query>(Query query) where Query : IModelQuery<T>;
+
+        public IEnumerable<T> Sort<Tkey>(Func<T, Tkey> criterion, bool isAscending = false, int from = 0, int limit = int.MaxValue);
 
         public void Create(T obj);
 

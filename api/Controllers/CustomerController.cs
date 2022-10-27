@@ -4,7 +4,6 @@ using api.Models.Queries;
 using api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace api.Controllers
 {
@@ -16,7 +15,7 @@ namespace api.Controllers
         {
 
         }
-        
+
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async override Task<IEnumerable<CustomerDetailView>> GetAll()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -55,5 +54,29 @@ namespace api.Controllers
 
             return view;
         }
+
+        [HttpGet("sort")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<CustomerDetailView>> Sort(string arg, bool isAscending = true, int from = 0, int limit = int.MaxValue){
+
+            List<CustomerDetailView> view = new List<CustomerDetailView>();
+            IEnumerable<Customer> result = new List<Customer>();
+
+            switch (arg.ToUpper())
+            {
+                case "NAME":
+                    result =  repository.Sort(x => x.FirstName, isAscending, from, limit);
+                    break;
+            }
+
+            foreach (Customer c in result)
+            {
+                view.Add(new CustomerDetailView(c));
+            }
+
+            return view;
+        }
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     }
 }
