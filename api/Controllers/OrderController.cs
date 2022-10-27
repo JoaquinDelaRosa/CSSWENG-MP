@@ -1,7 +1,9 @@
 using api.Data;
 using api.Models;
+using api.Models.Queries;
 using api.Views;
 using MessagePack.Formatters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -34,15 +36,6 @@ namespace api.Controllers
             }
 
             return view;
-        }
-
-        private async Task<OrderDetailView> GetView(Order order)
-        {
-            Customer? customer = await customerController.GetRaw(order.CustomerId);
-            Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
-            Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
-
-            return new OrderDetailView(order, customer, vehicle, invoice);
         }
 
         public async override Task<OrderDetailView?> Get(int id)
@@ -95,5 +88,32 @@ namespace api.Controllers
 
             return await base.Update(id, entity);
         }
+
+        [HttpPost("filter")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<OrderDetailView>> Find(OrderQuery query)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            List<OrderDetailView> view = new List<OrderDetailView>();
+
+            foreach (Order order in repository.Find(query))
+            {
+                view.Add(await GetView(order));
+            }
+
+            return view;
+        }
+
+
+        private async Task<OrderDetailView> GetView(Order order)
+        {
+            Customer? customer = await customerController.GetRaw(order.CustomerId);
+            Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
+            Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
+
+            return new OrderDetailView(order, customer, vehicle, invoice);
+        }
+
     }
 }
