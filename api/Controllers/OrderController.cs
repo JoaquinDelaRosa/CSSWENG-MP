@@ -105,6 +105,42 @@ namespace api.Controllers
             return view;
         }
 
+        [HttpGet("sort")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<OrderDetailView>> Sort(string arg, bool isAscending = true, int from = 0, int limit = int.MaxValue)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+
+            List<OrderDetailView> view = new List<OrderDetailView>();
+            IEnumerable<Order> result = new List<Order>();
+
+            switch (arg.ToLower())
+            {
+                case "timein":
+                    result =repository.Sort(x => x.TimeIn, isAscending, from, limit);
+                    break;
+
+                case "timeout":
+                    result = repository.Sort(x => x.TimeOut, isAscending, from, limit);
+                    break;
+
+                case "company":
+                    result = repository.Sort(x => x.Company, isAscending, from, limit);
+                    break;
+
+                case "estimatenumber":
+                    result = repository.Sort(x => x.EstimateNumber, isAscending, from, limit);
+                    break;
+            }
+
+            foreach (Order o in result)
+            {
+                view.Add(await GetView(o));
+            }
+
+            return view;
+        }
 
         private async Task<OrderDetailView> GetView(Order order)
         {
@@ -114,6 +150,5 @@ namespace api.Controllers
 
             return new OrderDetailView(order, customer, vehicle, invoice);
         }
-
     }
 }

@@ -40,6 +40,43 @@ namespace api.Controllers
             return new VehicleDetailView(v);
         }
 
+        [HttpGet("sort")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<VehicleDetailView>> Sort(string arg, bool isAscending = true, int from = 0, int limit = int.MaxValue)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+
+            List<VehicleDetailView> view = new List<VehicleDetailView>();
+            IEnumerable<Vehicle> result = new List<Vehicle>();
+
+            switch (arg.ToLower())
+            {
+                case "licenseplate":
+                    result = repository.Sort(x => x.LicensePlate, isAscending, from, limit);
+                    break;
+
+                case "manufacturer":
+                    result = repository.Sort(x => x.Manufacturer, isAscending, from, limit);
+                    break;
+
+                case "model":
+                    result = repository.Sort(x => x.Model, isAscending, from, limit);
+                    break;
+
+                case "yearmanufactured":
+                    result = repository.Sort(x => x.YearManufactured, isAscending, from, limit);
+                    break;
+            }
+
+            foreach (Vehicle v in result)
+            {
+                view.Add(new VehicleDetailView(v));
+            }
+
+            return view;
+        }
+
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         [HttpPost("filter")]
         [AllowAnonymous]
