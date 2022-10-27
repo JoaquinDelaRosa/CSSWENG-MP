@@ -13,6 +13,7 @@ export const ENDPOINTS = {
     invoices: 'Invoice/all',
     customerTypes: 'CustomerType/all',
     orderStatuses: 'OrderStatus/all',
+    expenses: 'ExpenseRecord/all',
 
     getCustomer: 'Customer/id',
     getCustomerView: 'Customer/view',
@@ -37,6 +38,12 @@ export const ENDPOINTS = {
     addInvoice: "Invoice/create",
     updateInvoice: "Invoice/update",
     deleteInvoice: "Invoice/delete",
+
+    getExpense: "ExpenseRecord/id",
+    getExpenseView: 'ExpenseRecord/view',
+    addExpense: "ExpenseRecord/create",
+    updateExpense: "ExpenseRecord/update",
+    deleteExpense: "ExpenseRecord/delete"
 
 }
 

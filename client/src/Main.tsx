@@ -9,6 +9,7 @@ import RegisterUser from "./components/RegisterUser";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
+import ViewExpenses from "./components/expenses/ViewExpense";
 
 
 export const Main = () => {
@@ -47,6 +48,11 @@ export const Main = () => {
             <Route 
                 path={ROUTES.invoices }
                 element={<ViewInvoices/> }
+            />
+
+            <Route 
+                path={ROUTES.expenses }
+                element={<ViewExpenses/> }
             />
 
         </Routes>
