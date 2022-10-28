@@ -10,5 +10,4 @@ export interface Expense {
     dateRecorded : string,
     description : string,
     amount : string,
-    orderId : string,
 }

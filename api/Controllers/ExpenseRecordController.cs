@@ -8,7 +8,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class ExpenseRecordController : GenericItemController<ExpenseRecord, ExpenseRecord>
+    public class ExpenseRecordController : GenericItemController<ExpenseRecord, ExpenseRecordDetailView>
     {
         public ExpenseRecordController(AutoworksDBContext ctx) : base(new ExpenseRecordRepository(ctx))
         {
@@ -16,34 +16,26 @@ namespace api.Controllers
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        public async override Task<IEnumerable<ExpenseRecord>> GetAll()
+        public async override Task<IEnumerable<ExpenseRecordDetailView>> GetAll()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            List<ExpenseRecord> view = new List<ExpenseRecord>();
+            List<ExpenseRecordDetailView> view = new List<ExpenseRecordDetailView>();
 
             foreach (ExpenseRecord expense in repository.GetAll())
             {
-                view.Add(expense);
+                view.Add(new ExpenseRecordDetailView(expense));
             }
 
             return view;
         }
 
-        public async override Task<ExpenseRecord?> Get(int id)
+        public async override Task<ExpenseRecordDetailView?> Get(int id)
         {
             ExpenseRecord? e = await GetRaw(id);
             if (e == null)
                 return null;
 
-            return e;
-        }
-
-        [HttpGet("filter")]
-        public async Task<IEnumerable<ExpenseRecord>> GetByPredicate(Predicate<ExpenseRecord> predicate)
-        {
-            IEnumerable<ExpenseRecord> filtered = await GetAll();
-
-            return filtered;
+            return new ExpenseRecordDetailView(e);
         }
     }
 }
