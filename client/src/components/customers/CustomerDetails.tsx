@@ -3,6 +3,8 @@ export interface CustomerRequest {
     lastName: string,
     customerTypeId: number,
     company?: string,
+    mobileNumber : string,
+    email : string
 }
 
 export interface CustomerTypeKVP {
@@ -14,4 +16,6 @@ export interface Customer {
     name: string,
     type: string
     company?: string
+    mobileNumber? : string,
+    email? : string
 }

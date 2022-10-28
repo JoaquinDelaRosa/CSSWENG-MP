@@ -12,6 +12,8 @@ const CustomerRecord = (props : { customer: Customer }) => {
             <td> {props.customer.name} </td>
             <td> {props.customer.type} </td>
             <td> {props.customer.company} </td>
+            <td> {props.customer.email} </td>
+            <td> {props.customer.mobileNumber} </td>
         </tr> 
      );
 }
@@ -59,6 +61,8 @@ const ViewCustomers = () => {
                         <th> Name </th>
                         <th> Type </th>
                         <th> Company </th>
+                        <th> Email </th>
+                        <th> Mobile Number </th>
                     </tr>
                 </thead>
 

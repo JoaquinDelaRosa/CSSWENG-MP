@@ -97,6 +97,22 @@ const UpdateCustomer = () => {
                       <input {... register("company", {required : false})} type="text" name="company"/>
                       {errors.company && <p>Customer Company is required</p>}
                   </div>
+                  <div>
+                      <label htmlFor="email"> Email </label>
+                      <input {... register("email", {required: true, 
+                                                    pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+                                                    message: "invalid email address"}})} 
+                                                    type="text" name="email"/>
+                      {errors.email && <p>Email is required</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="mobileNumber"> Mobile Number </label>
+                      <input {... register("mobileNumber", {required: true, pattern: {
+                                                                            value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i,
+                                                                            message: "invalid mobile number"}})} 
+                                                                            type="text" name="company"/>
+                      {errors.mobileNumber && <p>Mobile Number is required</p>}
+                  </div>
                 <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>  
