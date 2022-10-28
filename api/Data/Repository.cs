@@ -33,6 +33,13 @@ namespace api.Data
             return dbSet.ToList<T>();
         }
 
+        public virtual IEnumerable<T> Sort<Tkey>(Func<T, Tkey> criterion, bool isAscending = true, int from = 0, int limit = int.MaxValue) 
+        {
+            if (isAscending)
+                return dbSet.OrderBy(criterion).Take(new Range(from, from + limit));
+            return dbSet.OrderByDescending(criterion).Take(new Range(from, from + limit));
+        }
+
         public async void Create(T obj)
         {
             await dbSet.AddAsync(obj);
