@@ -29,7 +29,6 @@ namespace api.Views
 
             EstimateNumber = order.EstimateNumber;
             ScopeOfWork = order.ScopeOfWork;
-            Expenses = order.Expenses;
 
         }
         public int OrderId { get; set; }

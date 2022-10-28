@@ -39,9 +39,6 @@ namespace api.Models
         
         public string? EstimateNumber { get; set; }
         public string? ScopeOfWork { get; set; }
-
-        [ForeignKey("Expense")]
-        public ICollection<ExpenseRecord> Expenses { get; set; } = new List<ExpenseRecord>();
         
         public override void AssignTo(Order other)
         {
@@ -55,7 +52,6 @@ namespace api.Models
             InvoiceId = other.InvoiceId;
             EstimateNumber = other.EstimateNumber;
             ScopeOfWork = other.ScopeOfWork;
-            Expenses = other.Expenses;
         }
     }
 }
