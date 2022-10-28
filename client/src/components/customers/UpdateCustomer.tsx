@@ -93,11 +93,6 @@ const UpdateCustomer = () => {
                       {errors.customerTypeId && <p>Customer Type ID is required</p>}
                   </div>
                   <div>
-                      <label htmlFor="company"> Customer Company </label>
-                      <input {... register("company", {required : false})} type="text" name="company"/>
-                      {errors.company && <p>Customer Company is required</p>}
-                  </div>
-                  <div>
                       <label htmlFor="email"> Email </label>
                       <input {... register("email", {required: true, 
                                                     pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
