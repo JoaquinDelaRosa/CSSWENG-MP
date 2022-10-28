@@ -13,6 +13,8 @@ const InvoiceRecord = (props : { invoice: Invoice}) => {
             <td> {props.invoice.agentLastName} </td>
             <td> {props.invoice.amount} </td>
             <td> {props.invoice.deductibleDue} </td>
+            <td> {props.invoice.datePaid}      </td>
+            <td> {props.invoice.agentCommission} </td>
         </tr> 
      );
 }
@@ -56,6 +58,8 @@ const ViewInvoices = () => {
                         <th> Agent Last Name </th>
                         <th> Amount </th>
                         <th> Deductible Due </th>
+                        <th> Date Paid </th>
+                        <th> Agent Commission </th>
                     </tr>
                 </thead>
 

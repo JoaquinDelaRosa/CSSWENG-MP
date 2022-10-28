@@ -46,6 +46,18 @@ const AddInvoice = () => {
                       type="number" name="deductibleDue"/>
                       {errors.deductibleDue && <p> Deductible Due is required</p>}
                   </div>
+                  <div>
+                      <label htmlFor="datePaid"> Date Paid </label>
+                      <input {...register('datePaid')} 
+                      type="date" name="datePaid"/>
+                      {errors.datePaid && <p> Date Paid Error</p>}
+                  </div>
+                  <div>
+                      <label htmlFor="agentCommission"> Agent Commission </label>
+                      <input {...register('agentCommission', {required: true})} 
+                      type="number" name="agentCommission"/>
+                      {errors.agentCommission && <p> Agent Commission is required</p>}
+                  </div>
                   <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
                </form>
            </div>
