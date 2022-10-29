@@ -1,13 +1,13 @@
 export interface ExpenseRequest {
-    dateRecorded : string,
+    dateRecorded : Date,
     description : string,
-    amount : string,
+    amount : number,
     orderId : string,
 }
 
 export interface Expense {
-    expenseId: number,
     dateRecorded : string,
     description : string,
-    amount : string,
+    amount : number,
+    orderId : string,
 }
