@@ -1,2 +1,10 @@
 C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
 C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+D:\Programming\Git\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+C:\Users\tomat\source\repos\CSSWENG-MP\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache

@@ -1,0 +1,106 @@
+.loginUI {
+    z-index: 100;
+    display: grid;
+    width: 55%;
+    border: none;
+    justify-content: center;
+    padding-top: 20rem;
+
+}
+
+.textField {
+
+    width: 37rem;
+    min-height: 3rem;
+    margin-bottom: 1rem;
+    padding-left: 4rem;
+    background-repeat: no-repeat;
+    background-size: 2rem;
+    background-position: 1rem;
+    font-size: 24px;
+    border: none;
+    background-color: #D0D0D0;
+    border-radius: 2rem;
+
+}
+
+.loginForm {
+    position: relative;
+    z-index: 100;
+}
+
+.usernameField {
+
+    background-image: url(../style/images/user-svgrepo-com.svg);
+
+}
+
+.passwordField {
+
+    background-image: url(../style/images/61457.png);
+
+}
+
+.loginButton {
+
+    width: 41rem;
+    min-height: 3rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #990000;
+    border-radius: 2rem;
+
+}
+
+.redDialogue{
+
+    color: #800000;
+    justify-self: center;
+    text-decoration: underline;
+
+}
+
+.rightBG {
+
+    width: 100%;
+    height: 100%;
+    background-image: url(../style/images/hotwheels.png);
+    background-position: right;
+    background-position-x: 60rem;
+    background-position-y: -32rem;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: 75rem 105rem;
+    opacity: 80%;
+    border-radius: 50px;
+}
+
+.loginBox {
+    position: relative;
+    border-color: white;
+    border-radius: 50px;
+    border-style: solid;
+    background-color: white;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    padding: 0;
+    border:0
+}
+
+.loginLogo {
+
+    padding-top: 15rem;
+    height: 10%;
+    width: 100%;
+    background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
+    background-position: left;
+    background-position-x: 11rem;
+    background-repeat: no-repeat;
+    background-size: 35rem 10rem;
+    position: absolute;
+}
