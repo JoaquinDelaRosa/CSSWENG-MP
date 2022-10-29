@@ -147,8 +147,9 @@ namespace api.Controllers
             Customer? customer = await customerController.GetRaw(order.CustomerId);
             Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
             Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
+            IEnumerable<ExpenseRecordDetailView> expenses =  await expenseRecordController.Find(new ExpenseRecordQuery() { OrderId = order.OrderId });
 
-            return new OrderDetailView(order, customer, vehicle, invoice);
+            return new OrderDetailView(order, customer, vehicle, invoice, expenses);
         }
     }
 }

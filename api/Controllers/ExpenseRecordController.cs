@@ -1,5 +1,6 @@
 ﻿using api.Data;
 using api.Models;
+using api.Models.Queries;
 using api.Views;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,22 @@ namespace api.Controllers
                 return null;
 
             return new ExpenseRecordDetailView(e);
+        }
+
+        [HttpPost("filter")]
+        [AllowAnonymous]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IEnumerable<ExpenseRecordDetailView>> Find(ExpenseRecordQuery query)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            List<ExpenseRecordDetailView> view = new List<ExpenseRecordDetailView>();
+
+            foreach (ExpenseRecord customer in repository.Find(query))
+            {
+                view.Add(new ExpenseRecordDetailView(customer));
+            }
+
+            return view;
         }
     }
 }

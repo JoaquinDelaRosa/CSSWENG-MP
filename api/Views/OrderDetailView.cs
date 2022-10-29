@@ -1,13 +1,14 @@
 ﻿using api.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using System.Security.Cryptography.Xml;
 using System.Threading;
 
 namespace api.Views
 {
     public class OrderDetailView
     {
-        public OrderDetailView(Order order, Customer? customer, Vehicle? vehicle, Invoice? invoice)
+        public OrderDetailView(Order order, Customer? customer, Vehicle? vehicle, Invoice? invoice, IEnumerable<ExpenseRecordDetailView> expenses)
         {
             OrderId = order.OrderId;
 
@@ -26,10 +27,11 @@ namespace api.Views
 
             VehicleDetails = new VehicleDetailView(vehicle);
             InvoiceDetails = new InvoiceDetailView(invoice);
-
+             
             EstimateNumber = order.EstimateNumber;
             ScopeOfWork = order.ScopeOfWork;
 
+            Expenses = expenses;
         }
         public int OrderId { get; set; }
         public string Status { get; set; }
@@ -45,7 +47,7 @@ namespace api.Views
 
         public string? EstimateNumber { get; set; }
         public string? ScopeOfWork { get; set; }
-        public ICollection<ExpenseRecord> Expenses { get; set; }
+        public IEnumerable<ExpenseRecordDetailView> Expenses { get; set; } = new List<ExpenseRecordDetailView>();
 
         private string TypeToString(OrderStatusEnum status)
         {
