@@ -92,7 +92,7 @@ namespace api.Controllers
         [HttpPost("filter")]
         [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        public async Task<IEnumerable<OrderDetailView>> Find(OrderQuery query)
+        public async Task<IEnumerable<OrderDetailView>> Filter(OrderQuery query)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<OrderDetailView> view = new List<OrderDetailView>();
@@ -147,7 +147,7 @@ namespace api.Controllers
             Customer? customer = await customerController.GetRaw(order.CustomerId);
             Vehicle? vehicle = await vehicleController.GetRaw(order.VehicleId);
             Invoice? invoice = await invoiceController.GetRaw(order.InvoiceId);
-            IEnumerable<ExpenseRecordDetailView> expenses =  await expenseRecordController.Find(new ExpenseRecordQuery() { OrderId = order.OrderId });
+            IEnumerable<ExpenseRecordDetailView> expenses =  await expenseRecordController.Filter(new ExpenseRecordQuery() { OrderId = order.OrderId });
 
             return new OrderDetailView(order, customer, vehicle, invoice, expenses);
         }

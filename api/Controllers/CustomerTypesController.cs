@@ -33,13 +33,5 @@ namespace api.Controllers
         {
             return await GetRaw(id);
         }
-
-        [HttpGet("filter")]
-        public async Task<IEnumerable<CustomerType>> GetByPredicate(Predicate<CustomerType> predicate)
-        {
-            IEnumerable<CustomerType> filtered = await GetAll();
-
-            return filtered;
-        }
     }
 }

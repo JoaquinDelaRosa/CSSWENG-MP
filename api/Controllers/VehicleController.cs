@@ -40,6 +40,22 @@ namespace api.Controllers
             return new VehicleDetailView(v);
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        [HttpPost("filter")]
+        [AllowAnonymous]
+        public async Task<IEnumerable<VehicleDetailView>> Filter(VehicleQuery vehicleQuery)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            List<VehicleDetailView> view = new List<VehicleDetailView>();
+
+            foreach (Vehicle vehicle in repository.Find(vehicleQuery))
+            {
+                view.Add(new VehicleDetailView(vehicle));
+            }
+
+            return view;
+        }
+
         [HttpGet("sort")]
         [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -72,22 +88,6 @@ namespace api.Controllers
             foreach (Vehicle v in result)
             {
                 view.Add(new VehicleDetailView(v));
-            }
-
-            return view;
-        }
-
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        [HttpPost("filter")]
-        [AllowAnonymous]
-        public async Task<IEnumerable<VehicleDetailView>> Find(VehicleQuery vehicleQuery)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-        {
-            List<VehicleDetailView> view = new List<VehicleDetailView>();
-
-            foreach (Vehicle vehicle in repository.Find(vehicleQuery))
-            {
-                view.Add(new VehicleDetailView(vehicle));
             }
 
             return view;

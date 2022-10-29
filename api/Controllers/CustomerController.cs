@@ -42,7 +42,7 @@ namespace api.Controllers
         [HttpPost("filter")]
         [AllowAnonymous]
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        public async Task<IEnumerable<CustomerDetailView>> Find(CustomerQuery query)
+        public async Task<IEnumerable<CustomerDetailView>> Filter(CustomerQuery query)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             List<CustomerDetailView> view = new List<CustomerDetailView>();

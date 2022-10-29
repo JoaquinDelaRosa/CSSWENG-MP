@@ -40,13 +40,6 @@ namespace api.Controllers
             return new UserDetailView(u);
         }
 
-        [HttpGet("filter")]
-        public async Task<IEnumerable<UserDetailView>> GetByPredicate(Predicate<User> predicate)
-        {
-            IEnumerable<UserDetailView> filtered = await GetAll();
-
-            return filtered;
-        }
         public async override Task<User?> Create(User other)
         {
             other.Username = other.FirstName.ToLower() + "_" + other.LastName.ToLower();

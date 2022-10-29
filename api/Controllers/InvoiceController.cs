@@ -37,13 +37,5 @@ namespace api.Controllers
 
             return new InvoiceDetailView(i);
         }
-
-        [HttpGet("filter")]
-        public async Task<IEnumerable<InvoiceDetailView>> GetByPredicate(Predicate<Invoice> predicate)
-        {
-            IEnumerable<InvoiceDetailView> filtered = await GetAll();
-
-            return filtered;
-        }
     }
 }
