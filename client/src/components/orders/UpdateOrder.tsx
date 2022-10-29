@@ -84,12 +84,12 @@ const UpdateOrder = () => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor='timeIn'>Time In</label>
-                    <input {... register('timeIn', {required : true, valueAsDate : true})} type='date' name="timeIn"/>
-                    {errors.timeIn && <p>Time In is Required</p>}
+                    <label >Time In</label>
+                    <input {...register('timeIn', {required: true, valueAsDate : true})}
+                        type='date' name="timeIn" id ="timeIn"/>
                 </div>
                 <div>
-                <label>Time Out</label>
+                    <label>Time Out</label>
                     <input  {...register('timeOut', {
                         required: true, valueAsDate: true, validate: {
                             isBeforeTimeIn: v => v >= getValues("timeIn")
@@ -97,16 +97,28 @@ const UpdateOrder = () => {
                     })}
                         type='date' name="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
-                </div>
+                </div>  
                 <div>
                     <label htmlFor="customerId">Customer ID</label>
                     <input {... register("customerId", {required : true, 
                         onChange: (e) => {
-                            isCustomerExists(parseInt(e.target.value),setCustomerExists) 
+                            isCustomerExists(parseInt(e.target.value),setCustomerExists)
                         }})}  
-                        type='number' name="customerId" id="customerId"/>
+                        type='number' name="customerId" id="customerId" />
                     {errors.customerId && <p>Customer ID is required</p>}
                     <p hidden={customerExists}>Customer does not exist</p>
+                </div>
+                <div>
+                    <label htmlFor="customerTypeId">Customer Type ID</label>
+                    <input {... register("customerTypeId", {required : true})}  
+                        type='number' name="customerTypeId" id="customerTypeId" />
+                    {errors.customerTypeId && <p>Customer Type ID is required</p>}
+                </div>
+                <div>
+                    <label htmlFor="company">Company</label>
+                    <input {... register("company", {required : true})}  
+                        type='text' name="company" id="company" />
+                    {errors.company && <p>Company is required</p>}
                 </div>
                 <div> 
                     <label htmlFor="vehicleId">Vehicle ID</label>
@@ -127,20 +139,15 @@ const UpdateOrder = () => {
                     <p hidden={invoiceExists}>Invoice does not exist</p>
                 </div>
                 <div>
-                    <label htmlFor='estimateNumber'>Estimate Code</label>
-                    <input {...register('estimateNumber', { required: true, pattern: isAlphaNumeric })} type='text' name="estimateNumber" />
-                    {errors.estimateNumber && <p>Estimate Code is Required</p>}
+                    <label htmlFor="estimateNumber">Estimate Code</label>
+                    <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
+                    {errors.estimateNumber && <p>Estimate Code is required</p>}
                 </div>
                 <div>
-                    <label htmlFor='scopeOfWork'>Scope of Work</label>
-                    <input {... register('scopeOfWork', {required : true})} type='text' name="scopeOfWork"/>
-                    {errors.scopeOfWork && <p>Scope of Work is Required</p>}
-                </div>
-                <div>
-                    <label htmlFor='expenses'>Expenses</label>
-                    <input {... register('expenses', {required : true})} type='number' name="expenses"/>
-                    {errors.expenses && <p>Expenses is Required</p>}
-                </div>
+                    <label htmlFor="scopeOfWork">Scope of Work</label>
+                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
+                    {errors.scopeOfWork && <p>Scope of Work is required</p>}
+                </div> 
                 <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>  

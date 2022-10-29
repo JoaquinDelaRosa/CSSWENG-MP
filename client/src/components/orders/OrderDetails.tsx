@@ -13,6 +13,8 @@ export interface OrderRequest {
     timeIn: Date,
     timeOut: Date,
     customerId: number,
+    customerTypeId: number,
+    company: string,
     vehicleId: number,
     invoiceId: number,
     estimateNumber: string,

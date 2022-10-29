@@ -78,7 +78,18 @@ const AddOrder = () => {
                         type='number' name="customerId" id="customerId" />
                     {errors.customerId && <p>Customer ID is required</p>}
                     <p hidden={customerExists}>Customer does not exist</p>
-               
+                </div>
+                <div>
+                    <label htmlFor="customerTypeId">Customer Type ID</label>
+                    <input {... register("customerTypeId", {required : true})}  
+                        type='number' name="customerTypeId" id="customerTypeId" />
+                    {errors.customerTypeId && <p>Customer Type ID is required</p>}
+                </div>
+                <div>
+                    <label htmlFor="company">Company</label>
+                    <input {... register("company", {required : true})}  
+                        type='text' name="company" id="company" />
+                    {errors.company && <p>Company is required</p>}
                 </div>
                 <div> 
                     <label htmlFor="vehicleId">Vehicle ID</label>
@@ -108,11 +119,6 @@ const AddOrder = () => {
                     <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>      
-                <div>
-                    <label htmlFor='expenses'>Expenses</label>
-                    <input {... register("expenses", {required : true})} type='number' name="expenses" id="expenses"/>
-                    {errors.expenses && <p>Expenses is required</p>}
-                </div>
                 <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
             </form>
         </div>
