@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
 import { useForm } from 'react-hook-form';
-import { isAlphabetic } from '../../utils/Regex';
+import { isAlphabetic, isEmail, isMobileNumber } from '../../utils/Regex';
 
 
 
@@ -53,23 +53,9 @@ const AddCustomer = () => {
                       {errors.lastName && <p>Customer Last Name is required</p>}
                   </div>
                   <div>
-                      <label htmlFor="customerTypeId"> Customer Type </label>
-                      <select {...register('customerTypeId', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
-                        <option key={0} value="DEFAULT" disabled>  -- Select Type -- </option>
-                          {
-                              typeIds.map((value, index) => {
-                                  return (
-                                    <option key={index + 1} value={value.id}> {value.name} </option>
-                                  );
-                              })
-                          }
-                      </select>
-                      {errors.customerTypeId && <p>Customer Type ID is required</p>}
-                  </div>
-                  <div>
                       <label htmlFor="email"> Email </label>
                       <input {... register("email", {required: true, 
-                                                    pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+                                                    pattern: { value: isEmail,
                                                     message: "invalid email address"}})} 
                                                     type="text" name="email"/>
                       {errors.email && <p>Email is required</p>}
@@ -77,7 +63,7 @@ const AddCustomer = () => {
                   <div>
                       <label htmlFor="mobileNumber"> Mobile Number </label>
                       <input {... register("mobileNumber", {required: true, pattern: {
-                                                                            value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i,
+                                                                            value: isMobileNumber,
                                                                             message: "invalid mobile number"}})} 
                                                                             type="text" name="company"/>
                       {errors.mobileNumber && <p>Mobile Number is required</p>}
@@ -87,5 +73,4 @@ const AddCustomer = () => {
            </div>
       );
 }
-// TODO TEST
 export default AddCustomer;
