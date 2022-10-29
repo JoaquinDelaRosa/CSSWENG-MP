@@ -107,9 +107,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseCors("LocalPolicy");
 
+
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 
