@@ -81,15 +81,10 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Expense")
-                        .HasColumnType("int");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Expense");
 
                     b.ToTable("ExpenseRecords");
                 });
@@ -243,18 +238,6 @@ namespace api.Migrations
                     b.HasKey("VehicleId");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("api.Models.ExpenseRecord", b =>
-                {
-                    b.HasOne("api.Models.Order", null)
-                        .WithMany("Expenses")
-                        .HasForeignKey("Expense");
-                });
-
-            modelBuilder.Entity("api.Models.Order", b =>
-                {
-                    b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618
         }

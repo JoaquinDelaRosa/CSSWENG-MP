@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class create : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,22 @@ namespace api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExpenseRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateRecorded = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Amount = table.Column<float>(type: "real", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExpenseRecords", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,33 +137,6 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.VehicleId);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "ExpenseRecords",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateRecorded = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Amount = table.Column<float>(type: "real", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    Expense = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExpenseRecords", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ExpenseRecords_Orders_Expense",
-                        column: x => x.Expense,
-                        principalTable: "Orders",
-                        principalColumn: "OrderId");
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExpenseRecords_Expense",
-                table: "ExpenseRecords",
-                column: "Expense");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -165,6 +154,9 @@ namespace api.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "OrderStatuses");
 
             migrationBuilder.DropTable(
@@ -172,9 +164,6 @@ namespace api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Vehicles");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
         }
     }
 }

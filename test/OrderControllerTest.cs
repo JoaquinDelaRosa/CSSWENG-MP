@@ -124,7 +124,6 @@ namespace test
             Assert.True(afterCreate.InvoiceId == first.InvoiceId);
             Assert.True(afterCreate.EstimateNumber == first.EstimateNumber);
             Assert.True(afterCreate.ScopeOfWork == first.ScopeOfWork);
-            Assert.True(afterCreate.Expenses == first.Expenses);
 
             Assert.True(afterUpdate.OrderId == first.OrderId);
             Assert.True(afterUpdate.Status == second.Status);
@@ -135,7 +134,7 @@ namespace test
             Assert.True(afterUpdate.InvoiceId == second.InvoiceId);
             Assert.True(afterUpdate.EstimateNumber == second.EstimateNumber);
             Assert.True(afterUpdate.ScopeOfWork == second.ScopeOfWork);
-            Assert.True(afterUpdate.Expenses == second.Expenses);
+
 
             Assert.Null(afterDelete);
         }
