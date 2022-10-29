@@ -1,0 +1,3 @@
+C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\server\obj\Debug\server.njsproj.AssemblyReference.cache
+C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\server\obj\Debug\server.njsproj.CoreCompileInputs.cache
+C:\Users\JOAQUIN DELA ROSA\OneDrive\Desktop\LaSalle\CURR\CSSWENG\MP\AutoWorks\server\bin\Microsoft.NodejsTools.WebRole.dll
