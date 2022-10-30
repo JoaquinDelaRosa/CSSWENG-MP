@@ -18,7 +18,8 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "pug": "^2.0.0-rc.3",
-    "sequelize": "^6.25.3"
+    "sequelize": "^6.25.3",
+    "sequelize-auto-migrations-v2": "^1.2.1"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
