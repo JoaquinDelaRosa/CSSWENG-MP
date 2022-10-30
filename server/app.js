@@ -6,18 +6,9 @@ const index_1 = require("./routes/index");
 const user_1 = require("./routes/user");
 const debug = require('debug')('my express app');
 const app = express();
-const { Sequelize } = require('sequelize');
+const sequelize = require('./db/dbConfig.ts');
 
-let DATABASE_URL = "postgres://postgres:password@localhost:5432"
 
-const sequelize = new Sequelize(DATABASE_URL);
-
-try {
-    sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-} catch (error) {
-    console.error("Sequelize error" + error);
-}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
