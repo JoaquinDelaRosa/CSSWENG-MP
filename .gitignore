@@ -177,3 +177,4 @@ client/obj/Debug/client.esproj.FileListAbsolute.txt
 client/obj/Release/client.esproj.FileListAbsolute.txt
 api/bin/Release/net6.0/appsettings.Development.json
 client/obj/Debug/client.esproj.FileListAbsolute.txt
+*.bin
