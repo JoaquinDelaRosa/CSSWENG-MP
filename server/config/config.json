@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "autoworks",
+    "password": "password",
+    "database": "AutoworksDB",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "test": {
+    "username": "autoworks",
+    "password": "password",
+    "database": "AutoworksDB",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "production": {
+    "username": "autoworks",
+    "password": "password",
+    "database": "AutoworksDB",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  }
+}
