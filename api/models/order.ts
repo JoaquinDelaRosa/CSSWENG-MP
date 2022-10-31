@@ -3,21 +3,32 @@ import mongoose from "mongoose";
 import { CustomerSchema } from "./customer";
 import { VehicleSchema } from "./vehicle";
 
+const StatusEnum = [
+    "PAID", 
+    "UNPAID", 
+    "OK", 
+    "PENDING", 
+    "WITH BALANCE", 
+    "QUOTE OR CHECK", 
+    "FOR LOA OR INVOICE"
+];
+
+const TypeEnum = [
+    "PERSONAL",
+    "WALK IN",
+    "FLEET",
+    "INSURANCE"
+]
+
+const DEFAULT_STATUS = "UNPAID";
+const DEFAULT_TYPE = "PERSONAL"
 
 const OrderSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
     status: {
         type: String,
-        enum: [
-            "PAID", 
-            "UNPAID", 
-            "OK", 
-            "PENDING", 
-            "WITH BALANCE", 
-            "QUOTE OR CHECK", 
-            "FOR LOA OR INVOICE"
-        ],
-        default: "UNPAID"
+        enum: StatusEnum,
+        default: DEFAULT_STATUS
     },
     
     timeIn: { type: Date },
@@ -26,13 +37,8 @@ const OrderSchema = new mongoose.Schema({
     customer: CustomerSchema,
     type: {
         type: String,
-        enum: [
-            "PERSONAL",
-            "WALK IN",
-            "FLEET",
-            "INSURANCE"
-        ],
-        default: "PERSONAL"
+        enum: TypeEnum,
+        default: DEFAULT_TYPE
     },
     company: String,
     vehicle :VehicleSchema,
