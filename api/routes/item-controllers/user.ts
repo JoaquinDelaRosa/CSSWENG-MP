@@ -1,13 +1,9 @@
 /*
  * GET users listing.
  */
-<<<<<<< Updated upstream
-import express from 'express';
-=======
 import express = require('express');
 import { User } from '../../models/user';
 
->>>>>>> Stashed changes
 const router = express.Router();
 
 router.get("/all",  async (req: express.Request, res: express.Response) => {
