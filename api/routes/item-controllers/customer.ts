@@ -2,7 +2,7 @@
  * GET users listing.
  */
 
-import express = require('express');
+import express from 'express';
 import { Customer } from '../../models/customer';
 
 
