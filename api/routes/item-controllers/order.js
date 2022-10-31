@@ -18,6 +18,12 @@ router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.json(data);
     });
 }));
+router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    order_1.Order.find({ id: req.query.id })
+        .then((data) => {
+        res.json(data);
+    });
+}));
 router.post("/create", (req, res) => {
     console.log(req.body);
     order_1.Order.create(req.body, (error, result) => {
@@ -27,12 +33,6 @@ router.post("/create", (req, res) => {
     res.json(req.body);
     res.end();
 });
-router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    order_1.Order.find({ id: req.query.id })
-        .then((data) => {
-        res.json(data);
-    });
-}));
 router.post("/update", (req, res) => {
     order_1.Order.updateOne({ id: req.query.id }, req.body, (error) => {
         if (error) {
@@ -44,7 +44,7 @@ router.post("/update", (req, res) => {
         }
     });
 });
-router.post("/delete", (req, res) => {
+router.delete("/delete", (req, res) => {
     order_1.Order.deleteOne({ id: req.query.id })
         .then((delRes) => {
         res.end();
