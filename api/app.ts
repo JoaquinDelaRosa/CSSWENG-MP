@@ -8,7 +8,7 @@ import users from './routes/user';
 
 const debug = require('debug')('my express app');
 const app = express();
-const mongo = mongoose;
+const mongo = mongoose.connect("mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
