@@ -3,10 +3,9 @@ import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
 import routes from './routes/index';
-import bodyParser from 'body-parser';
 
 
-
+const bodyParser = require('body-parser');
 const customerRouter = require('./routes/item-controllers/customer');
 
 const debug = require('debug')('my express app');
