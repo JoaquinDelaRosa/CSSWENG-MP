@@ -17,6 +17,13 @@ router.get("/id", async (req: express.Request, res: express.Response) => {
     });
 });
 
+router.get("/id", async (req: express.Request, res: express.Response) => {
+    Order.find({id: req.query.id})
+    .then((data) => {
+        res.json(data);
+    });
+});
+
 router.post("/create", (req: express.Request, res: express.Response) => {
     console.log(req.body);
     Order.create(req.body, (error, result) => {
@@ -26,8 +33,6 @@ router.post("/create", (req: express.Request, res: express.Response) => {
     res.json(req.body);
     res.end();
 });
-
-
 
 router.post("/update", (req: express.Request, res: express.Response) => {
     Order.updateOne({id: req.query.id}, req.body, (error) => {
