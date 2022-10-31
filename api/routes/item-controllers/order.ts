@@ -11,6 +11,13 @@ router.get("/all", async (req: express.Request, res: express.Response) => {
     })
 });
 
+router.get("/id", async (req: express.Request, res: express.Response) => {
+    Order.find({id: req.query.id})
+    .then((data) => {
+        res.json(data);
+    });
+});
+
 router.post("/create", (req: express.Request, res: express.Response) => {
     console.log(req.body);
     Order.create(req.body, (error, result) => {
@@ -19,13 +26,6 @@ router.post("/create", (req: express.Request, res: express.Response) => {
     });
     res.json(req.body);
     res.end();
-});
-
-router.get("/id", async (req: express.Request, res: express.Response) => {
-    Order.find({id: req.query.id})
-    .then((data) => {
-        res.json(data);
-    });
 });
 
 router.post("/update", (req: express.Request, res: express.Response) => {
@@ -40,7 +40,7 @@ router.post("/update", (req: express.Request, res: express.Response) => {
     });
 });
 
-router.post("/delete", (req: express.Request, res: express.Response) => {
+router.delete("/delete", (req: express.Request, res: express.Response) => {
     Order.deleteOne({id: req.query.id})
     .then((delRes) => {
         res.end();
