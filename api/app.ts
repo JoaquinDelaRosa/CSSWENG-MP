@@ -1,5 +1,4 @@
 import * as express from 'express';
-import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
 
@@ -8,6 +7,8 @@ import users from './routes/user';
 
 const debug = require('debug')('my express app');
 const app = express();
+const mongoose = require("mongoose");
+
 const mongo = mongoose.connect("mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority");
 
 // view engine setup
