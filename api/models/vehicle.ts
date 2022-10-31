@@ -9,6 +9,4 @@ export const VehicleSchema = new mongoose.Schema({
     yearManufactured : Number,
 });
 
-const Vehicle = mongoose.model('Vehicle', VehicleSchema);
-
-module.exports = Vehicle;
+export const Vehicle = mongoose.model('Vehicle', VehicleSchema);

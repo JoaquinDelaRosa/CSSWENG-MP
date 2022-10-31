@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Order = void 0;
 const crypto_1 = require("crypto");
 const mongoose_1 = require("mongoose");
 const customer_1 = require("./customer");
@@ -56,6 +57,5 @@ const OrderSchema = new mongoose_1.default.Schema({
             amount: mongoose_1.default.Types.Decimal128,
         }]
 });
-const Order = mongoose_1.default.model('Order', OrderSchema);
-module.exports = OrderSchema;
+exports.Order = mongoose_1.default.model('Order', OrderSchema);
 //# sourceMappingURL=order.js.map

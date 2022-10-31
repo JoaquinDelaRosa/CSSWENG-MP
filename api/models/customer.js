@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CustomerSchema = void 0;
+exports.Customer = exports.CustomerSchema = void 0;
 const mongoose_1 = require("mongoose");
 const crypto_1 = require("crypto");
 const validateEmail = (email) => {
@@ -20,6 +20,5 @@ exports.CustomerSchema = new mongoose_1.default.Schema({
         validate: [validateEmail, 'Please fill in a valid email address']
     }
 });
-const Customer = mongoose_1.default.model('Customer', exports.CustomerSchema);
-module.exports = Customer;
+exports.Customer = mongoose_1.default.model('Customer', exports.CustomerSchema);
 //# sourceMappingURL=customer.js.map

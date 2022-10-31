@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VehicleSchema = void 0;
+exports.Vehicle = exports.VehicleSchema = void 0;
 const crypto_1 = require("crypto");
 const mongoose_1 = require("mongoose");
 exports.VehicleSchema = new mongoose_1.default.Schema({
@@ -10,6 +10,5 @@ exports.VehicleSchema = new mongoose_1.default.Schema({
     model: String,
     yearManufactured: Number,
 });
-const Vehicle = mongoose_1.default.model('Vehicle', exports.VehicleSchema);
-module.exports = Vehicle;
+exports.Vehicle = mongoose_1.default.model('Vehicle', exports.VehicleSchema);
 //# sourceMappingURL=vehicle.js.map

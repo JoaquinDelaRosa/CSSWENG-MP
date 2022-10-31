@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const mongoose_1 = require("mongoose");
 const path = require("path");
 const index_1 = require("./routes/index");
 const user_1 = require("./routes/item-controllers/user");
 const debug = require('debug')('my express app');
 const app = express();
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority";
-const mongo = database.connect(CONNECTION_STRING);
+const mongo = mongoose_1.default.connect(CONNECTION_STRING);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

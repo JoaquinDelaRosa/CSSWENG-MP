@@ -1,7 +1,7 @@
 import * as express from 'express';
+import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
-
 import routes from './routes/index';
 import users from './routes/item-controllers/user';
 
@@ -10,7 +10,7 @@ const debug = require('debug')('my express app');
 const app = express();
 
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority";
-const mongo = database.connect(CONNECTION_STRING);
+const mongo = mongoose.connect(CONNECTION_STRING);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

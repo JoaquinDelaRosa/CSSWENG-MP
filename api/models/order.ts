@@ -64,6 +64,4 @@ const OrderSchema = new mongoose.Schema({
 
 });
 
-const Order = mongoose.model('Order', OrderSchema);
-
-module.exports = OrderSchema;
+export const Order = mongoose.model('Order', OrderSchema);

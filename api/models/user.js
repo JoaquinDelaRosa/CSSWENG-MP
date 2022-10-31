@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchema = void 0;
+exports.User = exports.UserSchema = void 0;
 const mongoose_1 = require("mongoose");
 const crypto_1 = require("crypto");
 const Roles = [
@@ -20,6 +20,6 @@ exports.UserSchema = new mongoose_1.default.Schema({
         default: DEFAULT_ROLE
     },
 });
-const User = mongoose_1.default.model('User', exports.UserSchema);
-module.exports = User;
+exports.User = mongoose_1.default.model('User', exports.UserSchema);
+module.exports = exports.User;
 //# sourceMappingURL=user.js.map
