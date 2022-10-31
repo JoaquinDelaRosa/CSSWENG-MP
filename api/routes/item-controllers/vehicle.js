@@ -14,18 +14,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const vehicle_1 = require("../../models/vehicle");
-const api_1 = require("../api");
 const router = express.Router();
-router.get(api_1.API_PREFIX + "Vehicles/all", function (req, res) {
+router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield vehicle_1.Vehicle.find({});
-        res.json(result);
+        vehicle_1.Vehicle.find({})
+            .then((data) => {
+            res.json(data);
+        });
     });
 });
-router.get(api_1.API_PREFIX + "Vehicles/id", function (req, res) {
+router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield vehicle_1.Vehicle.find({ id: req.query.id });
-        res.json(result);
+        vehicle_1.Vehicle.find({ id: req.query.id })
+            .then((data) => {
+            res.json(data);
+        });
+    });
+});
+router.get("/create", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        vehicle_1.Vehicle.create(req.body, (error, result) => {
+            if (error) {
+                console.log(error);
+            }
+            return result;
+        });
+        res.json(req.body);
+        res.end();
+    });
+});
+router.get("/update", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        vehicle_1.Vehicle.find({})
+            .then((data) => {
+            res.json(data);
+        });
     });
 });
 exports.default = router;
