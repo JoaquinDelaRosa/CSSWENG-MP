@@ -58,4 +58,3 @@ router.delete("/delete", (req, res) => {
     });
 });
 module.exports = router;
-//# sourceMappingURL=customer.js.map

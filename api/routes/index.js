@@ -9,4 +9,3 @@ router.get('/', (req, res) => {
     res.render('index', { title: 'Express' });
 });
 exports.default = router;
-//# sourceMappingURL=index.js.map
