@@ -4,9 +4,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const api_1 = require("../api");
+const customer_1 = require("../../models/customer");
 const router = express.Router();
-router.get(api_1.API_PREFIX + "customer/all", (req, res) => {
+router.get("/all", (req, res) => {
+    customer_1.Customer.find(() => {
+    });
 });
-exports.default = router;
+router.post("/create", (req, res) => {
+    console.log(req.body);
+    customer_1.Customer.create(req.body, (error) => {
+        console.log(error);
+    });
+});
+module.exports = router;
 //# sourceMappingURL=customer.js.map

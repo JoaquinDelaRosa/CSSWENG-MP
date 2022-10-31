@@ -4,7 +4,8 @@ const express = require("express");
 const mongoose_1 = require("mongoose");
 const path = require("path");
 const index_1 = require("./routes/index");
-const user_1 = require("./routes/item-controllers/user");
+const bodyParser = require("body-parser");
+const customerRouter = require('./routes/item-controllers/customer');
 const debug = require('debug')('my express app');
 const app = express();
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority";
@@ -12,9 +13,11 @@ const mongo = mongoose_1.default.connect(CONNECTION_STRING);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index_1.default);
-app.use('/users', user_1.default);
+app.use('/api/customer', customerRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
     const err = new Error('Not Found');
@@ -44,6 +47,6 @@ app.use((err, req, res, next) => {
 });
 app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), function () {
-    debug(`Express server listening on port ${server.address().port}`);
+    console.log(`Express server listening on port ${server.address().port}`);
 });
 //# sourceMappingURL=app.js.map

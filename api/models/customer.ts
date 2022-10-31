@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { randomUUID } from "crypto";
 
 const validateEmail = (email) => {
-    var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return re.test(email)
 };
 
@@ -15,7 +15,7 @@ export const CustomerSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
         unique: true,
-        required: [true, "Please fill in a valid email address"],
+        required: [true, "Email is required"],
         validate: [validateEmail, 'Please fill in a valid email address']
     }
 });

@@ -4,7 +4,7 @@ exports.Customer = exports.CustomerSchema = void 0;
 const mongoose_1 = require("mongoose");
 const crypto_1 = require("crypto");
 const validateEmail = (email) => {
-    var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    var re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return re.test(email);
 };
 exports.CustomerSchema = new mongoose_1.default.Schema({
@@ -16,7 +16,7 @@ exports.CustomerSchema = new mongoose_1.default.Schema({
         type: String,
         lowercase: true,
         unique: true,
-        required: [true, "Please fill in a valid email address"],
+        required: [true, "Email is required"],
         validate: [validateEmail, 'Please fill in a valid email address']
     }
 });

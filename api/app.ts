@@ -3,8 +3,11 @@ import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
 import routes from './routes/index';
-import users from './routes/item-controllers/user';
+import bodyParser = require('body-parser');
 
+
+
+const customerRouter = require('./routes/item-controllers/customer');
 
 const debug = require('debug')('my express app');
 const app = express();
@@ -16,10 +19,12 @@ const mongo = mongoose.connect(CONNECTION_STRING);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api/customer', customerRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -55,5 +60,5 @@ app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-
 app.set('port', process.env.PORT || 3000);
 
 const server = app.listen(app.get('port'), function () {
-    debug(`Express server listening on port ${(server.address() as AddressInfo).port}`);
+    console.log(`Express server listening on port ${(server.address() as AddressInfo).port}`);
 });
