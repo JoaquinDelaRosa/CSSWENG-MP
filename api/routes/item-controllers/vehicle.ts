@@ -1,8 +1,4 @@
-/*
- * GET users listing.
- */
-
-import express from 'express';
+import  express = require('express');
 import { Vehicle } from '../../models/vehicle';
 
 const router = express.Router();
