@@ -21,4 +21,3 @@ exports.CustomerSchema = new mongoose_1.default.Schema({
     }
 });
 exports.Customer = mongoose_1.default.model('Customer', exports.CustomerSchema);
-//# sourceMappingURL=customer.js.map

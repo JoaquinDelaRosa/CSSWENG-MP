@@ -11,4 +11,3 @@ exports.VehicleSchema = new mongoose_1.default.Schema({
     yearManufactured: Number,
 });
 exports.Vehicle = mongoose_1.default.model('Vehicle', exports.VehicleSchema);
-//# sourceMappingURL=vehicle.js.map

@@ -17,4 +17,3 @@ router.post("/create", (req, res) => {
     });
 });
 module.exports = router;
-//# sourceMappingURL=customer.js.map

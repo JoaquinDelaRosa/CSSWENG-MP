@@ -29,4 +29,3 @@ router.get(api_1.API_PREFIX + "Vehicles/id", function (req, res) {
     });
 });
 exports.default = router;
-//# sourceMappingURL=vehicle.js.map

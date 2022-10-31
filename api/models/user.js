@@ -22,4 +22,3 @@ exports.UserSchema = new mongoose_1.default.Schema({
 });
 exports.User = mongoose_1.default.model('User', exports.UserSchema);
 module.exports = exports.User;
-//# sourceMappingURL=user.js.map

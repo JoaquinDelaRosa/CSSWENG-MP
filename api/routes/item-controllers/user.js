@@ -9,4 +9,3 @@ router.get('/', (req, res) => {
     res.send("respond with a resource");
 });
 exports.default = router;
-//# sourceMappingURL=user.js.map
