@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import mongoose from "mongoose";
 
-const VehicleSchema = new mongoose.Schema({
+export const VehicleSchema = new mongoose.Schema({
     id : {type: String, default: randomUUID()},
     licensePlate : String,
     make : String,

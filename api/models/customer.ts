@@ -6,7 +6,7 @@ const validateEmail = (email) => {
     return re.test(email)
 };
 
-const CustomerSchema = new mongoose.Schema({
+export const CustomerSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
     firstName: String,
     lastName: String,

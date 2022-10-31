@@ -1,19 +1,18 @@
 import { randomUUID } from "crypto";
 import mongoose from "mongoose";
+import { CustomerSchema } from "./customer";
+import { VehicleSchema } from "./vehicle";
 
 
 const OrderSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
     timeIn: { type: Date },
     timeOut: { type: Date },
-    customer: {
-        
-    },
+    customer: CustomerSchema,
 
     company: String,
-    vehicle :{ 
-
-    },
+    vehicle :VehicleSchema,
+    
     invoice: {
         id: {type: String, default: randomUUID()},
         amount : mongoose.Types.Decimal128,
