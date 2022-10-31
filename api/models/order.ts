@@ -6,10 +6,34 @@ import { VehicleSchema } from "./vehicle";
 
 const OrderSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
+    status: {
+        type: String,
+        enum: [
+            "PAID", 
+            "UNPAID", 
+            "OK", 
+            "PENDING", 
+            "WITH BALANCE", 
+            "QUOTE OR CHECK", 
+            "FOR LOA OR INVOICE"
+        ],
+        default: "UNPAID"
+    },
+    
     timeIn: { type: Date },
     timeOut: { type: Date },
-    customer: CustomerSchema,
 
+    customer: CustomerSchema,
+    type: {
+        type: String,
+        enum: [
+            "PERSONAL",
+            "WALK IN",
+            "FLEET",
+            "INSURANCE"
+        ],
+        default: "PERSONAL"
+    },
     company: String,
     vehicle :VehicleSchema,
     
@@ -34,6 +58,6 @@ const OrderSchema = new mongoose.Schema({
 
 });
 
-const Order = mongoose.model('Vehicle', OrderSchema);
+const Order = mongoose.model('Order', OrderSchema);
 
 module.exports = OrderSchema;
