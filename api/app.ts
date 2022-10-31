@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
 import routes from './routes/index';
-import bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
 
 
