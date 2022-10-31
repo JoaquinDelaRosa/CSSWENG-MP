@@ -179,3 +179,4 @@ api/bin/Release/net6.0/appsettings.Development.json
 client/obj/Debug/client.esproj.FileListAbsolute.txt
 *.bin
 *.map
+.vs/AutoWorks/v17/fileList.bin
