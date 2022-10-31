@@ -1,4 +1,5 @@
 import * as express from 'express';
+import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
 
@@ -7,6 +8,7 @@ import users from './routes/user';
 
 const debug = require('debug')('my express app');
 const app = express();
+const mongo = mongoose;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
