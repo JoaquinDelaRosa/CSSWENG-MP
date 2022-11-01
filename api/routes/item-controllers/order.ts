@@ -1,10 +1,14 @@
 import express = require('express');
+import { Customer } from '../../models/customer';
 import { Order } from '../../models/order';
+import { Vehicle } from '../../models/vehicle';
 
 const router = express.Router();
 
 router.get("/all", async (req: express.Request, res: express.Response) => {
     Order.find({})
+    .populate("customer")
+    .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
@@ -13,20 +17,23 @@ router.get("/all", async (req: express.Request, res: express.Response) => {
 });
 router.get("/id", async (req: express.Request, res: express.Response) => {
     Order.find({id: req.query.id})
+    .populate("customer")
+    .populate("vehicle")
     .then((data) => {
         res.json(data);
     });
 });
 
-router.get("/id", async (req: express.Request, res: express.Response) => {
-    Order.find({id: req.query.id})
-    .then((data) => {
-        res.json(data);
-    });
-});
-
-router.post("/create", (req: express.Request, res: express.Response) => {
-    console.log(req.body);
+router.post("/create", async (req: express.Request, res: express.Response) => {
+    const c_id = await Customer.exists({id :req.body.customerId});
+    if (c_id == null){
+        res.end();
+    }
+    const v_id = await Vehicle.exists({id :req.body.vehicleId});
+    if (v_id == null){
+        res.end();
+    }
+    
     Order.create(req.body, (error, result) => {
         console.log(error);
         return result;
@@ -35,7 +42,16 @@ router.post("/create", (req: express.Request, res: express.Response) => {
     res.end();
 });
 
-router.post("/update", (req: express.Request, res: express.Response) => {
+router.post("/update", async (req: express.Request, res: express.Response) => {
+    const c_id = await Customer.exists({id :req.body.customerId});
+    if (c_id == null){
+        res.end();
+    }
+    const v_id = await Vehicle.exists({id :req.body.vehicleId});
+    if (v_id == null){
+        res.end();
+    }
+
     Order.updateOne({id: req.query.id}, req.body, (error) => {
         if (error) {
             console.log(error);
@@ -62,6 +78,8 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
     const query : OrderQuery = makeQuery(req);
 
     Order.find({status: query.status, type: query.type})
+    .populate("customer")
+    .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {

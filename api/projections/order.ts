@@ -1,13 +1,16 @@
+import { makeCustomerView } from "./customer"
+import { makeVehicleView } from "./vehicle"
+
 export const makeOrderView = (document) => {
     return {
         id: document.id,
         status: document.status,
         timeIn: document.timeIn,
         timeOut: document.timeOut,
-        customerDetails: String,
+        customerDetails: makeCustomerView(document.customer),
         type: document.type,
         company: document.company,
-        vehicleDetails: String,
+        vehicleDetails: makeVehicleView(document.vehicle),
         invoiceDetails: makeInvoiceView(document.invoice),
         estimateNumber: document.estimateNumber,
         scopeOfWork: document.scopeOfWork,
