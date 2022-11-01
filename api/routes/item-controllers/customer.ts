@@ -55,4 +55,34 @@ router.delete("/delete", (req : express.Request, res : express.Response) => {
     })
 })
 
+router.get("/filter", async (req: express.Request, res: express.Response) => {
+    const query : customerQuery = makeQuery(req);
+
+    Customer.aggregate([
+        {
+            $project : {
+                "name" : { 
+                    $concat : ["$firstName", " ", "$lastName"]
+                }
+            }
+        },
+        {
+            $match :  {"name": {$regex: ".*" + query.name + ".*"}}
+        }
+    ])
+})
+
+
+interface customerQuery {
+    name : string
+}
+
+const makeQuery = (req : express.Request) => {
+    return {
+        name: 
+            (req.query.firstName) ? (req.query.firstName as string) : "" + 
+            (req.query.lastName) ? (req.query.lastName as string) : ""
+    }
+}
+
 module.exports = router;
