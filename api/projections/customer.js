@@ -4,7 +4,7 @@ exports.makeCustomerArrayView = exports.makeCustomerView = void 0;
 const makeCustomerView = (document) => {
     return {
         id: document.id,
-        name: document.firstName + document.lastName,
+        name: document.firstName + " " + document.lastName,
         mobileNumber: document.mobileNumber,
         email: document.email
     };
