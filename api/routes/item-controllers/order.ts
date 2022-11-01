@@ -10,6 +10,12 @@ router.get("/all", async (req: express.Request, res: express.Response) => {
         res.json(data);
     })
 });
+router.get("/id", async (req: express.Request, res: express.Response) => {
+    Order.find({id: req.query.id})
+    .then((data) => {
+        res.json(data);
+    });
+});
 
 router.get("/id", async (req: express.Request, res: express.Response) => {
     Order.find({id: req.query.id})
