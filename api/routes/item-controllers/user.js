@@ -14,19 +14,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const express = require("express");
 const user_1 = require("../../models/user");
+const user_2 = require("../../projections/user");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     user_1.User.find({})
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
         .then((data) => {
-        res.json(data);
+        res.json((0, user_2.makeUserArrayView)(data));
     });
 }));
 router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     user_1.User.find({ id: req.query.id })
         .then((data) => {
-        res.json(data);
+        res.json((0, user_2.makeUserArrayView)(data));
     });
 }));
 router.post("/create", (req, res) => {
@@ -65,7 +66,7 @@ router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
         .then((result) => {
-        res.json(result);
+        res.json((0, user_2.makeUserArrayView)(result));
         res.end();
     }).catch((err) => {
         console.log(err);

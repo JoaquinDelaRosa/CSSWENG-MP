@@ -3,8 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
 const crypto_1 = require("crypto");
 const mongoose_1 = require("mongoose");
-const customer_1 = require("./customer");
-const vehicle_1 = require("./vehicle");
 const StatusEnum = [
     "PAID",
     "UNPAID",
@@ -31,14 +29,14 @@ const OrderSchema = new mongoose_1.default.Schema({
     },
     timeIn: { type: Date },
     timeOut: { type: Date },
-    customer: customer_1.CustomerSchema,
+    customer: String,
     type: {
         type: String,
         enum: TypeEnum,
         default: DEFAULT_TYPE
     },
     company: String,
-    vehicle: vehicle_1.VehicleSchema,
+    vehicle: String,
     invoice: {
         id: { type: String, default: (0, crypto_1.randomUUID)() },
         amount: mongoose_1.default.Types.Decimal128,
