@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/all", async (req: express.Request, res: express.Response) => {
     Order.find({})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
     .then ((data) => {
         res.json(data);
     })
@@ -60,6 +62,8 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
     const query : orderQuery = makeQuery(req);
 
     Order.find({status: query.status, type: query.type})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
     .then ((data) => {
         res.json(data);
     })

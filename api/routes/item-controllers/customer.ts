@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.get("/all",  async (req: express.Request, res: express.Response) => {
     Customer.find({})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
     .then ((data) => {
         res.json(data);
     })
@@ -69,7 +71,10 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
         {
             $match :  {"name": {$regex: ".*" + query.name + ".*"}}
         }
-    ]).then((result) => {
+    ])
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
+    .then((result) => {
         res.json(result);
         res.end();
     }).catch((err) => {

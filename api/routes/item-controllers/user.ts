@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get("/all",  async (req: express.Request, res: express.Response) => {
     User.find({})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
     .then ((data) => {
         res.json(data);
     })
@@ -57,6 +59,8 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
     const query : userQuery = makeQuery(req);
 
     User.find({username: query.username})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
     .then((result) => {
         res.json(result);
         res.end();
