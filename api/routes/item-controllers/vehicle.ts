@@ -60,8 +60,8 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 
     Vehicle.find({
         licensePlate: query.licensePlate,
-        make: query.make,
-        model: query.model,
+        manufacturer: query.make,
+        model: query.manufacturer,
         yearManufactured: query.yearManufactured
     })
     .skip(parseInt(req.query.skip as string))
@@ -79,7 +79,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 interface VehicleQuery {
     licensePlate: string,
     make: string,
-    model: string,
+    manufacturer: string,
     yearManufactured: number
 }
 
@@ -87,7 +87,7 @@ const makeQuery = (req : express.Request) : VehicleQuery=> {
     return {
         licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string) : "",
         make: (req.query.make) ? (req.query.make as string) : "",
-        model: (req.query.model) ? (req.query.model as string) : "",
+        manufacturer: (req.query.model) ? (req.query.model as string) : "",
         yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.licensePlate as string) : -1,
     }
 }

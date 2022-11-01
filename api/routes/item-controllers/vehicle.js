@@ -63,8 +63,8 @@ router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const query = makeQuery(req);
     vehicle_1.Vehicle.find({
         licensePlate: query.licensePlate,
-        make: query.make,
-        model: query.model,
+        manufacturer: query.make,
+        model: query.manufacturer,
         yearManufactured: query.yearManufactured
     })
         .skip(parseInt(req.query.skip))
@@ -81,7 +81,7 @@ const makeQuery = (req) => {
     return {
         licensePlate: (req.query.licensePlate) ? req.query.licensePlate : "",
         make: (req.query.make) ? req.query.make : "",
-        model: (req.query.model) ? req.query.model : "",
+        manufacturer: (req.query.model) ? req.query.model : "",
         yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.licensePlate) : -1,
     };
 };

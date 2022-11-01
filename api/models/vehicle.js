@@ -6,7 +6,7 @@ const mongoose_1 = require("mongoose");
 exports.VehicleSchema = new mongoose_1.default.Schema({
     id: { type: String, default: (0, crypto_1.randomUUID)() },
     licensePlate: String,
-    make: String,
+    manufacturer: String,
     model: String,
     yearManufactured: Number,
 });

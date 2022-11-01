@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const VehicleSchema = new mongoose.Schema({
     id : {type: String, default: randomUUID()},
     licensePlate : String,
-    make : String,
+    manufacturer : String,
     model : String,
     yearManufactured : Number,
 });
