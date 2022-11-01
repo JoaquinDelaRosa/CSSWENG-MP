@@ -57,4 +57,31 @@ router.delete("/delete", (req, res) => {
         res.end();
     });
 });
+router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = makeQuery(req);
+    customer_1.Customer.aggregate([
+        {
+            $project: {
+                "name": {
+                    $concat: ["$firstName", " ", "$lastName"]
+                }
+            }
+        },
+        {
+            $match: { "name": { $regex: ".*" + query.name + ".*" } }
+        }
+    ]).then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
+    });
+}));
+const makeQuery = (req) => {
+    return {
+        name: (req.query.firstName) ? req.query.firstName : "" +
+            (req.query.lastName) ? req.query.lastName : ""
+    };
+};
 module.exports = router;

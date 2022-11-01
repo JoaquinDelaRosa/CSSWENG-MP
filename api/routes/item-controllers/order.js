@@ -24,6 +24,12 @@ router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.json(data);
     });
 }));
+router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    order_1.Order.find({ id: req.query.id })
+        .then((data) => {
+        res.json(data);
+    });
+}));
 router.post("/create", (req, res) => {
     console.log(req.body);
     order_1.Order.create(req.body, (error, result) => {
@@ -54,4 +60,17 @@ router.delete("/delete", (req, res) => {
         res.end();
     });
 });
+router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = makeQuery(req);
+    order_1.Order.find({ status: query.status, type: query.type })
+        .then((data) => {
+        res.json(data);
+    });
+}));
+const makeQuery = (req) => {
+    return {
+        status: (req.query.status) ? req.query.status : "",
+        type: (req.query.type) ? req.query.type : "",
+    };
+};
 exports.default = router;

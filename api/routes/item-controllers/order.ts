@@ -1,6 +1,5 @@
 import express = require('express');
 import { Order } from '../../models/order';
-import { API_PREFIX } from '../api';
 
 const router = express.Router();
 
@@ -56,5 +55,27 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
         res.end();
     });
 });
+
+router.get("/filter", async (req: express.Request, res: express.Response) => {
+    const query : orderQuery = makeQuery(req);
+
+    Order.find({status: query.status, type: query.type})
+    .then ((data) => {
+        res.json(data);
+    })
+})
+
+
+interface orderQuery {
+    status : string
+    type: string
+}
+
+const makeQuery = (req : express.Request)  : orderQuery=> {
+    return {
+        status: (req.query.status) ? (req.query.status as string) : "",
+        type: (req.query.type) ? (req.query.type as string) : "",
+    }
+}
 
 export default router;

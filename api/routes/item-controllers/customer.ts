@@ -69,7 +69,13 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
         {
             $match :  {"name": {$regex: ".*" + query.name + ".*"}}
         }
-    ])
+    ]).then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
+    })
 })
 
 
