@@ -17,6 +17,8 @@ const user_1 = require("../../models/user");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     user_1.User.find({})
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
         .then((data) => {
         res.json(data);
     });
@@ -57,4 +59,22 @@ router.delete("/delete", (req, res) => {
         res.end();
     });
 });
+router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = makeQuery(req);
+    user_1.User.find({ username: query.username })
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
+        .then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
+    });
+}));
+const makeQuery = (req) => {
+    return {
+        username: (req.query.username) ? req.query.username : ""
+    };
+};
 exports.default = router;

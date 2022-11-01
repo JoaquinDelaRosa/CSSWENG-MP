@@ -14,6 +14,8 @@ const vehicle_1 = require("../../models/vehicle");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     vehicle_1.Vehicle.find({})
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
         .then((data) => {
         res.json(data);
     });
@@ -64,6 +66,15 @@ router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         make: query.make,
         model: query.model,
         yearManufactured: query.yearManufactured
+    })
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
+        .then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
     });
 }));
 const makeQuery = (req) => {

@@ -14,6 +14,8 @@ const order_1 = require("../../models/order");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     order_1.Order.find({})
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
         .then((data) => {
         res.json(data);
     });
@@ -63,6 +65,8 @@ router.delete("/delete", (req, res) => {
 router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = makeQuery(req);
     order_1.Order.find({ status: query.status, type: query.type })
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
         .then((data) => {
         res.json(data);
     });

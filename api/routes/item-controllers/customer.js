@@ -17,6 +17,8 @@ const customer_1 = require("../../models/customer");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     customer_1.Customer.find({})
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
         .then((data) => {
         res.json(data);
     });
@@ -70,7 +72,10 @@ router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         {
             $match: { "name": { $regex: ".*" + query.name + ".*" } }
         }
-    ]).then((result) => {
+    ])
+        .skip(parseInt(req.query.skip))
+        .limit(parseInt(req.query.limit))
+        .then((result) => {
         res.json(result);
         res.end();
     }).catch((err) => {
