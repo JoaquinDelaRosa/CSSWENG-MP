@@ -61,6 +61,13 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
         make: query.make,
         model: query.model,
         yearManufactured: query.yearManufactured
+    })
+    .then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
     });
 })
 
