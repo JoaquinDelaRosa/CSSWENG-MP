@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const customerRouter = require('./routes/item-controllers/customer');
 const debug = require('debug')('my express app');
 const app = express();
-const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/?retryWrites=true&w=majority";
+const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose_1.default.connect(CONNECTION_STRING);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
