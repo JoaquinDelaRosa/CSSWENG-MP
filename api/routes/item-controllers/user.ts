@@ -3,6 +3,7 @@
  */
 import express = require('express');
 import { User } from '../../models/user';
+import { makeUserArrayView, makeUserView } from '../../projections/user';
 
 const router = express.Router();
 
@@ -11,14 +12,14 @@ router.get("/all",  async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(data);
+        res.json(makeUserArrayView(data));
     })
 });
 
 router.get("/id", async (req: express.Request, res: express.Response) => {
     User.find({id: req.query.id})
     .then((data) => {
-        res.json(data);
+        res.json(makeUserArrayView(data));
     })
 })
 
@@ -62,7 +63,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
-        res.json(result);
+        res.json(makeUserArrayView(result));
         res.end();
     }).catch((err) => {
         console.log(err);
