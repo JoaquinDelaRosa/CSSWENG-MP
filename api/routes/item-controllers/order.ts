@@ -59,7 +59,7 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
 });
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : orderQuery = makeQuery(req);
+    const query : OrderQuery = makeQuery(req);
 
     Order.find({status: query.status, type: query.type})
     .skip(parseInt(req.query.skip as string))
@@ -70,12 +70,12 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 })
 
 
-interface orderQuery {
+interface OrderQuery {
     status : string
     type: string
 }
 
-const makeQuery = (req : express.Request)  : orderQuery=> {
+const makeQuery = (req : express.Request)  : OrderQuery=> {
     return {
         status: (req.query.status) ? (req.query.status as string) : "",
         type: (req.query.type) ? (req.query.type as string) : "",

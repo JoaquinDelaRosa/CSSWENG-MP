@@ -56,7 +56,7 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
 });
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : vehicleQuery = makeQuery(req);
+    const query : VehicleQuery = makeQuery(req);
 
     Vehicle.find({
         licensePlate: query.licensePlate,
@@ -76,14 +76,14 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 })
 
 
-interface vehicleQuery {
+interface VehicleQuery {
     licensePlate: string,
     make: string,
     model: string,
     yearManufactured: number
 }
 
-const makeQuery = (req : express.Request) : vehicleQuery=> {
+const makeQuery = (req : express.Request) : VehicleQuery=> {
     return {
         licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string) : "",
         make: (req.query.make) ? (req.query.make as string) : "",

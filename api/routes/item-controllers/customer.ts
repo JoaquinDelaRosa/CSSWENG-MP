@@ -58,7 +58,7 @@ router.delete("/delete", (req : express.Request, res : express.Response) => {
 })
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : customerQuery = makeQuery(req);
+    const query : CustomerQuery = makeQuery(req);
 
     Customer.aggregate([
         {
@@ -84,11 +84,11 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 })
 
 
-interface customerQuery {
+interface CustomerQuery {
     name : string
 }
 
-const makeQuery = (req : express.Request) : customerQuery => {
+const makeQuery = (req : express.Request) : CustomerQuery => {
     return {
         name: 
             (req.query.firstName) ? (req.query.firstName as string) : "" + 

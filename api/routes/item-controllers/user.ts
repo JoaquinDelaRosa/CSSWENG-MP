@@ -56,7 +56,7 @@ router.delete("/delete", (req : express.Request, res : express.Response) => {
 })
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : userQuery = makeQuery(req);
+    const query : UserQuery = makeQuery(req);
 
     User.find({username: query.username})
     .skip(parseInt(req.query.skip as string))
@@ -71,7 +71,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
 })
 
 
-interface userQuery {
+interface UserQuery {
     username : string
 }
 
