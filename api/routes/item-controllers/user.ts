@@ -53,4 +53,34 @@ router.delete("/delete", (req : express.Request, res : express.Response) => {
     })
 })
 
+router.get("/filter", async (req: express.Request, res: express.Response) => {
+    const query : userQuery = makeQuery(req);
+
+    User.aggregate([
+        {
+            $project : {"username" : "$userName"}
+        },
+        {
+            $match :  {"username": {$regex: ".*" + query.username + ".*"}}
+        }
+    ]).then((result) => {
+        res.json(result);
+        res.end();
+    }).catch((err) => {
+        console.log(err);
+        res.end();
+    })
+})
+
+
+interface userQuery {
+    username : string
+}
+
+const makeQuery = (req : express.Request) => {
+    return {
+        username: (req.query.username) ? (req.query.username as string) : ""
+    }
+}
+
 export default router; 
