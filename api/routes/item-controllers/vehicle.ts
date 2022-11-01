@@ -53,4 +53,32 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
     });;
 });
 
+router.get("/filter", async (req: express.Request, res: express.Response) => {
+    const query : vehicleQuery = makeQuery(req);
+
+    Vehicle.find({
+        licensePlate: query.licensePlate,
+        make: query.make,
+        model: query.model,
+        yearManufactured: query.yearManufactured
+    });
+})
+
+
+interface vehicleQuery {
+    licensePlate: string,
+    make: string,
+    model: string,
+    yearManufactured: number
+}
+
+const makeQuery = (req : express.Request) : vehicleQuery=> {
+    return {
+        licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string) : "",
+        make: (req.query.make) ? (req.query.make as string) : "",
+        model: (req.query.model) ? (req.query.model as string) : "",
+        yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.licensePlate as string) : -1,
+    }
+}
+
 export default router;

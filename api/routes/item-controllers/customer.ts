@@ -83,7 +83,7 @@ interface customerQuery {
     name : string
 }
 
-const makeQuery = (req : express.Request) => {
+const makeQuery = (req : express.Request) : customerQuery => {
     return {
         name: 
             (req.query.firstName) ? (req.query.firstName as string) : "" + 

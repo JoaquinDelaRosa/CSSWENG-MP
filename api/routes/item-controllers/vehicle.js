@@ -57,4 +57,21 @@ router.delete("/delete", (req, res) => {
     });
     ;
 });
+router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = makeQuery(req);
+    vehicle_1.Vehicle.find({
+        licensePlate: query.licensePlate,
+        make: query.make,
+        model: query.model,
+        yearManufactured: query.yearManufactured
+    });
+}));
+const makeQuery = (req) => {
+    return {
+        licensePlate: (req.query.licensePlate) ? req.query.licensePlate : "",
+        make: (req.query.make) ? req.query.make : "",
+        model: (req.query.model) ? req.query.model : "",
+        yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.licensePlate) : -1,
+    };
+};
 exports.default = router;
