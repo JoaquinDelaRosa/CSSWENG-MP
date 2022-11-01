@@ -14,19 +14,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const customer_1 = require("../../models/customer");
+const customer_2 = require("../../projections/customer");
 const router = express.Router();
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     customer_1.Customer.find({})
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
         .then((data) => {
-        res.json(data);
+        res.json((0, customer_2.makeCustomerArrayView)(data));
     });
 }));
 router.get("/id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    customer_1.Customer.find({ id: req.query.id })
+    customer_1.Customer.findOne({ id: req.query.id })
         .then((data) => {
-        res.json(data);
+        res.json((0, customer_2.makeCustomerView)(data));
     });
 }));
 router.post("/create", (req, res) => {
@@ -76,7 +77,7 @@ router.get("/filter", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
         .then((result) => {
-        res.json(result);
+        res.json((0, customer_2.makeCustomerArrayView)(result));
         res.end();
     }).catch((err) => {
         console.log(err);
