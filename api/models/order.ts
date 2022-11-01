@@ -34,14 +34,14 @@ const OrderSchema = new mongoose.Schema({
     timeIn: { type: Date },
     timeOut: { type: Date },
 
-    customer: CustomerSchema,
+    customer: String,
     type: {
         type: String,
         enum: TypeEnum,
         default: DEFAULT_TYPE
     },
     company: String,
-    vehicle :VehicleSchema,
+    vehicle :String,
     
     invoice: {
         id: {type: String, default: randomUUID()},
