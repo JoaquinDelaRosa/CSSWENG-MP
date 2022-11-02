@@ -6,7 +6,6 @@ import routes from './routes/index';
 
 
 const bodyParser = require('body-parser');
-const customerRouter = require('./routes/item-controllers/customer');
 
 const debug = require('debug')('my express app');
 const app = express();
@@ -22,8 +21,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const authzRouter = require('./routes/item-controllers/authz');
+const customerRouter = require('./routes/item-controllers/customer');
+const orderRouter = require('./routes/item-controllers/order');
+const userRouter = require('./routes/item-controllers/user');
+const vehicleRouter = require('./routes/item-controllers/vehicle');
+
 app.use('/', routes);
-app.use('/api/customer', customerRouter);
+app.use('/api/Authz', authzRouter);
+app.use('/api/Customer', customerRouter);
+app.use('/api/Order', orderRouter);
+app.use('/api/User', userRouter);
+app.use('/api/Vehicle', vehicleRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
