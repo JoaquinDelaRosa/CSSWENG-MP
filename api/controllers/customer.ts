@@ -6,7 +6,7 @@ import { ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 
-router.get("/all",  async (req: express.Request, res: express.Response) => {
+const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Customer.find({})
         .skip(parseInt(req.query.skip as string))
@@ -15,18 +15,18 @@ router.get("/all",  async (req: express.Request, res: express.Response) => {
             res.json(makeCustomerArrayView(data));
         })
     })
-});
+}
 
-router.get("/id", async (req: express.Request, res: express.Response) => {
+const id = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Customer.findOne({id: req.query.id})
         .then((data) => {
             res.json(makeCustomerView(data));
         })
     })
-})
+}
 
-router.post("/create", (req: express.Request, res: express.Response) => {
+const create = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => {
         Customer.create(req.body, (error, result) => {
             console.log(error);
@@ -35,9 +35,9 @@ router.post("/create", (req: express.Request, res: express.Response) => {
         res.json(req.body);
         res.end();
     })
-})
+}
 
-router.post("/update", (req: express.Request, res: express.Response) => {
+const update = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => {
         Customer.updateOne({id : req.query.id}, req.body, (error) => {
             if(error) {
@@ -49,9 +49,9 @@ router.post("/update", (req: express.Request, res: express.Response) => {
             }
         })
     })
-})
+}
 
-router.delete("/delete", (req : express.Request, res : express.Response) => {
+const remove = (req : express.Request, res : express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => {
         Customer.deleteOne({id: req.query.id})
         .then ((result) => {
@@ -62,9 +62,9 @@ router.delete("/delete", (req : express.Request, res : express.Response) => {
             res.end();
         })
     })
-})
+}
 
-router.get("/filter", async (req: express.Request, res: express.Response) => {
+const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         const query : CustomerQuery = makeQuery(req);
 
@@ -90,8 +90,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
             res.end();
         })
     })
-})
-
+}
 
 interface CustomerQuery {
     name : string
@@ -105,4 +104,4 @@ const makeQuery = (req : express.Request) : CustomerQuery => {
     }
 }
 
-module.exports = router;
+export default {all, id, create, update, remove, filter};

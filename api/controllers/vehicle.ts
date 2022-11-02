@@ -6,7 +6,7 @@ import { ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 
-router.get("/all", async (req: express.Request, res: express.Response) => {
+const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Vehicle.find({})
         .skip(parseInt(req.query.skip as string))
@@ -15,18 +15,18 @@ router.get("/all", async (req: express.Request, res: express.Response) => {
             res.json(makeVehicleArrayView(data));
         })
     })
-});
+};
 
-router.get("/id", async (req: express.Request, res: express.Response) => {
+const id = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Vehicle.find({id : req.query.id})
         .then((data) => {
             res.json(makeVehicleView(data));
         })
     })
-});
+};
 
-router.post("/create", (req: express.Request, res: express.Response) => {
+const create = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
         Vehicle.create(req.body, (error, result) => {
             if (error){
@@ -37,10 +37,10 @@ router.post("/create", (req: express.Request, res: express.Response) => {
         res.json(req.body);
         res.end();
     })
-});
+};
 
 
-router.post("/update", (req: express.Request, res: express.Response) => {
+const update = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
         Vehicle.updateOne({id: req.query.id}, req.body, (err) => {
             if (err){
@@ -53,9 +53,9 @@ router.post("/update", (req: express.Request, res: express.Response) => {
             res.end();
         })
     })
-});
+};
 
-router.delete("/delete", (req: express.Request, res: express.Response) => {
+const remove = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
         Vehicle.deleteOne({id: req.query.id})
         .then((delRes) => {
@@ -66,9 +66,9 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
         res.end();
         });;
     })
-});
+};
 
-router.get("/filter", async (req: express.Request, res: express.Response) => {
+const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => { 
         const query : VehicleQuery = makeQuery(req);
 
@@ -88,7 +88,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
             res.end();
         });
     })
-})
+}
 
 
 interface VehicleQuery {
@@ -107,4 +107,4 @@ const makeQuery = (req : express.Request) : VehicleQuery=> {
     }
 }
 
-module.exports = router;
+export default {all, id, create, update, remove, filter};

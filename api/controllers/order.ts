@@ -8,7 +8,7 @@ import { ValidateRole, ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 
-router.get("/all", async (req: express.Request, res: express.Response) => {
+const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Order.find({})
         .populate("customer")
@@ -19,9 +19,9 @@ router.get("/all", async (req: express.Request, res: express.Response) => {
             res.json(data);
         })
     })
-});
+};
 
-router.get("/id", async (req: express.Request, res: express.Response) => {
+const id = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Order.find({id: req.query.id})
         .populate("customer")
@@ -30,9 +30,9 @@ router.get("/id", async (req: express.Request, res: express.Response) => {
             res.json(data);
         })
     })
-});
+};
 
-router.post("/create", async (req: express.Request, res: express.Response) => {
+const create = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], async () => {
         const c_id = await Customer.exists({id :req.body.customerId});
         if (c_id == null){
@@ -50,9 +50,9 @@ router.post("/create", async (req: express.Request, res: express.Response) => {
         res.json(req.body);
         res.end();
     })
-});
+};
 
-router.post("/update", async (req: express.Request, res: express.Response) => {
+const update = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], async () => {
         const c_id = await Customer.exists({id :req.body.customerId});
         if (c_id == null){
@@ -73,9 +73,9 @@ router.post("/update", async (req: express.Request, res: express.Response) => {
             }
         });
     })
-});
+};
 
-router.delete("/delete", (req: express.Request, res: express.Response) => {
+const remove = (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => {
         Order.deleteOne({id: req.query.id})
         .then((delRes) => {
@@ -86,9 +86,9 @@ router.delete("/delete", (req: express.Request, res: express.Response) => {
             res.end();
         });
     })
-});
+};
 
-router.get("/filter", async (req: express.Request, res: express.Response) => {
+const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         const query : OrderQuery = makeQuery(req);
 
@@ -101,7 +101,7 @@ router.get("/filter", async (req: express.Request, res: express.Response) => {
             res.json(data);
         });
     })
-})
+}
 
 
 interface OrderQuery {
@@ -116,4 +116,4 @@ const makeQuery = (req : express.Request)  : OrderQuery=> {
     }
 }
 
-module.exports = router;
+export default {all, id, create, update, remove, filter};

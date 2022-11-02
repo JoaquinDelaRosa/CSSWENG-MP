@@ -6,7 +6,7 @@ const router = express.Router();
 export const EncryptionKeyJWT = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
 const User = require('../models/user');
 
-router.post("/register", (req : express.Request, res : express.Response) => {
+const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
         firstName : req.body.firstName,
         lastName : req.body.lastName,
@@ -15,10 +15,9 @@ router.post("/register", (req : express.Request, res : express.Response) => {
         role : req.body.role
     }
     User.create(newUser);
+}
 
-});
-
-router.post("/login",(req : express.Request, res : express.Response) => {
+const login = (req : express.Request, res : express.Response) => {
     User.findOne({username : req.body.username})
     .then((user) => {
         if (user) {
@@ -35,10 +34,6 @@ router.post("/login",(req : express.Request, res : express.Response) => {
     .catch((error) => {
         res.json({success : false, error : error});
     })
-});
+}
 
-
-
-
-
-module.exports = router
+export default { login, register };

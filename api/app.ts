@@ -2,8 +2,14 @@ import * as express from 'express';
 import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
-import routes from './routes/index';
+import router from './routes';
 
+// route imports
+import authzRoutes from './routes/authz';
+import customerRoutes from './routes/customer';
+import orderRoutes from './routes/order';
+import userRoutes from './routes/user';
+import vehicleRoutes from './routes/vehicle';
 
 const bodyParser = require('body-parser');
 
@@ -22,20 +28,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// route calls
+app.use('/api/authz', authzRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/vehicle', vehicleRoutes);
+app.use('/api/order', orderRoutes);
+app.use('/api/customer', customerRoutes);
 
-// Controllers and Routes
-const authzRouter = require('./controllers/authz');
-const customerRouter = require('./controllers/customer');
-const orderRouter = require('./controllers/order');
-const userRouter = require('./controllers/user');
-const vehicleRouter = require('./controllers/vehicle');
-
-app.use('/', routes);
-app.use('/api/Authz', authzRouter);
-app.use('/api/Customer', customerRouter);
-app.use('/api/Order', orderRouter);
-app.use('/api/User', userRouter);
-app.use('/api/Vehicle', vehicleRouter);
 
 
 // catch 404 and forward to error handler
@@ -44,6 +43,7 @@ app.use((req, res, next) => {
     err[ 'status' ] = 404;
     next(err);
 });
+
 
 // error handlers
 
