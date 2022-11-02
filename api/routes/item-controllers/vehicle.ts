@@ -1,78 +1,93 @@
 import  express = require('express');
 import { Vehicle } from '../../models/vehicle';
+import { ALL_ROLES, Roles } from '../../models/roles';
+import { makeVehicleArrayView, makeVehicleView } from '../../projections/vehicle';
+import { ValidateWrapper } from './middleware/validation';
 
 const router = express.Router();
 
 router.get("/all", async (req: express.Request, res: express.Response) => {
-    Vehicle.find({})
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then((data) => {
-        res.json(data);
+    ValidateWrapper(req, res, ALL_ROLES, () => {
+        Vehicle.find({})
+        .skip(parseInt(req.query.skip as string))
+        .limit(parseInt(req.query.limit as string))
+        .then((data) => {
+            res.json(makeVehicleArrayView(data));
+        })
     })
 });
 
 router.get("/id", async (req: express.Request, res: express.Response) => {
-    Vehicle.find({id : req.query.id})
-    .then((data) => {
-        res.json(data);
+    ValidateWrapper(req, res, ALL_ROLES, () => {
+        Vehicle.find({id : req.query.id})
+        .then((data) => {
+            res.json(makeVehicleView(data));
+        })
     })
 });
 
 router.post("/create", (req: express.Request, res: express.Response) => {
-    Vehicle.create(req.body, (error, result) => {
-        if (error){
-            console.log(error);
-        }
-        return result;
-    });
-    res.json(req.body);
-    res.end();
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
+        Vehicle.create(req.body, (error, result) => {
+            if (error){
+                console.log(error);
+            }
+            return result;
+        });
+        res.json(req.body);
+        res.end();
+    })
 });
 
 
 router.post("/update", (req: express.Request, res: express.Response) => {
-    Vehicle.updateOne({id: req.query.id}, req.body, (err) => {
-        if (err){
-            console.log(err);
-            res.json(null)
-        }
-        else {
-            res.json(req.body);
-        }
-        res.end();
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
+        Vehicle.updateOne({id: req.query.id}, req.body, (err) => {
+            if (err){
+                console.log(err);
+                res.json(null)
+            }
+            else {
+                res.json(req.body);
+            }
+            res.end();
+        })
     })
 });
 
 router.delete("/delete", (req: express.Request, res: express.Response) => {
-    Vehicle.deleteOne({id: req.query.id})
-    .then((delRes) => {
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => { 
+        Vehicle.deleteOne({id: req.query.id})
+        .then((delRes) => {
+            res.end();
+        })
+        .catch((err) => {
+        console.log(err);
         res.end();
+        });;
     })
-    .catch((err) => {
-      console.log(err);
-      res.end();
-    });;
 });
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : VehicleQuery = makeQuery(req);
+    ValidateWrapper(req, res, ALL_ROLES, () => { 
+        const query : VehicleQuery = makeQuery(req);
 
-    Vehicle.find({
-        licensePlate: query.licensePlate,
-        manufacturer: query.make,
-        model: query.manufacturer,
-        yearManufactured: query.yearManufactured
+        Vehicle.find({
+            licensePlate: query.licensePlate,
+            manufacturer: query.make,
+            model: query.manufacturer,
+            yearManufactured: query.yearManufactured
+        })
+        .skip(parseInt(req.query.skip as string))
+        .limit(parseInt(req.query.limit as string))
+        .then((result) => {
+            res.json(makeVehicleArrayView(result));
+            res.end();
+        }).catch((err) => {
+            console.log(err);
+            res.end();
+        });
     })
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then((result) => {
-        res.json(result);
-        res.end();
-    }).catch((err) => {
-        console.log(err);
-        res.end();
-    });
 })
 
 
