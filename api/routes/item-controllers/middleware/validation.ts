@@ -8,12 +8,35 @@ const JWT = require('jsonwebtoken');
 const router = express.Router();
 
 export const ValidateToken = (req : express.Request) => {
-    return JWT.verify(req.headers.authorization, EncryptionKeyJWT)
+    try {
+        JWT.verify(req.headers.authorization, EncryptionKeyJWT);
+    }
+    catch (err){
+        return null;
+    }
 
 }
 
 export const ValidateRole = (req : express.Request, roles) : boolean => {
-    console.log(ValidateToken(req))
-    console.log(JWT.decode(req.headers.authorization))
+    const token = ValidateToken(req) == null;
+    if (token == null){
+        return false;
+    }
+
+    const decoded = JWT.decode(token);
+
+    if (decoded.role in roles){
+        return true;
+    }
     return false;
+}
+
+export const ValidateWrapper = (req: express.Request, res : express.Response, roles : Array<string>, callback) => {
+    if(ValidateRole(req, roles)){
+       callback(); 
+    }
+    else {
+        res.status(401);
+        res.end();
+    }
 }

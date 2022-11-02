@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 import { randomUUID } from "crypto";
 
-const Roles = [
-    "ADMIN",
-    "VIEW_EDIT",
-    "VIEW"
-];
+export const Roles = {
+    ADMIN: "ADMIN",
+    VIEW_EDIT: "VIEW_EDIT",
+    VIEW: "VIEW"
+};
 
-const DEFAULT_ROLE = "VIEW"
+export const ALL_ROLES = [Roles.ADMIN, Roles.VIEW_EDIT, Roles.VIEW];
+const DEFAULT_ROLE = Roles.VIEW;
 
 export const UserSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
