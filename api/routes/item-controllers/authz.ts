@@ -3,13 +3,8 @@ import Bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const router = express.Router();
 
-const EncryptionKeyJWT = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
+export const EncryptionKeyJWT = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
 const User = require('../../models/user');
-
-interface Token {
-    id: string,
-    role: string
-}
 
 router.post("/register", (req : express.Request, res : express.Response) => {
     const newUser = {
@@ -28,7 +23,7 @@ router.post("/login",(req : express.Request, res : express.Response) => {
     .then((user) => {
         if (user) {
             if (Bcrypt.compareSync(req.body.password, user.password)) {
-                const token = JWT.sign({ id: Bcrypt.hashSync(user.id), role : user.role, }, EncryptionKeyJWT)
+                const token = JWT.sign({ id: user.id, role : user.role, }, EncryptionKeyJWT, {expiresIn : '10s'});
                 res.json({success : true, token: token})
             }
             else
@@ -42,9 +37,7 @@ router.post("/login",(req : express.Request, res : express.Response) => {
     })
 });
 
-// export const ValidateToken = (token : Token) => {
-    
-// }
+
 
 
 

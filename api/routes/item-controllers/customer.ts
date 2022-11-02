@@ -1,17 +1,25 @@
 import express = require('express');
 import { Customer } from '../../models/customer';
 import { makeCustomerArrayView, makeCustomerView } from '../../projections/customer';
+import { ValidateRole } from './middleware/validation';
 
 
 const router = express.Router();
 
 router.get("/all",  async (req: express.Request, res: express.Response) => {
-    Customer.find({})
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then ((data) => {
-        res.json(makeCustomerArrayView(data));
-    })
+    if(!ValidateRole(req, ["ADMIN"])) {
+        res.status(401);
+        res.end();
+    }
+    else {
+        Customer.find({})
+        .skip(parseInt(req.query.skip as string))
+        .limit(parseInt(req.query.limit as string))
+        .then ((data) => {
+            res.json(makeCustomerArrayView(data));
+        })
+    }
+    
 });
 
 router.get("/id", async (req: express.Request, res: express.Response) => {
