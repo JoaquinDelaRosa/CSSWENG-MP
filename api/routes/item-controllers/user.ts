@@ -82,4 +82,4 @@ const makeQuery = (req : express.Request) => {
     }
 }
 
-export default router; 
+module.exports = router;

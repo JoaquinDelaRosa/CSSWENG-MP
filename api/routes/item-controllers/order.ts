@@ -100,4 +100,4 @@ const makeQuery = (req : express.Request)  : OrderQuery=> {
     }
 }
 
-export default router;
+module.exports = router;

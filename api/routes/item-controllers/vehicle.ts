@@ -92,4 +92,4 @@ const makeQuery = (req : express.Request) : VehicleQuery=> {
     }
 }
 
-export default router;
+module.exports = router;
