@@ -1,10 +1,10 @@
 import express = require('express');
-import { Customer } from '../../models/customer';
-import { ALL_ROLES, Roles } from '../../models/roles';
-import { Order } from '../../models/order';
-import { Vehicle } from '../../models/vehicle';
-import { makeOrderArrayView, makeOrderView } from '../../projections/order';
-import { ValidateRole, ValidateWrapper } from './middleware/validation';
+import { Customer } from '../models/customer';
+import { ALL_ROLES, Roles } from '../models/roles';
+import { Order } from '../models/order';
+import { Vehicle } from '../models/vehicle';
+import { makeOrderArrayView, makeOrderView } from '../projections/order';
+import { ValidateRole, ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 

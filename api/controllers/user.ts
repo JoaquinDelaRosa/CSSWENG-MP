@@ -2,10 +2,10 @@
  * GET users listing.
  */
 import express = require('express');
-import { User } from '../../models/user';
-import { Roles } from '../../models/roles';
-import { makeUserArrayView, makeUserView } from '../../projections/user';
-import { ValidateWrapper } from './middleware/validation';
+import { User } from '../models/user';
+import { Roles } from '../models/roles';
+import { makeUserArrayView, makeUserView } from '../projections/user';
+import { ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 

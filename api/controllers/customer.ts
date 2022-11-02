@@ -1,8 +1,8 @@
 import express = require('express');
-import { Customer } from '../../models/customer';
-import { ALL_ROLES, Roles } from '../../models/roles';
-import { makeCustomerArrayView, makeCustomerView } from '../../projections/customer';
-import { ValidateWrapper } from './middleware/validation';
+import { Customer } from '../models/customer';
+import { ALL_ROLES, Roles } from '../models/roles';
+import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
+import { ValidateWrapper } from '../middleware/validation';
 
 const router = express.Router();
 

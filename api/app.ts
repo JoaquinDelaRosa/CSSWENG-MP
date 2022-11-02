@@ -24,11 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Controllers and Routes
-const authzRouter = require('./routes/item-controllers/authz');
-const customerRouter = require('./routes/item-controllers/customer');
-const orderRouter = require('./routes/item-controllers/order');
-const userRouter = require('./routes/item-controllers/user');
-const vehicleRouter = require('./routes/item-controllers/vehicle');
+const authzRouter = require('./controllers/authz');
+const customerRouter = require('./controllers/customer');
+const orderRouter = require('./controllers/order');
+const userRouter = require('./controllers/user');
+const vehicleRouter = require('./controllers/vehicle');
 
 app.use('/', routes);
 app.use('/api/Authz', authzRouter);

@@ -4,7 +4,7 @@ const JWT = require('jsonwebtoken');
 const router = express.Router();
 
 export const EncryptionKeyJWT = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
-const User = require('../../models/user');
+const User = require('../models/user');
 
 router.post("/register", (req : express.Request, res : express.Response) => {
     const newUser = {
