@@ -1,89 +1,105 @@
 import express = require('express');
 import { Customer } from '../../models/customer';
+import { ALL_ROLES, Roles } from '../../models/roles';
 import { Order } from '../../models/order';
 import { Vehicle } from '../../models/vehicle';
+import { makeOrderArrayView, makeOrderView } from '../../projections/order';
+import { ValidateRole, ValidateWrapper } from './middleware/validation';
 
 const router = express.Router();
 
 router.get("/all", async (req: express.Request, res: express.Response) => {
-    Order.find({})
-    .populate("customer")
-    .populate("vehicle")
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then ((data) => {
-        res.json(data);
+    ValidateWrapper(req, res, ALL_ROLES, () => {
+        Order.find({})
+        .populate("customer")
+        .populate("vehicle")
+        .skip(parseInt(req.query.skip as string))
+        .limit(parseInt(req.query.limit as string))
+        .then ((data) => {
+            res.json(data);
+        })
     })
 });
+
 router.get("/id", async (req: express.Request, res: express.Response) => {
-    Order.find({id: req.query.id})
-    .populate("customer")
-    .populate("vehicle")
-    .then((data) => {
-        res.json(data);
-    });
+    ValidateWrapper(req, res, ALL_ROLES, () => {
+        Order.find({id: req.query.id})
+        .populate("customer")
+        .populate("vehicle")
+        .then((data) => {
+            res.json(data);
+        })
+    })
 });
 
 router.post("/create", async (req: express.Request, res: express.Response) => {
-    const c_id = await Customer.exists({id :req.body.customerId});
-    if (c_id == null){
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], async () => {
+        const c_id = await Customer.exists({id :req.body.customerId});
+        if (c_id == null){
+            res.end();
+        }
+        const v_id = await Vehicle.exists({id :req.body.vehicleId});
+        if (v_id == null){
+            res.end();
+        }
+        
+        Order.create(req.body, (error, result) => {
+            console.log(error);
+            return result;
+        });
+        res.json(req.body);
         res.end();
-    }
-    const v_id = await Vehicle.exists({id :req.body.vehicleId});
-    if (v_id == null){
-        res.end();
-    }
-    
-    Order.create(req.body, (error, result) => {
-        console.log(error);
-        return result;
-    });
-    res.json(req.body);
-    res.end();
+    })
 });
 
 router.post("/update", async (req: express.Request, res: express.Response) => {
-    const c_id = await Customer.exists({id :req.body.customerId});
-    if (c_id == null){
-        res.end();
-    }
-    const v_id = await Vehicle.exists({id :req.body.vehicleId});
-    if (v_id == null){
-        res.end();
-    }
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], async () => {
+        const c_id = await Customer.exists({id :req.body.customerId});
+        if (c_id == null){
+            res.end();
+        }
+        const v_id = await Vehicle.exists({id :req.body.vehicleId});
+        if (v_id == null){
+            res.end();
+        }
 
-    Order.updateOne({id: req.query.id}, req.body, (error) => {
-        if (error) {
-            console.log(error);
-            res.json(null);
-        }
-        else {
-            res.json(req.body);
-        }
-    });
+        Order.updateOne({id: req.query.id}, req.body, (error) => {
+            if (error) {
+                console.log(error);
+                res.json(null);
+            }
+            else {
+                res.json(req.body);
+            }
+        });
+    })
 });
 
 router.delete("/delete", (req: express.Request, res: express.Response) => {
-    Order.deleteOne({id: req.query.id})
-    .then((delRes) => {
-        res.end();
+    ValidateWrapper(req, res, [Roles.ADMIN, Roles.VIEW_EDIT], () => {
+        Order.deleteOne({id: req.query.id})
+        .then((delRes) => {
+            res.end();
+        })
+        .catch((error) => {
+            console.log(error);
+            res.end();
+        });
     })
-    .catch((error) => {
-        console.log(error);
-        res.end();
-    });
 });
 
 router.get("/filter", async (req: express.Request, res: express.Response) => {
-    const query : OrderQuery = makeQuery(req);
+    ValidateWrapper(req, res, ALL_ROLES, () => {
+        const query : OrderQuery = makeQuery(req);
 
-    Order.find({status: query.status, type: query.type})
-    .populate("customer")
-    .populate("vehicle")
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then ((data) => {
-        res.json(data);
+        Order.find({status: query.status, type: query.type})
+        .populate("customer")
+        .populate("vehicle")
+        .skip(parseInt(req.query.skip as string))
+        .limit(parseInt(req.query.limit as string))
+        .then ((data) => {
+            res.json(data);
+        });
     })
 })
 
