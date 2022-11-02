@@ -1,7 +1,3 @@
-/*
- * GET users listing.
- */
-
 import express = require('express');
 import { Customer } from '../../models/customer';
 import { makeCustomerArrayView, makeCustomerView } from '../../projections/customer';
