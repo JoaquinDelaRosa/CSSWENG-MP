@@ -24,7 +24,7 @@ router.get("/id", async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN], () => {
         User.find({id: req.query.id})
         .then((data) => {
-            res.json(makeUserArrayView(data));
+            res.json(makeUserView(data));
         })
     })
 })
