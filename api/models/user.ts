@@ -13,7 +13,11 @@ export const UserSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},
     firstName: String,
     lastName: String,
-    username: String,
+    username: {
+        type: String,
+        unique: true,
+    },
+    password: String,
     role: {
         type: String,
         enum: Roles,

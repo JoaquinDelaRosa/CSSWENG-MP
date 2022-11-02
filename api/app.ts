@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const debug = require('debug')('my express app');
 const app = express();
 
+// connections
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose.connect(CONNECTION_STRING);
 
@@ -21,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Controllers and Routes
 const authzRouter = require('./routes/item-controllers/authz');
 const customerRouter = require('./routes/item-controllers/customer');
 const orderRouter = require('./routes/item-controllers/order');
@@ -33,6 +36,7 @@ app.use('/api/Customer', customerRouter);
 app.use('/api/Order', orderRouter);
 app.use('/api/User', userRouter);
 app.use('/api/Vehicle', vehicleRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
