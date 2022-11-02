@@ -5,13 +5,14 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "start": "tsc --build && node app.js"
+    "start": "npm run build && node app.js",
+    "exec": "npm  run start && npm run clean" 
   },
   "description": "api",
   "author": {
     "name": ""
   },
-  "main": "app.js",
+  "main": "./dist/app.js",
   "dependencies": {
     "body-parser": "^1.20.1",
     "busboy": "^1.6.0",
