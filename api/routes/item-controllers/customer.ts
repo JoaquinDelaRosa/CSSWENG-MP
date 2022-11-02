@@ -1,14 +1,13 @@
 import express = require('express');
 import { Customer } from '../../models/customer';
-import { ALL_ROLES, Roles } from '../../models/user';
+import { ALL_ROLES } from '../../models/user';
 import { makeCustomerArrayView, makeCustomerView } from '../../projections/customer';
 import { ValidateRole, ValidateWrapper } from './middleware/validation';
-
 
 const router = express.Router();
 
 router.get("/all",  async (req: express.Request, res: express.Response) => {
-    ValidateWrapper(req, res, ALL_ROLES, () => {
+    ValidateWrapper(req, res, [], () => {
         Customer.find({})
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))

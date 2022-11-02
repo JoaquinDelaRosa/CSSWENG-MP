@@ -10,6 +10,7 @@ const router = express.Router();
 export const ValidateToken = (req : express.Request) => {
     try {
         JWT.verify(req.headers.authorization, EncryptionKeyJWT);
+        return req.headers.authorization;
     }
     catch (err){
         return null;
@@ -17,21 +18,20 @@ export const ValidateToken = (req : express.Request) => {
 
 }
 
-export const ValidateRole = (req : express.Request, roles) : boolean => {
+export const ValidateRole = (req : express.Request, roles : string[]) : boolean => {
     const token = ValidateToken(req) == null;
     if (token == null){
         return false;
     }
+    const decoded = JWT.decode(req.headers.authorization);
 
-    const decoded = JWT.decode(token);
-
-    if (decoded.role in roles){
+    if (roles.includes(decoded.role)){
         return true;
     }
     return false;
 }
 
-export const ValidateWrapper = (req: express.Request, res : express.Response, roles : Array<string>, callback) => {
+export const ValidateWrapper = (req: express.Request, res : express.Response, roles : string[], callback) => {
     if(ValidateRole(req, roles)){
        callback(); 
     }
