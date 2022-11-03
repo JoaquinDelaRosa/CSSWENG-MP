@@ -1,6 +1,6 @@
 export interface InvoiceRequest {
     amount: number,
-    deductibleDue: number,
+    deductible: number,
     agentFirstName: string,
     agentLastName: string,
     datePaid : Date,
@@ -8,9 +8,9 @@ export interface InvoiceRequest {
 }
 
 export interface Invoice {
-    invoiceId: number,
+    id : string,
     amount: number,
-    deductibleDue: number,
+    deductible: number,
     agentFirstName: string,
     agentLastName: string,
     datePaid : string,
