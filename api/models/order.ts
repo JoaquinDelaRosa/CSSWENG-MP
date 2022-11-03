@@ -1,27 +1,9 @@
 import { randomUUID } from "crypto";
 import mongoose from "mongoose";
-import { CustomerSchema } from "./customer";
-import { VehicleSchema } from "./vehicle";
-
-const StatusEnum = [
-    "PAID", 
-    "UNPAID", 
-    "OK", 
-    "PENDING", 
-    "WITH BALANCE", 
-    "QUOTE OR CHECK", 
-    "FOR LOA OR INVOICE"
-];
-
-const TypeEnum = [
-    "PERSONAL",
-    "WALK IN",
-    "FLEET",
-    "INSURANCE"
-]
+import { StatusEnum, TypeEnum } from "./enum";
 
 const DEFAULT_STATUS = "UNPAID";
-const DEFAULT_TYPE = "PERSONAL"
+const DEFAULT_TYPE = "PERSONAL";
 
 const OrderSchema = new mongoose.Schema({
     id: {type: String, default: randomUUID()},

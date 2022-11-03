@@ -4,12 +4,6 @@ import { AddressInfo } from "net";
 import * as path from 'path';
 import router from './routes';
 
-// route imports
-import authzRoutes from './routes/authz';
-import customerRoutes from './routes/customer';
-import orderRoutes from './routes/order';
-import userRoutes from './routes/user';
-import vehicleRoutes from './routes/vehicle';
 
 const bodyParser = require('body-parser');
 
@@ -28,12 +22,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// route imports
+import authzRoutes from './routes/authz';
+import customerRoutes from './routes/customer';
+import orderRoutes from './routes/order';
+import userRoutes from './routes/user';
+import vehicleRoutes from './routes/vehicle';
+import enumRoutes from './routes/enums';
+
 // route calls
 app.use('/api/authz', authzRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/vehicle', vehicleRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/customer', customerRoutes);
+app.use('/api', enumRoutes);
 
 
 

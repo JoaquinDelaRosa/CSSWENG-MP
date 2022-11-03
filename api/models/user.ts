@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { randomUUID } from "crypto";
-import { Roles } from "./roles";
+import { Roles } from "./enum";
 
 const DEFAULT_ROLE = Roles.VIEW;
 

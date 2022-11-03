@@ -1,6 +1,6 @@
 import express = require('express');
 import { Customer } from '../models/customer';
-import { ALL_ROLES, Roles } from '../models/roles';
+import { ALL_ROLES, Roles } from '../models/enum';
 import { Order } from '../models/order';
 import { Vehicle } from '../models/vehicle';
 import { makeOrderArrayView, makeOrderView } from '../projections/order';

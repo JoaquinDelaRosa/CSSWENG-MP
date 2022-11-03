@@ -1,6 +1,6 @@
 import  express = require('express');
 import { Vehicle } from '../models/vehicle';
-import { ALL_ROLES, Roles } from '../models/roles';
+import { ALL_ROLES, Roles } from '../models/enum';
 import { makeVehicleArrayView, makeVehicleView } from '../projections/vehicle';
 import { ValidateWrapper } from '../middleware/validation';
 

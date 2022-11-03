@@ -3,7 +3,7 @@
  */
 import express = require('express');
 import { User } from '../models/user';
-import { Roles } from '../models/roles';
+import { Roles } from '../models/enum';
 import { makeUserArrayView, makeUserView } from '../projections/user';
 import { ValidateWrapper } from '../middleware/validation';
 

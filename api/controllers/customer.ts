@@ -1,6 +1,6 @@
 import express = require('express');
 import { Customer } from '../models/customer';
-import { ALL_ROLES, Roles } from '../models/roles';
+import { ALL_ROLES, Roles } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 import { ValidateWrapper } from '../middleware/validation';
 
