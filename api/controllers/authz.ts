@@ -1,20 +1,21 @@
 import express = require('express');
 import Bcrypt = require('bcryptjs');
+import { User } from '../models/user';
 const JWT = require('jsonwebtoken');
 const router = express.Router();
 
 export const EncryptionKeyJWT = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
-const User = require('../models/user');
 
 const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
         firstName : req.body.firstName,
         lastName : req.body.lastName,
-        username : req.body.firstName + "_" + req.body.lastName,
+        username : req.body.username,
         password : Bcrypt.hashSync(req.body.password, 10),
         role : req.body.role
     }
     User.create(newUser);
+    res.end();
 }
 
 const login = (req : express.Request, res : express.Response) => {

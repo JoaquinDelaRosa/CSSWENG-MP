@@ -70,8 +70,8 @@ const remove = (req : express.Request, res : express.Response) => {
 const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN], () => {
         const query : UserQuery = makeQuery(req);
-
-        User.find({username: query.username})
+        
+        User.find({username: {$regex: ".*" + query.username + ".*"}})
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))
         .then((result) => {
