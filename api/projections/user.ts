@@ -1,5 +1,7 @@
 export const makeUserView = (document) => {
     return {
+        firstName: document.firstName,
+        lastName: document.lastName,
         username: document.username
     }
 }
