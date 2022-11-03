@@ -11,7 +11,7 @@ const AddCustomer = () => {
     const [typeIds, setTypeIds] = useState<Array<CustomerTypeKVP>>([]);
 
     useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.customerTypes).fetch()
+        createAPIEndpoint(ENDPOINTS.orderTypes).fetch()
             .then((response) => {
                 return response.data;
             })

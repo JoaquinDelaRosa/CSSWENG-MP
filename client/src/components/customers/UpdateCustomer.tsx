@@ -13,7 +13,7 @@ const UpdateCustomer = () => {
     const [typeIds, setTypeIds] = useState<Array<CustomerTypeKVP>>([]);
     const [customerExists, setCustomerExists] = useState<boolean>(true);
     useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.customerTypes).fetch()
+        createAPIEndpoint(ENDPOINTS.orderTypes).fetch()
             .then((response) => {
                 return response.data;
             })

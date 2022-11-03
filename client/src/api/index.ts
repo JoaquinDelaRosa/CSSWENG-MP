@@ -7,8 +7,9 @@ export const ENDPOINTS = {
     login: 'authz/Login',
     register: 'authz/Register',
 
-    customerTypes: 'customerType/all',
-    orderStatuses: 'orderStatus/all',
+    orderTypes: 'order/types',
+    orderStatuses: 'order/statuses',
+    userRoles: 'user/roles',
 
     users: 'user/all',
 
