@@ -71,11 +71,10 @@ const remove = (req: express.Request, res: express.Response) => {
 const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => { 
         const query : VehicleQuery = makeQuery(req);
-
         Vehicle.find({
             licensePlate: query.licensePlate,
-            manufacturer: query.make,
-            model: query.manufacturer,
+            model: query.model,
+            manufacturer: query.manufacturer,
             yearManufactured: query.yearManufactured
         })
         .skip(parseInt(req.query.skip as string))
@@ -93,7 +92,7 @@ const filter = async (req: express.Request, res: express.Response) => {
 
 interface VehicleQuery {
     licensePlate: string,
-    make: string,
+    model: string,
     manufacturer: string,
     yearManufactured: number
 }
@@ -101,9 +100,9 @@ interface VehicleQuery {
 const makeQuery = (req : express.Request) : VehicleQuery=> {
     return {
         licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string) : "",
-        make: (req.query.make) ? (req.query.make as string) : "",
-        manufacturer: (req.query.model) ? (req.query.model as string) : "",
-        yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.licensePlate as string) : -1,
+        model: (req.query.model) ? (req.query.model as string) : "",
+        manufacturer: (req.query.manufacturer) ? (req.query.manufacturer as string) : "",
+        yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.yearManufactured as string) : -1,
     }
 }
 
