@@ -68,18 +68,21 @@ const filter = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         const query : CustomerQuery = makeQuery(req);
 
+        console.log(query);
         Customer.aggregate([
             {
                 $project : {
+                    "firstName": "$firstName",
+                    "lastName": "$lastName",
+                    "mobileNumber": "$mobileNumber",
+                    "email": "$email",
                     "name" : { 
                         $concat : ["$firstName", " ", "$lastName"]
                     }
                 }
-            },
-            {
-                $match :  {"name": {$regex: ".*" + query.name + ".*"}}
             }
         ])
+        .match({"name": {$regex: ".*" + query.name + ".*"}})
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))
         .then((result) => {
@@ -98,9 +101,7 @@ interface CustomerQuery {
 
 const makeQuery = (req : express.Request) : CustomerQuery => {
     return {
-        name: 
-            (req.query.firstName) ? (req.query.firstName as string) : "" + 
-            (req.query.lastName) ? (req.query.lastName as string) : ""
+        name: (req.query.name) ? (req.query.name as string) : ""
     }
 }
 
