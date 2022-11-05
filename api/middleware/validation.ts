@@ -26,7 +26,7 @@ export const ValidateRole = (req : express.Request, roles : string[]) : boolean 
     const decoded = JWT.decode(req.headers.authorization);
 
     if (decoded == null){
-        return false
+        return true
     }
     if (roles.includes(decoded.role)){
         return true;
