@@ -1,15 +1,12 @@
-.loginUI {
-
+.registerUI {
     z-index: 100;
-    width: 49rem;
+    width: 90rem;
     border: none;
     justify-content: center;
     padding-top: 17rem;
-
 }
 
 .textField {
-
     width: 32rem;
     min-height: 3rem;
     margin-bottom: 1rem;
@@ -21,10 +18,9 @@
     border: none;
     background-color: #D0D0D0;
     border-radius: 2rem;
-
 }
 
-.loginForm {
+.registerForm {
     width: 52vw;
     height: 35vh;
     display: block;
@@ -33,19 +29,14 @@
 }
 
 .usernameField {
-
     background-image: url(../style/images/user-svgrepo-com.svg);
-
 }
 
 .passwordField {
-
     background-image: url(../style/images/61457.png);
-
 }
 
 .loginButton {
-
     width: 36rem;
     min-height: 3rem;
     margin-bottom: 1rem;
@@ -56,24 +47,21 @@
     cursor: pointer;
     background-color: #990000;
     border-radius: 2rem;
-
 }
 
-.redDialogue{
-
+.redDialogue {
     color: #800000;
-    justify-self: center;
+    justify-self: left;
     text-decoration: underline;
 
 }
 
-.rightBG {
-
+.leftBG {
     width: 100%;
     height: 100%;
     background-image: url(../style/images/hotwheels.png);
-    background-position: right;
-    background-position-x: 50rem;
+    background-position: left;
+    background-position-x: -30rem;
     background-position-y: -32rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -82,8 +70,7 @@
     border-radius: 3.1rem;
 }
 
-.loginBox {
-
+.registerBox {
     position: relative;
     border-color: white;
     border-radius: 3.1rem;
@@ -96,14 +83,13 @@
     border: 0;
 }
 
-.loginLogo {
-
-    padding-top: 12rem;
+.registLogo {
+    padding-top: 8rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
-    background-position: left;
-    background-position-x: 6rem;
+    background-position: right;
+    background-position-x: 49rem;
     background-repeat: no-repeat;
     background-size: 35rem 10rem;
     position: absolute;
