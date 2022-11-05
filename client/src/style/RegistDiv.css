@@ -81,7 +81,7 @@
 
 .redDialogue {
     color: #800000;
-    justify-self: left;
+    justify-self: center;
     text-decoration: underline;
 }
 
@@ -125,9 +125,9 @@
 }
 
 .loginDial{
-    color: white;
+    color: black;
     position: absolute;
-    width: 20rem;
+    width: 112rem;
     justify-content: center;
     padding-left: 12rem;
 }

@@ -82,9 +82,10 @@ const Register = () => {
                             name="submit"
                             onClick={onSubmit}
                             value={"SIGN UP"} />
+                        <p className="loginDial">Already have an account? &nbsp;<span className="redDialogue"><Link to={ROUTES.login}>
+                            Login here.</Link></span></p>
                     </form>
-                    <p className="loginDial">Already have an account? &nbsp;<span className="redDialogue"><Link to={ROUTES.login}>
-                        Login here.</Link></span></p>
+                    
                 </div>
             </div>
         </div>
