@@ -1,7 +1,7 @@
 .loginUI {
 
     z-index: 100;
-    width: 52vw;
+    width: 49rem;
     border: none;
     justify-content: center;
     padding-top: 17rem;
@@ -25,7 +25,9 @@
 }
 
 .loginForm {
-    position: relative;
+    width: 52vw;
+    height: 35vh;
+    display: block;
     z-index: 100;
 }
 
@@ -76,18 +78,18 @@
     position: absolute;
     background-size: 75rem 105rem;
     opacity: 80%;
-    border-radius: 50px;
+    border-radius: 3.1rem;
 }
 
 .loginBox {
 
     position: relative;
     border-color: white;
-    border-radius: 50px;
+    border-radius: 3.1rem;
     border-style: solid;
     background-color: white;
-    width: 90vw;
-    height: 82vh;
+    width: 90rem;
+    height: 40rem;
     margin: auto;
     padding: 0;
     border: 0;
@@ -95,7 +97,7 @@
 
 .loginLogo {
 
-    padding-top: 15rem;
+    padding-top: 12rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
