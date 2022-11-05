@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../style/RegistFull.css';
 import '../style/RegistDiv.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../api/routes';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
 
 interface RegistrationState {
@@ -11,7 +13,7 @@ interface RegistrationState {
 }
 
 
-const RegisterUser = () => {
+const Register = () => {
     const [formState, setFormState] = useState<RegistrationState>({
         username: "",
         password: "",
@@ -45,36 +47,44 @@ const RegisterUser = () => {
                 </div>
                 <div className="registerForm">
                     <form className="registerUI">
-                        <label>First Name</label>
-                        <input type="text"
-                            name="firstName"
-                            onChange={(e) => { onInputChange("firstName", e.target.value); }} />
-                        <br />
+                        <span className="customerName">
+                            <input type="text" className="firstName"
+                                name="firstName"
+                                placeholder="First Name"
+                                onChange={(e) => { onInputChange("firstName", e.target.value); }} />
 
-                        <label>Last Name</label>
-                        <input type="text"
-                            name="lastName"
-                            onChange={(e) => { onInputChange("lastName", e.target.value); }} />
-                        <br />
+                            <input type="text" className="lastName"
+                                name="lastName"
+                                placeholder="Last Name"
+                                onChange={(e) => { onInputChange("lastName", e.target.value); }} />
+                            <br />
+                        </span>
 
-                        <label>Username</label>
-                        <input type="text"
+                        <input type="text" className="textField usernameField"
                             name="username"
+                            placeholder="Username"
                             onChange={(e) => { onInputChange("username", e.target.value); }} />
                         <br />
 
-                        <label>Password</label>
-                        <input type="password"
+                        <input type="password" className="textField passwordField"
                             name="password"
+                            placeholder="Password"
                             onChange={(e) => { onInputChange("password", e.target.value); }} />
                         <br />
 
-                        <input type='button'
+                        <input type="password" className="textField passwordField"
+                            name="new_password"
+                            placeholder="Confirm Password"
+                            onChange={(e) => { onInputChange("new_password", e.target.value); }} />
+                        <br />
+
+                        <input type='button' className="registButton"
                             name="submit"
                             onClick={onSubmit}
-                            value={"submit"} />
+                            value={"SIGN UP"} />
                     </form>
-                    <p >Already have an account? <span className="redDialogue">Login here.</span></p>
+                    <p className="loginDial">Already have an account? &nbsp;<span className="redDialogue"><Link to={ROUTES.login}>
+                        Login here.</Link></span></p>
                 </div>
             </div>
         </div>
@@ -82,4 +92,4 @@ const RegisterUser = () => {
     );
 }
 
-export default RegisterUser;
+export default Register;

@@ -1,9 +1,9 @@
 .registerUI {
     z-index: 100;
-    width: 90rem;
+    width: 135rem;
     border: none;
     justify-content: center;
-    padding-top: 17rem;
+    padding-top: 15rem;
 }
 
 .textField {
@@ -36,7 +36,37 @@
     background-image: url(../style/images/61457.png);
 }
 
-.loginButton {
+.firstName {
+    background-image: url(../style/images/user-svgrepo-com.svg);
+    width: 14rem;
+    min-height: 3rem;
+    margin-bottom: 1rem;
+    padding-left: 4rem;
+    background-repeat: no-repeat;
+    background-size: 2rem;
+    background-position: 1rem;
+    font-size: 24px;
+    border: none;
+    background-color: #D0D0D0;
+    border-radius: 2rem;
+}
+
+.lastName {
+    background-image: url(../style/images/user-svgrepo-com.svg);
+    width: 14rem;
+    min-height: 3rem;
+    margin-bottom: 1rem;
+    padding-left: 4rem;
+    background-repeat: no-repeat;
+    background-size: 2rem;
+    background-position: 1rem;
+    font-size: 24px;
+    border: none;
+    background-color: #D0D0D0;
+    border-radius: 2rem;
+}
+
+.registButton {
     width: 36rem;
     min-height: 3rem;
     margin-bottom: 1rem;
@@ -53,7 +83,6 @@
     color: #800000;
     justify-self: left;
     text-decoration: underline;
-
 }
 
 .leftBG {
@@ -84,7 +113,7 @@
 }
 
 .registLogo {
-    padding-top: 8rem;
+    padding-top: 10rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
@@ -93,4 +122,12 @@
     background-repeat: no-repeat;
     background-size: 35rem 10rem;
     position: absolute;
+}
+
+.loginDial{
+    color: white;
+    position: absolute;
+    width: 20rem;
+    justify-content: center;
+    padding-left: 12rem;
 }
