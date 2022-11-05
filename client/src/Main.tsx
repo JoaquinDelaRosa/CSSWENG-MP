@@ -4,7 +4,7 @@ import ViewCustomers from "./components/customers/ViewCustomers";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import OrdersView from "./components/orders/ViewOrders";
-import RegisterUser from "./components/RegisterUser";
+import RegisterUser from "./components/Register";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
