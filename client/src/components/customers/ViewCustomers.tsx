@@ -10,7 +10,6 @@ const CustomerRecord = (props : { customer: Customer }) => {
     return (
         <tr>
             <td> {props.customer.name} </td>
-            <td> {props.customer.type} </td>
             <td> {props.customer.email} </td>
             <td> {props.customer.mobileNumber} </td>
         </tr> 
@@ -28,12 +27,7 @@ const ViewCustomers = () => {
             })
             .then((data) => {
                 const customerList = data.map((value: any) => {
-                    let customer: Customer;
-                            customer = {
-                                name: value.name,
-                        type: value.type,
-                        company: value.company
-                    };
+                    let customer: Customer = value;
                     return customer;
                 });
 
@@ -58,7 +52,6 @@ const ViewCustomers = () => {
                 <thead>
                     <tr>
                         <th> Name </th>
-                        <th> Type </th>
                         <th> Email </th>
                         <th> Mobile Number </th>
                     </tr>

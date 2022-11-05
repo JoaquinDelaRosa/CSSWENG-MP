@@ -79,20 +79,6 @@ const UpdateCustomer = () => {
                       {errors.lastName && <p>Customer Last Name is required</p>}
                   </div>
                   <div>
-                      <label htmlFor="customerTypeId"> Customer Type </label>
-                      <select {...register('customerTypeId', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
-                        <option key={0} value="DEFAULT" disabled>  -- Select Type -- </option>
-                          {
-                              typeIds.map((value, index) => {
-                                  return (
-                                    <option key={index + 1} value={value.id}> {value.name} </option>
-                                  );
-                              })
-                          }
-                      </select>
-                      {errors.customerTypeId && <p>Customer Type ID is required</p>}
-                  </div>
-                  <div>
                       <label htmlFor="email"> Email </label>
                       <input {... register("email", {required: true, 
                                                     pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createAPIEndpoint, ENDPOINTS } from '../../api';
 import { OrderRequest, OrderStatusKVP } from './OrderDetails';
-import { isCustomerExists, isVehicleExists, isInvoiceExists, isOrderExists } from '../../utils/CheckFKExists'; 
+import { isCustomerExists, isVehicleExists, isOrderExists } from '../../utils/CheckFKExists'; 
 import { isAlphaNumeric } from '../../utils/Regex';
 
 const UpdateOrder = () => {
@@ -128,15 +128,6 @@ const UpdateOrder = () => {
                     }})}  type='number' name="vehicleId" id="vehicleId"/>
                     {errors.vehicleId && <p>Vehicle ID is required</p>}
                     <p hidden={vehicleExists}>Vehicle does not exist</p>
-                </div>
-                <div>
-                    <label htmlFor="invoiceId">Invoice ID</label>
-                    <input {... register("invoiceId", {required : false,
-                    onChange: (e) => {
-                        isInvoiceExists(parseInt(e.target.value),setInvoiceExists)
-                    }})} type='number' name="invoiceId" id="invoiceId"/>
-                    {errors.invoiceId && <p>Invoice ID is required</p>}
-                    <p hidden={invoiceExists}>Invoice does not exist</p>
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
