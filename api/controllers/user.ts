@@ -7,8 +7,6 @@ import { Roles } from '../models/enum';
 import { makeUserArrayView, makeUserView } from '../projections/user';
 import { ValidateWrapper } from '../middleware/validation';
 
-const router = express.Router();
-
 const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, [Roles.ADMIN], () => {
         User.find({})

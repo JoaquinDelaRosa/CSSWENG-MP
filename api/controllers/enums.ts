@@ -4,8 +4,6 @@ import { ALL_ROLES, Roles, StatusEnum, TypeEnum } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 import { ValidateWrapper } from '../middleware/validation';
 
-const router = express.Router();
-
 const statuses = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         res.json(StatusEnum)

@@ -4,8 +4,6 @@ import { ALL_ROLES, Roles } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 import { ValidateWrapper } from '../middleware/validation';
 
-const router = express.Router();
-
 const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Customer.find({})

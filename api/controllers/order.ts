@@ -6,8 +6,6 @@ import { Vehicle } from '../models/vehicle';
 import { makeOrderArrayView, makeOrderView } from '../projections/order';
 import { ValidateRole, ValidateWrapper } from '../middleware/validation';
 
-const router = express.Router();
-
 const all = async (req: express.Request, res: express.Response) => {
     ValidateWrapper(req, res, ALL_ROLES, () => {
         Order.find({})
