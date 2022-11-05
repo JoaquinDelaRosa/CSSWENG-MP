@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const BASE_URL = 'https://localhost:5000/'
+export const BASE_URL = 'https://localhost:3000/'
 
 var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key") ! : "no token";
 export const ENDPOINTS = {
-    login: 'authz/Login',
-    register: 'authz/Register',
+    login: 'authz/login',
+    register: 'authz/register',
 
     orderTypes: 'order/types',
     orderStatuses: 'order/statuses',

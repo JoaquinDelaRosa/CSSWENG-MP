@@ -30,6 +30,7 @@ import userRoutes from './routes/user';
 import vehicleRoutes from './routes/vehicle';
 import enumRoutes from './routes/enums';
 
+import indexRoute from './routes/index';
 // route calls
 app.use('/api/authz', authzRoutes);
 app.use('/api/user', userRoutes);
@@ -37,6 +38,7 @@ app.use('/api/vehicle', vehicleRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api', enumRoutes);
+app.use('/', indexRoute);
 
 
 
