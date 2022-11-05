@@ -1,8 +1,8 @@
 import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { rejects } from 'assert';
-import { EncryptionKeyJWT } from '../controllers/authz';
 import { User } from '../models/user';
+import { EncryptionKeyJWT } from '../controllers/encryption';
 
 const JWT = require('jsonwebtoken');
 const router = express.Router();
