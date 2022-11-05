@@ -2,16 +2,12 @@ body {
     background-color: #D4D4D4;
 }
 
-#root{
-    overflow-x: hidden;
-}
-
-
 .FullPage {
 
+    display: block;
     width: 100%;
-    height: 54rem;
-    margin-top: 5rem;
+    height: 41rem;
+    padding-top: 4rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 }

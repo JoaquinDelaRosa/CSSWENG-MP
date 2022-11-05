@@ -1,16 +1,16 @@
 .loginUI {
+
     z-index: 100;
-    display: grid;
-    width: 55%;
+    width: 49rem;
     border: none;
     justify-content: center;
-    padding-top: 20rem;
+    padding-top: 17rem;
 
 }
 
 .textField {
 
-    width: 37rem;
+    width: 32rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     padding-left: 4rem;
@@ -25,7 +25,9 @@
 }
 
 .loginForm {
-    position: relative;
+    width: 52vw;
+    height: 35vh;
+    display: block;
     z-index: 100;
 }
 
@@ -43,7 +45,7 @@
 
 .loginButton {
 
-    width: 41rem;
+    width: 36rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     text-decoration: none;
@@ -70,36 +72,37 @@
     height: 100%;
     background-image: url(../style/images/hotwheels.png);
     background-position: right;
-    background-position-x: 60rem;
+    background-position-x: 50rem;
     background-position-y: -32rem;
     background-repeat: no-repeat;
     position: absolute;
     background-size: 75rem 105rem;
     opacity: 80%;
-    border-radius: 50px;
+    border-radius: 3.1rem;
 }
 
 .loginBox {
+
     position: relative;
     border-color: white;
-    border-radius: 50px;
+    border-radius: 3.1rem;
     border-style: solid;
     background-color: white;
-    width: 90%;
-    height: 90%;
+    width: 90rem;
+    height: 40rem;
     margin: auto;
     padding: 0;
-    border:0
+    border: 0;
 }
 
 .loginLogo {
 
-    padding-top: 15rem;
+    padding-top: 12rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
     background-position: left;
-    background-position-x: 11rem;
+    background-position-x: 6rem;
     background-repeat: no-repeat;
     background-size: 35rem 10rem;
     position: absolute;
