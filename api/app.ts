@@ -22,6 +22,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Enable cors
+const cors = require('cors');
+
+var corsOptions = {
+    origin: 'http://localhost:3006',
+    optionsSuccessStatus: 200 
+  }
+
+app.use(cors(corsOptions));
+app.options("*", cors());
+
 // route imports
 import authzRoutes from './routes/authz';
 import customerRoutes from './routes/customer';
@@ -39,8 +50,6 @@ app.use('/api/order', orderRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api', enumRoutes);
 app.use('/', indexRoute);
-
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
