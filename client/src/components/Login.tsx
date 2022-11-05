@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS, updateToken } from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 
 type LoginState = {
@@ -70,7 +70,14 @@ const Login = () => {
                             <input className="loginButton"
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
-                        <p >Don't have an account? <span className="redDialogue">Sign up now.</span></p>
+                        <p >Don't have an account? 
+                                &nbsp;
+                            <span className="redDialogue">
+                                <Link to= {ROUTES.register}>
+                                 Sign up now.
+                                 </Link>
+                            </span>
+                        </p>
                     </form>
                 </div>
             </div>
