@@ -5,18 +5,27 @@ import { Roles } from "./enum";
 const DEFAULT_ROLE = Roles.VIEW;
 
 export const UserSchema = new mongoose.Schema({
-    id: {type: String, default: randomUUID()},
+    id: {
+        type: String, 
+        default: randomUUID(),
+        require: true
+    },
     firstName: String,
     lastName: String,
     username: {
         type: String,
         unique: true,
+        require : true,
     },
-    password: String,
+    password: {
+        type: String,
+        require: true,
+    },
     role: {
         type: String,
         enum: Roles,
-        default: DEFAULT_ROLE
+        default: DEFAULT_ROLE,
+        require: true,
     },
 });
 

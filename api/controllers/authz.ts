@@ -1,8 +1,7 @@
 import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { User } from '../models/user';
-import { EncryptionKeyJWT } from './encryption';
-const JWT = require('jsonwebtoken');
+import signToken from '../utils/signToken';
 
 const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
@@ -20,18 +19,47 @@ const login = (req : express.Request, res : express.Response) => {
     User.findOne({username : req.body.username})
     .then((user) => {
         if (user) {
-            if (Bcrypt.compareSync(req.body.password, user.password)) {
-                const token = JWT.sign({ id: user.id, role : user.role, }, EncryptionKeyJWT, {expiresIn : '10s'});
-                res.json({success : true, token: token})
-            }
-            else
-                res.json({success : false, error : "Wrong username or password"})
+            Bcrypt.compareSync(req.body.password, user.password, (error, result) => {
+                console.info("Comparing Password")
+                if(error) {
+                    return res.status(401).json({
+                        success : false,
+                        message : "Incorrect Password!"
+                    })
+                } 
+                else if (result) {
+                    const token = signToken(user, (err, token) => {
+                        if (err) {
+                            return res.status(500).json({
+                                success : false,
+                                message : err.message,
+                                error : err,
+                            })
+                        }
+                        else if (token) {
+                            res.status(200).json({
+                                success : true,
+                                message : "Authenticated",
+                                token: token
+                            })
+                        }
+                    });
+                }
+            });
+        } 
+        else {
+            res.json({
+                success : false, 
+                error : "User does not exist",
+            });
         }
-        else
-            res.json({success : false, error : "User does not exist"});
+            
     })
     .catch((error) => {
-        res.json({success : false, error : error});
+        res.json({
+            success : false, 
+            error : error
+        });
     })
 }
 
