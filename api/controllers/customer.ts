@@ -4,6 +4,7 @@ import { ALL_ROLES, Roles } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 
 const all = async (req: express.Request, res: express.Response) => {
+    console.log(res.locals)
     Customer.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))

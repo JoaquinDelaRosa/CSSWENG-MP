@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt = require('jsonwebtoken');
 import config from "../config/authConfig";
 
 
@@ -9,6 +9,8 @@ const signToken = (user,  callback: (error: Error | null, token: string | null) 
     const expirationTimeInSeconds = Math.floor(expirationTime / 1000);
 
     try {
+        console.info("Attempting Sign")
+        console.log(user);
         jwt.sign(
             {
                 id : user.id,

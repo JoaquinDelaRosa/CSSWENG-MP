@@ -19,7 +19,7 @@ const login = (req : express.Request, res : express.Response) => {
     User.findOne({username : req.body.username})
     .then((user) => {
         if (user) {
-            Bcrypt.compareSync(req.body.password, user.password, (error, result) => {
+            Bcrypt.compare(req.body.password, user.password, (error, result) => {
                 console.info("Comparing Password")
                 if(error) {
                     return res.status(401).json({
@@ -28,7 +28,7 @@ const login = (req : express.Request, res : express.Response) => {
                     })
                 } 
                 else if (result) {
-                    const token = signToken(user, (err, token) => {
+                    let token = signToken(user, (err, token) => {
                         if (err) {
                             return res.status(500).json({
                                 success : false,

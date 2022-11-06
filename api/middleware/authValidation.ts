@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt = require("jsonwebtoken");
 import config from "../config/authConfig";
 
 const validateToken = (req : Request, res : Response, next : NextFunction) => {
     let token = req.headers.authorization?.split(' ')[1]; // remove bearer
-
+    console.log("Performing validation")
     if(token) {
         jwt.verify(token, config.token.secret, (error, decoded) => {
             if (error) {
@@ -23,7 +23,5 @@ const validateToken = (req : Request, res : Response, next : NextFunction) => {
         })
     }
 };
-
-
 
 export default validateToken;
