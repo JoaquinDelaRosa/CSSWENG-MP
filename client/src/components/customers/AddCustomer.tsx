@@ -3,6 +3,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { CustomerRequest, CustomerTypeKVP } from './CustomerDetails';
 import { useForm } from 'react-hook-form';
 import { isAlphabetic, isEmail, isMobileNumber } from '../../utils/Regex';
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 
@@ -65,7 +66,7 @@ const AddCustomer = () => {
                       <input {... register("mobileNumber", {required: true, pattern: {
                                                                             value: isMobileNumber,
                                                                             message: "invalid mobile number"}})} 
-                                                                            type="text" name="company"/>
+                                                                            type="text" name="mobileNumber"/>
                       {errors.mobileNumber && <p>Mobile Number is required</p>}
                   </div>
                   <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />

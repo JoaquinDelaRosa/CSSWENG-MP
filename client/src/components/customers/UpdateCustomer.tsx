@@ -91,7 +91,7 @@ const UpdateCustomer = () => {
                       <input {... register("mobileNumber", {required: true, pattern: {
                                                                             value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i,
                                                                             message: "invalid mobile number"}})} 
-                                                                            type="text" name="company"/>
+                                                                            type="text" name="mobileNumber"/>
                       {errors.mobileNumber && <p>Mobile Number is required</p>}
                   </div>
                 <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
