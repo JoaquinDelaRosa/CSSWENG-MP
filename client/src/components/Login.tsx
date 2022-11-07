@@ -22,8 +22,9 @@ const Login = () => {
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
-                console.log(response.data.split("\""));
-                updateToken(response.data.split("\"")[0]);
+                console.log(response);
+                console.log(response.token);
+                updateToken(response.token);
             })
             .then(() => {
                 navigation(ROUTES.orders);
