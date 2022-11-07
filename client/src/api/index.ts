@@ -3,6 +3,7 @@ import axios from "axios";
 export const BASE_URL = 'http://localhost:3000/'
 
 var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key") ! : "no token";
+
 export const ENDPOINTS = {
     login: 'authz/login',
     register: 'authz/register',
@@ -52,7 +53,7 @@ export const updateToken = (key: string) =>{
 export const createAPIEndpoint = (endpoint : string) => {
 
     let url = BASE_URL + 'api/' + endpoint ;
-    console.log(url);
+    console.log(token);
     return {
         fetch: (params?: any, headers:any = 
             {'Content-Type': 'application/json'

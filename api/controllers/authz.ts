@@ -28,7 +28,7 @@ const login = (req : express.Request, res : express.Response) => {
                     })
                 } 
                 else if (result) {
-                    let token = signToken(user, (err, token) => {
+                    let tk = signToken(user, (err, token) => {
                         if (err) {
                             return res.status(500).json({
                                 success : false,
