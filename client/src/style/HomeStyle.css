@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+.FullPage {
+
+    display: block;
+    width: 100%;
+    height: 41rem;
+    padding-top: 4rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+
+.NavWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    z-index: 100;
+}
+
+.Navbar {
+   border: 3px solid red;
+   display: flex;
+   flex-direction: row;
+   height: 100%;
+   width: 100%;
+}
+
+.Logo {
+    background: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.ButtonWrapper {
+    border: 3px solid blue;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    left: 40em;
+    justify-content: flex-start;
+    position: relative;
+
+}
+
+.button {
+    width: 10rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    border-radius: 2rem;
+}
+

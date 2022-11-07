@@ -43,6 +43,11 @@ export const Main = () => {
                 element={<OrdersView/> }
             />
 
+            <Route
+                path={ROUTES.home}
+                element={<Home/>}
+            />
+
 
         </Routes>
     );

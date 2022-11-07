@@ -5,5 +5,6 @@ export const ROUTES = {
     vehicles : "/vehicles",
     orders : "/orders",
     invoices : "/invoices",
-    expenses : "/expenses"
+    expenses : "/expenses",
+    home : "/home"
 }
