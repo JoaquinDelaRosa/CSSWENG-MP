@@ -19,7 +19,7 @@ const Navbar = () => {
                     <Button buttonName={"Orders"} to={ROUTES.orders}/>
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>
                     <Button buttonName={"Vehicles"} to={ROUTES.vehicles}/>
-                    <Button buttonName={"Users"} to={ROUTES.orders}/>
+                    <Button buttonName={"Users"} to={ROUTES.users}/>
                 </div>
             </nav>
             <div className="RedBar"></div>

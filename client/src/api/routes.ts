@@ -6,5 +6,6 @@ export const ROUTES = {
     orders : "/orders",
     invoices : "/invoices",
     expenses : "/expenses",
+    users : '/users',
     home : "/home"
 }

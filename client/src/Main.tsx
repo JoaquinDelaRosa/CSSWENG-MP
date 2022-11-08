@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import AddCustomer from "./components/customers/AddCustomer";
 import ViewCustomers from "./components/customers/ViewCustomers";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -8,6 +7,7 @@ import Register from "./components/Register";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
+import ViewUsers from "./components/users/ViewUsers";
 
 
 export const Main = () => {
@@ -41,6 +41,11 @@ export const Main = () => {
             <Route
                 path={ROUTES.orders }
                 element={<OrdersView/> }
+            />
+
+            <Route
+                path={ROUTES.users }
+                element={<ViewUsers/> }
             />
 
             <Route

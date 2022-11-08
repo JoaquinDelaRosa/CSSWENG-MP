@@ -10,7 +10,7 @@ function App() {
       <div >
           <header >
                 <Navbar/>
-              <Main/>
+                <Main/>
           </header>
       </div>
   );
