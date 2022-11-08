@@ -28,10 +28,13 @@ const ViewCustomers = () => {
             });
     };
 
+    const updateView = async () => {
+        await fetchCustomers();
+    }
+
     useEffect(() => {
         fetchCustomers();
     }, []);
-
 
     return (
         <div className="objectView">
@@ -48,7 +51,7 @@ const ViewCustomers = () => {
 
                 <tbody>
                     {customers.map((value, index) => {
-                        return (<CustomerRecord customer={value} key={index } />);
+                        return (<CustomerRecord customer={value} key={index } observer ={updateView}/>);
                     })}
                 </tbody>
             </table>
