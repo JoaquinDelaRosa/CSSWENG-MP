@@ -6,7 +6,12 @@ const DEFAULT_STATUS = "UNPAID";
 const DEFAULT_TYPE = "PERSONAL";
 
 const OrderSchema = new mongoose.Schema({
-    id: {type: String, default: randomUUID()},
+    id: {
+        type: String, 
+        default: randomUUID(), 
+        require: true,
+        unique: true
+    },
     status: {
         type: String,
         enum: StatusEnum,

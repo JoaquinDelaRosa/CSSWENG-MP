@@ -7,7 +7,12 @@ const validateEmail = (email) => {
 };
 
 export const CustomerSchema = new mongoose.Schema({
-    id: {type: String, default: randomUUID()},
+    id: {
+        type: String,
+        default: randomUUID(), 
+        require: true,
+        unique: true
+    },
     firstName: String,
     lastName: String,
     mobileNumber: String,
