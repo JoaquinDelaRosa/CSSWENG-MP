@@ -13,7 +13,7 @@ const UserRecord = (props : { user: User }) => {
      );
 }
 
-const ViewUsers = () => {
+const UsersView = () => {
 
     const [users, setUsers] = useState([]);
 
@@ -64,4 +64,4 @@ const ViewUsers = () => {
     );
 }
 
-export default ViewUsers;
+export default UsersView;

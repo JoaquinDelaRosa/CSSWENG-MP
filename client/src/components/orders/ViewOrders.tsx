@@ -39,7 +39,7 @@ const OrderRecord = (props : { order: Order}) => {
      );
 }
 
-const ViewOrders = () => {
+const OrdersView = () => {
 
     const [orders, setOrders] = useState([]);
 
@@ -103,4 +103,4 @@ const ViewOrders = () => {
     );
 }
 
-export default ViewOrders;
+export default OrdersView;
