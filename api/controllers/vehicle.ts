@@ -2,6 +2,7 @@ import  express = require('express');
 import { Vehicle } from '../models/vehicle';
 import { ALL_ROLES, Roles } from '../models/enum';
 import { makeVehicleArrayView, makeVehicleView } from '../projections/vehicle';
+import { randomUUID } from 'crypto';
 
 const all = async (req: express.Request, res: express.Response) => {
     Vehicle.find({})
@@ -20,7 +21,7 @@ const id = async (req: express.Request, res: express.Response) => {
 };
 
 const create = (req: express.Request, res: express.Response) => {
-    Vehicle.create(req.body, (error, result) => {
+    Vehicle.create({...req.body, id: randomUUID()}, (error, result) => {
         if (error){
             console.log(error);
         }

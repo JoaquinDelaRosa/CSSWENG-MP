@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import express = require('express');
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
@@ -34,7 +35,7 @@ const create = async (req: express.Request, res: express.Response) => {
         res.end();
     }
     
-    Order.create(req.body, (error, result) => {
+    Order.create({...req.body, id: randomUUID()}, (error, result) => {
         console.log(error);
         return result;
     });
