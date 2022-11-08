@@ -30,9 +30,9 @@ label{
     padding: 10px;
     float: left;
     clear: left;
-    width: 430px;
+    width: 300px;
     height: 20px;
-    text-align: right;
+    text-align: left;
 }
 
 input[type=text] select {
@@ -54,15 +54,6 @@ p {
     min-height: 100px;
     max-height: 500px;
     overflow: auto;
-}
-
-form > div {
-    min-height: 5px;
-    max-height: 80px;
-    overflow: visible;
-    display: grid;
-    grid-template-columns: max-content 50% max-content;
-    grid-gap: 5px;
 }
 
 form > div > p {
