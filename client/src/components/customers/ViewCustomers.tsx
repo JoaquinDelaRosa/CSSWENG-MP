@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { ModalWrapper } from "../ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
@@ -60,9 +61,9 @@ const ViewCustomers = () => {
                     })}
                 </tbody>
             </table>
-
-            
-            <CreateCustomer observer = {updateView}/>
+            <ModalWrapper name="Create Customer"> 
+                <CreateCustomer observer={updateView}/>
+            </ModalWrapper>
         </div>      
     );
 }
