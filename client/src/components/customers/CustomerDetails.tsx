@@ -14,6 +14,6 @@ export interface CustomerTypeKVP {
 export interface Customer {
     id : string,
     name: string,
-    mobileNumber? : string,
-    email? : string
+    mobileNumber : string,
+    email : string
 }

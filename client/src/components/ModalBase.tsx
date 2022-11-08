@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "../style/Modal.css"
 
 export const ModalWrapper = (props : {children : any, name : string}) => {

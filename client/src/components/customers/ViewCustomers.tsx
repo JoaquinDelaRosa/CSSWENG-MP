@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
@@ -9,8 +8,6 @@ import { CustomerRecord } from "./CustomerRecord";
 const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
-
-    const location = useLocation();
 
     const fetchCustomers = async () => {
         await createAPIEndpoint(ENDPOINTS.customers).fetch()
@@ -27,7 +24,6 @@ const ViewCustomers = () => {
             })
             .then((list) => {
                 setCustomers(list);
-                console.log(list);
             })
             .catch((err) => {
                 console.log(err);
