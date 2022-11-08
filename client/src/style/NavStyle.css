@@ -5,7 +5,7 @@
 }
 
 
-.NavWrapper {
+.navWrapper {
     position: static;
     top: 0;
     left: 0;
@@ -16,7 +16,7 @@
     margin-bottom: 1.5em;
 }
 
-.Navbar {
+.navbar {
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -25,7 +25,7 @@
 }
 
 
-.ButtonWrapper {
+.buttonWrapper {
     overflow: hidden;
     white-space: nowrap;
     display: flex;

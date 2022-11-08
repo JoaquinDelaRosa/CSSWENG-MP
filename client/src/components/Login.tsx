@@ -38,7 +38,7 @@ const Login = () => {
     }
 
     return (
-        <div className="FullPage" >
+        <div className="fullPage" >
             <div className="loginBox">
                 <div className="loginLogo">
                 </div>

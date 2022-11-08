@@ -12,10 +12,10 @@ const Button = (props: {buttonName : string, to: string}) => {
 const Navbar = () => {
     
     return (
-        <header className="NavWrapper">
-            <nav className="Navbar">
-                <img className="Logo" src={require("../style/images/TOPTECH AUTOWORKS LOGO.png")} alt="logo"></img>
-                <div className={"ButtonWrapper"}>
+        <header className="navWrapper">
+            <nav className="navbar">
+                <img className="logo" src={require("../style/images/TOPTECH AUTOWORKS LOGO.png")} alt="logo"></img>
+                <div className={"buttonWrapper"}>
                     <Button buttonName={"Orders"} to={ROUTES.orders}/>
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>
                     <Button buttonName={"Vehicles"} to={ROUTES.vehicles}/>
