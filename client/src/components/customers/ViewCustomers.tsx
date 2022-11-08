@@ -1,22 +1,7 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import AddCustomer from "./AddCustomer";
 import { Customer } from "./CustomerDetails";
-import DeleteCustomer from "./DeleteCustomer";
-import UpdateCustomer from "./UpdateCustomer";
-
-
-const CustomerRecord = (props : { customer: Customer }) => {
-    return (
-        <tr>
-            <td></td>
-            <td></td>
-            <td> {props.customer.name} </td>
-            <td> {props.customer.email} </td>
-            <td> {props.customer.mobileNumber} </td>
-        </tr> 
-     );
-}
+import { CustomerRecord } from "./CustomerRecord";
 
 const ViewCustomers = () => {
 
@@ -67,9 +52,6 @@ const ViewCustomers = () => {
                     })}
                 </tbody>
             </table>
-            <AddCustomer />
-            <UpdateCustomer />
-            <DeleteCustomer />
         </div>      
     );
 }
