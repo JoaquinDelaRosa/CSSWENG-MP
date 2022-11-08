@@ -1,15 +1,14 @@
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat';
+    
 }
 
-.FullPage {
-
+html {
     display: block;
     width: 100%;
-    height: 41rem;
-    padding-top: 4rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
+    height: 100%;
+    background-color: #17190d;
 }
 
 .NavWrapper {
@@ -17,48 +16,63 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 10%;
+    height: 5em;
     z-index: 100;
+	padding-bottom: .5em;
 }
 
 .Navbar {
-   border: 3px solid red;
-   display: flex;
-   flex-direction: row;
-   height: 100%;
-   width: 100%;
-}
-
-.Logo {
-    background: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.ButtonWrapper {
-    border: 3px solid blue;
-    overflow: hidden;
+    background-color: white;
     display: flex;
     flex-direction: row;
     height: 100%;
-    left: 40em;
-    justify-content: flex-start;
-    position: relative;
-
+    width: 100%;
 }
 
-.button {
-    width: 10rem;
-    margin-bottom: 1rem;
-    text-decoration: none;
-    font-size: 24px;
-    color: white;
-    border: none;
-    cursor: pointer;
 
-    border-radius: 2rem;
+.ButtonWrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    left: 60vw;
+    justify-content: space-between;
+    position: sticky;
+}
+
+
+.navButton {
+    background-color: white;
+    border: none;
+    color: #960b0b;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.6em;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.7rem 1.3rem;
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.navButton:hover {
+    background-color: #960b0b;
+    color: white;
+}
+
+@media only screen and (max-width: 1200px) {
+    .Logo {
+        display: none;
+    }
+
+    .ButtonWrapper {
+        position: static;
+    }
+}
+
+.RedBar {
+    width: 100%;
+    height: 10%;
+    background-color: #960b0b;
 }
 
