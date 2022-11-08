@@ -1,6 +1,8 @@
+import OrdersView from "./orders/ViewOrders";
+
 const Home = () => {
     return (
-        <header> Home Page</header>
+        <OrdersView/>
     );
 }
 
