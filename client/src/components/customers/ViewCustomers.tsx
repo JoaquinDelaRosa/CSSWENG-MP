@@ -9,6 +9,8 @@ import UpdateCustomer from "./UpdateCustomer";
 const CustomerRecord = (props : { customer: Customer }) => {
     return (
         <tr>
+            <td></td>
+            <td></td>
             <td> {props.customer.name} </td>
             <td> {props.customer.email} </td>
             <td> {props.customer.mobileNumber} </td>
@@ -51,6 +53,8 @@ const ViewCustomers = () => {
             <table>
                 <thead>
                     <tr>
+                        <th> </th>
+                        <th> </th>
                         <th> Name </th>
                         <th> Email </th>
                         <th> Mobile Number </th>

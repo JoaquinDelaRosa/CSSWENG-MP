@@ -6,13 +6,14 @@
 
 
 .NavWrapper {
-    position: fixed;
+    position: static;
     top: 0;
     left: 0;
     width: 100%;
     height: 5em;
     z-index: 100;
 	padding-bottom: .5em;
+    margin-bottom: 1.5em;
 }
 
 .Navbar {
