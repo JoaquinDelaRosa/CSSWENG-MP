@@ -18,8 +18,8 @@ export const ModalWrapper = (props : {children : any, name : string}) => {
                 </div>
             )}
             {isVisible && (
-            <div className="modal"> 
-                <div className="modalBackground">
+            <div className="modal" onClick={() => {cancel();}}> 
+                <div className="modalBackground" onClick={(e) => {e.stopPropagation();}}>
                     <div className="modalContent">
                         {props.children}
                         <button onClick={() => {cancel()}}> Close </button>
