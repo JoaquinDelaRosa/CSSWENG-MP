@@ -4,7 +4,7 @@ export const makeCustomerView = (document) => {
         name: {
             firstName: document.firstName,
             lastName: document.lastName,
-            val: document.firstName + document.lastName,
+            val: document.firstName + " " +  document.lastName,
         },
         mobileNumber: document.mobileNumber,
         email: document.email
