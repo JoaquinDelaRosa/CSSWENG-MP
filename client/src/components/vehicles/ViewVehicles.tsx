@@ -60,7 +60,7 @@ const ViewVehicles = () => {
                 </tbody>
             </table>
 
-            <ModalWrapper name="Create Vehicle">
+            <ModalWrapper front={"Create Vehicle"}>
                 <CreateVehicle observer={updateView}/>
             </ModalWrapper>
 

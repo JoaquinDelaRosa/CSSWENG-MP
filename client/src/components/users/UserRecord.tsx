@@ -38,7 +38,7 @@ export const UpdateUser = (props : {user : User, observer : Function}) => {
 
     return (
         <div>
-          <ModalWrapper name="Edit">
+          <ModalWrapper front={"Edit"}>
             <RequestUser setResponse={setData} default={props.user}/>
           </ModalWrapper>
         </div>

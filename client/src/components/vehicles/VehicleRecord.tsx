@@ -39,7 +39,7 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
 
     return (
         <div>
-          <ModalWrapper name="Edit">
+          <ModalWrapper front={"Edit"}>
             <RequestVehicle setResponse={setData} default={props.vehicle}/>
           </ModalWrapper>
         </div>

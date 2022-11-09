@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "../style/Modal.css"
 
-export const ModalWrapper = (props : {children : any, name : string}) => {
+export const ModalWrapper = (props : {front : any, children : any}) => {
 
     const [isVisible, setIsVisible] = useState(false);
-
 
     const cancel = () => {
         setIsVisible(false)
@@ -13,8 +12,10 @@ export const ModalWrapper = (props : {children : any, name : string}) => {
     return (
         <>
             {!isVisible && (
-                <div>
-                    <button onClick={() => {setIsVisible(true)}}> {props.name} </button>
+                <div> 
+                    <button onClick={() => {setIsVisible(true)}}> 
+                        {props.front}
+                    </button>
                 </div>
             )}
             {isVisible && (

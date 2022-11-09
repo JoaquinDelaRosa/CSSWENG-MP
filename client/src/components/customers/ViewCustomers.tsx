@@ -61,7 +61,7 @@ const ViewCustomers = () => {
                     </tbody>
                 </table>
                 <br />
-                <ModalWrapper name="Create Customer"> 
+                <ModalWrapper front={"Create Customer"}> 
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>
             </div>

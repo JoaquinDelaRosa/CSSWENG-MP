@@ -56,7 +56,7 @@ const UsersView = () => {
                 </tbody>
             </table>
             
-            <ModalWrapper name="Create User"> 
+            <ModalWrapper front={"Create User"}> 
                 <CreateUser observer={updateView}/>
             </ModalWrapper>
         </div>      

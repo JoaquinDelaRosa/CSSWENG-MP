@@ -39,7 +39,12 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
 
     return (
         <div>
-          <ModalWrapper name="Edit">
+          <ModalWrapper front={
+            <>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                <div><i className="fa fa-close"></i></div>
+            </>
+          }>
             <RequestCustomer setResponse={setData} default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
           </ModalWrapper>
         </div>
@@ -55,8 +60,6 @@ export const CustomerRecord = (props : { customer: Customer , observer : Functio
             <td> {props.customer.name.val} </td>
             <td> {props.customer.email} </td>
             <td> {props.customer.mobileNumber} </td>
-            </tr>
-        
-         
+            </tr> 
      );
 }
