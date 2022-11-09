@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { ModalWrapper } from "../ModalBase";
+import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
-
-
-const UserRecord = (props : { user: User }) => {
-    return (
-        <tr>
-            <td> {props.user.firstName} </td>
-            <td> {props.user.lastName} </td>
-            <td> {props.user.username} </td>
-        </tr> 
-     );
-}
+import { UserRecord } from "./UserRecord";
 
 const UsersView = () => {
 
     const [users, setUsers] = useState([]);
 
     const fetchUsers = async () => {
-        await createAPIEndpoint(ENDPOINTS.customers).fetch()
+        await createAPIEndpoint(ENDPOINTS.users).fetch()
             .then((response) => {
                 return response.data;
             })
@@ -38,10 +30,13 @@ const UsersView = () => {
             });
     };
 
+    const updateView = async () => {
+        fetchUsers();
+    }
+
     useEffect(() => {
         fetchUsers();
     }, []);
-
 
     return (
         <div className="objectView">
@@ -56,10 +51,14 @@ const UsersView = () => {
 
                 <tbody>
                     {users.map((value, index) => {
-                        return (<UserRecord user={value} key={index } />);
+                        return (<UserRecord user={value} key={index } observer={updateView} />);
                     })}
                 </tbody>
             </table>
+            
+            <ModalWrapper name="Create User"> 
+                <CreateUser observer={updateView}/>
+            </ModalWrapper>
         </div>      
     );
 }
