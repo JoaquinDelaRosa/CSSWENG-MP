@@ -1,6 +1,6 @@
 import { Customer } from "../customers/CustomerDetails"
-import { Expense } from "../expenses/ExpenseDetails"
-import { Invoice, InvoiceRequest } from "../invoice/InvoiceDetails"
+import { Expense } from "./ExpenseDetails"
+import { Invoice, InvoiceRequest } from "./InvoiceDetails"
 import { Vehicle } from "../vehicles/VehicleDetails"
 
 export interface OrderStatusKVP {
