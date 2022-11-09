@@ -61,17 +61,29 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div>
                 <div>
                     <label >Time In</label>
-                    <input {...register('timeIn', {required: true, valueAsDate : true})}
-                        type='date' name="timeIn" id ="timeIn"/>
+                    <input {...register('timeIn', {
+                        required: true, valueAsDate : true, validate: {
+                            isAfterTimeIn: (v) =>{
+                                if(isNaN(v.valueOf()))
+                                    return false;
+                                return getValues("timeOut") >= getValues("timeIn");
+                            }
+                        }
+                     })} type='date' name="timeIn" id ="timeIn"/>
+                     {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
                 <div>
                     <label>Time Out</label>
                     <input  {...register('timeOut', {
-                        required: true, valueAsDate: true, validate: {
-                            isAfterTimeIn: v => getValues("timeOut") >= getValues("timeIn")
+                        required: false ,valueAsDate: true, validate: {
+                            isAfterTimeIn: (v) =>{
+                                if(isNaN(v.valueOf()))
+                                    return true;
+                                return getValues("timeOut") >= getValues("timeIn");
+                            }
                         }
                     })}
-                        type='date' name="timeOut"/>
+                        type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 <div>
