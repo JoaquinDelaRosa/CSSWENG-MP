@@ -38,7 +38,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
     return (
         <div>
           <ModalWrapper name="Edit">
-            <RequestCustomer setResponse={setData} default={{firstName: "", lastName: "", ...props.customer}}/>
+            <RequestCustomer setResponse={setData} default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
           </ModalWrapper>
         </div>
     )
@@ -49,7 +49,7 @@ export const CustomerRecord = (props : { customer: Customer , observer : Functio
         <tr>
             <td> <DeleteCustomer customer={props.customer} observer={props.observer}/></td>
             <td> <UpdateCustomer customer={props.customer} observer={props.observer}/></td>
-            <td> {props.customer.name} </td>
+            <td> {props.customer.name.val} </td>
             <td> {props.customer.email} </td>
             <td> {props.customer.mobileNumber} </td>
         </tr> 

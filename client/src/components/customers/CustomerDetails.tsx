@@ -13,7 +13,11 @@ export interface CustomerTypeKVP {
 
 export interface Customer {
     id : string,
-    name: string,
+    name: {
+        firstName: string,
+        lastName: string,
+        val: string,
+    },
     mobileNumber : string,
     email : string
 }
