@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { Customer, CustomerRequest } from "../customers/CustomerDetails";
-import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../ModalBase";
 import { RequestVehicle } from "./RequestVehicle";
 import { Vehicle, VehicleRequest } from "./VehicleDetails";
@@ -35,6 +33,7 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
         .catch(function (error) {
             console.log(error);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
     return (

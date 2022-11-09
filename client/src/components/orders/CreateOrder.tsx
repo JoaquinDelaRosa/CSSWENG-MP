@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { RequestOrder } from "./RequestOrder";
 

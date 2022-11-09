@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Order, OrderRequest } from "./OrderDetails";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../ModalBase";
-import { RequestVehicle } from "../vehicles/RequestVehicle";
 import { RequestOrder } from "./RequestOrder";
 
 const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
