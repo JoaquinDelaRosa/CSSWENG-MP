@@ -47,7 +47,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
-                    <select {...register('status', {required: true})} defaultValue="DEFAULT">
+                    <select {...register('status', {required: true})} 
+                        defaultValue= {(props.default && props.default.status) ? 
+                            props.default.status : "DEFAULT"}>
                         <option value="DEFAULT" disabled>-- Select Status --</option>
                         {
                             statuses.map((value, index) => {
@@ -69,7 +71,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn");
                             }
                         }
-                     })} type='date' name="timeIn" id ="timeIn"/>
+                     })} type='date' name="timeIn" id ="timeIn" value= {(props.default && props.default.timeIn) ? 
+                        props.default.timeIn.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'}).
+                        replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "DEFAULT"}/>
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
                 <div>
@@ -83,12 +87,16 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             }
                         }
                     })}
-                        type='date' name="timeOut" id="timeOut"/>
+                        type='date' name="timeOut" id="timeOut" value= {(props.default && props.default.timeOut) ? 
+                            props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'}).
+                            replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "DEFAULT"}/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 <div>
                     <label>Customer Type</label>
-                    <select {...register('type', {required: true})} defaultValue="DEFAULT">
+                    <select {...register('type', {required: true})} 
+                        defaultValue= {(props.default && props.default.type) ? 
+                            props.default.type.valueOf() : "DEFAULT"}>
                         <option value="DEFAULT" disabled>-- Select Type --</option>
                         {
                             types.map((value, index) => {
@@ -103,12 +111,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : true})}  
-                        type='text' name="company" id="company" />
+                        type='text' name="company" id="company" defaultValue={props.default?.company}/>
                     {errors.company && <p>Company is required</p>}
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
-                    <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber"/>
+                    <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
                     {errors.estimateNumber && <p>Estimate Code is required</p>}
                 </div>
                 <div>
