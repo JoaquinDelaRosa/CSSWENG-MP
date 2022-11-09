@@ -96,9 +96,6 @@ const OrdersView = () => {
                     })}
                 </tbody>
             </table>
-            <AddOrder />
-            <UpdateOrder />
-            <DeleteOrder />
         </div>      
     );
 }

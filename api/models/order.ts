@@ -42,8 +42,11 @@ const OrderSchema = new mongoose.Schema({
         dateRecorded: Date,
         description: String,
         amount: mongoose.Types.Decimal128,
-    }]
-
+    }],
+    verified: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 export const Order = mongoose.model('Order', OrderSchema);
