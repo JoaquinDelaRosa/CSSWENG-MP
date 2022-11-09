@@ -1,29 +1,19 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { VehicleRequest } from './VehicleDetails';
-import { useForm } from 'react-hook-form';
-import { isAlphabetic, isAlphaNumeric, isLicensePlate } from '../../utils/Regex';
+import { useForm } from "react-hook-form";
+import { isAlphabetic, isAlphaNumeric, isLicensePlate } from "../../utils/Regex";
+import { VehicleRequest } from "./VehicleDetails";
 
-
-const AddVehicle = () => {
+export const RequestVehicle = (props : {setResponse : Function, default? : VehicleRequest}) => {
+    
     const year = (new Date()).getFullYear();
     const years = Array.from(new Array(100),( val, index) => year - index);
-
     const {register, handleSubmit, formState: {errors}} = useForm<VehicleRequest>()
-    
+
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.addVehicle).post(data)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-   });
-        
-    
+        props.setResponse(data);
+    });
+
     return (
         <div>
-            <p>Create Vehicle</p>
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
@@ -59,8 +49,6 @@ const AddVehicle = () => {
                 </div>
                 <input type="button" name="submit" onClick={onSubmit} value={"Submit"}/>
             </form>
-        </div>
-    )
+        </div> 
+    );
 }
-
-export default AddVehicle;

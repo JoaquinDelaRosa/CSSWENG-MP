@@ -5,7 +5,6 @@ import { ALL_ROLES, Roles } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 
 const all = async (req: express.Request, res: express.Response) => {
-    console.log(res.locals)
     Customer.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
@@ -23,7 +22,9 @@ const id = async (req: express.Request, res: express.Response) => {
 
 const create = (req: express.Request, res: express.Response) => {
     Customer.create({...req.body, id: randomUUID()}, (error, result) => {
-        console.log(error);
+        if (error){
+            console.log(error);
+        }
         return result;
     })
     res.json(req.body);
