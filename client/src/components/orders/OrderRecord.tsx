@@ -1,4 +1,5 @@
 import { Order } from "./OrderDetails";
+import { createAPIEndpoint, ENDPOINTS } from "../../api";
 
 const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -12,10 +13,28 @@ const DateEntry = (props: { date: string }) => {
     );
 }
 
+export const DeleteOrder = (props : {order : Order, observer : Function}) => {
+    const onSubmit = () => {
+        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : props.order.id})
+            .then((response) => {
+                props.observer();
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
-export const OrderRecord = (props : { order: Order}) => {
+    return (
+      <div>
+        <button onClick={onSubmit}> Delete </button>
+      </div> 
+    );
+}
+
+export const OrderRecord = (props : { order: Order, observer: Function }) => {
     return (
         <tr>
+            <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
             <td> {props.order.status} </td>
 
             <DateEntry date={props.order.timeIn} />

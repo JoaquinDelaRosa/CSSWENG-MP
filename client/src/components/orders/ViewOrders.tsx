@@ -59,7 +59,7 @@ const OrdersView = () => {
                 </thead>
                 <tbody>
                     {orders.map((value, index) => {
-                        return (<OrderRecord order={value} key={index } />);
+                        return (<OrderRecord order={value} key={index } observer={updateView}/>);
                     })}
                 </tbody>
             </table>
