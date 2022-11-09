@@ -1,8 +1,4 @@
 {
-  "name": "CSSWENG-MP",
-  "lockfileVersion": 2,
-  "requires": true,
-  "packages": {},
   "scripts": {
     "start" : "cd api && npm run start && cd ../client && npm run start " 
   }
