@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { OrderRequest, OrderStatusKVP } from './OrderDetails';
-import { isCustomerExists, isVehicleExists } from '../../utils/CheckFKExists'; 
-import { useForm } from 'react-hook-form';
-import { isAlphaNumeric, isLicensePlate } from '../../utils/Regex';
+import { isCustomerExists } from "../../utils/CheckFKExists";
+import { isAlphabetic, isAlphaNumeric, isEmail, isMobileNumber } from "../../utils/Regex";
+import { Order, OrderRequest } from "./OrderDetails";
 
-const AddOrder = () => {
-    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>()
-    const [typeIds, setTypeIds] = useState<Array<OrderStatusKVP>>([]);
-    const [customerExists, setCustomerExists] = useState<boolean>(true);
-    const [vehicleExists, setVehicleExists] = useState<boolean>(true);
-    const [invoiceExists, setInvoiceExists] = useState<boolean>(true);
+export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
     
+    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>();
+    const [statuses, setStatuses] = useState<Array<string>>([]);
+    const [types, setTypes] = useState<Array<string>>([]);
+    const [customerExists, setCustomerExists] = useState<boolean>(true);
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
             .then((response) => {
                 return response.data;
             })
-            .then((response: Array<OrderStatusKVP>) => {
-                setTypeIds(response);
+            .then((response: Array<string>) => {
+                setStatuses(response);
             })
             .catch((err) => {
                 console.log(err);
@@ -27,28 +26,21 @@ const AddOrder = () => {
     }, [])
 
     const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.addOrder).post(data)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    })
+        props.setResponse(data);
+    });
 
     return (
-        <div className="FormDiv">
-            <p> Add </p>
+        <div>
             <form onSubmit={onSubmit}>
-                <div>
+            <div>
                     <label>Order Status</label>
                     <select {...register('status', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
                         <option value="DEFAULT" disabled>-- Select Status --</option>
                         {
-                            typeIds.map((value, index) => {
+                            statuses.map((value, index) => {
                                 return (
                                     <option key={index + 1}
-                                        value={value.id}> {value.name} </option>
+                                        value={value}> {value} </option>
                                 );
                             })
                         }
@@ -80,25 +72,10 @@ const AddOrder = () => {
                     <p hidden={customerExists}>Customer does not exist</p>
                 </div>
                 <div>
-                    <label htmlFor="customerTypeId">Customer Type ID</label>
-                    <input {... register("customerTypeId", {required : true})}  
-                        type='number' name="customerTypeId" id="customerTypeId" />
-                    {errors.customerTypeId && <p>Customer Type ID is required</p>}
-                </div>
-                <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : true})}  
                         type='text' name="company" id="company" />
                     {errors.company && <p>Company is required</p>}
-                </div>
-                <div> 
-                    <label htmlFor="vehicleId">Vehicle ID</label>
-                    <input {... register("vehicleId", {required : true, 
-                    onChange: (e) => {
-                        isVehicleExists(parseInt(e.target.value),setVehicleExists)
-                    }})}  type='number' name="vehicleId" id="vehicleId"/>
-                    {errors.vehicleId && <p>Vehicle ID is required</p>}
-                    <p hidden={vehicleExists}>Vehicle does not exist</p>
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
@@ -109,11 +86,9 @@ const AddOrder = () => {
                     <label htmlFor="scopeOfWork">Scope of Work</label>
                     <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
-                </div>      
-                <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
+                </div>
+                <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
             </form>
-        </div>
+        </div> 
     );
 }
-
-export default AddOrder;

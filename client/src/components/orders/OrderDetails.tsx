@@ -3,11 +3,6 @@ import { Expense } from "./ExpenseDetails"
 import { Invoice, InvoiceRequest } from "./InvoiceDetails"
 import { Vehicle } from "../vehicles/VehicleDetails"
 
-export interface OrderStatusKVP {
-    id: number,
-    name: string
-}
-
 export interface OrderRequest {
     status: string,
     timeIn: Date,

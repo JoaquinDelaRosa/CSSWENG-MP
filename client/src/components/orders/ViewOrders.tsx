@@ -1,43 +1,9 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import AddOrder from "./AddOrder";
-import DeleteOrder from "./DeleteOrder";
+import { ModalWrapper } from "../ModalBase";
+import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
-import UpdateOrder from "./UpdateOrder";
-
-const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-const DateEntry = (props: { date: string }) => {
-    const d: Date = new Date(props.date);
-
-    return (
-        <>
-            <td> {MONTHS[d.getMonth()]}</td>
-            <td> {d.getDate()}</td>
-            <td> {d.getFullYear()}</td> 
-        </>
-    );
-}
-
-const OrderRecord = (props : { order: Order}) => {
-    return (
-        <tr>
-            <td> {props.order.id} </td>
-            <td> {props.order.status} </td>
-
-            <DateEntry date={props.order.timeIn} />
-            <DateEntry date={props.order.timeOut} />
-
-            <td> {props.order.customerDetails.name.val}</td>
-            <td> {props.order.vehicleDetails.licensePlate }</td>
-            <td> {props.order.invoiceDetails.id}</td>
-
-            <td> {props.order.estimateNumber}</td>
-            <td> {props.order.scopeOfWork}</td>
-
-        </tr> 
-     );
-}
+import { OrderRecord } from "./OrderRecord";
 
 const OrdersView = () => {
 
@@ -68,6 +34,11 @@ const OrdersView = () => {
         fetchOrders();
     }, []);
 
+    
+    const updateView = async () => {
+        fetchOrders();
+    }
+
 
     return (
         <div className="objectView">
@@ -76,18 +47,14 @@ const OrdersView = () => {
                     <tr>
                         <th> ID </th>
                         <th> Status </th>
-                        <th> Time In Month </th>
-                        <th> Time In Day </th>
-                        <th> Time In Year </th>
-                        <th> Time Out Month </th>
-                        <th> Time Out Day </th>
-                        <th> Time Out Year </th>
+                        <th> Time In </th>
+                        <th> Time Out </th>
                         <th> Customer Name </th>
                         <th> License Plate </th>
-                        <th> Invoice ID </th>
+                        <th> Invoice Details </th>
                         <th> Estimate Number </th>
                         <th> Scope of Work </th>
-                        <th> Estimate </th>
+                        <th> Expenses </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +63,10 @@ const OrdersView = () => {
                     })}
                 </tbody>
             </table>
+
+            <ModalWrapper front={"Create Order"}>
+                <CreateOrder observer={updateView}/>
+            </ModalWrapper>
         </div>      
     );
 }
