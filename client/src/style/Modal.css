@@ -1,4 +1,5 @@
 .modal {
+    font: 'Montserrat';
     position: fixed;
     left: 0;
     top: 0;
@@ -15,9 +16,23 @@
 }
 
 .modalBackground {
-    background-color: #FFFFFF;
+    background-color: #F4F4F4;
 }
 
 .modalContent {
     align-items: center;
+    padding: 10px;
+}
+
+.closeButton {
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.closeButton > button {
+    position: relative;
+    float: right;
+    border: none;
+    font: "Montserrat";
+    font-weight: 900;
 }
