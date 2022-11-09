@@ -8,7 +8,7 @@ import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
-import { Logout } from "./components/vehicles/Logout";
+import { Logout } from "./components/Logout";
 
 
 export const Main = () => {

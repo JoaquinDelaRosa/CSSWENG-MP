@@ -1,5 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ROUTES } from "../../api/routes";
+import { createAPIEndpoint, ENDPOINTS } from "../api";
+import { ROUTES } from "../api/routes";
 
 export const Logout = () => {
 

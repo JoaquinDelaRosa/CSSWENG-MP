@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../api/routes";
 import "../style/NavStyle.css"
-import { Logout } from "./vehicles/Logout";
+import { Logout } from "./Logout";
 
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
