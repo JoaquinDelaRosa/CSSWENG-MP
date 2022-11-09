@@ -41,6 +41,7 @@ const ViewCustomers = () => {
 
     return (
         <div className="FullPage">
+            <br />
             <div className="objectView">
                 <table className="tableDiv">
                     <thead>
@@ -52,13 +53,14 @@ const ViewCustomers = () => {
                             <th> Mobile Number </th>
                         </tr>
                     </thead>
-
-                    <tbody>
+                
+                    <tbody className="tbodyDiv">
                         {customers.map((value, index) => {
                             return (<CustomerRecord customer={value} key={index } observer ={updateView}/>);
                         })}
                     </tbody>
                 </table>
+                <br />
                 <ModalWrapper name="Create Customer"> 
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>
