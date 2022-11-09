@@ -17,7 +17,7 @@ export const ENDPOINTS = {
     customers: 'customer/all',
     getCustomer: 'customer/id',
     addCustomer: 'customer/create',
-    updateCustomer: 'ccustomer/update',
+    updateCustomer: 'customer/update',
     deleteCustomer: 'customer/delete',
     filterCustomer: 'customer/filter',
 
@@ -53,7 +53,6 @@ export const updateToken = (key: string) =>{
 export const createAPIEndpoint = (endpoint : string) => {
 
     let url = BASE_URL + 'api/' + endpoint ;
-    console.log(token);
     return {
         fetch: (params?: any, headers:any = 
             {'Content-Type': 'application/json'

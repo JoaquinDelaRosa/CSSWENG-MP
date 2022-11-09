@@ -8,7 +8,8 @@ export const UserSchema = new mongoose.Schema({
     id: {
         type: String, 
         default: randomUUID(),
-        require: true
+        require: true,
+        unique: true
     },
     firstName: String,
     lastName: String,

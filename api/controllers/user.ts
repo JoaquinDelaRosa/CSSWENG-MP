@@ -2,6 +2,7 @@ import express = require('express');
 import { User } from '../models/user';
 import { Roles } from '../models/enum';
 import { makeUserArrayView, makeUserView } from '../projections/user';
+import { randomUUID } from 'crypto';
 
 const all = async (req: express.Request, res: express.Response) => {
         User.find({})
@@ -20,7 +21,7 @@ const id = async (req: express.Request, res: express.Response) => {
 }
 
 const create = (req: express.Request, res: express.Response) => {
-        User.create(req.body, (error, result) => {
+        User.create({...req.body, id: randomUUID()}, (error, result) => {
             console.log(error);
             return result;
         })
