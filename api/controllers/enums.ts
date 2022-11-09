@@ -1,6 +1,6 @@
 import express = require('express');
 import { Customer } from '../models/customer';
-import { Roles, StatusEnum, TypeEnum } from '../models/enum';
+import { ALL_ROLES, Roles, StatusEnum, TypeEnum } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 
 const statuses = async (req: express.Request, res: express.Response) => {
@@ -9,7 +9,7 @@ const statuses = async (req: express.Request, res: express.Response) => {
 }
 
 const roles = async (req: express.Request, res: express.Response) => {
-    res.json(Roles)
+    res.json(ALL_ROLES)
     res.end()
 }
 

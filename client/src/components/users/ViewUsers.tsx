@@ -48,6 +48,7 @@ const UsersView = () => {
                         <th> First Name </th>
                         <th> Last Name</th>
                         <th> Username </th>
+                        <th> Role </th>
                     </tr>
                 </thead>
 

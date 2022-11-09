@@ -1,11 +1,28 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphabetic } from "../../utils/Regex";
 import { UserRequest } from "./UserDetails";
 
 export const RequestUser = (props : {setResponse : Function, default? : UserRequest}) => {
     
-    const {register, handleSubmit, formState: {errors}} = useForm<UserRequest>()
+    const {register, handleSubmit, formState: {errors}} = useForm<UserRequest>();
+    const [roles, setRoles] = useState<Array<string>>([]);
+    
+    useEffect(() => {
+        createAPIEndpoint(ENDPOINTS.userRoles).fetch()
+            .then((response) => {
+                return response.data;
+            })
+            .then((response: Array<string>) => {
+                setRoles(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
 
+    
     const onSubmit = handleSubmit((data) => {
         props.setResponse(data);
     });
@@ -30,6 +47,21 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                     <input {... register("username", {required : true })} 
                     type="text" name = "username" defaultValue={props.default?.username}/>
                     {errors.username && <p>Username is required</p>}
+                </div>
+                <div>
+                    <label>User Role</label>
+                    <select {...register('role', {required: true})} defaultValue={props.default && props.default.role ?  
+                            props.default.role : "DEFAULT"}>
+                        <option value="DEFAULT" disabled>-- Select Role --</option>
+                        {
+                            roles.map((value, index) => {
+                                return (
+                                    <option key={index + 1}
+                                        value={value}> {value} </option>
+                                );
+                            })
+                        }
+                    </select>
                 </div>
                 <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
             </form>

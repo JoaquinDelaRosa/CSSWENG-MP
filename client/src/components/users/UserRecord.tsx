@@ -53,6 +53,7 @@ export const UserRecord = (props : { user: User, observer: Function }) => {
             <td> {props.user.firstName} </td>
             <td> {props.user.lastName} </td>
             <td> {props.user.username} </td>
+            <td> {props.user.role} </td>
         </tr> 
      );
 }

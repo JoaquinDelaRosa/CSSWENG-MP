@@ -7,7 +7,8 @@ export const makeUserView = (document) => {
         id : document.id,
         firstName: document.firstName,
         lastName: document.lastName,
-        username: document.username
+        username: document.username,
+        role: document.role,
     }
 }
 
