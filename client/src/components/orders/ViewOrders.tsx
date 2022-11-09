@@ -45,6 +45,8 @@ const OrdersView = () => {
             <table>
                 <thead>
                     <tr>
+                        <th></th>
+                        <th></th>
                         <th> Status </th>
                         <th> Time In </th>
                         <th> Time Out </th>

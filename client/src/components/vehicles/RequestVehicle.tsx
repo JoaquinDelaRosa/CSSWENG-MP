@@ -18,19 +18,19 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
                     <input {... register('licensePlate', {required: true, pattern: isLicensePlate})}
-                    type="text" name="licensePlate"/>
+                    type="text" name="licensePlate" defaultValue={props.default?.licensePlate}/>
                     {errors.licensePlate && <p>License Plate is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='manufacturer'>Manufacturer</label>
                     <input {... register('manufacturer', {required: true, pattern: isAlphabetic})}
-                    type="text" name="manufacturer"/>
+                    type="text" name="manufacturer" defaultValue={props.default?.manufacturer}/>
                     {errors.manufacturer && <p>Manufacturer is Required</p>}
                 </div>
                 <div>
                     <label htmlFor='model'>Model</label>
                     <input {... register('model', {required: true, pattern: isAlphaNumeric})}
-                    type="text" name="model"/>
+                    type="text" name="model" defaultValue={props.default?.model}/>
                     {errors.model && <p>Model is Required</p>}
                 </div>
                 <div>

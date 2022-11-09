@@ -4,7 +4,7 @@ import { Customer, CustomerRequest } from "../customers/CustomerDetails";
 import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../ModalBase";
 import { RequestVehicle } from "./RequestVehicle";
-import { Vehicle } from "./VehicleDetails";
+import { Vehicle, VehicleRequest } from "./VehicleDetails";
 
 export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
     const onSubmit = () => {
@@ -25,7 +25,7 @@ export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) 
 }
 
 export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
-    const [data, setData] = useState<CustomerRequest>();
+    const [data, setData] = useState<VehicleRequest>();
     
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.updateVehicle).post(data, {id: props.vehicle.id})

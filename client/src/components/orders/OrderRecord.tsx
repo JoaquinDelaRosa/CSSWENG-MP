@@ -1,5 +1,9 @@
-import { Order } from "./OrderDetails";
+import { useState, useEffect } from "react";
+import { Order, OrderRequest } from "./OrderDetails";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { ModalWrapper } from "../ModalBase";
+import { RequestVehicle } from "../vehicles/RequestVehicle";
+import { RequestOrder } from "./RequestOrder";
 
 const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -31,10 +35,33 @@ export const DeleteOrder = (props : {order : Order, observer : Function}) => {
     );
 }
 
+export const UpdateOrder = (props : {order : Order, observer : Function}) => {
+    const [data, setData] = useState<OrderRequest>();
+    
+    useEffect(() => {
+        createAPIEndpoint(ENDPOINTS.updateOrder).post(data, {id: props.order.id})
+        .then(function (response) {
+            props.observer();
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }, [data])
+
+    return (
+        <div>
+          <ModalWrapper front={"Edit"}>
+            <RequestOrder setResponse={setData} default={{...props.order, timeIn: new Date(props.order.timeIn), timeOut: new Date(props.order.timeOut)}}/>
+          </ModalWrapper>
+        </div>
+    )
+}
+
 export const OrderRecord = (props : { order: Order, observer: Function }) => {
     return (
         <tr>
             <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
+            <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
             <td> {props.order.status} </td>
 
             <DateEntry date={props.order.timeIn} />
