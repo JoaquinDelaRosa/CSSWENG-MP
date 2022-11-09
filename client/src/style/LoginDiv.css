@@ -46,7 +46,7 @@
 
 .loginButton {
 
-    width: 36rem;
+    width: 32rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     text-decoration: none;
@@ -98,7 +98,7 @@
 
 .loginLogo {
 
-    padding-top: 12rem;
+    padding-top: 17rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
