@@ -23,17 +23,29 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        createAPIEndpoint(ENDPOINTS.orderTypes).fetch()
+            .then((response) => {
+                return response.data;
+            })
+            .then((response: Array<string>) => {
+                setTypes(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data);
         props.setResponse(data);
     });
 
     return (
         <div>
             <form onSubmit={onSubmit}>
-            <div>
+                <div>
                     <label>Order Status</label>
                     <select {...register('status', {required: true})} defaultValue="DEFAULT">
                         <option value="DEFAULT" disabled>-- Select Status --</option>
@@ -56,11 +68,25 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label>Time Out</label>
                     <input  {...register('timeOut', {
                         required: true, valueAsDate: true, validate: {
-                            isBeforeTimeIn: v => v >= getValues("timeIn")
+                            isAfterTimeIn: v => getValues("timeOut") >= getValues("timeIn")
                         }
                     })}
                         type='date' name="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
+                </div>
+                <div>
+                    <label>Customer Type</label>
+                    <select {...register('type', {required: true})} defaultValue="DEFAULT">
+                        <option value="DEFAULT" disabled>-- Select Type --</option>
+                        {
+                            types.map((value, index) => {
+                                return (
+                                    <option key={index + 1}
+                                        value={value}> {value} </option>
+                                );
+                            })
+                        }
+                    </select>
                 </div>  
                 <div>
                     <label htmlFor="company">Company</label>

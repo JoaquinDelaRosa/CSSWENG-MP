@@ -6,6 +6,7 @@ export const CreateOrder = (props : {observer : Function}) => {
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addOrder).post(data)
         .then(function (response) {
+            console.log(response);
             props.observer();
         })
         .catch(function (error) {

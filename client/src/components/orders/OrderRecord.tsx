@@ -22,6 +22,7 @@ export const OrderRecord = (props : { order: Order}) => {
             <DateEntry date={props.order.timeOut} />
 
             <td> {props.order.customerDetails?.name.val}</td>
+            <td> {props.order.type} </td>
             <td> {props.order.vehicleDetails?.licensePlate }</td>
 
             <td> {props.order.estimateNumber}</td>
