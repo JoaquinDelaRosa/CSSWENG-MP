@@ -35,7 +35,9 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                 </div>
                 <div>
                     <label htmlFor='yearManufactured'>Year Manufactured</label>
-                    <select  {...register('yearManufactured', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                    <select  {...register('yearManufactured', {valueAsNumber: true, required: true})} 
+                        defaultValue= {(props.default && props.default.yearManufactured) ? 
+                            props.default.yearManufactured.valueOf(): "DEFAULT"}>
                         <option key={0} value="DEFAULT" disabled>  -- Select Year -- </option>
                         {
                             years.map((year, index) => {
