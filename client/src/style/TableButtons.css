@@ -1,3 +1,6 @@
-.deteleButton {
-    border-style: none;
+.fa {
+    border: none;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
 }
