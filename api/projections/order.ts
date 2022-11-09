@@ -2,6 +2,9 @@ import { makeCustomerView } from "./customer"
 import { makeVehicleView } from "./vehicle"
 
 export const makeOrderView = (document) => {
+    if (document == null)
+        return {};
+    
     return {
         id: document.id,
         status: document.status,

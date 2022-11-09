@@ -1,4 +1,7 @@
 export const makeVehicleView = (document) => {
+    if (document == null)
+        return {};
+    
     return {
         id : document.id,
         licensePlate: document.licensePlate,

@@ -29,10 +29,12 @@ const create = async (req: express.Request, res: express.Response) => {
     const c_id = await Customer.exists({id :req.body.customerId});
     if (c_id == null){
         res.end();
+        return;
     }
     const v_id = await Vehicle.exists({id :req.body.vehicleId});
     if (v_id == null){
         res.end();
+        return;
     }
     
     Order.create({...req.body, id: randomUUID()}, (error, result) => {
@@ -47,10 +49,12 @@ const update = async (req: express.Request, res: express.Response) => {
     const c_id = await Customer.exists({id :req.body.customerId});
     if (c_id == null){
         res.end();
+        return;
     }
     const v_id = await Vehicle.exists({id :req.body.vehicleId});
     if (v_id == null){
         res.end();
+        return;
     }
 
     Order.updateOne({id: req.query.id}, req.body, (error) => {

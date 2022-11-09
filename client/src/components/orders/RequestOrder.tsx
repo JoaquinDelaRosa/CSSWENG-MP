@@ -26,6 +26,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     }, [])
 
     const onSubmit = handleSubmit((data) => {
+        console.log(data);
         props.setResponse(data);
     });
 
@@ -34,7 +35,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             <form onSubmit={onSubmit}>
             <div>
                     <label>Order Status</label>
-                    <select {...register('status', {valueAsNumber: true, required: true})} defaultValue="DEFAULT">
+                    <select {...register('status', {required: true})} defaultValue="DEFAULT">
                         <option value="DEFAULT" disabled>-- Select Status --</option>
                         {
                             statuses.map((value, index) => {
@@ -61,16 +62,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         type='date' name="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>  
-                <div>
-                    <label htmlFor="customerId">Customer ID</label>
-                    <input {... register("customerId", {required : true, 
-                        onChange: (e) => {
-                            isCustomerExists(parseInt(e.target.value),setCustomerExists)
-                        }})}  
-                        type='number' name="customerId" id="customerId" />
-                    {errors.customerId && <p>Customer ID is required</p>}
-                    <p hidden={customerExists}>Customer does not exist</p>
-                </div>
                 <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : true})}  

@@ -16,15 +16,13 @@ const DateEntry = (props: { date: string }) => {
 export const OrderRecord = (props : { order: Order}) => {
     return (
         <tr>
-            <td> {props.order.id} </td>
             <td> {props.order.status} </td>
 
             <DateEntry date={props.order.timeIn} />
             <DateEntry date={props.order.timeOut} />
 
-            <td> {props.order.customerDetails.name.val}</td>
-            <td> {props.order.vehicleDetails.licensePlate }</td>
-            <td> {props.order.invoiceDetails.id}</td>
+            <td> {props.order.customerDetails?.name.val}</td>
+            <td> {props.order.vehicleDetails?.licensePlate }</td>
 
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork}</td>
