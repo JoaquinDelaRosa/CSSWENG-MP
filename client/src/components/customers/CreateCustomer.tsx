@@ -4,9 +4,7 @@ import { CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
 
 export const CreateCustomer = (props : {observer : Function}) => {
-    const [data, setData] = useState<CustomerRequest>()
-
-    useEffect(() => {
+    const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
         .then(function (response) {
             props.observer();
@@ -14,7 +12,7 @@ export const CreateCustomer = (props : {observer : Function}) => {
         .catch(function (error) {
             console.log(error);
         })
-    }, [data, props])
+    };
 
     return (
         <div>
