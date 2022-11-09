@@ -38,7 +38,7 @@
 
 .firstName {
     background-image: url(../style/images/user-svgrepo-com.svg);
-    width: 14rem;
+    width: 16rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     padding-left: 4rem;
@@ -53,7 +53,7 @@
 
 .lastName {
     background-image: url(../style/images/user-svgrepo-com.svg);
-    width: 14rem;
+    width: 16rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     padding-left: 4rem;
@@ -67,7 +67,7 @@
 }
 
 .registButton {
-    width: 36rem;
+    width: 32rem;
     min-height: 3rem;
     margin-bottom: 1rem;
     text-decoration: none;
@@ -113,7 +113,7 @@
 }
 
 .registLogo {
-    padding-top: 10rem;
+    padding-top: 15rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
@@ -127,7 +127,13 @@
 .loginDial{
     color: black;
     position: absolute;
-    width: 112rem;
+    width: 123rem;
     justify-content: center;
     padding-left: 12rem;
+}
+
+::placeholder {
+    font-size: 1.2rem;
+    font-family: 'Montserrat';
+    text-align: left;
 }

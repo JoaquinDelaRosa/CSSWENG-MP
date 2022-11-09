@@ -55,12 +55,12 @@
     color: white;
 }
 
-@media only screen and (max-width: 900px) {
-    .Logo {
+@media only screen and (max-width: 1000px) {
+    .logo {
         display: none;
     }
 
-    .ButtonWrapper {
+    .buttonWrapper {
         position: static;
     }
 }
@@ -71,3 +71,6 @@
     background-color: #960b0b;
 }
 
+.logo {
+    padding-left: 0.8rem;
+}
