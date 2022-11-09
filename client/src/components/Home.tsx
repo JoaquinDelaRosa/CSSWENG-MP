@@ -1,8 +1,10 @@
-import OrdersView from "./orders/ViewOrders";
+import "../style/Home.css"
 
 const Home = () => {
     return (
-        <OrdersView/>
+        <div>
+            
+        </div>
     );
 }
 

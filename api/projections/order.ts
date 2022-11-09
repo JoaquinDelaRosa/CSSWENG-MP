@@ -16,7 +16,8 @@ export const makeOrderView = (document) => {
         scopeOfWork: document.scopeOfWork,
         expenses: document.expenses.map((value) => {
             return makeExpenseView(value)
-        })
+        }),
+        verified: document.verified
     }
 }
 
