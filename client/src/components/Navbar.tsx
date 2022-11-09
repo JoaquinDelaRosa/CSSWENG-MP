@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../api/routes";
 import "../style/NavStyle.css"
+import { Logout } from "./vehicles/Logout";
 
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
@@ -20,6 +21,7 @@ const Navbar = () => {
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>
                     <Button buttonName={"Vehicles"} to={ROUTES.vehicles}/>
                     <Button buttonName={"Users"} to={ROUTES.users}/>
+                    <Button buttonName={"Logout"} to={ROUTES.logout}/>
                 </div>
             </nav>
             <div className="RedBar"></div>

@@ -7,6 +7,7 @@ var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("ke
 export const ENDPOINTS = {
     login: 'authz/login',
     register: 'authz/register',
+    logout: 'authz/logout',
 
     orderTypes: 'order/types',
     orderStatuses: 'order/statuses',
@@ -48,7 +49,6 @@ export const updateToken = (key: string) =>{
     sessionStorage.setItem("key", key);
     token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("key")! : "no token";
 }
-
 
 export const createAPIEndpoint = (endpoint : string) => {
 

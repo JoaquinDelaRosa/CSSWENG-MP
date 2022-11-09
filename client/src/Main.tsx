@@ -8,6 +8,7 @@ import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
+import { Logout } from "./components/vehicles/Logout";
 
 
 export const Main = () => {
@@ -53,6 +54,10 @@ export const Main = () => {
                 element={<Home/>}
             />
 
+            <Route
+                path={ROUTES.logout}
+                element={<Logout/>}
+            />
 
         </Routes>
     );
