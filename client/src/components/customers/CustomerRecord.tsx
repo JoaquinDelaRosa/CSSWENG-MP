@@ -3,6 +3,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../ModalBase";
 import { Customer, CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
+import "../../style/TableButtons.css";
 
 export const DeleteCustomer = (props : {customer : Customer, observer : Function}) => {
     const onSubmit = () => {
@@ -16,8 +17,9 @@ export const DeleteCustomer = (props : {customer : Customer, observer : Function
     }
 
     return (
-      <div>
-        <button onClick={onSubmit}> Delete </button>
+      <div className="deleteButton">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <button onClick={onSubmit}><i className="fa fa-close"></i></button>
       </div> 
     );
 }
@@ -46,12 +48,15 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
 
 export const CustomerRecord = (props : { customer: Customer , observer : Function}) => {
     return (
-        <tr>
+        
+            <tr>
             <td> <DeleteCustomer customer={props.customer} observer={props.observer}/></td>
             <td> <UpdateCustomer customer={props.customer} observer={props.observer}/></td>
             <td> {props.customer.name.val} </td>
             <td> {props.customer.email} </td>
             <td> {props.customer.mobileNumber} </td>
-        </tr> 
+            </tr>
+        
+         
      );
 }

@@ -4,6 +4,7 @@ import { ModalWrapper } from "../ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
+import "../../style/TablesView.css";
 
 const ViewCustomers = () => {
 
@@ -39,27 +40,31 @@ const ViewCustomers = () => {
     }, []);
 
     return (
-        <div className="objectView">
-            <table>
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th> </th>
-                        <th> Name </th>
-                        <th> Email </th>
-                        <th> Mobile Number </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {customers.map((value, index) => {
-                        return (<CustomerRecord customer={value} key={index } observer ={updateView}/>);
-                    })}
-                </tbody>
-            </table>
-            <ModalWrapper name="Create Customer"> 
-                <CreateCustomer observer={updateView}/>
-            </ModalWrapper>
+        <div className="FullPage">
+            <br />
+            <div className="objectView">
+                <table className="tableDiv">
+                    <thead>
+                        <tr>
+                            <th> </th>
+                            <th> </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Mobile Number </th>
+                        </tr>
+                    </thead>
+                
+                    <tbody className="tbodyDiv">
+                        {customers.map((value, index) => {
+                            return (<CustomerRecord customer={value} key={index } observer ={updateView}/>);
+                        })}
+                    </tbody>
+                </table>
+                <br />
+                <ModalWrapper name="Create Customer"> 
+                    <CreateCustomer observer={updateView}/>
+                </ModalWrapper>
+            </div>
         </div>      
     );
 }
