@@ -4,6 +4,7 @@ import { ModalWrapper } from "../ModalBase";
 import CreateVehicle from "./CreateVehicle";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
+import "../../style/TablesView.css";
 
 
 const ViewVehicles = () => {
@@ -39,31 +40,34 @@ const ViewVehicles = () => {
     }, []);
 
     return (
-        <div className="objectView">
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th> License Plate </th>
-                        <th> Manufacturer </th>
-                        <th> Model </th>
-                        <th> Year Manufactured </th>
-                    </tr>
-                </thead>
+        <div className="FullPage">
+            <br />
+            <div className="objectView">
+                <table className="tableDiv">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th> License Plate </th>
+                            <th> Manufacturer </th>
+                            <th> Model </th>
+                            <th> Year Manufactured </th>
+                        </tr>
+                    </thead>
 
 
-                <tbody>
-                    {vehicles.map((value, index) => {
-                        return(<VehicleRecord vehicle={value} key={index} observer={updateView}/>);
-                    })}
-                </tbody>
-            </table>
+                    <tbody className="tbodyDiv">
+                        {vehicles.map((value, index) => {
+                            return(<VehicleRecord vehicle={value} key={index} observer={updateView}/>);
+                        })}
+                    </tbody>
+                </table>
 
-            <ModalWrapper front={"Create Vehicle"}>
-                <CreateVehicle observer={updateView}/>
-            </ModalWrapper>
+                <ModalWrapper front={"Create Vehicle"}>
+                    <CreateVehicle observer={updateView}/>
+                </ModalWrapper>
 
+            </div>
         </div>
     )
 }

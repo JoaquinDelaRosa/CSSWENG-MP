@@ -4,6 +4,7 @@ import { ModalWrapper } from "../ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
+import "../../style/TablesView.css";
 
 const UsersView = () => {
 
@@ -39,30 +40,33 @@ const UsersView = () => {
     }, []);
 
     return (
-        <div className="objectView">
-            <table>
-                <thead>
-                    <tr>
-                        <th/>
-                        <th/>
-                        <th> First Name </th>
-                        <th> Last Name</th>
-                        <th> Username </th>
-                        <th> Role </th>
-                    </tr>
-                </thead>
+        <div className="FullPage">
+            <br />
+            <div className="objectView">
+                <table className="tableDiv">
+                    <thead>
+                        <tr>
+                            <th/>
+                            <th/>
+                            <th> First Name </th>
+                            <th> Last Name</th>
+                            <th> Username </th>
+                            <th> Role </th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {users.map((value, index) => {
-                        return (<UserRecord user={value} key={index } observer={updateView} />);
-                    })}
-                </tbody>
-            </table>
-            
-            <ModalWrapper front={"Create User"}> 
-                <CreateUser observer={updateView}/>
-            </ModalWrapper>
-        </div>      
+                    <tbody className="tbodyDiv">
+                        {users.map((value, index) => {
+                            return (<UserRecord user={value} key={index } observer={updateView} />);
+                        })}
+                    </tbody>
+                </table>
+                
+                <ModalWrapper front={"Create User"}> 
+                    <CreateUser observer={updateView}/>
+                </ModalWrapper>
+            </div>    
+        </div>  
     );
 }
 
