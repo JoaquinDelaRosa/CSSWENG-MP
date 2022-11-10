@@ -33,8 +33,8 @@ export const Searchbar = (props : {
         console.log(query);
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
-                console.log(response.data);
-            }
+                props.setData(response.data);
+        }
         )
     }
 
