@@ -51,14 +51,14 @@ const ViewCustomers = () => {
         };
 
         for(let i = 0; i < toks.length; ++i){
-            const token = toks[i];
-            if (token === "name:"){
+            const token = toks[i].replace(":", "");
+            if (token === "name"){
                 query.name = toks[i + 1];
             }
-            else if (token === "mobileNumber:"){
+            else if (token === "mobileNumber"){
                 query.mobileNumber = toks[i + 1];
             }
-            else if (token === "email:"){
+            else if (token === "email"){
                 query.email = toks[i + 1];
             }
             ++i;
