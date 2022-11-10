@@ -9,7 +9,7 @@ import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
 import { Logout } from "./components/Logout";
-
+import { WithNav } from "./addNav";
 
 export const Main = () => {
     return (
@@ -29,30 +29,28 @@ export const Main = () => {
                 element={<Register/> }
             />
 
-            <Route
-                path={ROUTES.customers }
-                element={<ViewCustomers/> }
-            />
-
-            <Route 
-                path={ROUTES.vehicles }
-                element={<ViewVehicles/> }
-            />
-
-            <Route
-                path={ROUTES.orders }
-                element={<OrdersView/> }
-            />
-
-            <Route
-                path={ROUTES.users }
-                element={<UsersView/> }
-            />
-
-            <Route
-                path={ROUTES.home}
-                element={<Home/>}
-            />
+            <Route element={<WithNav/>}>
+                <Route
+                    path={ROUTES.customers }
+                    element={<ViewCustomers/> }
+                />
+                <Route
+                    path={ROUTES.vehicles }
+                    element={<ViewVehicles/> }
+                />
+                <Route
+                    path={ROUTES.orders }
+                    element={<OrdersView/> }
+                />
+                <Route
+                    path={ROUTES.users }
+                    element={<UsersView/> }
+                />
+                <Route
+                    path={ROUTES.home}
+                    element={<Home/>}
+                />
+            </Route>
 
             <Route
                 path={ROUTES.logout}
