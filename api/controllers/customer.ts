@@ -71,7 +71,7 @@ const filter = async (req: express.Request, res: express.Response) => {
             }
         }
     ])
-    .match({"name": {$regex: ".*" + query.name + ".*"}})
+    .match({"name": {$regex: ".*" + query.name + ".*"}, "email" : {$regex: ".*" + query.email + ".*"}, "mobileNumber": {$regex: ".*" + query.mobileNumber + ".*"}})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
@@ -84,12 +84,16 @@ const filter = async (req: express.Request, res: express.Response) => {
 }
 
 interface CustomerQuery {
-    name : string
+    name : string,
+    email: string,
+    mobileNumber: string,
 }
 
 const makeQuery = (req : express.Request) : CustomerQuery => {
     return {
-        name: (req.query.name) ? (req.query.name as string) : ""
+        name: (req.query.name) ? (req.query.name as string) : "",
+        email: (req.query.email) ? (req.query.email as string) : "",
+        mobileNumber: (req.query.mobileNumber) ? (req.query.mobileNumber as string) : "",
     }
 }
 

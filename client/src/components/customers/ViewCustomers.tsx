@@ -40,18 +40,41 @@ const ViewCustomers = () => {
         fetchCustomers();
     }, []);
 
-    const queryParser = (query : string) => {
-        const toks = query.split(' ');
-        return {
-            name: toks[1].trim(),
+    const queryParser = (q : string) => {
+        const toks = q.split(' ');
+        const query = {
+            name: "",
             skip: 0,
-            limit: 1000
+            limit: 1000,
+            email: "",
+            mobileNumber: "",
         };
+
+        for(let i = 0; i < toks.length; ++i){
+            const token = toks[i];
+            if (token === "name:"){
+                query.name = toks[i + 1];
+            }
+            else if (token === "mobileNumber:"){
+                query.mobileNumber = toks[i + 1];
+            }
+            else if (token === "email:"){
+                query.email = toks[i + 1];
+            }
+            ++i;
+        }
+
+        return query;
     }
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser} options = {[{name: "name", description:"The name of the customer"}]}/>
+            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser} 
+                options = {[
+                    {name: "name", description:"The name of the customer"},
+                    {name: "email", description: "The email of the customer"},
+                    {name: "mobileNumber", description: "The mobile number of the customer"}
+                ]}/>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
