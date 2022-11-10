@@ -4,6 +4,7 @@ import { ModalWrapper } from "../ModalBase";
 import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
+import "../../style/Hometables.css";
 
 const OrdersView = () => {
 
@@ -41,8 +42,10 @@ const OrdersView = () => {
 
 
     return (
-        <div className="objectView">
-            <table>
+        <div className="FullPage">
+            <div className="objectView">
+            <br />
+            <table className="tableDiv">
                 <thead>
                     <tr>
                         <th></th>
@@ -60,17 +63,19 @@ const OrdersView = () => {
                         <th> Expenses </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="tbodyDiv">
                     {orders.map((value, index) => {
                         return (<OrderRecord order={value} key={index } observer={updateView}/>);
                     })}
                 </tbody>
             </table>
-
+            <br />
             <ModalWrapper front={"Create Order"}>
                 <CreateOrder observer={updateView}/>
             </ModalWrapper>
-        </div>      
+            </div>
+        </div>
+              
     );
 }
 
