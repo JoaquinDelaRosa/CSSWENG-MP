@@ -9,7 +9,7 @@ import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
 import { Logout } from "./components/Logout";
-import { WithNav } from "./addNav";
+import { WithNav } from "./AddNav";
 
 export const Main = () => {
     return (

@@ -7,7 +7,6 @@ export const WithNav = () => {
     return (
       <div>
         <Navbar/>
-        <Searchbar/>
         <Outlet/>
       </div>
     );
