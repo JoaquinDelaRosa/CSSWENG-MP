@@ -27,9 +27,11 @@ export const Searchbar = (props : {
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
+    useEffect(() => {
+        runQuery()
+    }, [query])
     
-
-    const onClick = () => {
+    const runQuery = () => {
         console.log(query);
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
@@ -48,7 +50,7 @@ export const Searchbar = (props : {
     return (
         <div className="searchWrapper">
                         <input  className="searchBar" placeholder="Search" defaultValue={query} 
-            onChange={(e) => {setQuery(e.target.value)}} 
+            onChange={(e) => {setQuery(e.target.value)}}
             onClick={() => {setIsVisible(true)}}/>
             <span className="options">
                 {isVisible && props.options.map((value, index) => {
@@ -58,7 +60,6 @@ export const Searchbar = (props : {
                     })
                 }
             </span>
-            <button onClick = {() => {onClick()}}> Search </button>
         </div>
     )
 }
