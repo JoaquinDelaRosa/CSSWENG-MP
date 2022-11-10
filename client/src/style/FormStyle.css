@@ -1,0 +1,42 @@
+p {
+    margin: 0;
+}
+
+form > div {
+    padding: 3px;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+form > div:first-child {
+    padding-top: 0;
+}
+
+label {
+    overflow: none;
+}
+
+input[type="text"], select {
+    display: inline;
+    width: 100%;
+    margin: 8px 0;
+}
+
+input[name="submit"] {
+    border: 1px solid black;
+    background-color: white;
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 15px;
+    padding: 14px;
+}
+
+input[name="submit"]:hover {
+    background-color: #960b0b;
+    color: white;
+}
+
+.submitButton {
+    width: 100%;
+    height: fit-content;
+    padding-top: 10px;
+}

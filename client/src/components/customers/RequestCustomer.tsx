@@ -12,15 +12,16 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            <p>Customer</p>
+            <form onSubmit={onSubmit} autoComplete="off">
                 <div>
-                    <label htmlFor="firstName"> Customer First Name </label>
+                    <label htmlFor="firstName"> First Name </label>
                     <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
                     type="text" name = "firstName" defaultValue={props.default?.firstName}/>
                     {errors.firstName && <p>Customer First Name is required</p>}
                 </div>
                 <div>
-                    <label htmlFor="lastName"> Customer Last Name </label>
+                    <label htmlFor="lastName"> Last Name </label>
                     <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
                     type="text" name = "lastName" defaultValue={props.default?.lastName}/>
                     {errors.lastName && <p>Customer Last Name is required</p>}
@@ -43,7 +44,9 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
                                                                         defaultValue={props.default?.mobileNumber}/>
                     {errors.mobileNumber && <p>Mobile Number is required</p>}
                 </div>
-                <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
+                <div className="submitButton">
+                    <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
+                </div>
             </form>
         </div> 
     );

@@ -29,6 +29,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
 
     return (
         <div>
+            <p>User</p>
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="firstName"> First Name </label>
