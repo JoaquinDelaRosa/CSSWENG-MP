@@ -12,6 +12,7 @@ const ViewCustomers = () => {
     const [customers, setCustomers] = useState([]);
 
     const fetchCustomers = async () => {
+        console.log("LSDKFJSAD.KFDJSLKS")
         await createAPIEndpoint(ENDPOINTS.customers).fetch()
             .then((response) => {
                 return response.data;
@@ -39,6 +40,10 @@ const ViewCustomers = () => {
     useEffect(() => {
         fetchCustomers();
     }, []);
+
+    useEffect(() => {
+        setCustomers(customers);
+    }, [customers])
 
     const queryParser = (q : string) => {
         const toks = q.split(' ');

@@ -27,7 +27,7 @@ export const DeleteCustomer = (props : {customer : Customer, observer : Function
 export const UpdateCustomer = (props : {customer : Customer, observer : Function}) => {
     const [data, setData] = useState<CustomerRequest>();
     
-    useEffect(() => {
+    const onSubmit = () => {
         createAPIEndpoint(ENDPOINTS.updateCustomer).post(data, {id: props.customer.id})
         .then(function (response) {
             props.observer();
@@ -35,7 +35,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         .catch(function (error) {
             console.log(error);
         })
-    }, [data])
+    }
 
     return (
         <div>
@@ -44,7 +44,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <div><i className="fa fa-close"></i></div>
             </>
-          }>
+          } onSubmit={onSubmit}>
             <RequestCustomer setResponse={setData} default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
           </ModalWrapper>
         </div>

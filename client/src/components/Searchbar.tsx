@@ -1,4 +1,5 @@
 
+import { time } from "console";
 import { useEffect, useState } from "react";
 import { createAPIEndpoint } from "../api"
 import "../style/SearchBar.css"
@@ -11,12 +12,10 @@ export interface SearchOption {
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
-        <div>
-            <button onClick={() => {
-                props.observer(props.option.name + ": ")
-            }}> 
-            {props.option.name} </button> 
-        </div>
+        <button className="optionButton" onClick={() => {
+            props.observer(props.option.name + ": ")
+        }}> 
+        {props.option.name} </button> 
     );
 }
 
@@ -29,11 +28,15 @@ export const Searchbar = (props : {
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    const onClick = () => {
+    const runQuery = () => {
         console.log(query);
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
+                console.log(response);
                 props.setData(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -41,20 +44,32 @@ export const Searchbar = (props : {
         setQuery(query + " " + val);
     }
 
-    useEffect(() => {
-        setQuery(query);
-    }, [query])
+    useEffect(() => {        
+        setQuery(query)
+        function handleEnterKey(event: KeyboardEvent) {
+            if (event.code === 'Enter') {
+                runQuery();
+            }
+        }
+        
+        document.addEventListener('keydown', handleEnterKey)
+        return () => document.removeEventListener('keydown', handleEnterKey)
+      }, [query])
 
+    
     return (
         <div className="searchWrapper">
-            <input  className="searchBar" placeholder="Search" defaultValue={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
-            {isVisible && props.options.map((value, index) => {
-                    return ( 
-                        <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
-                    )
-                })
-            }
-            <button onClick = {() => {onClick()}}> Search </button>
+            <input  className="searchBar" placeholder="Search" defaultValue={query} 
+            onChange={(e) => {setQuery(e.target.value)}} 
+            onClick={() => {setIsVisible(true)}}/>
+            <span className="options">
+                {isVisible && props.options.map((value, index) => {
+                        return ( 
+                            <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
+                        )
+                    })
+                }
+            </span>
         </div>
     )
 }
