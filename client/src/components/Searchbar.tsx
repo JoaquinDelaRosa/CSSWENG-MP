@@ -11,12 +11,10 @@ export interface SearchOption {
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
-        <div>
-            <button onClick={() => {
-                props.observer(props.option.name + ": ")
-            }}> 
-            {props.option.name} </button> 
-        </div>
+        <button className="optionButton" onClick={() => {
+            props.observer(props.option.name + ": ")
+        }}> 
+        {props.option.name} </button> 
     );
 }
 
@@ -28,6 +26,8 @@ export const Searchbar = (props : {
 
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
+
+    
 
     const onClick = () => {
         console.log(query);
@@ -47,13 +47,17 @@ export const Searchbar = (props : {
 
     return (
         <div className="searchWrapper">
-            <input  className="searchBar" placeholder="Search" defaultValue={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
-            {isVisible && props.options.map((value, index) => {
-                    return ( 
-                        <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
-                    )
-                })
-            }
+                        <input  className="searchBar" placeholder="Search" defaultValue={query} 
+            onChange={(e) => {setQuery(e.target.value)}} 
+            onClick={() => {setIsVisible(true)}}/>
+            <span className="options">
+                {isVisible && props.options.map((value, index) => {
+                        return ( 
+                            <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
+                        )
+                    })
+                }
+            </span>
             <button onClick = {() => {onClick()}}> Search </button>
         </div>
     )
