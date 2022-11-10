@@ -5,6 +5,7 @@ import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
+import Searchbar from "../Searchbar";
 
 const ViewCustomers = () => {
 
@@ -39,8 +40,13 @@ const ViewCustomers = () => {
         fetchCustomers();
     }, []);
 
+    const queryParser = (query : any) => {
+        return query;
+    }
+
     return (
         <div className="FullPage">
+            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser}/>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
