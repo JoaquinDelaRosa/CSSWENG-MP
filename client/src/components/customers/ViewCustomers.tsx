@@ -5,7 +5,7 @@ import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
-import Searchbar from "../Searchbar";
+import {Searchbar} from "../Searchbar";
 
 const ViewCustomers = () => {
 
@@ -40,13 +40,18 @@ const ViewCustomers = () => {
         fetchCustomers();
     }, []);
 
-    const queryParser = (query : any) => {
-        return query;
+    const queryParser = (query : string) => {
+        const toks = query.split(' ');
+        return {
+            name: toks[1].trim(),
+            skip: 0,
+            limit: 1000
+        };
     }
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser}/>
+            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser} options = {[{name: "name", description:"The name of the customer"}]}/>
             <br />
             <div className="objectView">
                 <table className="tableDiv">

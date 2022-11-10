@@ -1,5 +1,4 @@
 import "../style/Home.css"
-import Searchbar from "./Searchbar";
 
 const Home = () => {
     return (
