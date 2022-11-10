@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../style/Modal.css"
 
-export const ModalWrapper = (props : {front : any, children : any, onSubmit? : Function}) => {
-    // TODO REMOVE THE ? on ONSUBMIT and refactor accordingly
+export const ModalWrapper = (props : {front : any, children : any}) => {
+
     const [isVisible, setIsVisible] = useState(false);
 
     const cancel = () => {
@@ -37,7 +37,6 @@ export const ModalWrapper = (props : {front : any, children : any, onSubmit? : F
                             <button onClick={() => {cancel()}}> X </button>
                         </div>
                         {props.children}
-                        <button onSubmit={() => props.onSubmit}></button>
                     </div>
                 </div>
             </div>

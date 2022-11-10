@@ -55,7 +55,6 @@ const remove = (req : express.Request, res : express.Response) => {
 }
 
 const filter = async (req: express.Request, res: express.Response) => {
-    
     const query : CustomerQuery = makeQuery(req);
 
     console.log(query);
