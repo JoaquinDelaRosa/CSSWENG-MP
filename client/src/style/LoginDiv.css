@@ -99,11 +99,13 @@
     margin: auto;
     padding: 0;
     border: 0;
+    background-image: url(../style/images/SL_042620_30310_19.jpg);
+    background-size: cover;
 }
 
 .loginLogo {
 
-    padding-top: 17rem;
+    padding-top: 18rem;
     height: 10%;
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
