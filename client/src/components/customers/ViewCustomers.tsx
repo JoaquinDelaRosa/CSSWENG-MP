@@ -45,6 +45,8 @@ const ViewCustomers = () => {
         setCustomers(queryResult)
     }, [queryResult])
 
+    console.log("getting cust")
+    console.log(customers)
     return (
         <div className="FullPage">
             <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
@@ -60,7 +62,10 @@ const ViewCustomers = () => {
                         <tr>
                             <th> </th>
                             <th> </th>
-                            <th> Name </th>
+                            <th> Name 
+                                {<button onClick={() => sortAlphabetically(customers, true)}>▲</button>}
+                                <button>▼</button> 
+                            </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
                         </tr>
@@ -109,19 +114,37 @@ const queryParser = (q : string) => {
     return query;
 }
 
-const sortAlphabeticallyDesc = (customerList: Array<Customer>) => {
-    customerList.sort((a, b) => {
-        let fa = a.name.val.toLowerCase(),
-            fb = b.name.val.toLowerCase();
+const sortAlphabetically = (customerList: Array<Customer>, isAsc: Boolean ) => {
+    if(isAsc){
+        customerList.sort((a, b) => {
+            let fa = a.name.val.toLowerCase(),
+                fb = b.name.val.toLowerCase();
 
-        if (fa < fb) {
-            return -1;
-        }
-        if (fa > fb) {
-            return 1;
-        }
-        return 0;
-    })
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+    else{
+        customerList.sort((a, b) => {
+            let fa = a.name.val.toLowerCase(),
+                fb = b.name.val.toLowerCase();
+
+            if (fa < fb) {
+                return 1;
+            }
+            if (fa > fb) {
+                return -1;
+            }
+            return 0;
+        })
+    }
+    console.log(customerList)
 };
+
 
 export default ViewCustomers;
