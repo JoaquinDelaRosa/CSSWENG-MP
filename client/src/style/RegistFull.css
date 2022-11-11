@@ -1,6 +1,8 @@
 
 body {
     background-color: rgb(39, 39, 39);
+    background-image: url(../style/images/SL_110720_37770_21.jpg);
+    background-size: cover;
 }
 
 .FullPage {
@@ -9,7 +11,5 @@ body {
     height: 41rem;
     padding-top: 4rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(39, 39, 39);
-    background-image: url(../style/images/SL_110720_37770_21.jpg);
-    background-size: cover;
+    
 }
