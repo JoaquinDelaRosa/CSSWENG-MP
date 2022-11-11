@@ -3,7 +3,8 @@ import jwt = require("jsonwebtoken");
 
 const validateRole = (allowedRoles : string[]) => {
     return (req : Request, res : Response, next : NextFunction) => {
-        if(allowedRoles.includes(res.locals.jwt.role))
+        console.log(`Role is ${req.cookies?.jwt.role}`)
+        if(allowedRoles.includes(req.cookies?.jwt.role))
             next();
         else {
             res.status(401).json({
