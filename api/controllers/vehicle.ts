@@ -58,12 +58,8 @@ const remove = (req: express.Request, res: express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : VehicleQuery = makeQuery(req);
-    Vehicle.find({
-        licensePlate: query.licensePlate,
-        model: query.model,
-        manufacturer: query.manufacturer,
-        yearManufactured: query.yearManufactured
-    })
+    
+    Vehicle.find(makeMongooseQuery(query))
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
@@ -81,6 +77,20 @@ interface VehicleQuery {
     model: string,
     manufacturer: string,
     yearManufactured: number
+}
+
+const makeMongooseQuery = (q : VehicleQuery) : any => {
+    let query =  {
+        licensePlate: {$regex: ".*" + q.licensePlate + ".*"},
+        model: {$regex: ".*" + q.model + ".*"},
+        manufacturer: {$regex: ".*" + q.manufacturer + ".*"}
+    }
+
+    if (q.yearManufactured > 0){
+        query["yearManufactured"] = q.yearManufactured;
+    }
+
+    return query;
 }
 
 const makeQuery = (req : express.Request) : VehicleQuery=> {

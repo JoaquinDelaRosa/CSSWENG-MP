@@ -39,6 +39,7 @@ export const Searchbar = (props : {
 
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
+            console.log(props.queryParser(query.trim()));
             props.setData(response.data);
         })
     }, [query]);

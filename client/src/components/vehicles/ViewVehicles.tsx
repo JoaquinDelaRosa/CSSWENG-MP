@@ -41,10 +41,6 @@ const ViewVehicles = () => {
     }
 
     useEffect(() => {
-        console.log(vehicles);
-    }, [vehicles])
-
-    useEffect(() => {
         setVehicles(queryResult)
     }, [queryResult])
 
@@ -53,9 +49,9 @@ const ViewVehicles = () => {
             <Searchbar path={ENDPOINTS.filterVehicle} setData={setQueryResult} queryParser={queryParser} 
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
-                    {name: "manafacturer", description: "The manafacturer of the vehicle"},
+                    {name: "manufacturer", description: "The manufacturer of the vehicle"},
                     {name: "model", description: "The model of the vehicle"},
-                    {name: "yearManafactured", description: "The year manafactured of the vehicle"}
+                    {name: "yearManufactured", description: "The year manufactured of the vehicle"}
                 ]}/>
             <br />
             <div className="objectView">
@@ -94,7 +90,7 @@ const queryParser = (q : string) => {
         licensePlate: "",
         manufacturer: "",
         model: "",
-        yearManafactured: 0,
+        yearManufactured: 0,
         skip: 0,
         limit: 1000
     };
@@ -104,14 +100,14 @@ const queryParser = (q : string) => {
         if (token === "licensePlate"){
             query.licensePlate = toks[i + 1]?.trim();
         }
-        else if (token === "manafacturer"){
+        else if (token === "manufacturer"){
             query.manufacturer = toks[i + 1]?.trim();
         }
         else if (token === "model"){
             query.model = toks[i + 1]?.trim();
         }
-        else if (token === "yearManafactured"){
-            query.yearManafactured = parseInt(toks[i + 1]?.trim());
+        else if (token === "yearManufactured"){
+            query.yearManufactured = parseInt(toks[i + 1]?.trim());
         }
         ++i;
     }
