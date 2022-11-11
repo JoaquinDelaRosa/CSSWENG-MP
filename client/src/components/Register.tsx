@@ -81,7 +81,7 @@ const Register = () => {
                         <input type='button' className="registButton"
                             name="submit"
                             onClick={onSubmit}
-                            value={"SIGN UP"} />
+                            value={"Sign Up"} />
                         <p className="loginDial">Already have an account? &nbsp;<span className="redDialogue"><Link to={ROUTES.login}>
                             Login here.</Link></span></p>
                     </form>
