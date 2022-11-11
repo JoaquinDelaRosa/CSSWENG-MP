@@ -28,14 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const cors = require('cors');
 
 var corsOptions = {
-    origin: false,
+    origin: ["http://localhost:5000", "http://localhost:3000"],
     optionsSuccessStatus: 200,
     credentials: true,
-    
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: 'GET'
   }
 app.use(cors(corsOptions));
-
-app.options("*", cors());
 
 // route imports
 import authzRoutes from './routes/authz';

@@ -47,8 +47,8 @@ const login = (req : express.Request, res : express.Response) => {
                                 res.cookie('jwt', refreshToken, 
                                     {
                                         httpOnly:true,
-                                        sameSite: "none",
                                         secure: true,
+                                        sameSite: "none",
                                     })
                                     return res.status(200).json({
                                         success : true,
@@ -86,7 +86,6 @@ const refresh = (req : express.Request, res : express.Response) => {
     console.log("TEST")
     console.log(req.cookies)
     res.status(200).send();
-    
 }
 
 export default { login, register, refresh };

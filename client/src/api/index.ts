@@ -52,7 +52,7 @@ export const updateToken = (key: string) =>{
 }
 
 export const createAPIEndpoint = (endpoint : string) => {
-
+    axios.defaults.withCredentials = true
     let url = BASE_URL + 'api/' + endpoint ;
     return {
         fetch: (params?: any, headers:any = 
