@@ -17,7 +17,7 @@ const all = async (req: express.Request, res: express.Response) => {
 };
 
 const id = async (req: express.Request, res: express.Response) => {
-    Order.find({id: req.query.id})
+    Order.findOne({id: req.query.id})
     .populate("customer")
     .populate("vehicle")
     .then((data) => {
