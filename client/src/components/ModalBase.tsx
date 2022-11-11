@@ -24,7 +24,7 @@ export const ModalWrapper = (props : {front : any, children : any}) => {
     return (
         <>
             {!isVisible && (
-                <div> 
+                <div className="editBtn"> 
                     <button onClick={() => {setIsVisible(true)}}> 
                         <i className="icon"></i>
                         {props.front}
