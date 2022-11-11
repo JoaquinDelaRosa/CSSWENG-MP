@@ -1,7 +1,7 @@
 .loginUI {
 
     z-index: 100;
-    width: 49rem;
+    width: 46rem;
     border: none;
     justify-content: center;
     padding-top: 17rem;
@@ -78,7 +78,7 @@
     height: 100%;
     background-image: url(../style/images/hotwheels.png);
     background-position: right;
-    background-position-x: 50rem;
+    background-position-x: 47rem;
     background-position-y: -32rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -110,7 +110,7 @@
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
     background-position: left;
-    background-position-x: 6rem;
+    background-position-x: 5rem;
     background-repeat: no-repeat;
     background-size: 35rem 10rem;
     position: absolute;
