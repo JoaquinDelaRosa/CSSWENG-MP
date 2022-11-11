@@ -22,7 +22,7 @@ const ViewCustomers = () => {
                     let customer: Customer = value;
                     return customer;
                 });
-
+                
                 return customerList
             })
             .then((list) => {
@@ -41,9 +41,42 @@ const ViewCustomers = () => {
         fetchCustomers();
     }
 
-    useEffect(() => {
-        setCustomers(queryResult)
-    }, [queryResult])
+    useEffect(() => { 
+        setCustomers(queryResult);
+    }, [queryResult]);
+
+    const sortAlphabetically = (isAsc: Boolean ) => {
+        if(isAsc){
+            customers.sort((a : Customer, b : Customer) => {
+                let fa = a.name.val.toLowerCase(),
+                    fb = b.name.val.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            })
+        }
+        else{
+            customers.sort((a : Customer, b : Customer) => {
+                let fa = a.name.val.toLowerCase(),
+                    fb = b.name.val.toLowerCase();
+
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+            })
+        }
+
+        setQueryResult([...customers]);
+    };
 
     return (
         <div className="FullPage">
@@ -60,7 +93,15 @@ const ViewCustomers = () => {
                         <tr>
                             <th> </th>
                             <th> </th>
-                            <th> Name </th>
+                            <th> Name 
+                                <button onClick={() => {
+                                    sortAlphabetically(true);
+                                }}>▲</button>
+
+                                <button onClick={() => {
+                                    sortAlphabetically(false);
+                                }}>▼</button> 
+                            </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
                         </tr>
@@ -110,5 +151,7 @@ const queryParser = (q : string) => {
 
     return query;
 }
+
+
 
 export default ViewCustomers;
