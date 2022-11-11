@@ -5,7 +5,7 @@ import { makeUserArrayView, makeUserView } from '../projections/user';
 import { randomUUID } from 'crypto';
 
 const all = async (req: express.Request, res: express.Response) => {
-        User.find({})
+        User.findOne({})
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))
         .then ((data) => {
