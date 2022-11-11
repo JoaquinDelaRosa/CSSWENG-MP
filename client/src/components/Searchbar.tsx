@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { createAPIEndpoint } from "../api"
 import "../style/SearchBar.css"
-import { ModalWrapper } from "./ModalBase"
 
 export interface SearchOption {
     name : string,
@@ -11,12 +10,12 @@ export interface SearchOption {
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
-        <div>
+        <span>
             <button onClick={() => {
                 props.observer(props.option.name + ": ")
             }}> 
             {props.option.name} </button> 
-        </div>
+        </span>
     );
 }
 
