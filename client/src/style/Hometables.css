@@ -1,11 +1,11 @@
 table, th, tr {
     border: 2px white;
-    height: 3rem;
+    height: 5rem;
 }
 
 .FullPage {
     background-color: #17190d;
-    
+    height: 40.1rem;
 }
 
 .tableDiv {
