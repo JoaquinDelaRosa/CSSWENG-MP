@@ -1,11 +1,10 @@
-
 body {
-    background-color: rgb(39, 39, 39);
     background-image: url(../style/images/SL_110720_37770_21.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.FullPage {
+.fullPage {
     display: block;
     width: 100%;
     height: 41rem;

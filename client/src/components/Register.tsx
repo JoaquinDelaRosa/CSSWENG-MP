@@ -40,7 +40,7 @@ const Register = () => {
     };
 
     return (
-        <div className="FullPage">
+        <div className="fullPage">
             <div className="registerBox">
                 <div className="leftBG">
                 </div>
