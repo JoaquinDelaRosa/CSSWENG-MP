@@ -1,65 +1,37 @@
-import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
-import { Customer, CustomerRequest } from "./CustomerDetails";
-import { RequestCustomer } from "./RequestCustomer";
+import { Customer } from "./CustomerDetails";
 import "../../style/TableButtons.css";
+import { DeleteCustomer } from "./DeleteCustomer";
+import { UpdateCustomer } from "./UpdateCustomer";
+import { useState } from "react";
+import { createAPIEndpoint, ENDPOINTS } from "../../api";
 
-export const DeleteCustomer = (props : {customer : Customer, observer : Function}) => {
-    const onSubmit = () => {
-        createAPIEndpoint(ENDPOINTS.deleteCustomer).delete({"id" : props.customer.id})
-            .then((response) => {
-                props.observer();
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+
+export const CustomerRecord = (props : { customer: Customer}) => {
+    const [customer, setCustomer] = useState<Customer | null>(props.customer);
+
+    const observer = () => {
+        createAPIEndpoint(ENDPOINTS.getCustomer).fetch({id : props.customer.id})
+        .then((response) => {
+            setCustomer(response.data);
+            console.log(customer);
+        })
+    };
+
+    const onDelete = () => {
+        setCustomer(null);
     }
 
-    return (
-      <div className="deleteButton">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <button onClick={onSubmit}><i className="fa fa-close"></i></button>
-      </div> 
-    );
-}
-
-export const UpdateCustomer = (props : {customer : Customer, observer : Function}) => {
-    const [data, setData] = useState<CustomerRequest>();
-    
-    useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.updateCustomer).post(data, {id: props.customer.id})
-        .then(function (response) {
-            props.observer();
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    }, [data])
-
-    return (
-        <div>
-          <ModalWrapper front={
-            <>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <div><i className="fa fa-close"></i></div>
-            </>
-          }>
-            <RequestCustomer setResponse={setData} default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
-          </ModalWrapper>
-        </div>
-    )
-}
-
-export const CustomerRecord = (props : { customer: Customer , observer : Function}) => {
-    return (
-        
+    if (customer !== null) {
+        return ( 
             <tr>
-            <td> <DeleteCustomer customer={props.customer} observer={props.observer}/></td>
-            <td> <UpdateCustomer customer={props.customer} observer={props.observer}/></td>
-            <td> {props.customer.name.val} </td>
-            <td> {props.customer.email} </td>
-            <td> {props.customer.mobileNumber} </td>
+                <td> <DeleteCustomer customer={props.customer} observer={onDelete}/></td>
+                <td> <UpdateCustomer customer={props.customer} observer={observer}/></td>
+                <td> {customer?.name.val} </td>
+                <td> {customer?.email} </td>
+                <td> {customer?.mobileNumber} </td>
             </tr> 
-     );
+        );
+    } else {
+        return null;
+    }
 }

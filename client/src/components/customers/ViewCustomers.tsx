@@ -90,7 +90,7 @@ const ViewCustomers = () => {
                 
                     <tbody className="tbodyDiv">
                         {customers.map((value, index) => {
-                            return (<CustomerRecord customer={value} key={index } observer ={updateView}/>);
+                            return (<CustomerRecord customer={value} key={index }/>);
                         })}
                     </tbody>
                 </table>
