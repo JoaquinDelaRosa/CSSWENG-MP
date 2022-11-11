@@ -108,3 +108,8 @@
     background-size: 35rem 10rem;
     position: absolute;
 }
+
+::placeholder {
+    color: black;
+    font-style: normal;
+}

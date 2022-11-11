@@ -45,7 +45,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     return (
         <div>
             <p>Order</p>
-            <form onSubmit={onSubmit}>
+            <form className="formStyle" onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
                     <select {...register('status', {required: true})} 

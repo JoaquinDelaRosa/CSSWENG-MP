@@ -13,7 +13,7 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
     return (
         <div>
             <p>Customer</p>
-            <form onSubmit={onSubmit} autoComplete="off">
+            <form className="formStyle" onSubmit={onSubmit} autoComplete="off">
                 <div>
                     <label htmlFor="firstName"> First Name </label>
                     <input {... register("firstName", {required : true, pattern: isAlphabetic })} 

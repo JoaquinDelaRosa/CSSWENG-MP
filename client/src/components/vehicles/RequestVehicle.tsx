@@ -15,7 +15,7 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
     return (
         <div>
             <p>Vehicle</p>
-            <form onSubmit={onSubmit}>
+            <form className="formStyle" onSubmit={onSubmit}>
                 <div>
                     <label htmlFor='licensePlate'>License Plate</label>
                     <input {... register('licensePlate', {required: true, pattern: isLicensePlate})}

@@ -74,7 +74,7 @@ const Login = () => {
                             <span className="redDialogue">
                                 <Link to= {ROUTES.register}>
                                  Sign up now.
-                                 </Link>
+                                </Link>
                             </span>
                         </p>
                     </form>

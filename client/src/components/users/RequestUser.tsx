@@ -30,7 +30,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
     return (
         <div>
             <p>User</p>
-            <form onSubmit={onSubmit}>
+            <form className="formStyle" onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="firstName"> First Name </label>
                     <input {... register("firstName", {required : true, pattern: isAlphabetic })} 

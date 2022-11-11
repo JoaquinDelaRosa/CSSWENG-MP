@@ -1,28 +1,28 @@
-p {
+.formStyle > p {
     margin: 0;
 }
 
-form > div {
+.formStyle > div {
     padding: 3px;
     font-weight: 600;
     overflow: hidden;
 }
 
-form > div:first-child {
+.formStyle > div:first-child {
     padding-top: 0;
 }
 
-label {
+.formStyle > label {
     overflow: none;
 }
 
-input[type="text"], select {
+.formStyle > input[type="text"], select {
     display: inline;
     width: 100%;
     margin: 8px 0;
 }
 
-input[name="submit"] {
+.formStyle > input[name="submit"] {
     border: 1px solid black;
     background-color: white;
     transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -30,12 +30,12 @@ input[name="submit"] {
     padding: 14px;
 }
 
-input[name="submit"]:hover {
+.formStyle > input[name="submit"]:hover {
     background-color: #960b0b;
     color: white;
 }
 
-.submitButton {
+.formStyle > .submitButton {
     width: 100%;
     height: fit-content;
     padding-top: 10px;

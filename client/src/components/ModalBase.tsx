@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../style/Modal.css"
 
+
 export const ModalWrapper = (props : {front : any, children : any}) => {
 
     const [isVisible, setIsVisible] = useState(false);
