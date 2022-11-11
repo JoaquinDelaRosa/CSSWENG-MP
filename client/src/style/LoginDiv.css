@@ -59,6 +59,11 @@
 
 }
 
+.loginButton:hover{
+    background-color: #6e0000;
+    transition-duration: 0.3s;
+}
+
 .redDialogue{
 
     color: #800000;
