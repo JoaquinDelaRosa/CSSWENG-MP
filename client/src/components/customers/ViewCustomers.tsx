@@ -6,6 +6,7 @@ import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
+import refreshToken from "../../utils/RefreshToken";
 
 
 const ViewCustomers = () => {
@@ -54,6 +55,7 @@ const ViewCustomers = () => {
 
     useEffect(() => {
         fetchCustomers();
+        refreshToken();
     }, []);
 
     const queryParser = (q : string) => {

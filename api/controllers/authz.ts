@@ -24,6 +24,7 @@ const login = (req : express.Request, res : express.Response) => {
                 console.info("Comparing Password")
                 console.log(error)
                 if(!result) {
+                    res.cookie("This", "Meh");
                     return res.status(401).json({
                         success : false,
                         message : "Incorrect Password!"
@@ -42,16 +43,19 @@ const login = (req : express.Request, res : express.Response) => {
                             console.log("Testing token")
                             if(refreshToken) {
                                 console.log("Passing refreshToken")
+                                console.log(refreshToken)
                                 res.cookie('jwt', refreshToken, 
-                                    { httpOnly: true,
-                                    sameSite: "none",
-                                    secure: true})
+                                    {
+                                        httpOnly:true,
+                                        sameSite: "none",
+                                        secure: true,
+                                    })
                                     return res.status(200).json({
                                         success : true,
                                         message : "Authenticated",
                                         token: token
                                     });
-                            }
+                            }   
                         }
                     });
                 }
@@ -69,7 +73,6 @@ const login = (req : express.Request, res : express.Response) => {
                 error : "User does not exist",
             });
         }
-            
     })
     .catch((error) => {
         res.json({
@@ -79,4 +82,11 @@ const login = (req : express.Request, res : express.Response) => {
     })
 }
 
-export default { login, register };
+const refresh = (req : express.Request, res : express.Response) => {
+    console.log("TEST")
+    console.log(req.cookies)
+    res.status(200).send();
+    
+}
+
+export default { login, register, refresh };

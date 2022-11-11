@@ -7,6 +7,7 @@ var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("ke
 export const ENDPOINTS = {
     login: 'authz/login',
     register: 'authz/register',
+    refreshToken: 'authz/refresh',
     logout: 'authz/logout',
 
     orderTypes: 'order/types',
