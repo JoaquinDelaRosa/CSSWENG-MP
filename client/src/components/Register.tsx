@@ -47,7 +47,7 @@ const Register = () => {
                 <div className="registLogo">
                 </div>
                 <div className="registerForm">
-                    <form className="registerUI">
+                    <form className="registerUI" autoComplete="off">
                         <span className="customerName">
                             <input type="text" className="firstName"
                                 name="firstName"
