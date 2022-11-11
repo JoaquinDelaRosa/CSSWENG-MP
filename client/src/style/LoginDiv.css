@@ -109,7 +109,7 @@
     position: absolute;
 }
 
-::placeholder {
+::placeholder{
     color: black;
-    font-style: normal;
+    font-size: "Montserrat";
 }
