@@ -1,59 +1,45 @@
 import { useState, useEffect } from "react";
+import "../../style/TableButtons.css";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
-import { RequestVehicle } from "./RequestVehicle";
-import { Vehicle, VehicleRequest } from "./VehicleDetails";
+import { DeleteVehicle } from "./DeleteVehicle";
+import { UpdateVehicle } from "./UpdateVehicle";
+import { Vehicle} from "./VehicleDetails";
 
-export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
-    const onSubmit = () => {
-        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : props.vehicle.id})
-            .then((response) => {
-                props.observer();
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+
+export const VehicleRecord = (props : { vehicle: Vehicle}) => {
+    const [vehicle, setVehicle] = useState<Vehicle | null>(props.vehicle);
+
+    useEffect(() => {
+        if (props && props.vehicle){
+            setVehicle(props.vehicle);
+        } else {
+            setVehicle(null);
+        }
+    }, [props, props.vehicle])
+
+    const onUpdate = () => {
+        createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.vehicle.id})
+        .then((response) => {
+            setVehicle(response.data);
+        })
+    };
+
+    const onDelete = () => {
+        setVehicle(null);
     }
 
-    return (
-      <div>
-        <button onClick={onSubmit}> Delete </button>
-      </div> 
-    );
-}
-
-export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
-    const [data, setData] = useState<VehicleRequest>();
-    
-    useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.updateVehicle).post(data, {id: props.vehicle.id})
-        .then(function (response) {
-            props.observer();
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data])
-
-    return (
-        <div>
-          <ModalWrapper front={"Edit"}>
-            <RequestVehicle setResponse={setData} default={props.vehicle}/>
-          </ModalWrapper>
-        </div>
-    )
-}
-
-export const VehicleRecord = (props : { vehicle: Vehicle, observer: Function }) => {
-    return (
-        <tr>
-            <td> <DeleteVehicle vehicle={props.vehicle} observer={props.observer}/></td>
-            <td> <UpdateVehicle vehicle={props.vehicle} observer={props.observer}/></td>
-            <td> {props.vehicle.licensePlate} </td>
-            <td> {props.vehicle.manufacturer} </td>
-            <td> {props.vehicle.model} </td>
-            <td> {props.vehicle.yearManufactured} </td>
-        </tr> 
-     );
+    if (vehicle) {
+        return (
+            <tr>
+                <td> <DeleteVehicle vehicle={props.vehicle} observer={onDelete}/></td>
+                <td> <UpdateVehicle vehicle={props.vehicle} observer={onUpdate}/></td>
+                <td> {vehicle?.licensePlate} </td>
+                <td> {vehicle?.manufacturer} </td>
+                <td> {vehicle?.model} </td>
+                <td> {vehicle?.yearManufactured} </td>
+            </tr> 
+        );
+    } else{
+        return null;
+    }
 }

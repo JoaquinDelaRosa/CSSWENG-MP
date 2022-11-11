@@ -14,7 +14,7 @@ const all = async (req: express.Request, res: express.Response) => {
 };
 
 const id = async (req: express.Request, res: express.Response) => {
-    Vehicle.find({id : req.query.id})
+    Vehicle.findOne({id : req.query.id})
     .then((data) => {
         res.json(makeVehicleView(data));
     })
