@@ -1,0 +1,44 @@
+.tableDiv {
+    margin-top: 2.5rem;
+}
+
+thead {
+    height: 5rem;
+}
+
+.delCol, .editCol {
+    background-color: #500606;
+}
+
+.licenseCol {
+    background-color: #640808;
+}
+
+.manufacturerCol {
+    background-color: #890b0b;
+}
+
+.modelCol {
+    background-color: #9e160c;
+}
+
+.yearmanufacturedCol {
+    background-color: #aa1d11;
+}
+
+.tbodyDiv{
+    background-color: #5b2525;
+    /* width: 5rem; */
+    height: 10rem;
+}
+
+.deleteBtn {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.createBtn {
+    margin-right: 2rem;
+    float: right;
+}
+

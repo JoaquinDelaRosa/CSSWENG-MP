@@ -73,3 +73,65 @@
 .logo {
     padding-left: 0.8rem;
 }
+
+/* Vehicles */
+
+.createBtn button {
+    background-color: #16405b;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    padding: 1rem 1.5rem;
+    width: 14rem;
+    font-size: large;
+}
+
+.createBtn > div {
+    width: 15rem;
+    height: auto;
+}
+
+.createBtn button:hover {
+    background-color: #327889;
+}
+
+.deleteBtn button, .editBtn button {
+    background-color: #aa1d11;
+    color: white;
+    border: none;
+    width: 10rem;
+    border-radius: 35px;
+    padding: 1rem 1.5rem;
+    font-size: large;
+}
+
+.deleteBtn button:hover, .editBtn button:hover {
+    background-color: #d85e4b;
+}
+
+.deleteIcon {
+    background: url(../style/images/trash-icon.png);
+    background-size: cover;
+    width: 1.3rem;
+    height: 1.6rem;
+    float: left;
+    margin-left: 0.5rem;
+}
+
+tbody .icon {
+    background-image: url(../style/images/edit-icon.png);
+    background-size: cover;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: left;
+    margin-left: 0.5rem;
+}
+
+.createBtn .icon {
+    background-image: url(../style/images/plusle.png);
+    background-size: cover;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: left;
+    margin-right: 0.5rem;
+} 

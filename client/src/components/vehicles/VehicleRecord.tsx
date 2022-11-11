@@ -4,7 +4,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { DeleteVehicle } from "./DeleteVehicle";
 import { UpdateVehicle } from "./UpdateVehicle";
 import { Vehicle} from "./VehicleDetails";
-
+import "../../style/VehiclesView.css";
 
 export const VehicleRecord = (props : { vehicle: Vehicle}) => {
     const [vehicle, setVehicle] = useState<Vehicle | null>(props.vehicle);

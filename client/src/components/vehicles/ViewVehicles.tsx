@@ -4,6 +4,7 @@ import { ModalWrapper } from "../ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import "../../style/TablesView.css";
+import "../../style/VehiclesView.css";
 import {Searchbar} from "../Searchbar";
 import { CreateVehicle } from "./CreateVehicle";
 
@@ -58,12 +59,12 @@ const ViewVehicles = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th></th>
-                            <th> License Plate </th>
-                            <th> Manufacturer </th>
-                            <th> Model </th>
-                            <th> Year Manufactured </th>
+                            <th className="delCol"></th>
+                            <th className="editCol"></th>
+                            <th className="licenseCol"> License Plate </th>
+                            <th className="manufacturerCol"> Manufacturer </th>
+                            <th className="modelCol"> Model </th>
+                            <th className="yearmanufacturedCol"> Year Manufactured </th>
                         </tr>
                     </thead>
 
@@ -74,11 +75,12 @@ const ViewVehicles = () => {
                         })}
                     </tbody>
                 </table>
-
-                <ModalWrapper front={"Create Vehicle"}>
-                    <CreateVehicle observer={updateView}/>
-                </ModalWrapper>
-
+                <br></br>
+                <div className="createBtn">
+                    <ModalWrapper front={"Create Vehicle"}>
+                        <CreateVehicle observer={updateView}/>
+                    </ModalWrapper>
+                </div>
             </div>
         </div>
     )
