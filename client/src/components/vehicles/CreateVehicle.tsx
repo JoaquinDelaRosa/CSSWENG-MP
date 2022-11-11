@@ -3,7 +3,7 @@ import { VehicleRequest } from './VehicleDetails';
 import { useEffect, useState } from "react";
 import { RequestVehicle } from "./RequestVehicle";
 
-const CreateVehicle = (props : {observer : Function}) => {
+export const CreateVehicle = (props : {observer : Function}) => {
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addVehicle).post(data)
         .then(function (response) {
@@ -21,5 +21,3 @@ const CreateVehicle = (props : {observer : Function}) => {
         </div>
     )
 }
-
-export default CreateVehicle;

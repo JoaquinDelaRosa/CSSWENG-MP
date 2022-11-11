@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../ModalBase";
-import CreateVehicle from "./CreateVehicle";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
+import { CreateVehicle } from "./CreateVehicle";
 
 const ViewVehicles = () => {
 
@@ -39,6 +39,10 @@ const ViewVehicles = () => {
     const updateView = () => {
         fetchVehicles();
     }
+
+    useEffect(() => {
+        console.log(vehicles);
+    }, [vehicles])
 
     useEffect(() => {
         setVehicles(queryResult)
@@ -90,7 +94,7 @@ const queryParser = (q : string) => {
         licensePlate: "",
         manufacturer: "",
         model: "",
-        yearManafactured: "",
+        yearManafactured: 0,
         skip: 0,
         limit: 1000
     };
@@ -107,7 +111,7 @@ const queryParser = (q : string) => {
             query.model = toks[i + 1]?.trim();
         }
         else if (token === "yearManafactured"){
-            query.yearManafactured = toks[i + 1]?.trim();
+            query.yearManafactured = parseInt(toks[i + 1]?.trim());
         }
         ++i;
     }
