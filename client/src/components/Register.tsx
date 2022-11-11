@@ -4,6 +4,7 @@ import '../style/RegistDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
+import '../style/Hyperlink.css';
 
 interface RegistrationState {
     username: string,
