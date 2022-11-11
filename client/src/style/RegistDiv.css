@@ -1,9 +1,10 @@
 .registerUI {
     z-index: 100;
-    width: 135rem;
+    width: 85rem;
     border: none;
     justify-content: center;
-    padding-top: 15rem;
+    padding-top: 14.5rem;
+    padding-left: 53rem;
 }
 
 .textRegister {
@@ -16,7 +17,7 @@
     background-position: 1rem;
     font-size: 24px;
     border: none;
-    background-color: #D0D0D0;
+    background-color: rgb(245, 245, 245);
     border-radius: 2rem;
 }
 
@@ -47,7 +48,7 @@
     background-position: 1rem;
     font-size: 24px;
     border: none;
-    background-color: #D0D0D0;
+    background-color: rgb(245, 245, 245);
     border-radius: 2rem;
 }
 
@@ -62,7 +63,7 @@
     background-position: 1rem;
     font-size: 24px;
     border: none;
-    background-color: #D0D0D0;
+    background-color: rgb(245, 245, 245);
     border-radius: 2rem;
 }
 
@@ -95,7 +96,7 @@
     height: 100%;
     background-image: url(../style/images/hotwheels.png);
     background-position: left;
-    background-position-x: -30rem;
+    background-position-x: -28.5rem;
     background-position-y: -32rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -115,6 +116,8 @@
     margin: auto;
     padding: 0;
     border: 0;
+    background-image: url(../style/images/SL_042620_30310_19.jpg);
+    background-size: cover;
 }
 
 .registLogo {
@@ -123,7 +126,7 @@
     width: 100%;
     background-image: url('../style/images/TOPTECH AUTOWORKS LOGO.png');
     background-position: right;
-    background-position-x: 49rem;
+    background-position-x: 50rem;
     background-repeat: no-repeat;
     background-size: 35rem 10rem;
     position: absolute;
@@ -132,9 +135,8 @@
 .loginDial{
     color: black;
     position: absolute;
-    width: 123rem;
+    width: 33em;
     justify-content: center;
-    padding-left: 12rem;
 }
 
 ::placeholder {
