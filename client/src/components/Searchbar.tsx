@@ -11,10 +11,12 @@ export interface SearchOption {
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
-        <button className="optionButton" onClick={() => {
-            props.observer(props.option.name + ": ")
-        }}> 
-        {props.option.name} </button> 
+        <div>
+            <button onClick={() => {
+                props.observer(props.option.name + ": ")
+            }}> 
+            {props.option.name} </button> 
+        </div>
     );
 }
 
@@ -27,8 +29,8 @@ export const Searchbar = (props : {
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    const runQuery = () => {
-        console.log(props.queryParser(query.trim()));
+    const onClick = () => {
+        console.log(query);
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
                 props.setData(response.data);
@@ -41,22 +43,18 @@ export const Searchbar = (props : {
 
     useEffect(() => {
         setQuery(query);
-        runQuery();
     }, [query])
 
     return (
         <div className="searchWrapper">
-                        <input  className="searchBar" placeholder="Search" defaultValue={query} 
-            onChange={(e) => {setQuery(e.target.value)}}
-            onClick={() => {setIsVisible(true)}}/>
-            <span className="options">
-                {isVisible && props.options.map((value, index) => {
-                        return ( 
-                            <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
-                        )
-                    })
-                }
-            </span>
+            <input  className="searchBar" placeholder="Search" defaultValue={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
+            {isVisible && props.options.map((value, index) => {
+                    return ( 
+                        <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
+                    )
+                })
+            }
+            <button onClick = {() => {onClick()}}> Search </button>
         </div>
     )
 }

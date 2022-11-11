@@ -7,12 +7,10 @@ import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
 
-
 const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
-    const [queryResult, setQueryResult] = useState([]);
-    
+
     const fetchCustomers = async () => {
         await createAPIEndpoint(ENDPOINTS.customers).fetch()
             .then((response) => {
@@ -35,22 +33,8 @@ const ViewCustomers = () => {
     };
 
     const updateView = async () => {
-        if(!queryResult) {
-            fetchCustomers();
-        }   
+        fetchCustomers();
     }
-
-    useEffect(() => {
-        if(queryResult != null) {
-            if(queryResult.length != 0) {
-                setCustomers(queryResult)
-            }
-        }
-
-        if(!queryResult) {
-            fetchCustomers();
-        }   
-    }, [queryResult])
 
     useEffect(() => {
         fetchCustomers();
@@ -85,7 +69,7 @@ const ViewCustomers = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser} 
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
