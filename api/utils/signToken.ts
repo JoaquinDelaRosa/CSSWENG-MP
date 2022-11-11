@@ -9,9 +9,6 @@ const signToken = (user,  callback: (error: Error | null, token: string | null, 
     const expirationTimeInSeconds = Math.floor(expirationTime / 1000);
 
     try {
-        console.info(`timeSinceEpoch : ${timeSinceEpoch}`)
-        console.info(`Attempting sign in with expire time: ${expirationTimeInSeconds}`)
-        console.log(user);
         jwt.sign(
             {
                 id : user.id,

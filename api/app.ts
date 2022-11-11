@@ -2,10 +2,12 @@ import * as express from 'express';
 import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
+import cookieparser = require("cookie-parser");
 import router from './routes';
 
 
 const bodyParser = require('body-parser');
+
 
 const debug = require('debug')('my express app');
 const app = express();
@@ -20,6 +22,7 @@ app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieparser);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Enable cors
