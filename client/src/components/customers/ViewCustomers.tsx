@@ -97,8 +97,6 @@ const queryParser = (q : string) => {
         const key = subtoks[0].trim();
         const value = subtoks[1];
 
-        console.log(subtoks);
-
         if (key === "name"){
             query.name = value?.trim();
         }
