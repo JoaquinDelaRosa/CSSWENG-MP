@@ -48,19 +48,19 @@ const OrdersView = () => {
             <table className="tableDiv">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th> Status </th>
-                        <th> Time In </th>
-                        <th> Time Out </th>
-                        <th> Customer Name </th>
-                        <th> Customer Type </th>
-                        <th> Company </th>
-                        <th> License Plate </th>
-                        <th> Invoice Details </th>
-                        <th> Estimate Number </th>
-                        <th> Scope of Work </th>
-                        <th> Expenses </th>
+                        <th className="delCol"></th>
+                        <th className="editCol"></th>
+                        <th className="statusCol"> Status </th>
+                        <th className="timeCol"> Time In </th>
+                        <th className="timeCol"> Time Out </th>
+                        <th className="customerCol"> Customer Name </th>
+                        <th className="customerCol"> Customer Type </th>
+                        <th className="customerCol"> Company </th>
+                        <th className="othDetails"> License Plate </th>
+                        <th className="othDetails"> Invoice Details </th>
+                        <th className="othDetails"> Estimate Number </th>
+                        <th className="othDetails"> Scope of Work </th>
+                        <th className="othDetails"> Expenses </th>
                     </tr>
                 </thead>
                 <tbody className="tbodyDiv">

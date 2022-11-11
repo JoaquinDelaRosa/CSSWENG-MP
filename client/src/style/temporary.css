@@ -13,9 +13,7 @@ table, th, td {
 }
 
 th, td {
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 10px
+    height: 10px;
 }
 
 table {

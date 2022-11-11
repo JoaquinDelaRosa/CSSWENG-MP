@@ -43,7 +43,40 @@ const ViewVehicles = () => {
 
     useEffect(() => {
         setVehicles(queryResult)
-    }, [queryResult])
+    }, [queryResult]);
+
+    const sortAlphabetically = (isAsc: Boolean ) => {
+        if(isAsc){
+            vehicles.sort((a : Vehicle, b : Vehicle) => {
+                let fa = a.licensePlate.toLowerCase(),
+                    fb = b.licensePlate.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            })
+        }
+        else{
+            vehicles.sort((a : Vehicle, b : Vehicle) => {
+                let fa = a.licensePlate.toLowerCase(),
+                    fb = b.licensePlate.toLowerCase();
+
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+            })
+        }
+
+        setQueryResult([...vehicles]);
+    };
 
     return (
         <div className="FullPage">
@@ -61,7 +94,20 @@ const ViewVehicles = () => {
                         <tr>
                             <th className="delCol"></th>
                             <th className="editCol"></th>
-                            <th className="licenseCol"> License Plate </th>
+                            <th className="licenseCol"> License Plate 
+                                <span>
+                                    <div>
+                                        <button onClick={() => {
+                                            sortAlphabetically(true);
+                                        }}>▲</button>
+                                    </div>
+                                    <div>
+                                        <button onClick={() => {
+                                            sortAlphabetically(false);
+                                        }}>▼</button> 
+                                    </div>
+                                </span>
+                            </th>
                             <th className="manufacturerCol"> Manufacturer </th>
                             <th className="modelCol"> Model </th>
                             <th className="yearmanufacturedCol"> Year Manufactured </th>

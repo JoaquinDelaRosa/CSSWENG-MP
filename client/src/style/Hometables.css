@@ -1,6 +1,6 @@
 table, th, tr {
     border: 2px white;
-    height: 5rem;
+    height: 3rem;
 }
 
 .FullPage {
@@ -11,9 +11,25 @@ table, th, tr {
 .tableDiv {
     background-color: #890b0b;
     color: white;
-    width: 90%;
+    width: 100%;
 }
 
 .tbodyDiv{
     height: 6rem;
+}
+
+.statusCol {
+    background-color: #640808;
+}
+
+.timeCol {
+    background-color: #890b0b;
+}
+
+.customerCol {
+    background-color: #9e160c;
+}
+
+.othDetails {
+    background-color: #aa1d11;
 }
