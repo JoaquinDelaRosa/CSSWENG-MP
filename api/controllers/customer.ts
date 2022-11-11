@@ -61,6 +61,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     Customer.aggregate([
         {
             $project : {
+                "id": "$id",
                 "firstName": "$firstName",
                 "lastName": "$lastName",
                 "mobileNumber": "$mobileNumber",

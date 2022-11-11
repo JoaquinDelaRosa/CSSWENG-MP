@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createAPIEndpoint } from "../api"
 import "../style/SearchBar.css"
 import { ModalWrapper } from "./ModalBase"
@@ -29,21 +29,25 @@ export const Searchbar = (props : {
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    const onClick = () => {
-        console.log(query);
-        createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
-        .then((response) => {
-                props.setData(response.data);
-        })
-    }
-
     const appendQuery = (val : string) => {
         setQuery(query + " " + val);
     }
 
+    const runQuery = useCallback(() => {
+        if (query === "")
+            return [];
+
+        createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
+        .then((response) => {
+            console.log(response.data);
+            props.setData(response.data);
+        })
+    }, [query]);
+
     useEffect(() => {
         setQuery(query);
-    }, [query])
+        runQuery();
+    }, [query, runQuery])
 
     return (
         <div className="searchWrapper">
@@ -54,7 +58,6 @@ export const Searchbar = (props : {
                     )
                 })
             }
-            <button onClick = {() => {onClick()}}> Search </button>
         </div>
     )
 }
