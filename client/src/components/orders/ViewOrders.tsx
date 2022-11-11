@@ -45,7 +45,7 @@ const OrdersView = () => {
         <div className="FullPage">
             <div className="objectView">
             <br />
-            <table className="orderDiv">
+            <table className="tableDiv">
                 <thead>
                     <tr>
                         <th className="delCol"></th>
@@ -70,9 +70,12 @@ const OrdersView = () => {
                 </tbody>
             </table>
             <br />
-            <ModalWrapper front={"Create Order"}>
-                <CreateOrder observer={updateView}/>
-            </ModalWrapper>
+            <div className="createBtn">
+                <ModalWrapper front={"Create Order"}>
+                    <CreateOrder observer={updateView}/>
+                </ModalWrapper>
+            </div>
+            
             </div>
         </div>
               
