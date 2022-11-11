@@ -4,6 +4,7 @@ import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
+import '../style/Hyperlink.css';
 
 type LoginState = {
     username: string

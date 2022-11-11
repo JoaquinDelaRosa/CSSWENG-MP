@@ -4,6 +4,7 @@ import '../style/RegistDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
+import '../style/Hyperlink.css';
 
 interface RegistrationState {
     username: string,
@@ -46,7 +47,7 @@ const Register = () => {
                 <div className="registLogo">
                 </div>
                 <div className="registerForm">
-                    <form className="registerUI">
+                    <form className="registerUI" autoComplete="off">
                         <span className="customerName">
                             <input type="text" className="firstName"
                                 name="firstName"
