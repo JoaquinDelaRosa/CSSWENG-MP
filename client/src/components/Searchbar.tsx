@@ -46,7 +46,7 @@ export const Searchbar = (props : {
 
     return (
         <div className="searchWrapper">
-                        <input  className="searchBar" placeholder="Search" defaultValue={query} 
+            <input  className="searchBar" placeholder="Search" defaultValue={query} 
             onChange={(e) => {setQuery(e.target.value)}}
             onClick={() => {setIsVisible(true)}}/>
             <span className="options">
