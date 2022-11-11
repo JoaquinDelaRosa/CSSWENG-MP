@@ -61,19 +61,19 @@ const Register = () => {
                             <br />
                         </span>
 
-                        <input type="text" className="textField usernameField"
+                        <input type="text" className="textRegister usernameField"
                             name="username"
                             placeholder="Username"
                             onChange={(e) => { onInputChange("username", e.target.value); }} />
                         <br />
 
-                        <input type="password" className="textField passwordField"
+                        <input type="password" className="textRegister passwordField"
                             name="password"
                             placeholder="Password"
                             onChange={(e) => { onInputChange("password", e.target.value); }} />
                         <br />
 
-                        <input type="password" className="textField passwordField"
+                        <input type="password" className="textRegister passwordField"
                             name="new_password"
                             placeholder="Confirm Password"
                             onChange={(e) => { onInputChange("new_password", e.target.value); }} />
