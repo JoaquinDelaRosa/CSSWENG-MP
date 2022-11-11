@@ -17,14 +17,10 @@
     color: white;
 }
 
-input::placeholder {
-    text-align: center;
-    font-style: italic;
-}
-
-::placeholder {
+.searchBar::placeholder {
     color: white;
     text-align: center;
+    font-style: italic;
 }
 
 .hideCaret {
