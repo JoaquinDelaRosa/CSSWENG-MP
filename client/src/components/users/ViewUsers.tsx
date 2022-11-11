@@ -45,6 +45,40 @@ const UsersView = () => {
         setUsers(queryResult)
     }, [queryResult])
 
+    const sortAlphabetically = (isAsc: Boolean ) => {
+        if(isAsc){
+            users.sort((a : User, b : User) => {
+                let fa = a.username.toLowerCase(),
+                    fb = b.username.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            })
+        }
+        else{
+            users.sort((a : User, b : User) => {
+                let fa = a.username.toLowerCase(),
+                    fb = b.username.toLowerCase();
+
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+            })
+        }
+
+        setQueryResult([...users]);
+    };
+
+
     return (
         <div className="FullPage">
             <Searchbar path={ENDPOINTS.filterUser} setData={setQueryResult} queryParser={queryParser} 
@@ -60,7 +94,15 @@ const UsersView = () => {
                             <th/>
                             <th> First Name </th>
                             <th> Last Name</th>
-                            <th> Username </th>
+                            <th> Username 
+                                <button onClick={() => {
+                                    sortAlphabetically(true);
+                                }}>▲</button>
+
+                                <button onClick={() => {
+                                    sortAlphabetically(false);
+                                }}>▼</button>
+                            </th>
                             <th> Role </th>
                         </tr>
                     </thead>
