@@ -45,7 +45,7 @@ const OrdersView = () => {
         <div className="FullPage">
             <div className="objectView">
             <br />
-            <table className="orderDiv">
+            <table className="tableDiv">
                 <thead>
                     <tr>
                         <th className="delCol"></th>
