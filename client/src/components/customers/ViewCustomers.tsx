@@ -83,7 +83,7 @@ const ViewCustomers = () => {
 
 
 const queryParser = (q : string) => {
-    const toks = q.split(' ');
+    const toks = q.split(':');
     const query = {
         name: "",
         skip: 0,
@@ -93,15 +93,15 @@ const queryParser = (q : string) => {
     };
 
     for(let i = 0; i < toks.length; ++i){
-        const token = toks[i].replace(":", "");
+        const token = toks[i].trim();
         if (token === "name"){
-            query.name = toks[i + 1];
+            query.name = toks[i + 1]?.trim();
         }
         else if (token === "mobileNumber"){
-            query.mobileNumber = toks[i + 1];
+            query.mobileNumber = toks[i + 1]?.trim();
         }
         else if (token === "email"){
-            query.email = toks[i + 1];
+            query.email = toks[i + 1]?.trim();
         }
         ++i;
     }
