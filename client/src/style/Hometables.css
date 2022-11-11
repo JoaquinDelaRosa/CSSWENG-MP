@@ -5,14 +5,15 @@ table, th, tr {
 
 .FullPage {
     background-color: #17190d;
+    
 }
 
 .tableDiv {
     background-color: #890b0b;
     color: white;
-    width: 100%;
+    width: 90%;
 }
 
 .tbodyDiv{
-    height: 30rem;
+    height: 6rem;
 }
