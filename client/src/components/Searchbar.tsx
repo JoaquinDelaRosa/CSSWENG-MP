@@ -13,7 +13,7 @@ const SearchOptionBar = (props : {option : SearchOption, observer: Function})  =
     return (
         <div>
             <button onClick={() => {
-                props.observer(props.option.name + ": ")
+                props.observer("," + props.option.name + ": ")
             }}> 
             {props.option.name} </button> 
         </div>
@@ -37,6 +37,7 @@ export const Searchbar = (props : {
         if (query === "")
             return [];
 
+        console.log(query);
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
             console.log(props.queryParser(query.trim()));
@@ -51,12 +52,11 @@ export const Searchbar = (props : {
 
     return (
         <div className="searchWrapper">
-            <input  className="searchBar" placeholder="Search" defaultValue={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
+            <input  className="searchBar" placeholder="Search" defaultValue={query.replace(",", "")} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
             {isVisible && props.options.map((value, index) => {
-                    return ( 
-                        <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
-                    )
-                })
+                return ( 
+                    <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
+                )})
             }
         </div>
     )

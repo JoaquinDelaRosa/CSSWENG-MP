@@ -85,7 +85,7 @@ const ViewVehicles = () => {
 }
 
 const queryParser = (q : string) => {
-    const toks = q.split(':');
+    const toks = q.split(',');
     const query = {
         licensePlate: "",
         manufacturer: "",
@@ -96,20 +96,22 @@ const queryParser = (q : string) => {
     };
 
     for(let i = 0; i < toks.length; ++i){
-        const token = toks[i].trim();
-        if (token === "licensePlate"){
-            query.licensePlate = toks[i + 1]?.trim();
+        const subtoks = toks[i].split(":");
+        const key = subtoks[0].trim();
+        const value = subtoks[1];
+
+        if (key === "licensePlate"){
+            query.licensePlate = value?.trim();
         }
-        else if (token === "manufacturer"){
-            query.manufacturer = toks[i + 1]?.trim();
+        else if (key === "manufacturer"){
+            query.manufacturer = value?.trim();
         }
-        else if (token === "model"){
-            query.model = toks[i + 1]?.trim();
+        else if (key === "model"){
+            query.model = value?.trim();
         }
-        else if (token === "yearManufactured"){
-            query.yearManufactured = parseInt(toks[i + 1]?.trim());
+        else if (key === "yearManufactured"){
+            query.yearManufactured = parseInt(value?.trim());
         }
-        ++i;
     }
 
     return query;

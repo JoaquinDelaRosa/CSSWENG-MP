@@ -81,7 +81,7 @@ const UsersView = () => {
 }
 
 const queryParser = (q : string) => {
-    const toks = q.split(':');
+    const toks = q.split(',');
     const query = {
         username: "",
         skip: 0,
@@ -89,11 +89,13 @@ const queryParser = (q : string) => {
     };
 
     for(let i = 0; i < toks.length; ++i){
-        const token = toks[i].trim();
-        if (token === "username"){
-            query.username = toks[i + 1]?.trim();
+        const subtoks = toks[i].split(":");
+        const key = subtoks[0].trim();
+        const value = subtoks[1];
+
+        if (key === "username"){
+            query.username = value?.trim();
         }
-        ++i;
     }
 
     return query;
