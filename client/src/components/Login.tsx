@@ -45,7 +45,7 @@ const Login = () => {
                 <div className="rightBG">
                 </div>
                 <div className="loginForm">
-                    <form className="loginUI">
+                    <form className="loginUI" autoComplete="off">
                         <span>
                             <input className="textField usernameField"
                                 name="username"
