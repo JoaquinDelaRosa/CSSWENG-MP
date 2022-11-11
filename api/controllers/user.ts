@@ -55,7 +55,7 @@ const remove = (req : express.Request, res : express.Response) => {
 const filter = async (req: express.Request, res: express.Response) => {
         const query : UserQuery = makeQuery(req);
         
-        User.find({username: {$regex: ".*" + query.username + ".*"}})
+        User.find({username: {$regex: ".*" + query.username + ".*" , $options: "i"}})
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))
         .then((result) => {

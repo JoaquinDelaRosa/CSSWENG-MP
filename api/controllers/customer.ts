@@ -72,7 +72,10 @@ const filter = async (req: express.Request, res: express.Response) => {
             }
         }
     ])
-    .match({"name": {$regex: ".*" + query.name + ".*"}, "email" : {$regex: ".*" + query.email + ".*"}, "mobileNumber": {$regex: ".*" + query.mobileNumber + ".*"}})
+    .match({
+        "name": {$regex: ".*" + query.name + ".*", $options: "i"}, 
+        "email" : {$regex: ".*" + query.email + ".*" , $options: "i"}, 
+        "mobileNumber": {$regex: ".*" + query.mobileNumber + ".*" , $options: "i"}})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {

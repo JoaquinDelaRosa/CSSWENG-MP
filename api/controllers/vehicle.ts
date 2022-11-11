@@ -81,9 +81,9 @@ interface VehicleQuery {
 
 const makeMongooseQuery = (q : VehicleQuery) : any => {
     let query =  {
-        licensePlate: {$regex: ".*" + q.licensePlate + ".*"},
-        model: {$regex: ".*" + q.model + ".*"},
-        manufacturer: {$regex: ".*" + q.manufacturer + ".*"}
+        licensePlate: {$regex: ".*" + q.licensePlate + ".*" , $options: "i"},
+        model: {$regex: ".*" + q.model + ".*" , $options: "i"},
+        manufacturer: {$regex: ".*" + q.manufacturer + ".*" , $options: "i"}
     }
 
     if (q.yearManufactured > 0){
