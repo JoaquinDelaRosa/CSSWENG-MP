@@ -27,12 +27,8 @@ export const Searchbar = (props : {
     const [query, setQuery] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    useEffect(() => {
-        runQuery()
-    }, [query])
-    
     const runQuery = () => {
-        console.log(query);
+        console.log(props.queryParser(query.trim()));
         createAPIEndpoint(props.path).fetch(props.queryParser(query.trim()))
         .then((response) => {
                 props.setData(response.data);
@@ -45,6 +41,7 @@ export const Searchbar = (props : {
 
     useEffect(() => {
         setQuery(query);
+        runQuery();
     }, [query])
 
     return (
