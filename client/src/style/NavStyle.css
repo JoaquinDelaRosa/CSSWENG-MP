@@ -80,7 +80,7 @@
     background-color: #aa1d11;
     color: white;
     border: none;
-    width: 10rem;
+    width: 8.5rem;
     border-radius: 35px;
     padding: 1rem 1.5rem;
     font-size: large;
@@ -96,7 +96,6 @@
     width: 1.3rem;
     height: 1.6rem;
     float: left;
-    margin-left: 0.5rem;
 }
 
 .createBtn button {
