@@ -5,10 +5,12 @@ import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
 import "../../style/TablesView.css";
+import { Searchbar } from "../Searchbar";
 
 const UsersView = () => {
 
     const [users, setUsers] = useState([]);
+    const [queryResult, setQueryResult] = useState([]);
 
     const fetchUsers = async () => {
         await createAPIEndpoint(ENDPOINTS.users).fetch()
@@ -31,16 +33,24 @@ const UsersView = () => {
             });
     };
 
-    const updateView = async () => {
-        fetchUsers();
-    }
-
     useEffect(() => {
         fetchUsers();
     }, []);
 
+    const updateView = () => {
+        fetchUsers();
+    }
+
+    useEffect(() => {
+        setUsers(queryResult)
+    }, [queryResult])
+
     return (
         <div className="FullPage">
+            <Searchbar path={ENDPOINTS.filterUser} setData={setQueryResult} queryParser={queryParser} 
+                options = {[
+                    {name: "username", description:"The username of the user"},
+                ]}/>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -57,7 +67,7 @@ const UsersView = () => {
 
                     <tbody className="tbodyDiv">
                         {users.map((value, index) => {
-                            return (<UserRecord user={value} key={index } observer={updateView} />);
+                            return (<UserRecord user={value} key={index }/>);
                         })}
                     </tbody>
                 </table>
@@ -68,6 +78,25 @@ const UsersView = () => {
             </div>    
         </div>  
     );
+}
+
+const queryParser = (q : string) => {
+    const toks = q.split(':');
+    const query = {
+        username: "",
+        skip: 0,
+        limit: 1000,
+    };
+
+    for(let i = 0; i < toks.length; ++i){
+        const token = toks[i].trim();
+        if (token === "username"){
+            query.username = toks[i + 1]?.trim();
+        }
+        ++i;
+    }
+
+    return query;
 }
 
 export default UsersView;

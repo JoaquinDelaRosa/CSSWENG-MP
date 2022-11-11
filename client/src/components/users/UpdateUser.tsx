@@ -16,7 +16,6 @@ export const UpdateUser = (props : {user : User, observer : Function}) => {
         .catch(function (error) {
             console.log(error);
         })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
     return (

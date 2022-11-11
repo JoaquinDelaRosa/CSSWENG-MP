@@ -14,7 +14,7 @@ const all = async (req: express.Request, res: express.Response) => {
 };
 
 const id = async (req: express.Request, res: express.Response) => {
-        User.find({id: req.query.id})
+        User.findOne({id: req.query.id})
         .then((data) => {
             res.json(makeUserView(data));
         })
