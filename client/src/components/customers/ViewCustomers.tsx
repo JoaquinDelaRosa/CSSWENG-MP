@@ -10,6 +10,7 @@ import {Searchbar} from "../Searchbar";
 const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
+    const [queryResult, setQueryResult] = useState([]);
 
     const fetchCustomers = async () => {
         await createAPIEndpoint(ENDPOINTS.customers).fetch()
@@ -32,44 +33,21 @@ const ViewCustomers = () => {
             });
     };
 
-    const updateView = async () => {
-        fetchCustomers();
-    }
-
     useEffect(() => {
         fetchCustomers();
     }, []);
 
-    const queryParser = (q : string) => {
-        const toks = q.split(' ');
-        const query = {
-            name: "",
-            skip: 0,
-            limit: 1000,
-            email: "",
-            mobileNumber: "",
-        };
-
-        for(let i = 0; i < toks.length; ++i){
-            const token = toks[i].replace(":", "");
-            if (token === "name"){
-                query.name = toks[i + 1];
-            }
-            else if (token === "mobileNumber"){
-                query.mobileNumber = toks[i + 1];
-            }
-            else if (token === "email"){
-                query.email = toks[i + 1];
-            }
-            ++i;
-        }
-
-        return query;
+    const updateView = () => {
+        fetchCustomers();
     }
+
+    useEffect(() => {
+        setCustomers(queryResult)
+    }, [queryResult])
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setCustomers} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
@@ -101,6 +79,34 @@ const ViewCustomers = () => {
             </div>
         </div>      
     );
+}
+
+
+const queryParser = (q : string) => {
+    const toks = q.split(' ');
+    const query = {
+        name: "",
+        skip: 0,
+        limit: 1000,
+        email: "",
+        mobileNumber: "",
+    };
+
+    for(let i = 0; i < toks.length; ++i){
+        const token = toks[i].replace(":", "");
+        if (token === "name"){
+            query.name = toks[i + 1];
+        }
+        else if (token === "mobileNumber"){
+            query.mobileNumber = toks[i + 1];
+        }
+        else if (token === "email"){
+            query.email = toks[i + 1];
+        }
+        ++i;
+    }
+
+    return query;
 }
 
 export default ViewCustomers;
