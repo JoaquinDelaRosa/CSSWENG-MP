@@ -76,25 +76,6 @@
 
 /* Vehicles */
 
-.createBtn button {
-    background-color: #16405b;
-    color: white;
-    border: none;
-    border-radius: 35px;
-    padding: 1rem 1.5rem;
-    width: 14rem;
-    font-size: large;
-}
-
-.createBtn > div {
-    width: 15rem;
-    height: auto;
-}
-
-.createBtn button:hover {
-    background-color: #327889;
-}
-
 .deleteBtn button, .editBtn button {
     background-color: #aa1d11;
     color: white;
@@ -116,6 +97,25 @@
     height: 1.6rem;
     float: left;
     margin-left: 0.5rem;
+}
+
+.createBtn button {
+    background-color: #16405b;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    padding: 1rem 1.5rem;
+    width: 14rem;
+    font-size: large;
+}
+
+.createBtn > div {
+    width: 21rem;
+    height: auto;
+}
+
+.createBtn button:hover {
+    background-color: #327889;
 }
 
 tbody .icon {
