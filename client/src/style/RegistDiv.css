@@ -1,9 +1,10 @@
 .registerUI {
     z-index: 100;
-    width: 135rem;
+    width: 84rem;
     border: none;
     justify-content: center;
     padding-top: 15rem;
+    padding-left: 52rem;
 }
 
 .textRegister {
@@ -132,9 +133,8 @@
 .loginDial{
     color: black;
     position: absolute;
-    width: 123rem;
+    width: 33em;
     justify-content: center;
-    padding-left: 12rem;
 }
 
 ::placeholder {
