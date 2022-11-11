@@ -42,11 +42,43 @@ const ViewCustomers = () => {
     }
 
     useEffect(() => {
+        console.log(queryResult)     
         setCustomers(queryResult)
-    }, [queryResult])
+    }, [queryResult]);
 
-    console.log("getting cust")
-    console.log(customers)
+    const sortAlphabetically = (isAsc: Boolean ) => {
+        if(isAsc){
+            customers.sort((a : Customer, b : Customer) => {
+                let fa = a.name.val.toLowerCase(),
+                    fb = b.name.val.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            })
+        }
+        else{
+            customers.sort((a : Customer, b : Customer) => {
+                let fa = a.name.val.toLowerCase(),
+                    fb = b.name.val.toLowerCase();
+
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+            })
+        }
+
+        setQueryResult(customers);
+    };
+
     return (
         <div className="FullPage">
             <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
@@ -63,8 +95,13 @@ const ViewCustomers = () => {
                             <th> </th>
                             <th> </th>
                             <th> Name 
-                                {<button onClick={() => sortAlphabetically(customers, true)}>▲</button>}
-                                <button>▼</button> 
+                                <button onClick={() => {
+                                    sortAlphabetically(true);
+                                }}>▲</button>
+
+                                <button onClick={() => {
+                                    sortAlphabetically(false);
+                                }}>▼</button> 
                             </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
@@ -114,37 +151,6 @@ const queryParser = (q : string) => {
     return query;
 }
 
-const sortAlphabetically = (customerList: Array<Customer>, isAsc: Boolean ) => {
-    if(isAsc){
-        customerList.sort((a, b) => {
-            let fa = a.name.val.toLowerCase(),
-                fb = b.name.val.toLowerCase();
-
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        })
-    }
-    else{
-        customerList.sort((a, b) => {
-            let fa = a.name.val.toLowerCase(),
-                fb = b.name.val.toLowerCase();
-
-            if (fa < fb) {
-                return 1;
-            }
-            if (fa > fb) {
-                return -1;
-            }
-            return 0;
-        })
-    }
-    console.log(customerList)
-};
 
 
 export default ViewCustomers;
