@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import jwt = require("jsonwebtoken");
 import config from "../config/authConfig";
+import authz from "../controllers/authz";
 
 const validateToken = (req : Request, res : Response, next : NextFunction) => {
     let token = req.headers.authorization?.split(' ')[1]; // remove bearer
     if(token) {
-        jwt.verify(token, config.token.secret, (error, decoded) => {
+        jwt.verify(token, config.token.secret,  {issuer: config.token.issuer}, (error, decoded) => {
             if (error) {
                 return res.status(404).json({
                     message: error,
@@ -16,6 +17,8 @@ const validateToken = (req : Request, res : Response, next : NextFunction) => {
                 next();
             }
         });
+
+
     } else {
         return res.status(401).json({
             message: 'Unauthorized'

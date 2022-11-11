@@ -16,19 +16,21 @@ const register =  (req : express.Request, res : express.Response) => {
 }
 
 const login = (req : express.Request, res : express.Response) => {
+    console.log(`Attempting Login`)
     User.findOne({username : req.body.username})
     .then((user) => {
         if (user) {
             Bcrypt.compare(req.body.password, user.password, (error, result) => {
                 console.info("Comparing Password")
-                if(error) {
+                console.log(error)
+                if(!result) {
                     return res.status(401).json({
                         success : false,
                         message : "Incorrect Password!"
                     })
                 } 
                 else if (result) {
-                    let tk = signToken(user, (err, token) => {
+                    let tk = signToken(user, (err, token, refreshToken) => {
                         if (err) {
                             return res.status(500).json({
                                 success : false,
@@ -37,13 +39,27 @@ const login = (req : express.Request, res : express.Response) => {
                             })
                         }
                         else if (token) {
-                            res.status(200).json({
-                                success : true,
-                                message : "Authenticated",
-                                token: token
-                            })
+                            console.log("Testing token")
+                            if(refreshToken) {
+                                console.log("Passing refreshToken")
+                                res.cookie('jwt', refreshToken, 
+                                    { httpOnly: true,
+                                    sameSite: "none",
+                                    secure: true})
+                                    return res.status(200).json({
+                                        success : true,
+                                        message : "Authenticated",
+                                        token: token
+                                    });
+                            }
                         }
                     });
+                }
+                else if(error) {
+                    return res.status(401).json({
+                        success : false,
+                        message : "Password Input Failure"
+                    })
                 }
             });
         } 
