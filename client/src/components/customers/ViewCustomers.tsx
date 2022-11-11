@@ -22,7 +22,7 @@ const ViewCustomers = () => {
                     let customer: Customer = value;
                     return customer;
                 });
-
+                
                 return customerList
             })
             .then((list) => {
@@ -108,5 +108,20 @@ const queryParser = (q : string) => {
 
     return query;
 }
+
+const sortAlphabeticallyDesc = (customerList: Array<Customer>) => {
+    customerList.sort((a, b) => {
+        let fa = a.name.val.toLowerCase(),
+            fb = b.name.val.toLowerCase();
+
+        if (fa < fb) {
+            return -1;
+        }
+        if (fa > fb) {
+            return 1;
+        }
+        return 0;
+    })
+};
 
 export default ViewCustomers;
