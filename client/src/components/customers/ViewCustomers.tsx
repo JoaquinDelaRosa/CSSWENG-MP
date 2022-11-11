@@ -41,9 +41,8 @@ const ViewCustomers = () => {
         fetchCustomers();
     }
 
-    useEffect(() => {
-        console.log(queryResult)     
-        setCustomers(queryResult)
+    useEffect(() => { 
+        setCustomers(queryResult);
     }, [queryResult]);
 
     const sortAlphabetically = (isAsc: Boolean ) => {
@@ -76,7 +75,7 @@ const ViewCustomers = () => {
             })
         }
 
-        setQueryResult(customers);
+        setQueryResult([...customers]);
     };
 
     return (
