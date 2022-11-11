@@ -12,10 +12,11 @@ table, th, tr {
     background-color: #890b0b;
     color: white;
     width: 100%;
+    font-size: 14px;
 }
 
-.tbodyDiv{
-    height: 6rem;
+.tbodyDiv {
+    height: 5rem;
 }
 
 .statusCol {
@@ -33,3 +34,4 @@ table, th, tr {
 .othDetails {
     background-color: #aa1d11;
 }
+

@@ -70,9 +70,12 @@ const OrdersView = () => {
                 </tbody>
             </table>
             <br />
-            <ModalWrapper front={"Create Order"}>
-                <CreateOrder observer={updateView}/>
-            </ModalWrapper>
+            <div className="createBtn">
+                <ModalWrapper front={"Create Order"}>
+                    <CreateOrder observer={updateView}/>
+                </ModalWrapper>
+            </div>
+            
             </div>
         </div>
               

@@ -28,8 +28,8 @@ export const DeleteOrder = (props : {order : Order, observer : Function}) => {
     }
 
     return (
-      <div>
-        <button onClick={onSubmit}> Delete </button>
+      <div className="deleteBtn">
+        <button onClick={onSubmit}><i className="deleteIcon"></i> Delete </button>
       </div> 
     );
 }
