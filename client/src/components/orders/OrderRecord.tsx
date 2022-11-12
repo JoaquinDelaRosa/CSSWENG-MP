@@ -50,7 +50,12 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
     return (
         <div>
           <ModalWrapper front={"Edit"}>
-            <RequestOrder setResponse={setData} default={{...props.order, timeIn: new Date(props.order.timeIn), timeOut: new Date(props.order.timeOut)}}/>
+            <RequestOrder setResponse={setData} default={{
+                ...props.order, 
+                timeIn: new Date(props.order.timeIn), 
+                timeOut: new Date(props.order.timeOut),
+                customer : props.order.customerDetails?.id
+            }}/>
           </ModalWrapper>
         </div>
     )

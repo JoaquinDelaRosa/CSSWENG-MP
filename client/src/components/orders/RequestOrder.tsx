@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
+import { Customer } from "../customers/CustomerDetails";
 import { OrderRequest } from "./OrderDetails";
 
 const DEFAULT_STATUS : string = "DEFAULT";
@@ -9,7 +10,7 @@ const DEFAULT_TYPE : string = "DEFAULT";
 
 export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
     
-    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>();
+    const {register, handleSubmit, getValues, setValue, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
 
@@ -131,6 +132,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div> 
 
                 <div>
+                    <label> <b>  Customer  </b> </label>
+                    <CustomerSubform observer={(value : string) => {
+                        setValue("customer", value);
+                    }}/>
+                </div> 
+
+                <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : false})}  
                         type='text' name="company" id="company" defaultValue={props.default?.company}/>
@@ -150,4 +158,53 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             </form>
         </div> 
     );
+}
+
+
+const CustomerSubform = (props: {observer: Function}) => {
+    const [query, setQuery] = useState<string>("");
+    const [options, setOptions] = useState<Array<Customer>>([]);
+
+    useEffect(() => {
+        if (query === ""){
+            setOptions([]);
+        } else {
+            createAPIEndpoint(ENDPOINTS.filterCustomer).fetch({name: query.trim(), skip: 0, limit: 10})
+            .then((res) => {
+                setOptions(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+    } , [query])
+
+    return (
+        <div> 
+            <label> Name </label>
+            <input onChange={(e) => {setQuery(e.target.value)} } />   
+
+            <div> 
+                {
+                    options.length === 0 && 
+                    <p> No Customers were found.</p>
+                }
+                {
+                    options.length !== 0 && 
+                    <select onChange={(e) => {props.observer(e.target.value)}}> 
+                        <option value={""}> {
+                            <>{ "-- Select Customer --"}</>
+                        }
+                        </option>
+                        {
+                            options.map((value, index) => {
+                                return (
+                                    <option value={value.id} key = {index}> {<>{value.name.val}</>} </option>
+                                );})
+                        }
+                    </select>
+                }
+            </div>
+        </div>
+    )
 }

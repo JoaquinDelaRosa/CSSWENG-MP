@@ -7,6 +7,7 @@ export interface OrderRequest {
     status: string,
     timeIn: Date,
     timeOut: Date,
+    customer : string,
     type: string,
     company: string,
     estimateNumber: string,
