@@ -22,28 +22,37 @@ table, th, tr {
 
 .tbodyDiv {
     height: 5rem;
+    color: black;
+    font-style: bold;
 }
 
 .statusCol {
-    background-color: #640808;
+    /* background-color: #aa1d11; */
+    background-color: #762721;
     column-width: 5rem;
 }
 
 .timeCol {
-    background-color: #890b0b;
+    /* background-color: #91130b; */
+    background-color: #762721;
 }
 
 .customerCol {
-    background-color: #9e160c;
+    
+    background-color: #890b0b;
+    background-color: #762721;
 }
 
 .customerColCompany{
-    background-color: #9e160c;
+    background-color: #890b0b;
+    background-color: #762721;
     column-width: 7rem;
 }
 
 .othDetails {
-    background-color: #aa1d11;
+    
+    background-color: #770a0a;
+    background-color: #762721;
 }
 
 .editCol {
