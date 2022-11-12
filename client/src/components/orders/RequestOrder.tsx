@@ -12,7 +12,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
-    const [customerExists, setCustomerExists] = useState<boolean>(true);
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -81,7 +80,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
                             }
                         }
-                     })} type='date' name="timeIn" id ="timeIn"/>
+                     })} defaultValue = {
+                        props.default ? 
+                        props.default.timeIn.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                    }
+                     type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
                 <div>
@@ -94,8 +98,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn");
                             }
                         }
-                    })}
-                        type='date' name="timeOut" id="timeOut"/>
+                    })} defaultValue = {
+                        props.default ? 
+                        props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                    }
+                    type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 
