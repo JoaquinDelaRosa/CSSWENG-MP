@@ -10,11 +10,19 @@ label {
 
 td {
     border: 1px solid;
-    border: 2px #773e3e solid;
+    border: 1px #581616 solid;
 }
 
 th, td {
     height: 10px;
+}
+
+tr:nth-of-type(odd) {
+    background-color:#ae6565;
+}
+
+tr:nth-of-type(even) {
+    background-color: #773e3e;
 }
 
 table {
