@@ -12,7 +12,7 @@ const all = async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(data);
+        res.json(makeOrderArrayView(data));
     })
 };
 
@@ -26,17 +26,6 @@ const id = async (req: express.Request, res: express.Response) => {
 };
 
 const create = async (req: express.Request, res: express.Response) => {
-    // const c_id = await Customer.exists({id :req.body.customerId});
-    // if (c_id == null){
-    //     res.end();
-    //     return;
-    // }
-    // const v_id = await Vehicle.exists({id :req.body.vehicleId});
-    // if (v_id == null){
-    //     res.end();
-    //     return;
-    // }
-    
     Order.create({...req.body, _id: randomUUID()}, (error, result) => {
         console.log(error);
         return result;

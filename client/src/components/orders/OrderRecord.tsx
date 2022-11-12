@@ -54,7 +54,7 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
                 ...props.order, 
                 timeIn: new Date(props.order.timeIn), 
                 timeOut: new Date(props.order.timeOut),
-                customer : props.order.customerDetails?.id
+                customer : props.order.customer.id
             }}/>
           </ModalWrapper>
         </div>
@@ -71,7 +71,7 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
             <DateEntry date={props.order.timeIn} />
             <DateEntry date={props.order.timeOut} />
 
-            <td> {"This is a sample name"}</td>
+            <td> {props.order.customer.name.val}</td>
             <td> {props.order.type} </td>
             <td> {props.order.company} </td>
             <td> {"This is a sample license plate" }</td>

@@ -19,11 +19,11 @@ export interface Order {
     status: string, 
     timeIn: string,
     timeOut: string,
-    customerDetails: Customer,
+    
+    customer: Customer,
     type: string,
     company: string,
-    vehicleDetails: Vehicle,
-    invoiceDetails: Invoice,
+
     estimateNumber: string,
     scopeOfWork: string,
     expenses: Array<Expense>
