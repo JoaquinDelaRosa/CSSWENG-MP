@@ -13,9 +13,8 @@ export const DeleteCustomer = (props : {customer : Customer, observer : Function
     }
 
     return (
-      <div className="deleteButton">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <button onClick={onSubmit}><i className="fa fa-close"></i></button>
+      <div className="deleteBtn">
+        <button onClick={onSubmit}><i className="deleteIcon"></i></button>
       </div> 
     );
 }

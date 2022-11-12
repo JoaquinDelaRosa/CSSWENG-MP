@@ -7,6 +7,7 @@ import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
 import refreshToken from "../../utils/RefreshToken";
+import "../../style/CustomerViews.css";
 
 
 const ViewCustomers = () => {
@@ -105,7 +106,7 @@ const ViewCustomers = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th> Name 
+                            <th className="customerNameCol"> Name 
                                 <button onClick={() => {
                                     sortAlphabetically(true);
                                 }}>▲</button>
@@ -114,8 +115,8 @@ const ViewCustomers = () => {
                                     sortAlphabetically(false);
                                 }}>▼</button> 
                             </th>
-                            <th> Email </th>
-                            <th> Mobile Number </th>
+                            <th className="emailCol"> Email </th>
+                            <th className="mobileNumCol"> Mobile Number </th>
 
                             <th className="editCol"></th>
                             <th className="delCol"></th>
@@ -129,9 +130,11 @@ const ViewCustomers = () => {
                     </tbody>
                 </table>
                 <br />
+                <div className="createBtn">
                 <ModalWrapper front={"Create Customer"}> 
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>
+                </div>
             </div>
         </div>      
     );

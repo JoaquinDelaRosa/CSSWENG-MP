@@ -22,8 +22,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         <div>
           <ModalWrapper front={
             <>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <div><i className="fa fa-close"></i></div>
+                <div className="editBtn">Edit</div>
             </>
           }>
             <RequestCustomer setResponse={setData} 
