@@ -21,7 +21,7 @@ const id = async (req: express.Request, res: express.Response) => {
 }
 
 const create = (req: express.Request, res: express.Response) => {
-    User.create({_id: randomUUID(), ...req.body, })
+    User.create({_id: randomUUID(), ...req.body })
         .then((result) => {
             console.log(result);
         })

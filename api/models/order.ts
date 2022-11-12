@@ -49,6 +49,6 @@ const OrderSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     }
-});
+}, {_id: false});
 
 export const Order = mongoose.model('Order', OrderSchema);

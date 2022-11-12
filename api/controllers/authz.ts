@@ -6,15 +6,18 @@ import { randomUUID } from 'crypto';
 
 const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
-        _id: randomUUID(),
         firstName : req.body.firstName,
         lastName : req.body.lastName,
         username : req.body.username,
         password : Bcrypt.hashSync(req.body.password, 10),
         role : req.body.role
     }
-    User.create(newUser);
-    res.end();
+    User.create({_id : randomUUID(), ...newUser})
+    .then(() => {
+        res.end()
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
 const login = (req : express.Request, res : express.Response) => {

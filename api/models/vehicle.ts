@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 export const VehicleSchema = new mongoose.Schema({
     _id : {
         type: String, 
-        default: randomUUID(),
     },
     licensePlate : String,
     manufacturer : String,
     model : String,
     yearManufactured : Number,
-});
+}, {_id: false});
 
 export const Vehicle = mongoose.model('Vehicle', VehicleSchema);
