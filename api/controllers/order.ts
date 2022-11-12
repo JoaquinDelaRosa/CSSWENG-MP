@@ -21,7 +21,7 @@ const id = async (req: express.Request, res: express.Response) => {
     .populate("customer")
     .populate("vehicle")
     .then((data) => {
-        res.json(data);
+        res.json(makeOrderArrayView(data));
     })
 };
 
@@ -77,7 +77,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(data);
+        res.json(makeOrderArrayView(data));
     });
 }
 
