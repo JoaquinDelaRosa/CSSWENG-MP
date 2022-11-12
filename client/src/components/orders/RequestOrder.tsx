@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
+import { Customer, CustomerRequest } from "../customers/CustomerDetails";
+import { RequestCustomer } from "../customers/RequestCustomer";
+import { ModalWrapper } from "../ModalBase";
 import { OrderRequest } from "./OrderDetails";
 
 const DEFAULT_STATUS : string = "DEFAULT";
@@ -9,10 +12,9 @@ const DEFAULT_TYPE : string = "DEFAULT";
 
 export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
     
-    const {register, handleSubmit, getValues, formState: {errors}} = useForm<OrderRequest>();
+    const {register, handleSubmit, getValues, setValue, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
-    const [customerExists, setCustomerExists] = useState<boolean>(true);
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -43,6 +45,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const onSubmit = handleSubmit((data) => {
         props.setResponse(data);
     });
+
+    const 
 
     return (
         <div>
@@ -81,7 +85,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
                             }
                         }
-                     })} type='date' name="timeIn" id ="timeIn"/>
+                     })} defaultValue = {
+                        props.default ? 
+                        props.default.timeIn.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                    }
+                     type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
                 <div>
@@ -94,8 +103,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn");
                             }
                         }
-                    })}
-                        type='date' name="timeOut" id="timeOut"/>
+                    })} defaultValue = {
+                        props.default ? 
+                        props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                    }
+                    type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 
@@ -123,6 +136,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div> 
 
                 <div>
+                    <label> <b>  Customer  </b> </label>
+                    <CustomerSubform observer={(value : string) => {
+                        setValue("customer", value);
+                    }}/>
+                </div> 
+
+                <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : false})}  
                         type='text' name="company" id="company" defaultValue={props.default?.company}/>
@@ -138,8 +158,109 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
+
+                <ModalWrapper front={"Add Invoice"}>
+                    <div>
+                        <label htmlFor="invoiceAmount">Invoice Amount</label>
+                        <input {... register("invoice.amount", {required : false})} type='text' name="invoice.amount" id="invoice.amount"
+                            defaultValue={props.default?.invoice.amount}/>
+                        {errors.invoice?.amount && <p>Invoice amount has wrong format</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="invoiceDeductible">Invoice Deductible</label>
+                        <input {... register("invoice.deductible", {required : false})} type='text' name="invoice.deductible" id="invoice.deductible"
+                            defaultValue={props.default?.invoice.deductible}/>
+                        {errors.invoice?.deductible && <p>Deductible has wrong format</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="agentFirstName">Agent First Name</label>
+                        <input {... register("invoice.agentFirstName", {required : false})} type='text' name="invoice.agentFirstName" id="invoice.agentFirstName"
+                             defaultValue={props.default?.invoice.agentFirstName}/>
+                        {errors.invoice?.agentFirstName && <p>Agent first name has wrong format</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="agentLastName">Agent Last Name</label>
+                        <input {... register("invoice.agentLastName", {required : false})} type='text' name="invoice.agentLastName" id="invoice.agentLastName"
+                            defaultValue={props.default?.invoice.agentLastName}/>
+                        {errors.invoice?.agentLastName && <p>Agent last name has wrong format</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="datePaid">Date Paid</label>
+                        <input {...register('invoice.datePaid', {
+                            required: false, valueAsDate : true,})} type='date' name="invoice.datePaid" id ="invoice.datePaid"/>
+                        {errors.invoice?.datePaid && <p>Date is invalid</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="invoiceAgentCommision">Agent Comission</label>
+                        <input {... register("invoice.agentCommission", {required : false})} type='text' name="invoice.agentCommission" id="invoice.agentCommission"/>
+                        {errors.invoice?.agentCommission && <p>Agent Commission has wrong format</p>}
+                    </div>
+                </ModalWrapper>
+                
                 <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
             </form>
         </div> 
     );
+}
+
+
+const CustomerSubform = (props: {observer: Function}) => {
+    const [query, setQuery] = useState<string>("");
+    const [options, setOptions] = useState<Array<Customer>>([]);
+    const [customer, setCustomers] = useState<CustomerRequest>();
+
+    useEffect(() => {
+        if (query === ""){
+            setOptions([]);
+        } else {
+            createAPIEndpoint(ENDPOINTS.filterCustomer).fetch({name: query.trim(), skip: 0, limit: 10})
+            .then((res) => {
+                setOptions(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+    } , [query])
+
+    return (
+        <div> 
+            <label> Name </label>
+            <input onChange={(e) => {setQuery(e.target.value)} } />   
+
+            <div> 
+                {
+                    options.length === 0 && 
+                    <p> No Customers were found.</p>
+                }
+                {
+                    options.length !== 0 && 
+                    <select onChange={(e) => {props.observer(e.target.value)}}> 
+                        <option value={""}> {
+                            <>{ "-- Select Customer --"}</> 
+                        }
+                        </option>
+                        {
+                            options.map((value, index) => {
+                                return (
+                                    <option value={value.id} key = {index}> {<>{value.name.val}</>} </option>
+                                );})
+                        }
+                    </select>
+                }
+                { 
+                <ModalWrapper front={"Create Customer"}> 
+                    <RequestCustomer setResponse={(response : CustomerRequest) => {
+                        setCustomers(response);
+                    }}/>
+                </ModalWrapper>
+                }
+            </div>
+        </div>
+    )
 }

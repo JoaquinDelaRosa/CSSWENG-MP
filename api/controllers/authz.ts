@@ -2,6 +2,7 @@ import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { User } from '../models/user';
 import signToken from '../utils/signToken';
+import { randomUUID } from 'crypto';
 
 const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
@@ -11,8 +12,12 @@ const register =  (req : express.Request, res : express.Response) => {
         password : Bcrypt.hashSync(req.body.password, 10),
         role : req.body.role
     }
-    User.create(newUser);
-    res.end();
+    User.create({_id : randomUUID(), ...newUser})
+    .then(() => {
+        res.end()
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
 const login = (req : express.Request, res : express.Response) => {

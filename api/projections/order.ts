@@ -6,15 +6,15 @@ export const makeOrderView = (document) => {
         return {};
     
     return {
-        id: document.id,
+        id: document._id,
         status: document.status,
         timeIn: document.timeIn,
         timeOut: document.timeOut,
-        customerDetails: makeCustomerView(document.customer),
+        customer: makeCustomerView(document.customer),
         type: document.type,
         company: document.company,
-        vehicleDetails: makeVehicleView(document.vehicle),
-        invoiceDetails: makeInvoiceView(document.invoice),
+        vehicle: makeVehicleView(document.vehicle),
+        invoice: makeInvoiceView(document.invoice),
         estimateNumber: document.estimateNumber,
         scopeOfWork: document.scopeOfWork,
         expenses: document.expenses.map((value) => {

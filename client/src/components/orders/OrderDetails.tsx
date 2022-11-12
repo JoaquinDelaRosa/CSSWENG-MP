@@ -7,10 +7,12 @@ export interface OrderRequest {
     status: string,
     timeIn: Date,
     timeOut: Date,
+    customer : string,
     type: string,
     company: string,
     estimateNumber: string,
     scopeOfWork: string,
+    invoice: Invoice
 }
 
 export interface Order {
@@ -18,13 +20,14 @@ export interface Order {
     status: string, 
     timeIn: string,
     timeOut: string,
-    customerDetails: Customer,
+    
+    customer: Customer,
     type: string,
     company: string,
-    vehicleDetails: Vehicle,
-    invoiceDetails: Invoice,
+
     estimateNumber: string,
     scopeOfWork: string,
     expenses: Array<Expense>
+    invoice: Invoice
 }
 

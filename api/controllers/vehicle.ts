@@ -14,26 +14,29 @@ const all = async (req: express.Request, res: express.Response) => {
 };
 
 const id = async (req: express.Request, res: express.Response) => {
-    Vehicle.findOne({id : req.query.id})
+    Vehicle.findOne({_id : req.query.id})
     .then((data) => {
         res.json(makeVehicleView(data));
     })
 };
 
 const create = (req: express.Request, res: express.Response) => {
-    Vehicle.create({...req.body, id: randomUUID()}, (error, result) => {
-        if (error){
-            console.log(error);
-        }
-        return result;
-    });
-    res.json(req.body);
-    res.end();
+    Vehicle.create({_id: randomUUID(), ...req.body, })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            res.json(req.body);
+            res.end();
+        });
 };
 
 
 const update = (req: express.Request, res: express.Response) => {
-    Vehicle.updateOne({id: req.query.id}, req.body, (err) => {
+    Vehicle.updateOne({_id: req.query.id}, req.body, (err) => {
         if (err){
             console.log(err);
             res.json(null)
@@ -46,7 +49,7 @@ const update = (req: express.Request, res: express.Response) => {
 };
 
 const remove = (req: express.Request, res: express.Response) => {
-    Vehicle.deleteOne({id: req.query.id})
+    Vehicle.deleteOne({_id: req.query.id})
     .then((delRes) => {
         res.end();
     })

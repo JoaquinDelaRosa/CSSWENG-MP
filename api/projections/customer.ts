@@ -3,7 +3,7 @@ export const makeCustomerView = (document) => {
         return {};
         
     return {
-        id: document.id,
+        id: document._id,
         name: {
             firstName: document.firstName,
             lastName: document.lastName,

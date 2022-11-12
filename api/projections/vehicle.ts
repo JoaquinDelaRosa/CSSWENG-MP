@@ -3,7 +3,7 @@ export const makeVehicleView = (document) => {
         return {};
     
     return {
-        id : document.id,
+        id : document._id,
         licensePlate: document.licensePlate,
         manufacturer: document.manufacturer,
         model: document.model,

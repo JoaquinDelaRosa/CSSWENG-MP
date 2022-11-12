@@ -6,11 +6,8 @@ const DEFAULT_STATUS = "UNPAID";
 const DEFAULT_TYPE = "PERSONAL";
 
 const OrderSchema = new mongoose.Schema({
-    id: {
+    _id: {
         type: String, 
-        default: randomUUID(), 
-        require: true,
-        unique: true
     },
     status: {
         type: String,
@@ -21,14 +18,14 @@ const OrderSchema = new mongoose.Schema({
     timeIn: { type: Date },
     timeOut: { type: Date },
 
-    customer: {type: mongoose.Types.ObjectId, ref: 'Customer'},
+    customer: {type: String, ref: 'Customer'},
     type: {
         type: String,
         enum: TypeEnum,
         default: DEFAULT_TYPE
     },
     company: String,
-    vehicle : {type: mongoose.Types.ObjectId, ref: 'Vehicle'},
+    vehicle : {type: String, ref: 'Vehicle'},
     
     invoice: {
         id: {type: String, default: randomUUID()},
@@ -37,7 +34,7 @@ const OrderSchema = new mongoose.Schema({
         agentFirstName : String,
         agentLastName : String,
         datePaid : Date,
-        agentComission : mongoose.Types.Decimal128
+        agentCommission : mongoose.Types.Decimal128
     },
     estimateNumber: String,
     scopeOfWork: String,
@@ -52,6 +49,6 @@ const OrderSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     }
-});
+}, {_id: false});
 
 export const Order = mongoose.model('Order', OrderSchema);

@@ -7,11 +7,8 @@ const validateEmail = (email) => {
 };
 
 export const CustomerSchema = new mongoose.Schema({
-    id: {
+    _id: {
         type: String,
-        default: randomUUID(), 
-        require: true,
-        unique: true
     },
     firstName: String,
     lastName: String,
@@ -23,6 +20,6 @@ export const CustomerSchema = new mongoose.Schema({
         required: [true, "Email is required"],
         validate: [validateEmail, 'Please fill in a valid email address']
     }
-});
+}, {_id: false});
 
 export const Customer = mongoose.model('Customer', CustomerSchema);
