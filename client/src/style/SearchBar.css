@@ -20,6 +20,15 @@
 .searchBar::placeholder {
     text-align: center;
     font-style: italic;
+    color: white;
+}
+
+.searchField {
+    background-image: url(../style/images/search.png);
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: 14.5rem 0.3rem;
+    
 }
 
 ::placeholder {
