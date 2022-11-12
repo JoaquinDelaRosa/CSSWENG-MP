@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { isCustomerExists } from "../../utils/CheckFKExists";
-import { isAlphabetic, isAlphaNumeric, isEmail, isMobileNumber } from "../../utils/Regex";
-import { Order, OrderRequest } from "./OrderDetails";
+import { isAlphaNumeric} from "../../utils/Regex";
+import { OrderRequest } from "./OrderDetails";
+
+const DEFAULT_STATUS : string = "DEFAULT";
+const DEFAULT_TYPE : string = "DEFAULT";
 
 export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
     
@@ -48,10 +50,15 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             <form className="formStyle" onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
-                    <select {...register('status', {required: true})} 
+                    <select {...register('status', {required: true, 
+                        validate: {
+                            isNotDefault: (v) => {
+                                return v !== DEFAULT_STATUS;
+                            }
+                        }})} 
                         defaultValue= {(props.default && props.default.status) ? 
-                            props.default.status : "DEFAULT"}>
-                        <option value="DEFAULT" disabled>-- Select Status --</option>
+                            props.default.status : DEFAULT_STATUS}>
+                        <option value={DEFAULT_STATUS} disabled>-- Select Status --</option>
                         {
                             statuses.map((value, index) => {
                                 return (
@@ -61,7 +68,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             })
                         }
                     </select>
+                    {errors.status && <p> Status has not been set</p>}
                 </div>
+
                 <div>
                     <label >Time In</label>
                     <input {...register('timeIn', {
@@ -92,10 +101,15 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 
                 <div>
                     <label>Customer Type</label>
-                    <select {...register('type', {required: true})} 
+                    <select {...register('type', {required: true, 
+                        validate: {
+                            isNotDefault: (v) => {
+                                return v !== DEFAULT_TYPE
+                            }
+                        }})} 
                         defaultValue= {(props.default && props.default.type) ? 
-                            props.default.type.valueOf() : "DEFAULT"}>
-                        <option value="DEFAULT" disabled>-- Select Type --</option>
+                            props.default.type.valueOf() : DEFAULT_TYPE}>
+                        <option value={DEFAULT_TYPE} disabled>-- Select Type --</option>
                         {
                             types.map((value, index) => {
                                 return (
@@ -105,17 +119,19 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             })
                         }
                     </select>
-                </div>  
+                    {errors.type && <p> Customer Type has not been set</p>}
+                </div> 
+
                 <div>
                     <label htmlFor="company">Company</label>
-                    <input {... register("company", {required : true})}  
+                    <input {... register("company", {required : false})}  
                         type='text' name="company" id="company" defaultValue={props.default?.company}/>
-                    {errors.company && <p>Company is required</p>}
+                    {errors.company && <p>Invalid company</p>}
                 </div>
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
-                    <input {... register("estimateNumber", {required : true, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
-                    {errors.estimateNumber && <p>Estimate Code is required</p>}
+                    <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
+                    {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
                 <div>
                     <label htmlFor="scopeOfWork">Scope of Work</label>
