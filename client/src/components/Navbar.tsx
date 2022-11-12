@@ -24,7 +24,7 @@ const Navbar = () => {
                     <Button buttonName={"Logout"} to={ROUTES.logout}/>
                 </div>
             </nav>
-            <div className="RedBar"></div>
+            <div className="redBar">PAIN PEKO</div>
         </header>
         
     );
