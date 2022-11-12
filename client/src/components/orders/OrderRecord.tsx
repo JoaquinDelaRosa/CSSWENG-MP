@@ -11,7 +11,7 @@ const DateEntry = (props: { date: string }) => {
 
     return (
         <>
-            <td> {MONTHS[d.getMonth()] + " " + d.getDate() + " " + d.getFullYear()}</td>
+            <td> {d.valueOf() !== 0 ? MONTHS[d.getMonth()] + " " + d.getDate() + " " + d.getFullYear() : ""}</td>
         </>
     );
 }
