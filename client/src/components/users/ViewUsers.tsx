@@ -6,6 +6,7 @@ import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
 import "../../style/TablesView.css";
 import { Searchbar } from "../Searchbar";
+import "../../style/UsersView.css";
 
 const UsersView = () => {
 
@@ -90,9 +91,9 @@ const UsersView = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th> First Name </th>
-                            <th> Last Name</th>
-                            <th> Username 
+                            <th className="firstNameCol"> First Name </th>
+                            <th className="lastNameCol"> Last Name</th>
+                            <th className="usernameCol"> Username 
                                 <button onClick={() => {
                                     sortAlphabetically(true);
                                 }}>▲</button>
@@ -101,7 +102,10 @@ const UsersView = () => {
                                     sortAlphabetically(false);
                                 }}>▼</button>
                             </th>
-                            <th> Role </th>
+                            <th className="roleCol"> Role </th>
+                            
+                            <th className="editCol"></th>
+                            <th className="delCol"></th>
                         </tr>
                     </thead>
 
