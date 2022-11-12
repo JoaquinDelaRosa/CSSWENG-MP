@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useCallback, useDeferredValue, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
@@ -15,6 +15,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const {register, handleSubmit, getValues, setValue, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
+    const [customerSubmit, setCustomerSubmit] = useState(() => () => {console.log("Hello")});
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -43,10 +44,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     }, []);
 
     const onSubmit = handleSubmit((data) => {
-        props.setResponse(data);
+        customerSubmit();
+        // props.setResponse(data);
     });
 
-    const 
+    useEffect(() => {
+        customerSubmit();
+    }, [customerSubmit])
 
     return (
         <div>
@@ -139,7 +143,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label> <b>  Customer  </b> </label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
-                    }}/>
+                    }} onSubmit={setCustomerSubmit}/>
                 </div> 
 
                 <div>
@@ -209,10 +213,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 }
 
 
-const CustomerSubform = (props: {observer: Function}) => {
+const CustomerSubform = (props: {observer: Function, onSubmit: Function}) => {
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Customer>>([]);
-    const [customer, setCustomers] = useState<CustomerRequest>();
+    const [customer, setCustomer] = useState<CustomerRequest>();
 
     useEffect(() => {
         if (query === ""){
@@ -228,10 +232,31 @@ const CustomerSubform = (props: {observer: Function}) => {
         }
     } , [query])
 
+    useEffect(() => {
+        props.onSubmit(() => () => {
+            console.log(customer);
+            if (!customer)
+                return;
+
+            createAPIEndpoint(ENDPOINTS.addCustomer).post(customer)
+            .then(function (response) {
+                console.log(customer);
+                props.observer(response.data.id);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        });
+    }, [])
+
+    useEffect(() => {
+        console.log(customer)
+    }, [customer])
+
     return (
         <div> 
             <label> Name </label>
-            <input onChange={(e) => {setQuery(e.target.value)} } />   
+            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : ""} />   
 
             <div> 
                 {
@@ -255,9 +280,7 @@ const CustomerSubform = (props: {observer: Function}) => {
                 }
                 { 
                 <ModalWrapper front={"Create Customer"}> 
-                    <RequestCustomer setResponse={(response : CustomerRequest) => {
-                        setCustomers(response);
-                    }}/>
+                    <RequestCustomer setResponse={(response :CustomerRequest) => {setCustomer(response)}} default={customer}/>
                 </ModalWrapper>
                 }
             </div>

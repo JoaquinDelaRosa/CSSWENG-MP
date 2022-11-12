@@ -13,13 +13,7 @@ export const CustomerSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     mobileNumber: String,
-    email: {
-        type: String,
-        lowercase: true,
-        unique: true,
-        required: [true, "Email is required"],
-        validate: [validateEmail, 'Please fill in a valid email address']
-    }
+    email: String
 }, {_id: false});
 
 export const Customer = mongoose.model('Customer', CustomerSchema);
