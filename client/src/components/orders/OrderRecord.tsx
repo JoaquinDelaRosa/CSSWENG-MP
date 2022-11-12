@@ -29,7 +29,7 @@ export const DeleteOrder = (props : {order : Order, observer : Function}) => {
 
     return (
       <div className="deleteBtn">
-        <button onClick={onSubmit}><i className="deleteIcon"></i> Delete </button>
+        <button onClick={onSubmit}><i className="deleteIcon"></i></button>
       </div> 
     );
 }
@@ -59,8 +59,6 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
 export const OrderRecord = (props : { order: Order, observer: Function }) => {
     return (
         <tr>
-            <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
-            <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
             <td> {props.order.status} </td>
 
             <DateEntry date={props.order.timeIn} />
@@ -76,6 +74,8 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
             <td> {props.order.scopeOfWork}</td>
             <td> {"This is sample expenses"} </td>
 
+            <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
+            <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
         </tr> 
      );
 }

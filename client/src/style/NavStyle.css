@@ -76,11 +76,21 @@
 
 /* Vehicles */
 
-.deleteBtn button, .editBtn button {
+.deleteBtn button {
     background-color: #aa1d11;
     color: white;
     border: none;
-    width: 8.5rem;
+    width: 4.5rem;
+    border-radius: 35px;
+    padding: 1rem 1.5rem;
+    font-size: large;
+}
+
+.editBtn button {
+    background-color: #aa1d11;
+    color: white;
+    border: none;
+    width: 8rem;
     border-radius: 35px;
     padding: 1rem 1.5rem;
     font-size: large;

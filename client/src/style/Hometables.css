@@ -25,6 +25,7 @@ table, th, tr {
 
 .statusCol {
     background-color: #640808;
+    column-width: 5rem;
 }
 
 .timeCol {
@@ -33,6 +34,11 @@ table, th, tr {
 
 .customerCol {
     background-color: #9e160c;
+}
+
+.customerColCompany{
+    background-color: #9e160c;
+    column-width: 7rem;
 }
 
 .othDetails {
