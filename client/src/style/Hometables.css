@@ -3,7 +3,7 @@ body {
 }
 
 table, th, tr {
-    border: 2px white;
+    border: 2px #380404;
     height: 3rem;
     border-collapse: collapse;
 }

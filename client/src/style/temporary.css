@@ -10,7 +10,7 @@ label {
 
 td {
     border: 1px solid;
-    border-collapse: collapse;
+    border: 2px #380404 solid;
 }
 
 th, td {
