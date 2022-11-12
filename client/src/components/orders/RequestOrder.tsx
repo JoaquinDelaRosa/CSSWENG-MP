@@ -15,7 +15,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const {register, handleSubmit, getValues, setValue, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
-    const [customerSubmit, setCustomerSubmit] = useState(() => () => {console.log("Hello")});
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -43,9 +42,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             })
     }, []);
 
-    const onSubmit = handleSubmit((data) => {
-        customerSubmit();
-        // props.setResponse(data);
+    const onSubmit = handleSubmit(async (data) => {
+        props.setResponse(data);
     });
 
     return (
@@ -139,7 +137,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label> <b>  Customer  </b> </label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
-                    }} onSubmit={setCustomerSubmit}/>
+                    }}/>
                 </div> 
 
                 <div>
@@ -215,7 +213,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 }
 
 
-const CustomerSubform = (props: {observer: Function, onSubmit: Function}) => {
+const CustomerSubform = (props: {observer: Function}) => {
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Customer>>([]);
     const [customer, setCustomer] = useState<CustomerRequest>();
@@ -233,28 +231,17 @@ const CustomerSubform = (props: {observer: Function, onSubmit: Function}) => {
             })
         }
     } , [query])
-
-    useEffect(() => {
-        props.onSubmit(() => () => {
-            console.log(customer);
-            if (!customer)
-                return;
-
-            createAPIEndpoint(ENDPOINTS.addCustomer).post(customer)
-            .then(function (response) {
-                console.log(customer);
-                props.observer(response.data.id);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        });
-    }, [])
-
-    useEffect(() => {
-        console.log(customer)
-    }, [customer])
-
+    
+    const setData = (data : any) => {
+        createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
+        .then(function (response) {
+            setCustomer(response.data);
+            props.observer(response.data.id);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    };
     return (
         <div> 
             <label> Name </label>
@@ -282,7 +269,7 @@ const CustomerSubform = (props: {observer: Function, onSubmit: Function}) => {
                 }
                 { 
                 <ModalWrapper front={"Create Customer"}> 
-                    <RequestCustomer setResponse={(response :CustomerRequest) => {setCustomer(response)}} default={customer}/>
+                    <RequestCustomer setResponse={setData} default={customer}/>
                 </ModalWrapper>
                 }
             </div>

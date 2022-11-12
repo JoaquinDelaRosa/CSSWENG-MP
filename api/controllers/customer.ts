@@ -24,7 +24,7 @@ const create = (req: express.Request, res: express.Response) => {
     const id = randomUUID()
     Customer.create({_id: id, ...req.body, })
         .then((result) => {
-            console.log(req.body);
+            console.log(result);
             res.json({...req.body, id: id});
         })
         .catch((err) => {
