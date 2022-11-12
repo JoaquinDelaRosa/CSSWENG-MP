@@ -94,15 +94,15 @@
 .leftBG {
     width: 100%;
     height: 100%;
-    background-image: url(../style/images/hotwheels.png);
+    background-image: url(../style/images/lovelyredcarREAL.png);
     background-position: left;
-    background-position-x: -28.5rem;
-    background-position-y: -32rem;
+    background-position-x: 43em;
+    background-position-y: -5rem;
     background-repeat: no-repeat;
     position: absolute;
-    background-size: 75rem 105rem;
-    opacity: 80%;
+    background-size: cover;
     border-radius: 3.1rem;
+    transform:scaleX(-1);
 }
 
 .registerBox {
