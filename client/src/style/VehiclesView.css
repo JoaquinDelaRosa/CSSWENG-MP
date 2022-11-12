@@ -8,6 +8,7 @@ thead {
 
 .delCol, .editCol {
     background-color: #17190d;
+    column-width: 5rem;
 }
 
 .licenseCol {

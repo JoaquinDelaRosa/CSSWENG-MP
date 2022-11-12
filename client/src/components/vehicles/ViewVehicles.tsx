@@ -92,8 +92,6 @@ const ViewVehicles = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th className="delCol"></th>
-                            <th className="editCol"></th>
                             <th className="licenseCol"> License Plate 
                                 <span>
                                     <div>
@@ -111,6 +109,8 @@ const ViewVehicles = () => {
                             <th className="manufacturerCol"> Manufacturer </th>
                             <th className="modelCol"> Model </th>
                             <th className="yearmanufacturedCol"> Year Manufactured </th>
+                            <th className="editCol"></th>
+                            <th className="delCol"></th>
                         </tr>
                     </thead>
 
