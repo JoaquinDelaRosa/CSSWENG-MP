@@ -115,10 +115,12 @@ const UsersView = () => {
                         })}
                     </tbody>
                 </table>
-                
+                <br />
+                <div className="createBtn">
                 <ModalWrapper front={"Create User"}> 
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>
+                </div>
             </div>    
         </div>  
     );
