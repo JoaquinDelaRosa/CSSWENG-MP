@@ -1,5 +1,5 @@
 const JWT_KEY = "cYscIXvgwx1ELOvhp2Clr91GH4faJRSLhawlqjyw";
-const JWT_EXPIRE_TIME = '10m';
+const JWT_EXPIRE_TIME = '3s';
 const JWT_ISSUER = 'AutoWorks'
 
 const REFRESH_KEY = "UgFJJqOrCPvSAkaq0GXF1y6UQkKa1TLvRAJSP08ZTlwdtm0tlzCfgcNsElpyw6rQGPp8ej"

@@ -27,7 +27,6 @@ const login = (req : express.Request, res : express.Response) => {
     .then((user) => {
         if (user) {
             Bcrypt.compare(req.body.password, user.password, (error, result) => {
-                console.info("Comparing Password")
                 if(!result) {
                     return res.status(401).json({
                         success : false,
@@ -44,9 +43,7 @@ const login = (req : express.Request, res : express.Response) => {
                             })
                         }
                         else if (token) {
-                            console.log("Testing token")
                             if(refreshToken) {
-                                console.log("Passing refreshToken")
                                 res.cookie('jwt', refreshToken, 
                                     {
                                         httpOnly:true,
