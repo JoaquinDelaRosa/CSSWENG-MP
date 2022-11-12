@@ -2,6 +2,7 @@ import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { User } from '../models/user';
 import signToken from '../utils/signToken';
+import refreshToken from '../utils/refreshToken';
 import { randomUUID } from 'crypto';
 
 const register =  (req : express.Request, res : express.Response) => {
@@ -27,9 +28,7 @@ const login = (req : express.Request, res : express.Response) => {
         if (user) {
             Bcrypt.compare(req.body.password, user.password, (error, result) => {
                 console.info("Comparing Password")
-                console.log(error)
                 if(!result) {
-                    res.cookie("This", "Meh");
                     return res.status(401).json({
                         success : false,
                         message : "Incorrect Password!"
@@ -48,7 +47,6 @@ const login = (req : express.Request, res : express.Response) => {
                             console.log("Testing token")
                             if(refreshToken) {
                                 console.log("Passing refreshToken")
-                                console.log(refreshToken)
                                 res.cookie('jwt', refreshToken, 
                                     {
                                         httpOnly:true,
@@ -87,10 +85,22 @@ const login = (req : express.Request, res : express.Response) => {
     })
 }
 
-const refresh = (req : express.Request, res : express.Response) => {
-    console.log("TEST")
-    console.log(req.cookies)
-    res.status(200).send();
+const refresh = async (req : express.Request, res : express.Response) => {
+    console.log("within refresh")
+    var newToken = await refreshToken(req.cookies.jwt);
+    console.log("new token")
+    console.log(newToken);
+    if (newToken) {
+        return res.status(200).json({
+            success : true,
+            message : "Token Refreshed",
+            token: newToken
+        });
+    }
+    return res.status(404).json({
+        success : false,
+        message : "Token Refresh Fail",
+    })
 }
 
 export default { login, register, refresh };

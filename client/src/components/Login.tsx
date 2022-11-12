@@ -5,6 +5,7 @@ import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import '../style/Hyperlink.css';
+import refreshToken from '../utils/RefreshToken';
 
 type LoginState = {
     username: string
@@ -23,9 +24,10 @@ const Login = () => {
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
-                console.log("RESPONSE DATA")
+                console.log("Login Data")
                 console.log(response.data)
                 updateToken(response.data.token);
+                refreshToken();
             })
             .then(() => {
                 navigation(ROUTES.orders);

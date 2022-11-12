@@ -49,7 +49,6 @@ const ViewCustomers = () => {
 
     useEffect(() => {
         fetchCustomers();
-        refreshToken();
     }, []);
 
     const updateView = () => {

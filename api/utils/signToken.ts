@@ -32,16 +32,14 @@ const signToken = (user,  callback: (error: Error | null, token: string | null, 
                     jwt.sign(
                         {
                             id : user.id,
+                            role: user.role,
+                            accessIssuer: config.token.issuer,
                         }
                         , config.refreshToken.secret,
                         {
                             expiresIn: config.refreshToken.expireTime
                         },
                         (error, refreshToken) => {
-                            console.log("reached callback")
-                            console.log(tk);
-                            console.log("_________________________")
-                            console.log(refreshToken)
                             if(error) {
                                 callback(error, null, null);
                             } 
