@@ -46,8 +46,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         props.setResponse(data);
     });
 
-    const 
-
     return (
         <div>
             <p>Order</p>
