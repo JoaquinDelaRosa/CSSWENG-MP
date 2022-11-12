@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import mongoose from "mongoose";
+import mongoose, { Decimal128 } from "mongoose";
 import { StatusEnum, TypeEnum } from "./enum";
 
 const DEFAULT_STATUS = "UNPAID";
@@ -29,12 +29,24 @@ const OrderSchema = new mongoose.Schema({
     
     invoice: {
         id: {type: String, default: randomUUID()},
-        amount : mongoose.Types.Decimal128,
-        deductible : mongoose.Types.Decimal128, 
+        amount : {
+            type: Number,
+            get: getVal,
+            set: setVal
+        },
+        deductible : {
+            type: Number,
+            get: getVal,
+            set: setVal
+        }, 
         agentFirstName : String,
         agentLastName : String,
         datePaid : Date,
-        agentCommission : mongoose.Types.Decimal128
+        agentCommission : {
+            type: Number,
+            get: getVal,
+            set: setVal
+        },
     },
     estimateNumber: String,
     scopeOfWork: String,
@@ -50,5 +62,13 @@ const OrderSchema = new mongoose.Schema({
         default: false,
     }
 }, {_id: false});
+
+function getVal(num){
+    return (num/100).toFixed(4);
+}
+
+function setVal(num){
+    return num*100;
+}
 
 export const Order = mongoose.model('Order', OrderSchema);

@@ -21,15 +21,16 @@ const id = async (req: express.Request, res: express.Response) => {
 }
 
 const create = (req: express.Request, res: express.Response) => {
-    Customer.create({_id: randomUUID(), ...req.body, })
+    const id = randomUUID()
+    Customer.create({_id: id, ...req.body, })
         .then((result) => {
             console.log(result);
+            res.json({...req.body, id: id});
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
-            res.json(req.body);
             res.end();
         });
 }

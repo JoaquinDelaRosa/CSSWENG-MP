@@ -10,6 +10,7 @@ export interface OrderRequest {
     customer : string,
     type: string,
     company: string,
+    vehicle: string,
     estimateNumber: string,
     scopeOfWork: string,
     invoice: Invoice
@@ -24,10 +25,11 @@ export interface Order {
     customer: Customer,
     type: string,
     company: string,
+    vehicle: Vehicle,
 
     estimateNumber: string,
     scopeOfWork: string,
-    expenses: Array<Expense>
+    expenses: Array<Expense>,
     invoice: Invoice
 }
 
