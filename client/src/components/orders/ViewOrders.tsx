@@ -60,7 +60,7 @@ const OrdersView = () => {
                         <th className="othDetails"> Estimate Number </th>
                         <th className="othDetails"> Scope of Work </th>
                         <th className="othDetails"> Expenses </th>
-                        
+    
                         <th className="editCol"></th>
                         <th className="delCol"></th>
                     </tr>

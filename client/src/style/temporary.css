@@ -8,8 +8,9 @@ label {
     padding: 10px;
 }
 
-table, th, td {
+td {
     border: 1px solid;
+    border-collapse: collapse;
 }
 
 th, td {

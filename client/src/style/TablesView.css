@@ -1,6 +1,7 @@
 table, th, tr {
     border: 2px white;
     height: 3rem;
+    border-collapse: collapse;
 }
 
 .FullPage {
