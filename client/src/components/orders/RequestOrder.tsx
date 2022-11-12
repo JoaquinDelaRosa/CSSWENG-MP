@@ -7,6 +7,7 @@ import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { OrderRequest } from "./OrderDetails";
+import { VehicleSubform } from "./VehicleSubform";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
@@ -147,6 +148,15 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         type='text' name="company" id="company" defaultValue={props.default?.company}/>
                     {errors.company && <p>Invalid company</p>}
                 </div>
+
+                
+                <div>
+                    <label> <b>  Vehicle  </b> </label>
+                    <VehicleSubform observer={(value : string) => {
+                        setValue("vehicle", value);
+                    }}/>
+                </div> 
+
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
                     <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
