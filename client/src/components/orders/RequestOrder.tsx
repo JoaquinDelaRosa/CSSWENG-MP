@@ -193,7 +193,7 @@ const CustomerSubform = (props: {observer: Function}) => {
                     options.length !== 0 && 
                     <select onChange={(e) => {props.observer(e.target.value)}}> 
                         <option value={""}> {
-                            <>{ "-- Select Customer --"}</>
+                            <>{ "-- Select Customer --"}</> 
                         }
                         </option>
                         {
@@ -203,6 +203,10 @@ const CustomerSubform = (props: {observer: Function}) => {
                                 );})
                         }
                     </select>
+                }
+                {
+                    // Replace this with a Create Customer button (copy from customers folder.)
+                    // This should then do a get id call on submit. to get the id of the customer.
                 }
             </div>
         </div>
