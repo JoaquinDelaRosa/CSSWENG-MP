@@ -90,8 +90,6 @@ const UsersView = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th/>
-                            <th/>
                             <th> First Name </th>
                             <th> Last Name</th>
                             <th> Username 

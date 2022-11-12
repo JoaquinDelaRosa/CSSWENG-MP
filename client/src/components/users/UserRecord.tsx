@@ -29,12 +29,12 @@ export const UserRecord = (props : { user: User}) => {
     if (user) {
     return (
             <tr>
-                <td> <DeleteUser user={props.user} observer={onDelete}/></td>
-                <td> <UpdateUser user={props.user} observer={onUpdate}/></td>
                 <td> {user?.firstName} </td>
                 <td> {user?.lastName} </td>
                 <td> {user?.username} </td>
                 <td> {user?.role} </td>
+                <td> <UpdateUser user={props.user} observer={onUpdate}/></td>
+                <td> <DeleteUser user={props.user} observer={onDelete}/></td>
             </tr> 
         );
     }
