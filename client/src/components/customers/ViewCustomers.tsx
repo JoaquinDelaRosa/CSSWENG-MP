@@ -105,8 +105,6 @@ const ViewCustomers = () => {
                 <table className="tableDiv">
                     <thead>
                         <tr>
-                            <th> </th>
-                            <th> </th>
                             <th> Name 
                                 <button onClick={() => {
                                     sortAlphabetically(true);
@@ -118,6 +116,9 @@ const ViewCustomers = () => {
                             </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
+
+                            <th className="editCol"></th>
+                            <th className="delCol"></th>
                         </tr>
                     </thead>
                 

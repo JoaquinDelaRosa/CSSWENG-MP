@@ -31,11 +31,11 @@ export const CustomerRecord = (props : { customer: Customer}) => {
     if (customer) {
         return ( 
             <tr>
-                <td> <DeleteCustomer customer={props.customer} observer={onDelete}/></td>
-                <td> <UpdateCustomer customer={props.customer} observer={onUpdate}/></td>
                 <td> {customer?.name.val} </td>
                 <td> {customer?.email} </td>
                 <td> {customer?.mobileNumber} </td>
+                <td> <UpdateCustomer customer={props.customer} observer={onUpdate}/></td>
+                <td> <DeleteCustomer customer={props.customer} observer={onDelete}/></td>
             </tr> 
         );
     } else {
