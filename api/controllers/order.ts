@@ -17,7 +17,7 @@ const all = async (req: express.Request, res: express.Response) => {
 };
 
 const id = async (req: express.Request, res: express.Response) => {
-    Order.findOne({id: req.query.id})
+    Order.findOne({_id: req.query.id})
     .populate("customer")
     .populate("vehicle")
     .then((data) => {
@@ -37,7 +37,7 @@ const create = async (req: express.Request, res: express.Response) => {
     //     return;
     // }
     
-    Order.create({...req.body, id: randomUUID()}, (error, result) => {
+    Order.create({...req.body, _id: randomUUID()}, (error, result) => {
         console.log(error);
         return result;
     });
@@ -46,18 +46,18 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const update = async (req: express.Request, res: express.Response) => {
-    const c_id = await Customer.exists({id :req.body.customerId});
+    const c_id = await Customer.exists({_id :req.body.customerId});
     if (c_id == null){
         res.end();
         return;
     }
-    const v_id = await Vehicle.exists({id :req.body.vehicleId});
+    const v_id = await Vehicle.exists({_id :req.body.vehicleId});
     if (v_id == null){
         res.end();
         return;
     }
 
-    Order.updateOne({id: req.query.id}, req.body, (error) => {
+    Order.updateOne({_id: req.query.id}, req.body, (error) => {
         if (error) {
             console.log(error);
             res.json(null);
@@ -69,7 +69,7 @@ const update = async (req: express.Request, res: express.Response) => {
 };
 
 const remove = (req: express.Request, res: express.Response) => {
-    Order.deleteOne({id: req.query.id})
+    Order.deleteOne({_id: req.query.id})
     .then((delRes) => {
         res.end();
     })

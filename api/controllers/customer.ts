@@ -14,25 +14,28 @@ const all = async (req: express.Request, res: express.Response) => {
 }
 
 const id = async (req: express.Request, res: express.Response) => {
-    Customer.findOne({id: req.query.id})
+    Customer.findOne({_id: req.query.id})
     .then((data) => {
         res.json(makeCustomerView(data));
     })
 }
 
 const create = (req: express.Request, res: express.Response) => {
-    Customer.create({...req.body, id: randomUUID()}, (error, result) => {
-        if (error){
-            console.log(error);
-        }
-        return result;
-    })
-    res.json(req.body);
-    res.end();
+    Customer.create({_id: randomUUID(), ...req.body, })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            res.json(req.body);
+            res.end();
+        });
 }
 
 const update = (req: express.Request, res: express.Response) => {
-    Customer.updateOne({id : req.query.id}, req.body, (error) => {
+    Customer.updateOne({_id : req.query.id}, req.body, (error) => {
         if(error) {
             console.log(error);
             res.json(null);
@@ -44,7 +47,7 @@ const update = (req: express.Request, res: express.Response) => {
 }
 
 const remove = (req : express.Request, res : express.Response) => {
-    Customer.deleteOne({id: req.query.id})
+    Customer.deleteOne({_id: req.query.id})
     .then ((result) => {
         res.end();
     })
@@ -61,7 +64,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     Customer.aggregate([
         {
             $project : {
-                "id": "$id",
+                "id": "$_id",
                 "firstName": "$firstName",
                 "lastName": "$lastName",
                 "mobileNumber": "$mobileNumber",

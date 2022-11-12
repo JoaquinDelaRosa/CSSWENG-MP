@@ -6,7 +6,7 @@ export const makeOrderView = (document) => {
         return {};
     
     return {
-        id: document.id,
+        id: document._id,
         status: document.status,
         timeIn: document.timeIn,
         timeOut: document.timeOut,

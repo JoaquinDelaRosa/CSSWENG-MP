@@ -2,9 +2,11 @@ import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { User } from '../models/user';
 import signToken from '../utils/signToken';
+import { randomUUID } from 'crypto';
 
 const register =  (req : express.Request, res : express.Response) => {
     const newUser = {
+        _id: randomUUID(),
         firstName : req.body.firstName,
         lastName : req.body.lastName,
         username : req.body.username,
