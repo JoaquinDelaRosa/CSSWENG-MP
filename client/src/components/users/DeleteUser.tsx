@@ -14,7 +14,7 @@ export const DeleteUser = (props : {user : User, observer : Function}) => {
 
     return (
       <div className="deleteBtn">
-        <button onClick={onSubmit}><i className="deleteIcon"></i> Delete </button>
+        <button onClick={onSubmit}><i className="deleteIcon"></i></button>
       </div> 
     );
 }
