@@ -27,7 +27,7 @@ export interface Order {
 
     estimateNumber: string,
     scopeOfWork: string,
-    expenses: Array<Expense>
+    expenses: Array<Expense>,
     invoice: Invoice
 }
 

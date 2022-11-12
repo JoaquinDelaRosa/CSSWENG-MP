@@ -13,6 +13,6 @@ export interface Invoice {
     deductible: number,
     agentFirstName: string,
     agentLastName: string,
-    datePaid : string,
+    datePaid : Date,
     agentCommission : number
 }

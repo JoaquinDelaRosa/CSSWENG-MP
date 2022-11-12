@@ -46,8 +46,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         props.setResponse(data);
     });
 
-    const 
-
     return (
         <div>
             <p>Order</p>
@@ -163,7 +161,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <div>
                         <label htmlFor="invoiceAmount">Invoice Amount</label>
                         <input {... register("invoice.amount", {required : false})} type='text' name="invoice.amount" id="invoice.amount"
-                            defaultValue={props.default?.invoice.amount}/>
+                            defaultValue={props.default?.invoice.amount.toString()}/>
                         {errors.invoice?.amount && <p>Invoice amount has wrong format</p>}
                     </div>
 
@@ -190,13 +188,19 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
                     <div>
                         <label htmlFor="datePaid">Date Paid</label>
-                        <input {...register('invoice.datePaid', {
-                            required: false, valueAsDate : true,})} type='date' name="invoice.datePaid" id ="invoice.datePaid"/>
+                        <input  {...register('invoice.datePaid', {
+                        required: false ,valueAsDate: true})} 
+                        defaultValue = {
+                            props.default ? 
+                            props.default.invoice.datePaid.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                            .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                        }
+                        type='date' name="invoice.datePaid" id="invoice.datePaid"/>
                         {errors.invoice?.datePaid && <p>Date is invalid</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="invoiceAgentCommision">Agent Comission</label>
+                        <label htmlFor="invoiceAgentCommision">Agent Commission</label>
                         <input {... register("invoice.agentCommission", {required : false})} type='text' name="invoice.agentCommission" id="invoice.agentCommission"/>
                         {errors.invoice?.agentCommission && <p>Agent Commission has wrong format</p>}
                     </div>
