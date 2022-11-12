@@ -77,7 +77,7 @@
 /* Vehicles */
 
 .deleteBtn button {
-    background-color: #aa1d11;
+    background-color: #803030;
     color: white;
     border: none;
     width: 4.5rem;
@@ -87,7 +87,7 @@
 }
 
 .editBtn button {
-    background-color: #aa1d11;
+    background-color: #803030;
     color: white;
     border: none;
     width: 8rem;
