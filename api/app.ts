@@ -31,7 +31,7 @@ var corsOptions = {
     origin: ["http://localhost:5000", "http://localhost:3000"],
     optionsSuccessStatus: 200,
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'access-control-allow-credentials'],
     methods: 'GET'
   }
 app.use(cors(corsOptions));
