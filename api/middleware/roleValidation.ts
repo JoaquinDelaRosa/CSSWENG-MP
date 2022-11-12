@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import jwt = require("jsonwebtoken");
 
 const validateRole = (allowedRoles : string[]) => {
     return (req : Request, res : Response, next : NextFunction) => {

@@ -2,8 +2,7 @@ import * as express from 'express';
 import mongoose from 'mongoose';
 import { AddressInfo } from "net";
 import * as path from 'path';
-import router from './routes';
-
+import cookieparser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
 
@@ -18,20 +17,24 @@ const mongo = mongoose.connect(CONNECTION_STRING);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cookieparser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Enable cors
 const cors = require('cors');
 
 var corsOptions = {
-    origin: 'http://localhost:3006',
-    optionsSuccessStatus: 200 
+    origin: ["http://localhost:5000", "http://localhost:3000"],
+    optionsSuccessStatus: 200,
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: 'GET'
   }
-
 app.use(cors(corsOptions));
-app.options("*", cors());
 
 // route imports
 import authzRoutes from './routes/authz';
