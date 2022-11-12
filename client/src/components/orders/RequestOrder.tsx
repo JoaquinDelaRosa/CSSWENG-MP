@@ -1,9 +1,7 @@
-import React, { useCallback, useDeferredValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
-import { Customer, CustomerRequest } from "../customers/CustomerDetails";
-import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
