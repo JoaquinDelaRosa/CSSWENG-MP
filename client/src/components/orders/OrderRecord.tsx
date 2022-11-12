@@ -76,7 +76,7 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
             <td> {props.order.company} </td>
             <td> {"This is a sample license plate" }</td>
 
-            <td> {"This is a sample invoice"} </td>
+            <td> {props.order.invoice.amount} </td>
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork}</td>
             <td> {"This is sample expenses"} </td>

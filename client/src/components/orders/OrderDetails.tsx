@@ -12,6 +12,7 @@ export interface OrderRequest {
     company: string,
     estimateNumber: string,
     scopeOfWork: string,
+    invoice: Invoice
 }
 
 export interface Order {
@@ -27,5 +28,6 @@ export interface Order {
     estimateNumber: string,
     scopeOfWork: string,
     expenses: Array<Expense>
+    invoice: Invoice
 }
 

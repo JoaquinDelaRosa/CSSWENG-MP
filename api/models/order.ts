@@ -34,7 +34,7 @@ const OrderSchema = new mongoose.Schema({
         agentFirstName : String,
         agentLastName : String,
         datePaid : Date,
-        agentComission : mongoose.Types.Decimal128
+        agentCommission : mongoose.Types.Decimal128
     },
     estimateNumber: String,
     scopeOfWork: String,
