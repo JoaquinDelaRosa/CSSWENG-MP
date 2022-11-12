@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
-import { Customer } from "../customers/CustomerDetails";
+import { Customer, CustomerRequest } from "../customers/CustomerDetails";
+import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../ModalBase";
 import { OrderRequest } from "./OrderDetails";
 
@@ -44,6 +45,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const onSubmit = handleSubmit((data) => {
         props.setResponse(data);
     });
+
+    const 
 
     return (
         <div>
@@ -209,6 +212,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 const CustomerSubform = (props: {observer: Function}) => {
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Customer>>([]);
+    const [customer, setCustomers] = useState<CustomerRequest>();
 
     useEffect(() => {
         if (query === ""){
@@ -249,9 +253,12 @@ const CustomerSubform = (props: {observer: Function}) => {
                         }
                     </select>
                 }
-                {
-                    // Replace this with a Create Customer button (copy from customers folder.)
-                    // This should then do a get id call on submit. to get the id of the customer.
+                { 
+                <ModalWrapper front={"Create Customer"}> 
+                    <RequestCustomer setResponse={(response : CustomerRequest) => {
+                        setCustomers(response);
+                    }}/>
+                </ModalWrapper>
                 }
             </div>
         </div>

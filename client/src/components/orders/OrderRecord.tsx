@@ -71,7 +71,7 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
             <DateEntry date={props.order.timeIn} />
             <DateEntry date={props.order.timeOut} />
 
-            <td> {props.order.customer.name.val}</td>
+            <td> {props.order.customer?.name.val}</td>
             <td> {props.order.type} </td>
             <td> {props.order.company} </td>
             <td> {"This is a sample license plate" }</td>

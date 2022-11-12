@@ -7,7 +7,7 @@ export const CreateCustomer = (props : {observer : Function}) => {
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
         .then(function (response) {
-            props.observer();
+            props.observer(response);
         })
         .catch(function (error) {
             console.log(error);
