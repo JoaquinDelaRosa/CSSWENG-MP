@@ -69,12 +69,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             isAfterTimeIn: (v) =>{
                                 if(isNaN(v.valueOf()))
                                     return false;
-                                return getValues("timeOut") >= getValues("timeIn");
+                                return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
                             }
                         }
-                     })} type='date' name="timeIn" id ="timeIn" value= {(props.default && props.default.timeIn) ? 
-                        props.default.timeIn.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'}).
-                        replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "DEFAULT"}/>
+                     })} type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
                 <div>
@@ -88,11 +86,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             }
                         }
                     })}
-                        type='date' name="timeOut" id="timeOut" value= {(props.default && props.default.timeOut) ? 
-                            props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'}).
-                            replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "DEFAULT"}/>
+                        type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
+                
                 <div>
                     <label>Customer Type</label>
                     <select {...register('type', {required: true})} 
