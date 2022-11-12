@@ -1,3 +1,7 @@
+body {
+    background-color: #17190d;
+}
+
 table, th, tr {
     border: 2px white;
     height: 3rem;
@@ -5,7 +9,7 @@ table, th, tr {
 
 .FullPage {
     background-color: #17190d;
-    height: 40.1rem;
+    height: 100%;
 }
 
 .tableDiv {
@@ -21,6 +25,7 @@ table, th, tr {
 
 .statusCol {
     background-color: #640808;
+    column-width: 5rem;
 }
 
 .timeCol {
@@ -31,7 +36,15 @@ table, th, tr {
     background-color: #9e160c;
 }
 
+.customerColCompany{
+    background-color: #9e160c;
+    column-width: 7rem;
+}
+
 .othDetails {
     background-color: #aa1d11;
 }
 
+.editCol {
+    background-color: #17190d;
+}

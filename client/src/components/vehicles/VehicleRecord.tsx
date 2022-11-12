@@ -31,12 +31,12 @@ export const VehicleRecord = (props : { vehicle: Vehicle}) => {
     if (vehicle) {
         return (
             <tr>
-                <td> <DeleteVehicle vehicle={props.vehicle} observer={onDelete}/></td>
-                <td> <UpdateVehicle vehicle={props.vehicle} observer={onUpdate}/></td>
                 <td> {vehicle?.licensePlate} </td>
                 <td> {vehicle?.manufacturer} </td>
                 <td> {vehicle?.model} </td>
                 <td> {vehicle?.yearManufactured} </td>
+                <td> <UpdateVehicle vehicle={props.vehicle} observer={onUpdate}/></td>
+                <td> <DeleteVehicle vehicle={props.vehicle} observer={onDelete}/></td>
             </tr> 
         );
     } else{

@@ -6,12 +6,13 @@ import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
+import refreshToken from "../../utils/RefreshToken";
+
 
 const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     const fetchCustomers = async () => {
         await createAPIEndpoint(ENDPOINTS.customers).fetch()
             .then((response) => {
@@ -34,7 +35,20 @@ const ViewCustomers = () => {
     };
 
     useEffect(() => {
+        if(queryResult != null) {
+            if(queryResult.length != 0) {
+                setCustomers(queryResult)
+            }
+        }
+
+        if(!queryResult) {
+            fetchCustomers();
+        }   
+    }, [queryResult])
+
+    useEffect(() => {
         fetchCustomers();
+        refreshToken();
     }, []);
 
     const updateView = () => {

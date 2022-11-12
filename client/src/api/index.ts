@@ -7,6 +7,7 @@ var token = (sessionStorage.getItem("key") != null) ? sessionStorage.getItem("ke
 export const ENDPOINTS = {
     login: 'authz/login',
     register: 'authz/register',
+    refreshToken: 'authz/refresh',
     logout: 'authz/logout',
 
     orderTypes: 'order/types',
@@ -51,7 +52,7 @@ export const updateToken = (key: string) =>{
 }
 
 export const createAPIEndpoint = (endpoint : string) => {
-
+    axios.defaults.withCredentials = true
     let url = BASE_URL + 'api/' + endpoint ;
     return {
         fetch: (params?: any, headers:any = 

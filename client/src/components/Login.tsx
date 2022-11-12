@@ -23,6 +23,8 @@ const Login = () => {
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
             .then((response: any) => {
+                console.log("RESPONSE DATA")
+                console.log(response.data)
                 updateToken(response.data.token);
             })
             .then(() => {
