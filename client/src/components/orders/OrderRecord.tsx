@@ -56,7 +56,8 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
                 timeIn: new Date(props.order.timeIn), 
                 timeOut: new Date(props.order.timeOut),
                 customer : props.order.customer.id,
-                vehicle: props.order.vehicle.id
+                vehicle: props.order.vehicle.id,
+                expenses: props.order.expenses,
             }}/>
           </ModalWrapper>
         </div>

@@ -4,6 +4,8 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
 import { ModalWrapper } from "../ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
+import { Expense } from "./ExpenseDetails";
+import { ExpenseSubform } from "./ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
@@ -169,6 +171,14 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
+                </ModalWrapper>
+
+                <ModalWrapper front={"Add Expenses"}>
+                    <ExpenseSubform setData={(expense : Expense) => {
+                        const updatedExpenses = getValues("expenses");
+                        updatedExpenses.push(expense)
+                        setValue("expenses", updatedExpenses)
+                    }}/>
                 </ModalWrapper>
                 
                 <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
