@@ -22,7 +22,6 @@ const register =  (req : express.Request, res : express.Response) => {
 }
 
 const login = (req : express.Request, res : express.Response) => {
-    console.log(`Attempting Login`)
     User.findOne({username : req.body.username})
     .then((user) => {
         if (user) {
@@ -50,6 +49,12 @@ const login = (req : express.Request, res : express.Response) => {
                                         secure: true,
                                         sameSite: "none",
                                     })
+                                res.cookie('jwtacc', token, 
+                                {
+                                    httpOnly: false,
+                                    secure: true,
+                                    sameSite: "none",
+                                })
                                     return res.status(200).json({
                                         success : true,
                                         message : "Authenticated",
@@ -82,22 +87,4 @@ const login = (req : express.Request, res : express.Response) => {
     })
 }
 
-const refresh = async (req : express.Request, res : express.Response) => {
-    console.log("within refresh")
-    var newToken = await refreshToken(req.cookies.jwt);
-    console.log("new token")
-    console.log(newToken);
-    if (newToken) {
-        return res.status(200).json({
-            success : true,
-            message : "Token Refreshed",
-            token: newToken
-        });
-    }
-    return res.status(404).json({
-        success : false,
-        message : "Token Refresh Fail",
-    })
-}
-
-export default { login, register, refresh };
+export default { login, register};

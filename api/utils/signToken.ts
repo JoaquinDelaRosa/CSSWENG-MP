@@ -9,9 +9,6 @@ const signToken = (user,  callback: (error: Error | null, token: string | null, 
     const expirationTimeInSeconds = Math.floor(expirationTime / 1000);
 
     try {
-        console.info(`timeSinceEpoch : ${timeSinceEpoch}`)
-        console.info(`Attempting sign in with expire time: ${expirationTimeInSeconds}`)
-        console.log(user);
         jwt.sign(
             {
                 id : user.id,
@@ -26,7 +23,6 @@ const signToken = (user,  callback: (error: Error | null, token: string | null, 
                 if (error) {
                     callback(error, null, null);
                 } else if (token) {
-                    console.log("Making refresh token")
                     const tk = token;
                     // make refresh token
                     jwt.sign(

@@ -4,6 +4,5 @@ const router = express.Router();
 
 router.post('/register', controller.register) // register
 router.post('/login', controller.login)       // login
-router.post('/refresh', controller.refresh)   // refresh
 
 export default router;

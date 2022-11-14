@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS, updateToken } from '../api';
+import { createAPIEndpoint, ENDPOINTS} from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,7 +25,6 @@ const Login = () => {
             .then((response: any) => {
                 console.log("Login Data")
                 console.log(response.data)
-                updateToken(response.data.token);
             })
             .then(() => {
                 navigation(ROUTES.orders);

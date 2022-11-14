@@ -6,7 +6,6 @@ import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
-import refreshToken from "../../utils/RefreshToken";
 import "../../style/CustomerViews.css";
 
 
