@@ -13,8 +13,13 @@ const ViewVehicles = () => {
     const [vehicles, setVehicles] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
 
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [limit] = useState(1);
+    const [skip, setSkip] = useState(0);
+
     const fetchVehicles = async () => {
-        await createAPIEndpoint(ENDPOINTS.vehicles).fetch()
+        await createAPIEndpoint(ENDPOINTS.vehicles).fetch({skip: skip, limit: limit})
             .then((response) => {
                 return response.data;
             })
@@ -35,7 +40,7 @@ const ViewVehicles = () => {
 
     useEffect(() => {
         fetchVehicles();
-    }, []);
+    }, [currentPage]);
 
     const updateView = () => {
         fetchVehicles();
@@ -43,7 +48,7 @@ const ViewVehicles = () => {
 
     useEffect(() => {
         setVehicles(queryResult)
-    }, [queryResult]);
+    }, [queryResult, currentPage]);
 
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
@@ -78,9 +83,25 @@ const ViewVehicles = () => {
         setQueryResult([...vehicles]);
     };
 
+    const nextPage = () => {
+        setCurrentPage((page) => page + 1);
+        setSkip((currentPage-1) * limit)
+    }
+  
+    const previousPage = () => {
+        if(currentPage - 1 <= 0){
+            console.log("start of results")
+        }
+        else{
+            setCurrentPage((page) => page - 1);
+            setSkip((currentPage-1) * limit)
+        }
+    }
+
+
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterVehicle} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterVehicle} setData={setQueryResult} queryParser={queryParser}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
@@ -128,6 +149,21 @@ const ViewVehicles = () => {
                     </ModalWrapper>
                 </div>
             </div>
+
+            <span>
+                <button>⮜⮜</button>
+                <button onClick={previousPage}>
+                        ⮜
+                </button>
+
+                <input type='text'></input>
+
+                <button onClick={nextPage}>
+                        ⮞
+                </button> 
+                <button>⮞⮞</button> 
+            </span>
+
         </div>
     )
 }
