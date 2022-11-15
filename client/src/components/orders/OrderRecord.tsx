@@ -85,7 +85,7 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
                     props.order.expenses.reduce(
                         (x, y) => {
                             return x + y.amount.valueOf();
-                        }, 0)
+                        }, 0).toFixed(2)
                 }
                 </>
                 <ModalWrapper front={"View Expenses"}>

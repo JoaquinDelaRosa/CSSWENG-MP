@@ -174,15 +174,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
                 
-                <ExpensesDisplay expenses={getValues("expenses")}/>
                 <ModalWrapper front={"Add Expenses"}>
-                    <ExpenseSubform setData={(expense : Expense) => {
-                        let updatedExpenses = getValues("expenses");
-                        if (!updatedExpenses)
-                            updatedExpenses = [];
-
-                        updatedExpenses.push(expense)
-                        setValue("expenses", updatedExpenses)
+                    <ExpenseSubform setData={(expenses: Expense[]) => {
+                        setValue("expenses", expenses)
                     }}/>
                 </ModalWrapper>
                 

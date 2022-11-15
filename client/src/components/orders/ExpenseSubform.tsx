@@ -1,19 +1,29 @@
 import { useState } from "react";
 import { Expense } from "./ExpenseDetails";
+import { ExpensesDisplay } from "./ExpensesDisplay";
 
-export const ExpenseSubform = (props: {setData : Function}) => {
-    const [expense, setExpense] = useState<Expense>({
-        amount: 0,
-        description: "",
-        dateRecorded: Date.now().toString()
-    });
+const defaultExpense = {
+    amount: 0,
+    description: "",
+    dateRecorded: Date.now().toString()
+};
+
+export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]}) => {
+    const [expenses, setExpenses] = useState<Array<Expense>>(props.default ? props.default : []);
+    const [expense, setExpense] = useState<Expense>(defaultExpense);
 
     const onSubmit = () => {
-        props.setData(expense);
+        props.setData(expenses);
+    }
+
+    const onAdd = () => {
+        setExpenses([...expenses, expense]);
+        setExpense(defaultExpense);
     }
 
     return (
         <>
+            <ExpensesDisplay expenses={expenses}/>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount" defaultValue={new Date(Date.now()).toDateString()} 
@@ -41,6 +51,7 @@ export const ExpenseSubform = (props: {setData : Function}) => {
                 />
             </div>
             
+            <input type="button" name="add" onClick={onAdd} value={"Add Expense"}/>
             <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
         </>
     );
