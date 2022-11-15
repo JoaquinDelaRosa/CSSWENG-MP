@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../api/routes";
 import "../style/NavStyle.css"
-import { Logout } from "./Logout";
+import { Logout } from "../utils/Logout";
 
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
     return (
-        <button className="navButton" onClick={(e) => {e.preventDefault(); navigation(props.to)}}> {props.buttonName} </button>
+        <button className="navButton" onClick={(e) => {e.preventDefault(); navigation(props.to);}}> {props.buttonName} </button>
     )
 }
 
 const Navbar = () => {
-    
+    const navigation = useNavigate();
     return (
         <header className="navWrapper">
             <nav className="navbar">
@@ -21,7 +21,7 @@ const Navbar = () => {
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>
                     <Button buttonName={"Vehicles"} to={ROUTES.vehicles}/>
                     <Button buttonName={"Users"} to={ROUTES.users}/>
-                    <Button buttonName={"Logout"} to={ROUTES.logout}/>
+                    <button className="navButton" onClick={() => {Logout(); navigation(ROUTES.login)}} > Logout </button>
                 </div>
             </nav>
             <div className="redBar">PAIN PEKO</div>

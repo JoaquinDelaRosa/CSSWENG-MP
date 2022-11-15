@@ -58,7 +58,7 @@ export const createAPIEndpoint = (endpoint : string) => {
 
         post: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'
-        }) => axios.post(url, data, { "headers" : {...headers, Authorization: `Bearer ${token}`}, "params": params }),
+        }) => axios.post(url, data, { "headers" : {...headers, Authorization: `Bearer ${token}`, }, "params": params }),
 
         patch: (data: any, params?: any, headers: any = {
             'Content-Type': 'application/json'

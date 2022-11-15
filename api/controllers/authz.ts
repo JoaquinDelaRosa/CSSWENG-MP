@@ -2,7 +2,6 @@ import express = require('express');
 import Bcrypt = require('bcryptjs');
 import { User } from '../models/user';
 import signToken from '../utils/signToken';
-import refreshToken from '../utils/refreshToken';
 import { randomUUID } from 'crypto';
 
 const register =  (req : express.Request, res : express.Response) => {
@@ -33,7 +32,7 @@ const login = (req : express.Request, res : express.Response) => {
                     }).end()
                 } 
                 else if (result) {
-                    let tk = signToken(user, (err, token, refreshToken) => {
+                    signToken(user, (err, token, refreshToken) => {
                         if (err) {
                             return res.status(500).json({
                                 auth : false,
@@ -88,4 +87,8 @@ const login = (req : express.Request, res : express.Response) => {
     })
 }
 
-export default { login, register};
+const logout = (req : express.Request, res : express.Response) => {
+    res.clearCookie("jwt").clearCookie("jwtacc").end();
+}
+
+export default { login, register, logout};

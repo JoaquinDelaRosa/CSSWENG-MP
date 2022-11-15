@@ -9,6 +9,9 @@ const bodyParser = require('body-parser');
 const debug = require('debug')('my express app');
 const app = express();
 
+const cors = require('cors');
+
+
 // connections
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose.connect(CONNECTION_STRING);
@@ -25,14 +28,13 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Enable cors
-const cors = require('cors');
 
 var corsOptions = {
     origin: ["http://localhost:5000", "http://localhost:3000"],
     optionsSuccessStatus: 200,
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', "access-control-allow-credentials"],
-    methods: 'GET'
+    methods: ['GET', 'POST']
   }
 app.use(cors(corsOptions));
 
