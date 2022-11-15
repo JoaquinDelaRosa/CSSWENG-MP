@@ -1,3 +1,12 @@
+:root {
+    --dark1: rgba(0, 0, 0, 0.5);
+    --white1: rgb(255, 255, 255);
+    --red1: #640808;
+    --red2: #8e1e12;
+    --blue1: #062437;
+    --blue2: #26558e;
+}
+
 .modal {
     font: 'Montserrat';
     position: fixed;
@@ -5,7 +14,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--dark1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,12 +25,18 @@
 }
 
 .modalBackground {
-    background-color: white;
+    background-color: #5a0707;
+    border-radius: 15px;
+    height: 27rem;
+    width: 40rem;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
 }
 
 .modalContent {
     align-items: center;
     padding: 10px;
+    color: var(--white1);
 }
 
 .closeButton {
@@ -30,9 +45,111 @@
 }
 
 .closeButton > button {
+    background-color: var(--blue1);
+    color: var(--white1);
     position: relative;
+    padding: 10px 15px;
     float: right;
     border: none;
+    border-radius: 50%;
     font: "Montserrat";
     font-weight: 900;
 }
+
+.closeButton > button:hover {
+    background-color: var(--blue2);
+}
+
+.formStyle > div input, .formStyle > div select {
+    background-color: var(--red2);
+    color: white;
+    padding: 5px;
+    padding-left: 0.8rem;
+    margin: 5px;
+    border: none;
+    border-radius: 15px;
+    width: 10rem;
+}
+
+.modalHeader{
+    text-decoration-line: underline;
+    font-size: 1.3rem;
+}
+
+/* REQUEST CUSTOMER */
+.custFirstTag{
+    padding-left: 2.5rem;
+}
+
+.custLastTag{
+    padding-left: 2.5rem;
+}
+
+.custEmailTag{
+    padding-left: 2.5rem;
+}
+
+.custMobTag{
+    padding-left: 2.5rem;
+}
+
+.custSubText{
+    font-size: 1.1rem;
+}
+
+.custSubField{
+    height: 2rem;
+}
+
+
+/* REQUEST USER */
+.firstNameTag{
+    padding-left: 2.5rem;
+}
+
+.lastNameTag{
+    padding-left: 2.5rem;
+}
+
+.usernameTag{
+    padding-left: 2.5rem;
+}
+
+.userRoleTag{
+    padding-left: 2.5rem;
+}
+
+.userSubText{
+    font-size: 1.1rem;
+}
+
+.userSubField{
+    height: 2rem;
+}
+
+
+/* REQUEST VEHICLE */
+.licensePlateTag{
+    padding-left: 2.5rem;
+}
+
+.manufactTag{
+    padding-left: 2.5rem;
+}
+
+.modelTag{
+    padding-left: 2.5rem;
+}
+
+.yearManufTag{
+    padding-left: 2.5rem;
+}
+
+.vehicleSubText{
+    font-size: 1.1rem;
+}
+
+.vehicleSubField{
+    height: 2rem;
+}
+
