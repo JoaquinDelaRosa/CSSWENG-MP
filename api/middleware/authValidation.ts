@@ -4,25 +4,36 @@ import config from "../config/authConfig";
 import refreshToken from "../utils/refreshToken";
 import authz from "../controllers/authz";
 
+const clearRefreshToken = (res : Response) => {
+    res.clearCookie("jwt")
+}
+
+const clearAccessToken = (res : Response) => {
+    res.clearCookie("jwtacc")
+}
 const validateToken = (req : Request, res : Response, next : NextFunction) => {
     const refToken = req.cookies.jwt;
 
     let token = req.headers.authorization?.split(' ')[1]; // remove bearer
     if(token) {
         jwt.verify(token, config.token.secret,  {issuer: config.token.issuer}, (error, decoded) => {
+            // verify access token
             if (error) {
-                
                 jwt.verify(refToken, config.refreshToken.secret, (error, refreshDecoded) => {
+                    // refresh token
                     if(error) {
-                        return res.status(401).json({
+                        clearRefreshToken(res);
+                        return res.json({
                             message: "Refresh token expired, please log in again",
                             error,
-                        })
+                            auth: false,
+                        }).end()
                     }
                     
                     token = refreshToken(refToken)
                     
                     if(token) {
+                        clearAccessToken(res);
                         res.cookie('jwtacc', token, 
                                 {
                                     httpOnly: false,
@@ -33,9 +44,10 @@ const validateToken = (req : Request, res : Response, next : NextFunction) => {
                         next();
                     }
                     else {
-                        return res.status(401).json({
+                        return res.json({
                             message: 'Reassigning token failure in authValidation middleware',
-                        })
+                            auth: false
+                        }).end()
                     }
                 });
 
@@ -45,10 +57,12 @@ const validateToken = (req : Request, res : Response, next : NextFunction) => {
             }
         })
     } else {
-        console.log("here")
-        return res.status(401).json({
-            message: 'Unauthorized'
-        })
+        clearAccessToken(res);
+        clearRefreshToken(res);
+        return res.json({
+            message: 'Unauthorized',
+            auth: false,
+        }).end()
     }
 };
 
