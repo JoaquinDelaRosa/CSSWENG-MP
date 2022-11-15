@@ -5,6 +5,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { RequestOrder } from "./RequestOrder";
 import { InvoiceDisplay } from "./InvoiceDisplay";
 import { DateEntry } from "../base/DateEntry";
+import { ExpensesDisplay } from "./ExpensesDisplay";
 
 export const DeleteOrder = (props : {order : Order, observer : Function}) => {
     const onSubmit = () => {
@@ -75,7 +76,11 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
 
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork}</td>
-            <td> {"This is sample expenses"} </td>
+            <td> 
+                <ModalWrapper front={"View Expenses"}>
+                    <ExpensesDisplay expenses={props.order.expenses}/>
+                </ModalWrapper>    
+            </td>
 
         </tr> 
      );

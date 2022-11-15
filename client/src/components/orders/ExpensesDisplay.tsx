@@ -9,15 +9,27 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
     if (props.expenses ){
         return (
             <>
-                {
-                    props.expenses.map((value, index) => {
-                        return (
-                            <div key={index}>
-                                <ExpenseRecord expense={value}/>
-                            </div>
-                        )
-                    })
-                }
+                <table>
+                    <thead>
+                        <tr className="redDialogue">
+                            <th> Description </th> 
+                            <th> Amount </th>
+                            <th> Date Recorded </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        props.expenses.map((value, index) => {
+                            console.log(value);
+                            return (
+                                <tr key={index}>
+                                    <ExpenseRecord expense={value}/>
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+                </table>
             </>
         )
     }
@@ -27,19 +39,17 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 const ExpenseRecord = (props : {expense : Expense}) => {
     return (
         <>
-            <p>
-                {"Description: " + props.expense.description}
-            </p>
+            <td className="redDialogue">
+                {props.expense.description}
+            </td>
 
-            <p>
-                {"Amount: "}
+            <td className="redDialogue">
                 <NumberEntry number={props.expense.amount}/>
-            </p>
+            </td>
 
-            <div>
-                {"Date Paid: "}
+            <td className="redDialogue">
                 <DateEntry date={props.expense.dateRecorded}/>
-            </div>
+            </td>
         </>
     )
 }

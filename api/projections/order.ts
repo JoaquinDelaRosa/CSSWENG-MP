@@ -44,7 +44,7 @@ const makeInvoiceView = (invoice) => {
 
 const makeExpenseView = (expense) => {
     return {
-        dateRecorded: expense.Date,
+        dateRecorded: expense.dateRecorded,
         description: expense.description,
         amount: expense.amount,
     }
