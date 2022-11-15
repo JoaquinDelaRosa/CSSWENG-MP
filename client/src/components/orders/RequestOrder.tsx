@@ -173,7 +173,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
                 
-                <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
+                <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
         </div> 
     );
