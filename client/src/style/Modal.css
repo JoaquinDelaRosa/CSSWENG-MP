@@ -32,9 +32,27 @@
 }
 
 .closeButton > button {
+    background-color: #062437;
+    color: white;
     position: relative;
+    padding: 10px 15px;
     float: right;
     border: none;
+    border-radius: 50%;
     font: "Montserrat";
     font-weight: 900;
+}
+
+.closeButton > button:hover {
+    background-color: #26558e;
+}
+
+.formStyle > div input, .formStyle > div select {
+    background-color: #8e1e12;
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 15px;
+    width: 10rem;
 }
