@@ -12,65 +12,17 @@ const ViewVehicles = () => {
 
     const [vehicles, setVehicles] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-    
-    const [currentPage, setCurrentPage] = useState(1);
-    const [skip, setSkip] = useState(0);
-    const [vehicleCount, setVehicleCount] = useState(0);
-    
-    const LIMIT = 3;
 
-    const getVehiclesCount = async () => {
-        await createAPIEndpoint(ENDPOINTS.countVehicle).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((count) => {
-                setVehicleCount(count.vehicleCount);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    };
-
-    const fetchVehicles = async () => {
-        await createAPIEndpoint(ENDPOINTS.vehicles).fetch({skip: skip, limit: LIMIT})
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const vehicleList = data.map((value: any) => {
-                    let vehicle: Vehicle = value;
-                    return vehicle;
-                });
-                return vehicleList;
-            })
-            .then((list) => {
-                setVehicles(list);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    };
-
-    useEffect(() => {
-        getVehiclesCount();
-    }, []);
-
-    useEffect(() => {
-        fetchVehicles();
-    }, [skip]);
+    const [flag, setFlag] = useState(false);
 
     const updateView = () => {
-        fetchVehicles();
+        setFlag(!flag);
     }
 
     useEffect(() => {
         setVehicles(queryResult)
     }, [queryResult]);
 
-    useEffect(() => {
-        setSkip((currentPage-1) * LIMIT)
-    }, [currentPage]);
 
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
@@ -105,50 +57,15 @@ const ViewVehicles = () => {
         setQueryResult([...vehicles]);
     };
 
-    const nextPage = (skipAhead: Boolean) => {
-        const recordCount = Math.ceil(vehicleCount/LIMIT)
-        console.log(recordCount)
-        console.log(currentPage)
-
-        if(currentPage === recordCount){
-            console.log("end of results");
-        }
-        else if(skipAhead && currentPage + 10 > recordCount){
-            const lastPage = recordCount - currentPage 
-            setCurrentPage((page) => page + lastPage);
-        }
-        else if(skipAhead && currentPage + 10 < recordCount){
-            setCurrentPage((page) => page + 10);
-        }
-        else if(!skipAhead && currentPage + 1 <= recordCount){
-            setCurrentPage((page) => page + 1);
-        }
-    }
-  
-    const previousPage = (skipAhead: Boolean) => {
-        if(currentPage === 1){
-            console.log("start of results");
-        }
-        else if(skipAhead && currentPage - 10 < 1){
-            setCurrentPage(1);
-        }
-        else if(skipAhead && currentPage - 10 > 0){
-            setCurrentPage((page) => page - 10);
-        }
-        else if(!skipAhead && currentPage - 1 > 0){
-            setCurrentPage((page) => page - 1);
-        }
-    }
-
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterVehicle} setData={setQueryResult} queryParser={queryParser}
+            <Searchbar path={ENDPOINTS.filterVehicle} all={ENDPOINTS.vehicles} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
                     {name: "model", description: "The model of the vehicle"},
                     {name: "yearManufactured", description: "The year manufactured of the vehicle"}
-                ]}/>
+                ]}>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -190,28 +107,7 @@ const ViewVehicles = () => {
                     </ModalWrapper>
                 </div>
             </div>
-
-            <span>
-                <button onClick={() => {
-                    previousPage(true)
-                }}>⮜⮜</button>
-                <button onClick={() => {
-                    previousPage(false)
-                }}>
-                        ⮜
-                </button>
-
-                <p>{currentPage}</p>
-
-                <button onClick={() => {
-                    nextPage(false)
-                }}>
-                        ⮞
-                </button> 
-                <button onClick={() => {
-                    nextPage(true)
-                }}>⮞⮞</button> 
-            </span>
+            </Searchbar>
 
         </div>
     )

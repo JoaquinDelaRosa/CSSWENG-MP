@@ -13,11 +13,13 @@ const count = async (req: express.Request, res: express.Response) => {
 };
 
 const all = async (req: express.Request, res: express.Response) => {
+    const count = await Vehicle.countDocuments({});
+
     Vehicle.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((data) => {
-        res.json(makeVehicleArrayView(data));
+        res.json({data : makeVehicleArrayView(data), count: count});
     })
 };
 
@@ -69,12 +71,13 @@ const remove = (req: express.Request, res: express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : VehicleQuery = makeQuery(req);
-    
+    const count = await Vehicle.find(makeMongooseQuery(query)).countDocuments();
+
     Vehicle.find(makeMongooseQuery(query))
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
-        res.json(makeVehicleArrayView(result));
+        res.json({data : makeVehicleArrayView(result), count: count});
         res.end();
     }).catch((err) => {
         console.log(err);
