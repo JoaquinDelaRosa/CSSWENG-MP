@@ -5,7 +5,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { RequestOrder } from "./RequestOrder";
 import { InvoiceDisplay } from "./InvoiceDisplay";
 import { DateEntry } from "../base/DateEntry";
-import { ExpensesDisplay } from "./ExpensesDisplay";
+import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
 
 export const DeleteOrder = (props : {order : Order, observer : Function}) => {
     const onSubmit = () => {

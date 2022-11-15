@@ -2,7 +2,7 @@ import { DateEntry } from "../base/DateEntry";
 import { ModalWrapper } from "../base/ModalBase";
 import { NumberEntry } from "../base/NumberEntry";
 import { Expense } from "./ExpenseDetails";
-import { Invoice } from "./InvoiceDetails"
+import { Invoice } from "../orders/InvoiceDetails"
 
 export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 

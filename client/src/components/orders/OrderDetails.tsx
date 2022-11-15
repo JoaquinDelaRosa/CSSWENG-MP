@@ -1,5 +1,5 @@
 import { Customer } from "../customers/CustomerDetails"
-import { Expense } from "./ExpenseDetails"
+import { Expense } from "../expenses/ExpenseDetails"
 import { Invoice } from "./InvoiceDetails"
 import { Vehicle } from "../vehicles/VehicleDetails"
 
