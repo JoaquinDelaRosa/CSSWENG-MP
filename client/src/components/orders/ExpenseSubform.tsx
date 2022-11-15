@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Expense } from "./ExpenseDetails";
 import { ExpensesDisplay } from "./ExpensesDisplay";
 
@@ -20,6 +20,10 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
         setExpenses([...expenses, expense]);
         setExpense(defaultExpense);
     }
+
+    useEffect(() => {
+        console.log(props.default);
+    }, [props.default])
 
     return (
         <>
@@ -46,7 +50,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
                 <label htmlFor="expenses.description">Description</label>
                 <input type='text' name="expenses.description" id="expenses.description" 
                     onChange = {(e) => {
-                        setExpense({...expense, description: e.target.value})
+                        setExpense({...expense, description: e.target.value});
                     }}
                 />
             </div>
