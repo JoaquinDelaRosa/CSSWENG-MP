@@ -69,6 +69,38 @@
     width: 10rem;
 }
 
+.modalHeader{
+    text-decoration-line: underline;
+    font-size: 1.3rem;
+}
+
+/* REQUEST USER */
+.firstNameTag{
+    padding-left: 2.5rem;
+}
+
+.lastNameTag{
+    padding-left: 2.5rem;
+}
+
+.usernameTag{
+    padding-left: 2.5rem;
+}
+
+.userRoleTag{
+    padding-left: 2.5rem;
+}
+
+.userSubText{
+    font-size: 1.1rem;
+}
+
+.userSubField{
+    height: 2rem;
+}
+
+
+/* REQUEST VEHICLE */
 .licensePlateTag{
     padding-left: 2.5rem;
 }
@@ -85,11 +117,6 @@
     padding-left: 2.5rem;
 }
 
-.vehModalHead{
-    text-decoration-line: underline;
-    font-size: 1.3rem;
-}
-
 .vehicleSubText{
     font-size: 1.1rem;
 }
@@ -97,3 +124,4 @@
 .vehicleSubField{
     height: 2rem;
 }
+

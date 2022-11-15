@@ -14,7 +14,7 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
 
     return (
         <div>
-            <p className="vehModalHead">Editing Vehicle Table:</p>
+            <p className="modalHeader">Editing Vehicle Table:</p>
             <br />
             <form className="formStyle" onSubmit={onSubmit}>
                 <div className="licensePlateTag">
