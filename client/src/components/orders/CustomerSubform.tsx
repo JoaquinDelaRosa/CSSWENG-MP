@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { Customer, CustomerRequest } from "../customers/CustomerDetails";
 import { RequestCustomer } from "../customers/RequestCustomer";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 
 export const CustomerSubform = (props: {observer: Function}) => {
     const [query, setQuery] = useState<string>("");

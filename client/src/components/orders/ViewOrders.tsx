@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
@@ -71,9 +71,7 @@ const OrdersView = () => {
             </table>
             <br />
             <div className="createBtn">
-                <ModalWrapper front={"Create Order"}>
                     <CreateOrder observer={updateView}/>
-                </ModalWrapper>
             </div>
             
             </div>
