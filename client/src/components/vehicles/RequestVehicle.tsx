@@ -50,7 +50,7 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                     </select>
                     {errors.yearManufactured && <p>Year Manufactured is Required</p>}
                 </div>
-                <input type="button" name="submit" onClick={onSubmit} value={"Submit"}/>
+                <input type="button" name="submit" className="submit" onClick={onSubmit} value={"Submit"}/>
             </form>
         </div> 
     );

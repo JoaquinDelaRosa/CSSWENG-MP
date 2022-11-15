@@ -75,6 +75,16 @@
     padding-left: 0.8rem;
 }
 
+
+.submit {
+    background-color: #062437;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 1rem 5rem;
+    margin: .5rem;
+}
+
 /* Vehicles */
 
 .deleteBtn button {

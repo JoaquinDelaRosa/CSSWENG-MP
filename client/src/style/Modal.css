@@ -16,12 +16,14 @@
 }
 
 .modalBackground {
-    background-color: white;
+    background-color: #640808;
+    border-radius: 15px;
 }
 
 .modalContent {
     align-items: center;
     padding: 10px;
+    color: white;
 }
 
 .closeButton {

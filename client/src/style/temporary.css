@@ -52,7 +52,6 @@ input[type=text] select {
 }
 
 p {
-    color: black;
     font-weight: 800;
 }
 
@@ -70,5 +69,9 @@ form > div > p {
 }
 
 .objectView {
+    
+}
+
+button {
     
 }
