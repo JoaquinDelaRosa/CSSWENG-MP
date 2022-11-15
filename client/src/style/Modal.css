@@ -74,6 +74,32 @@
     font-size: 1.3rem;
 }
 
+/* REQUEST CUSTOMER */
+.custFirstTag{
+    padding-left: 2.5rem;
+}
+
+.custLastTag{
+    padding-left: 2.5rem;
+}
+
+.custEmailTag{
+    padding-left: 2.5rem;
+}
+
+.custMobTag{
+    padding-left: 2.5rem;
+}
+
+.custSubText{
+    font-size: 1.1rem;
+}
+
+.custSubField{
+    height: 2rem;
+}
+
+
 /* REQUEST USER */
 .firstNameTag{
     padding-left: 2.5rem;
