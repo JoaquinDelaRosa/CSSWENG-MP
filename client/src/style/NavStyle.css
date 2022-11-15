@@ -90,6 +90,7 @@
     border-radius: 25px;
     padding: 1rem 5rem;
     margin: .5rem;
+    font-weight: bold;
 }
 
 .submit:hover {

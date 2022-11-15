@@ -27,7 +27,7 @@
 .modalBackground {
     background-color: #5a0707;
     border-radius: 15px;
-    height: 24.5rem;
+    height: 27rem;
     width: 40rem;
 }
 
@@ -62,6 +62,7 @@
     background-color: var(--red2);
     color: white;
     padding: 5px;
+    padding-left: 0.8rem;
     margin: 5px;
     border: none;
     border-radius: 15px;
@@ -82,4 +83,17 @@
 
 .yearManufTag{
     padding-left: 2.5rem;
+}
+
+.vehModalHead{
+    text-decoration-line: underline;
+    font-size: 1.3rem;
+}
+
+.vehicleSubText{
+    font-size: 1.1rem;
+}
+
+.vehicleSubField{
+    height: 2rem;
 }
