@@ -16,7 +16,8 @@ const ViewVehicles = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [skip, setSkip] = useState(0);
     const [vehicleCount, setVehicleCount] = useState(0);
-    const limit = 1;
+    
+    const LIMIT = 3;
 
     const getVehiclesCount = async () => {
         await createAPIEndpoint(ENDPOINTS.countVehicle).fetch()
@@ -32,7 +33,7 @@ const ViewVehicles = () => {
     };
 
     const fetchVehicles = async () => {
-        await createAPIEndpoint(ENDPOINTS.vehicles).fetch({skip: skip, limit: limit})
+        await createAPIEndpoint(ENDPOINTS.vehicles).fetch({skip: skip, limit: LIMIT})
             .then((response) => {
                 return response.data;
             })
@@ -68,7 +69,7 @@ const ViewVehicles = () => {
     }, [queryResult]);
 
     useEffect(() => {
-        setSkip((currentPage-1) * limit)
+        setSkip((currentPage-1) * LIMIT)
     }, [currentPage]);
 
     const sortAlphabetically = (isAsc: Boolean ) => {
@@ -105,7 +106,7 @@ const ViewVehicles = () => {
     };
 
     const nextPage = (skipAhead: Boolean) => {
-        const recordCount = Math.ceil(vehicleCount/limit)
+        const recordCount = Math.ceil(vehicleCount/LIMIT)
         console.log(recordCount)
         console.log(currentPage)
 

@@ -51,12 +51,4 @@ const OrderSchema = new mongoose.Schema({
     }
 }, {_id: false});
 
-function getVal(num){
-    return (num/100).toFixed(4);
-}
-
-function setVal(num){
-    return num*100;
-}
-
 export const Order = mongoose.model('Order', OrderSchema);

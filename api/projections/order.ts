@@ -43,7 +43,6 @@ const makeInvoiceView = (invoice) => {
 }
 
 const makeExpenseView = (expense) => {
-    console.log(expense.amount);
     return {
         dateRecorded: expense.dateRecorded,
         description: expense.description,
