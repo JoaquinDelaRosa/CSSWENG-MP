@@ -24,7 +24,7 @@ const Navbar = () => {
                     <button className="navButton" onClick={() => {Logout(); navigation(ROUTES.login)}} > Logout </button>
                 </div>
             </nav>
-            <div className="redBar">PAIN PEKO</div>
+            <div className="redBar">DONT WORRY ABOUT IT -ETHAN</div>
         </header>
         
     );

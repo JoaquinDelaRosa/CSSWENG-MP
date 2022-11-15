@@ -34,15 +34,16 @@ export const CustomerSubform = (props: {observer: Function}) => {
         })
     };
     return (
-        <div> 
-            <label> Name </label>
+        <div>
             <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : ""} />   
 
-            <div> 
+            <div>
+                <br /> 
                 {
                     options.length === 0 && 
-                    <p> No Customers were found.</p>
+                    <p>No Customers were found.</p>
                 }
+                <br />
                 {
                     options.length !== 0 && 
                     <select onChange={(e) => {props.observer(e.target.value)}}> 
@@ -58,10 +59,12 @@ export const CustomerSubform = (props: {observer: Function}) => {
                         }
                     </select>
                 }
-                { 
-                <ModalWrapper front={"Create Customer"}> 
-                    <RequestCustomer setResponse={setData} default={customer}/>
-                </ModalWrapper>
+                {
+                    <div className="createCustomerButt"> 
+                    <ModalWrapper front={"Create Customer"}> 
+                        <RequestCustomer setResponse={setData} default={customer}/>
+                    </ModalWrapper>
+                    </div>
                 }
             </div>
         </div>

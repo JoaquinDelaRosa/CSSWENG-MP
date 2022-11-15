@@ -29,7 +29,6 @@
     border-radius: 15px;
     height: 27rem;
     width: 40rem;
-    max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
 
@@ -100,6 +99,53 @@
 .custSubField{
     height: 2rem;
 }
+
+
+/* REQUEST ORDER */
+.orderStatTag{
+    padding-left: 2.5rem;
+}
+
+.timeInTag{
+    padding-left: 2.5rem;
+}
+
+.timeOutTag{
+    padding-left: 2.5rem;
+}
+
+.custTypeTag{
+    padding-left: 2.5rem;
+}
+
+.custNameTag{
+    padding-left: 2.5rem;
+}
+
+.orderCompanyTag{
+    padding-left: 2.5rem;
+}
+
+.orderLicenseTag{
+    padding-left:2.5rem;
+}
+
+.orderSubText{
+    font-size: 1.1rem;
+}
+
+.orderSubField{
+    height: 2rem;
+}
+
+.orderEstimateTag{
+    padding-left:2.5rem;
+}
+
+.orderScopeTag{
+    padding-left:2.5rem;
+}
+
 
 
 /* REQUEST USER */

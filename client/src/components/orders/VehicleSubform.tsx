@@ -43,10 +43,10 @@ export const VehicleSubform = (props: {observer: Function}) => {
     };
     return (
         <div> 
-            <label> License Plate </label>
             <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={vehicle ? vehicle.licensePlate : ""} />   
 
             <div> 
+            <br />
                 {
                     options.length === 0 && 
                     <p> No Vehicles were found.</p>

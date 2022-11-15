@@ -51,11 +51,11 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
     return (
         <div>
-            <p>Order</p>
+            <p className="modalHeader">Editing Order Table:</p>
             <form className="formStyle" onSubmit={onSubmit}>
-                <div>
-                    <label>Order Status</label>
-                    <select {...register('status', {required: true, 
+                <div className="orderStatTag">
+                    <label className="orderSubText">Order Status</label>
+                    <select className="orderSubField" {...register('status', {required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_STATUS;
@@ -76,9 +76,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.status && <p> Status has not been set</p>}
                 </div>
 
-                <div>
-                    <label >Time In</label>
-                    <input {...register('timeIn', {
+                <div className="timeInTag">
+                    <label className="orderSubText">Time In</label>
+                    <input className="orderSubField" {...register('timeIn', {
                         required: true, valueAsDate : true, validate: {
                             isAfterTimeIn: (v) =>{
                                 if(isNaN(v.valueOf()))
@@ -94,9 +94,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                      type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
-                <div>
-                    <label>Time Out</label>
-                    <input  {...register('timeOut', {
+
+                <div className="timeOutTag">
+                    <label className="orderSubText">Time Out</label>
+                    <input className="orderSubField" {...register('timeOut', {
                         required: false ,valueAsDate: true, validate: {
                             isAfterTimeIn: (v) =>{
                                 if(isNaN(v.valueOf()))
@@ -113,9 +114,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 
-                <div>
-                    <label>Customer Type</label>
-                    <select {...register('type', {required: true, 
+                <div className="custTypeTag">
+                    <label className="orderSubText">Customer Type</label>
+                    <select className="orderSubField" {...register('type', {required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_TYPE
@@ -136,43 +137,42 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.type && <p> Customer Type has not been set</p>}
                 </div> 
 
-                <div>
-                    <label> <b>  Customer  </b> </label>
+                <div className="custNameTag">
+                    <label className="orderSubText">Customer Name</label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
                     }}/>
                 </div> 
-
-                <div>
-                    <label htmlFor="company">Company</label>
+                <br />
+                <div className="orderCompanyTag">
+                    <label htmlFor="company" className="orderSubText">Company</label>
                     <input {... register("company", {required : false})}  
-                        type='text' name="company" id="company" defaultValue={props.default?.company}/>
+                        type='text' name="company" id="company" defaultValue={props.default?.company} className="orderSubField"/>
                     {errors.company && <p>Invalid company</p>}
                 </div>
 
-                
-                <div>
-                    <label> <b>  Vehicle  </b> </label>
+                <div className="orderLicenseTag">
+                    <label className="orderSubText">Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);
                     }}/>
                 </div> 
-
-                <div>
-                    <label htmlFor="estimateNumber">Estimate Code</label>
-                    <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
+                <br />
+                <div className="orderEstimateTag">
+                    <label htmlFor="estimateNumber" className="orderSubText">Estimate Code</label>
+                    <input className="orderSubField" {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
-                <div>
-                    <label htmlFor="scopeOfWork">Scope of Work</label>
-                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
+                <div className="orderScopeTag">
+                    <label htmlFor="scopeOfWork" className="orderSubText">Scope of Work</label>
+                    <input className="orderSubField"{... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
-
+                <br />
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
-                
+                <br />
                 <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
         </div> 
