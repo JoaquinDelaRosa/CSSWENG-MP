@@ -14,27 +14,28 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
 
     return (
         <div>
-            <p>Vehicle</p>
+            <p>Editing Vehicle Table:</p>
+            <br />
             <form className="formStyle" onSubmit={onSubmit}>
-                <div>
+                <div className="licensePlateTag">
                     <label htmlFor='licensePlate'>License Plate</label>
                     <input {... register('licensePlate', {required: true, pattern: isLicensePlate})}
                     type="text" name="licensePlate" defaultValue={props.default?.licensePlate}/>
                     {errors.licensePlate && <p>License Plate is Required</p>}
                 </div>
-                <div>
+                <div className="manufactTag">
                     <label htmlFor='manufacturer'>Manufacturer</label>
                     <input {... register('manufacturer', {required: true, pattern: isAlphabetic})}
                     type="text" name="manufacturer" defaultValue={props.default?.manufacturer}/>
                     {errors.manufacturer && <p>Manufacturer is Required</p>}
                 </div>
-                <div>
+                <div className="modelTag">
                     <label htmlFor='model'>Model</label>
                     <input {... register('model', {required: true, pattern: isAlphaNumeric})}
                     type="text" name="model" defaultValue={props.default?.model}/>
                     {errors.model && <p>Model is Required</p>}
                 </div>
-                <div>
+                <div className="yearManufTag">
                     <label htmlFor='yearManufactured'>Year Manufactured</label>
                     <select  {...register('yearManufactured', {valueAsNumber: true, required: true})} 
                         defaultValue= {(props.default && props.default.yearManufactured) ? 
@@ -50,6 +51,8 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                     </select>
                     {errors.yearManufactured && <p>Year Manufactured is Required</p>}
                 </div>
+                <br />
+                <br />
                 <input type="button" name="submit" className="submit" onClick={onSubmit} value={"Submit"}/>
             </form>
         </div> 

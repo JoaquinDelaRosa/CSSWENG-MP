@@ -25,8 +25,10 @@
 }
 
 .modalBackground {
-    background-color: var(--red1);
+    background-color: #5a0707;
     border-radius: 15px;
+    height: 24.5rem;
+    width: 40rem;
 }
 
 .modalContent {
@@ -64,4 +66,20 @@
     border: none;
     border-radius: 15px;
     width: 10rem;
+}
+
+.licensePlateTag{
+    padding-left: 2.5rem;
+}
+
+.manufactTag{
+    padding-left: 2.5rem;
+}
+
+.modelTag{
+    padding-left: 2.5rem;
+}
+
+.yearManufTag{
+    padding-left: 2.5rem;
 }
