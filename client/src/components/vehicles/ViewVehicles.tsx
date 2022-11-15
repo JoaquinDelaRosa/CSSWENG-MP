@@ -96,7 +96,7 @@ const ViewVehicles = () => {
 
                     <tbody className="tbodyDiv">
                         {vehicles.map((value, index) => {
-                            return(<VehicleRecord vehicle={value} key={index}/>);
+                            return(<VehicleRecord vehicle={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>

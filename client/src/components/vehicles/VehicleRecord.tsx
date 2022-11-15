@@ -6,7 +6,7 @@ import { UpdateVehicle } from "./UpdateVehicle";
 import { Vehicle} from "./VehicleDetails";
 import "../../style/VehiclesView.css";
 
-export const VehicleRecord = (props : { vehicle: Vehicle}) => {
+export const VehicleRecord = (props : { vehicle: Vehicle, rerenderFlag: Function}) => {
     const [vehicle, setVehicle] = useState<Vehicle | null>(props.vehicle);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export const VehicleRecord = (props : { vehicle: Vehicle}) => {
     };
 
     const onDelete = () => {
-        setVehicle(null);
+        props.rerenderFlag();
     }
 
     if (vehicle) {
