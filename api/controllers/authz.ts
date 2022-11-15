@@ -27,16 +27,16 @@ const login = (req : express.Request, res : express.Response) => {
         if (user) {
             Bcrypt.compare(req.body.password, user.password, (error, result) => {
                 if(!result) {
-                    return res.status(401).json({
-                        success : false,
+                    return res.json({
+                        auth : false,
                         message : "Incorrect Password!"
-                    })
+                    }).end()
                 } 
                 else if (result) {
                     let tk = signToken(user, (err, token, refreshToken) => {
                         if (err) {
                             return res.status(500).json({
-                                success : false,
+                                auth : false,
                                 message : err.message,
                                 error : err,
                             })
@@ -44,44 +44,45 @@ const login = (req : express.Request, res : express.Response) => {
                         else if (token) {
                             if(refreshToken) {
                                 res.cookie('jwt', refreshToken, 
-                                    {
-                                        httpOnly:true,
-                                        secure: true,
-                                        sameSite: "none",
-                                    })
+                                {
+                                    httpOnly:true,
+                                    secure: true,
+                                    sameSite: "none",
+                                })
                                 res.cookie('jwtacc', token, 
                                 {
                                     httpOnly: false,
                                     secure: true,
                                     sameSite: "none",
                                 })
-                                    return res.status(200).json({
-                                        success : true,
-                                        message : "Authenticated",
-                                        token: token
-                                    });
+                                return res.status(200).json({
+                                    auth : true,
+                                    message : "Authenticated",
+                                    token: token,
+                                    success : true,
+                                });
                             }   
                         }
                     });
                 }
                 else if(error) {
-                    return res.status(401).json({
-                        success : false,
-                        message : "Password Input Failure"
-                    })
+                    return res.json({
+                        auth : false,
+                        message : "Password Input Failure",
+                    }).end()
                 }
             });
         } 
         else {
             res.json({
-                success : false, 
+                auth : false, 
                 error : "User does not exist",
-            });
+            }).end()
         }
     })
     .catch((error) => {
-        res.json({
-            success : false, 
+        res.sendStatus(500).json({
+            auth : false, 
             error : error
         });
     })
