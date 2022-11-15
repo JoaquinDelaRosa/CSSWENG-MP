@@ -16,6 +16,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         .catch(function (error) {
             console.log(error);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
     return (

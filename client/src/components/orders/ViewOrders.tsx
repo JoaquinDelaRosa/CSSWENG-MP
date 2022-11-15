@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../base/ModalBase";
 import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
