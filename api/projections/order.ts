@@ -33,20 +33,21 @@ export const makeOrderArrayView = (documents) => {
 const makeInvoiceView = (invoice) => {
     return {
         id: invoice.id,
-        amount : invoice.amount,
-        deductible : invoice.deductible, 
+        amount : parseFloat(invoice.amount),
+        deductible : parseFloat(invoice.deductible), 
         agentFirstName : invoice.agentFirstName,
         agentLastName : invoice.agentLastName,
         datePaid : invoice.datePaid,
-        agentCommission : invoice.agentCommission
+        agentCommission : parseFloat(invoice.agentCommission)
     }
 }
 
 const makeExpenseView = (expense) => {
+    console.log(expense.amount);
     return {
         dateRecorded: expense.dateRecorded,
         description: expense.description,
-        amount: expense.amount,
+        amount: parseFloat(expense.amount)
     }
 }
 

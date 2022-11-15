@@ -29,24 +29,12 @@ const OrderSchema = new mongoose.Schema({
     
     invoice: {
         id: {type: String, default: randomUUID()},
-        amount : {
-            type: Number,
-            get: getVal,
-            set: setVal
-        },
-        deductible : {
-            type: Number,
-            get: getVal,
-            set: setVal
-        }, 
+        amount : mongoose.Types.Decimal128,
+        deductible : mongoose.Types.Decimal128,
         agentFirstName : String,
         agentLastName : String,
         datePaid : Date,
-        agentCommission : {
-            type: Number,
-            get: getVal,
-            set: setVal
-        },
+        agentCommission : mongoose.Types.Decimal128
     },
     estimateNumber: String,
     scopeOfWork: String,

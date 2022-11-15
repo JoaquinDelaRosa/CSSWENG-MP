@@ -20,7 +20,6 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
                     <tbody>
                     {
                         props.expenses.map((value, index) => {
-                            console.log(value);
                             return (
                                 <tr key={index}>
                                     <ExpenseRecord expense={value}/>
@@ -37,6 +36,7 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 }
 
 const ExpenseRecord = (props : {expense : Expense}) => {
+    console.log(props.expense)
     return (
         <>
             <td className="redDialogue">

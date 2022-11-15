@@ -76,7 +76,18 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
 
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork}</td>
-            <td> 
+            <td>
+                <p> 
+                    {"Total Expenses: " } 
+                </p> 
+                <>
+                {
+                    props.order.expenses.reduce(
+                        (x, y) => {
+                            return x + y.amount.valueOf();
+                        }, 0)
+                }
+                </>
                 <ModalWrapper front={"View Expenses"}>
                     <ExpensesDisplay expenses={props.order.expenses}/>
                 </ModalWrapper>    

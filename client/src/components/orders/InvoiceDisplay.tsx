@@ -43,7 +43,10 @@ const DetailedInvoice = (props : {invoice? : Invoice}) => {
                 </div>
 
                 <div>
-                    <p> Deductible Due: {props.invoice.deductible}</p>
+                    <p>
+                        {"Deductible Due: "}
+                        <NumberEntry number={props.invoice.deductible}/>
+                    </p>
                 </div>
 
                 <div>
