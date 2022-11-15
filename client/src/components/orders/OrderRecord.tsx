@@ -1,20 +1,10 @@
 import { useState, useEffect } from "react";
 import { Order, OrderRequest } from "./OrderDetails";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestOrder } from "./RequestOrder";
-
-const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-const DateEntry = (props: { date: string }) => {
-    const d: Date = new Date(props.date);
-
-    return (
-        <>
-            <td> {d.valueOf() !== 0 ? MONTHS[d.getMonth()] + " " + d.getDate() + " " + d.getFullYear() : ""}</td>
-        </>
-    );
-}
+import { InvoiceDisplay } from "./InvoiceDisplay";
+import { DateEntry } from "../base/DateEntry";
 
 export const DeleteOrder = (props : {order : Order, observer : Function}) => {
     const onSubmit = () => {
@@ -71,15 +61,18 @@ export const OrderRecord = (props : { order: Order, observer: Function }) => {
             <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
             <td> {props.order.status} </td>
 
-            <DateEntry date={props.order.timeIn} />
-            <DateEntry date={props.order.timeOut} />
+            <td><DateEntry date={props.order.timeIn} /></td>
+            <td><DateEntry date={props.order.timeOut} /></td>
 
             <td> {props.order?.customer?.name.val}</td>
             <td> {props.order.type} </td>
             <td> {props.order.company} </td>
             <td> {props.order?.vehicle?.licensePlate }</td>
 
-            <td> {"Sample text"} </td>
+            <td>
+                <InvoiceDisplay invoice={props.order?.invoice}/>
+            </td>
+
             <td> {props.order.estimateNumber}</td>
             <td> {props.order.scopeOfWork}</td>
             <td> {"This is sample expenses"} </td>

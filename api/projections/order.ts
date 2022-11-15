@@ -38,7 +38,7 @@ const makeInvoiceView = (invoice) => {
         agentFirstName : invoice.agentFirstName,
         agentLastName : invoice.agentLastName,
         datePaid : invoice.datePaid,
-        agentComission : invoice.agentComission
+        agentCommission : invoice.agentCommission
     }
 }
 

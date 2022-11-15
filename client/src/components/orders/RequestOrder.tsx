@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { Expense } from "./ExpenseDetails";
 import { ExpenseSubform } from "./ExpenseSubform";
