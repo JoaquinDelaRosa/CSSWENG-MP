@@ -1,9 +1,19 @@
+:root {
+    --white1: rgb(255, 255, 255);
+    --lightred1: #803030;
+    --lightred2: #d85e4b;
+    --red1: #960b0b;
+    --blue1: #062437;
+    --blue2: #26558e;
+    --blue3: #16405b;
+    --blue4: #327889;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Montserrat';
     
 }
-
 
 .navWrapper {
     position: static;
@@ -16,13 +26,12 @@
 }
 
 .navbar {
-    background-color: white;
+    background-color: var(--white1);
     display: flex;
     flex-direction: row;
     height: 120%;
     width: 100%;
 }
-
 
 .buttonWrapper {
     overflow: hidden;
@@ -35,11 +44,10 @@
     position: sticky;
 }
 
-
 .navButton {
-    background-color: white;
+    background-color: var(--white1);
     border: none;
-    color: #960b0b;
+    color: var(--red1);
     font-style: italic;
     font-weight: 600;
     font-size: 1.6em;
@@ -50,8 +58,8 @@
 }
 
 .navButton:hover {
-    background-color: #960b0b;
-    color: white;
+    background-color: var(--red1);
+    color: var(--white1);
 }
 
 @media only screen and (max-width: 1000px) {
@@ -67,7 +75,7 @@
 .redBar {
     width: 100%;
     height: 18%;
-    background-color: #960b0b;
+    background-color: var(--red1);
     position: relative;
 }
 
@@ -76,8 +84,8 @@
 }
 
 .submit {
-    background-color: #062437;
-    color: white;
+    background-color: var(--blue1);
+    color: var(--white1);
     border: none;
     border-radius: 25px;
     padding: 1rem 5rem;
@@ -85,14 +93,14 @@
 }
 
 .submit:hover {
-    background-color: #26558e;
+    background-color: var(--blue2);
 }
 
 /* Vehicles */
 
 .deleteBtn button {
-    background-color: #803030;
-    color: white;
+    background-color: var(--lightred1);
+    color: var(--white1);
     border: none;
     width: 4.5rem;
     border-radius: 35px;
@@ -101,8 +109,8 @@
 }
 
 .editBtn button {
-    background-color: #803030;
-    color: white;
+    background-color: var(--lightred1);
+    color: var(--white1);
     border: none;
     width: 8rem;
     border-radius: 35px;
@@ -111,7 +119,7 @@
 }
 
 .deleteBtn button:hover, .editBtn button:hover {
-    background-color: #d85e4b;
+    background-color: var(--lightred2);
 }
 
 .deleteIcon {
@@ -123,8 +131,8 @@
 }
 
 .createBtn button {
-    background-color: #16405b;
-    color: white;
+    background-color: var(--blue3);
+    color: var(--white1);
     border: none;
     border-radius: 35px;
     padding: 1rem 1.5rem;
@@ -138,7 +146,7 @@
 }
 
 .createBtn button:hover {
-    background-color: #327889;
+    background-color: var(--blue4);
 }
 
 tbody .icon {

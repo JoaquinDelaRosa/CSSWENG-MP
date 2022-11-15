@@ -1,3 +1,12 @@
+:root {
+    --dark1: rgba(0, 0, 0, 0.5);
+    --white1: rgb(255, 255, 255);
+    --red1: #640808;
+    --red2: #8e1e12;
+    --blue1: #062437;
+    --blue2: #26558e;
+}
+
 .modal {
     font: 'Montserrat';
     position: fixed;
@@ -5,7 +14,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--dark1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,14 +25,14 @@
 }
 
 .modalBackground {
-    background-color: #640808;
+    background-color: var(--red1);
     border-radius: 15px;
 }
 
 .modalContent {
     align-items: center;
     padding: 10px;
-    color: white;
+    color: var(--white1);
 }
 
 .closeButton {
@@ -32,8 +41,8 @@
 }
 
 .closeButton > button {
-    background-color: #062437;
-    color: white;
+    background-color: var(--blue1);
+    color: var(--white1);
     position: relative;
     padding: 10px 15px;
     float: right;
@@ -44,11 +53,11 @@
 }
 
 .closeButton > button:hover {
-    background-color: #26558e;
+    background-color: var(--blue2);
 }
 
 .formStyle > div input, .formStyle > div select {
-    background-color: #8e1e12;
+    background-color: var(--red2);
     color: white;
     padding: 5px;
     margin: 5px;

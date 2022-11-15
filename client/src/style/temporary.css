@@ -1,3 +1,8 @@
+:root {
+    --red1: #581616;
+    --red2: #ae6565;
+    --red3: #773e3e;
+}
 
 body {
     box-sizing: border-box;
@@ -10,7 +15,7 @@ label {
 
 td {
     border: 1px solid;
-    border: 1px #581616 solid;
+    border: 1px var(--red1) solid;
 }
 
 th, td {
@@ -18,11 +23,11 @@ th, td {
 }
 
 tr:nth-of-type(odd) {
-    background-color:#ae6565;
+    background-color:var(--red2);
 }
 
 tr:nth-of-type(even) {
-    background-color: #773e3e;
+    background-color: var(--red3);
 }
 
 table {
@@ -66,12 +71,4 @@ form > div > p {
     font-size: 10px;
     clear: both;
     color: red
-}
-
-.objectView {
-    
-}
-
-button {
-    
 }
