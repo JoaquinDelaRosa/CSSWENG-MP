@@ -113,10 +113,11 @@
     background-color: var(--lightred1);
     color: var(--white1);
     border: none;
-    width: 8rem;
+    /*width: 8rem;*/
     border-radius: 35px;
     padding: 1rem 1.5rem;
     font-size: large;
+    width: fit-content;
 }
 
 .deleteBtn button:hover, .editBtn button:hover {
@@ -156,7 +157,10 @@ tbody .icon {
     width: 1.6rem;
     height: 1.6rem;
     float: left;
-    margin-left: 0.5rem;
+    margin-left: 0.15rem;
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    
 }
 
 .createBtn .icon {
@@ -165,5 +169,6 @@ tbody .icon {
     width: 1.6rem;
     height: 1.6rem;
     float: left;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
+    padding-right: 0.5rem;
 } 

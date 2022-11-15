@@ -67,9 +67,11 @@ export const VehicleSubform = (props: {observer: Function}) => {
                     </select>
                 }
                 { 
+                <div className="createVehicleButt">
                 <ModalWrapper front={"Create Vehicle"}> 
                     <RequestVehicle setResponse={setData} default={vehicle}/>
                 </ModalWrapper>
+                </div>
                 }
             </div>
         </div>

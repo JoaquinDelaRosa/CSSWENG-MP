@@ -146,7 +146,13 @@
     padding-left:2.5rem;
 }
 
+.createCustomerButt{
+    padding-right: 2rem;
+}
 
+.createVehicleButt{
+    padding-right: 2rem;
+}
 
 /* REQUEST USER */
 .firstNameTag{
