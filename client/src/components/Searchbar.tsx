@@ -45,19 +45,28 @@ export const Searchbar = (props : {
     }
 
     const runQuery = useCallback(() => {
-        console.log("pp")
         if (query === ""){
             createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
                 props.setData(response.data.data);
-                setCount(response.data.count);
+
+                const c = response.data.count;
+                setCount(c);
+                if (c < skip) {
+                    setCurrentPage(Math.ceil(c / LIMIT))
+                }
             })
         }
         else {
             createAPIEndpoint(props.path).fetch({...props.queryParser(query.trim()), skip: skip, limit : LIMIT})
             .then((response) => {
                 props.setData(response.data.data);
-                setCount(response.data.count);
+
+                const c = response.data.count;
+                setCount(c);
+                if (c < skip) {
+                    setCurrentPage(Math.ceil(c / LIMIT))
+                }
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
