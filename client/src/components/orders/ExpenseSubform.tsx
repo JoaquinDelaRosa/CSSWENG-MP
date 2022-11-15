@@ -16,7 +16,7 @@ export const ExpenseSubform = (props: {setData : Function}) => {
         <>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
-                <input type='date' name="expenses.dateRecorded" id="expenses.amount" defaultValue={Date.now()} 
+                <input type='date' name="expenses.dateRecorded" id="expenses.amount" defaultValue={new Date(Date.now()).toDateString()} 
                     onChange = {(e) => {
                         setExpense({...expense, dateRecorded: e.target.value})
                     }}

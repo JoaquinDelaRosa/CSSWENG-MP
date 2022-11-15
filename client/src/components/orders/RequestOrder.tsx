@@ -5,6 +5,7 @@ import { isAlphaNumeric} from "../../utils/Regex";
 import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { Expense } from "./ExpenseDetails";
+import { ExpensesDisplay } from "./ExpensesDisplay";
 import { ExpenseSubform } from "./ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest } from "./OrderDetails";
@@ -172,10 +173,14 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
-
+                
+                <ExpensesDisplay expenses={getValues("expenses")}/>
                 <ModalWrapper front={"Add Expenses"}>
                     <ExpenseSubform setData={(expense : Expense) => {
-                        const updatedExpenses = getValues("expenses");
+                        let updatedExpenses = getValues("expenses");
+                        if (!updatedExpenses)
+                            updatedExpenses = [];
+
                         updatedExpenses.push(expense)
                         setValue("expenses", updatedExpenses)
                     }}/>
