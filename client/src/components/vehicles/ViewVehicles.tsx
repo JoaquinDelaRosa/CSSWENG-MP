@@ -12,11 +12,24 @@ const ViewVehicles = () => {
 
     const [vehicles, setVehicles] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit] = useState(1);
     const [skip, setSkip] = useState(0);
+    const [vehicleCount, setVehicleCount] = useState(0);
+    const limit = 1;
+
+    const getVehiclesCount = async () => {
+        await createAPIEndpoint(ENDPOINTS.countVehicle).fetch()
+            .then((response) => {
+                return response.data;
+            })
+            .then((count) => {
+                setVehicleCount(count.vehicleCount);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    };
 
     const fetchVehicles = async () => {
         await createAPIEndpoint(ENDPOINTS.vehicles).fetch({skip: skip, limit: limit})
@@ -39,8 +52,12 @@ const ViewVehicles = () => {
     };
 
     useEffect(() => {
+        getVehiclesCount();
+    }, []);
+
+    useEffect(() => {
         fetchVehicles();
-    }, [currentPage]);
+    }, [skip]);
 
     const updateView = () => {
         fetchVehicles();
@@ -48,7 +65,11 @@ const ViewVehicles = () => {
 
     useEffect(() => {
         setVehicles(queryResult)
-    }, [queryResult, currentPage]);
+    }, [queryResult]);
+
+    useEffect(() => {
+        setSkip((currentPage-1) * limit)
+    }, [currentPage]);
 
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
@@ -83,21 +104,40 @@ const ViewVehicles = () => {
         setQueryResult([...vehicles]);
     };
 
-    const nextPage = () => {
-        setCurrentPage((page) => page + 1);
-        setSkip((currentPage-1) * limit)
+    const nextPage = (skipAhead: Boolean) => {
+        const recordCount = Math.ceil(vehicleCount/limit)
+        console.log(recordCount)
+        console.log(currentPage)
+
+        if(currentPage === recordCount){
+            console.log("end of results");
+        }
+        else if(skipAhead && currentPage + 10 > recordCount){
+            const lastPage = recordCount - currentPage 
+            setCurrentPage((page) => page + lastPage);
+        }
+        else if(skipAhead && currentPage + 10 < recordCount){
+            setCurrentPage((page) => page + 10);
+        }
+        else if(!skipAhead && currentPage + 1 <= recordCount){
+            setCurrentPage((page) => page + 1);
+        }
     }
   
-    const previousPage = () => {
-        if(currentPage - 1 <= 0){
-            console.log("start of results")
+    const previousPage = (skipAhead: Boolean) => {
+        if(currentPage === 1){
+            console.log("start of results");
         }
-        else{
+        else if(skipAhead && currentPage - 10 < 1){
+            setCurrentPage(1);
+        }
+        else if(skipAhead && currentPage - 10 > 0){
+            setCurrentPage((page) => page - 10);
+        }
+        else if(!skipAhead && currentPage - 1 > 0){
             setCurrentPage((page) => page - 1);
-            setSkip((currentPage-1) * limit)
         }
     }
-
 
     return (
         <div className="FullPage">
@@ -151,17 +191,25 @@ const ViewVehicles = () => {
             </div>
 
             <span>
-                <button>⮜⮜</button>
-                <button onClick={previousPage}>
+                <button onClick={() => {
+                    previousPage(true)
+                }}>⮜⮜</button>
+                <button onClick={() => {
+                    previousPage(false)
+                }}>
                         ⮜
                 </button>
 
-                <input type='text'></input>
+                <p>{currentPage}</p>
 
-                <button onClick={nextPage}>
+                <button onClick={() => {
+                    nextPage(false)
+                }}>
                         ⮞
                 </button> 
-                <button>⮞⮞</button> 
+                <button onClick={() => {
+                    nextPage(true)
+                }}>⮞⮞</button> 
             </span>
 
         </div>

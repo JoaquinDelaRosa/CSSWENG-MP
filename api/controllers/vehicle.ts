@@ -4,6 +4,14 @@ import { ALL_ROLES, Roles } from '../models/enum';
 import { makeVehicleArrayView, makeVehicleView } from '../projections/vehicle';
 import { randomUUID } from 'crypto';
 
+
+const count = async (req: express.Request, res: express.Response) => {
+    Vehicle.countDocuments({})
+    .then((count) => {
+        res.json({vehicleCount: count});
+    })
+};
+
 const all = async (req: express.Request, res: express.Response) => {
     Vehicle.find({})
     .skip(parseInt(req.query.skip as string))
@@ -105,4 +113,4 @@ const makeQuery = (req : express.Request) : VehicleQuery=> {
     }
 }
 
-export default {all, id, create, update, remove, filter};
+export default {all, id, create, update, remove, filter, count};
