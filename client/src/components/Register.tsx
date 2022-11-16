@@ -22,6 +22,7 @@ const Register = () => {
         lastName: ""
     });
 
+    const navigation = useNavigate();
     const onInputChange = (name: string, value: any) => {
         setFormState(values => ({ ...values, [name]: value }));
     }
@@ -32,7 +33,7 @@ const Register = () => {
         event.preventDefault();
         createAPIEndpoint(ENDPOINTS.register).post(formState)
             .then(function (response) {
-                console.log(response);
+                navigation(ROUTES.login);
             })
             .catch(function (error) {
                 console.log(error);
