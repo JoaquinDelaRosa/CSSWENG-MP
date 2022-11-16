@@ -14,7 +14,7 @@ const all = async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json({data: makeOrderArrayView(data), count: count});
+        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
     })
 };
 
@@ -82,7 +82,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json({data: makeOrderArrayView(data), count: count});
+        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
     });
 }
 
