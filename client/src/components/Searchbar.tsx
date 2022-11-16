@@ -9,7 +9,7 @@ export interface SearchOption {
     tag? : string
 }
 
-const LIMIT = 1000;
+const LIMIT = 25;
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (

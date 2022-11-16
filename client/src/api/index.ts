@@ -1,4 +1,5 @@
 import axios from "axios";
+const Cookies = require('js-cookie')
 
 export const BASE_URL = 'http://localhost:3000/'
 
@@ -50,7 +51,7 @@ export const createAPIEndpoint = (endpoint : string) => {
     axios.defaults.withCredentials = true
     let url = BASE_URL + 'api/' + endpoint ;
 
-    let token = document.cookie.split("=")[1]
+    let token = Cookies.get("jwtacc")
 
     return {
         fetch: (params?: any, headers:any = 

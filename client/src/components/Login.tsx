@@ -11,7 +11,7 @@ type LoginState = {
     password: string
 };
 
-const Login = () => {
+const Login = (props: {setIsLoggedIn : Function}) => {
     const [state, setState] = useState<LoginState>({
         username: "",
         password: ""
@@ -22,12 +22,17 @@ const Login = () => {
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
-            .then((response: any) => {
-                console.log("Login Data")
-                console.log(response.data)
-            })
-            .then(() => {
+            .then((response) => {
                 navigation(ROUTES.orders);
+                if(response.data.auth) {
+                    props.setIsLoggedIn(true);
+                    sessionStorage.setItem("isLoggedIn", "true");
+                }
+                else {
+                    props.setIsLoggedIn(false);
+                    sessionStorage.setItem("isLoggedIn", "false");
+                }
+                
             })
             .catch((err: any) => {
                 console.log(err);

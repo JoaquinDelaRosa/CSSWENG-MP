@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../api/routes";
 import "../style/NavStyle.css"
-import { Logout } from "../utils/Logout";
 
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
@@ -11,7 +10,6 @@ const Button = (props: {buttonName : string, to: string}) => {
 }
 
 const Navbar = () => {
-    const navigation = useNavigate();
     return (
         <header className="navWrapper">
             <nav className="navbar">
@@ -21,7 +19,7 @@ const Navbar = () => {
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>
                     <Button buttonName={"Vehicles"} to={ROUTES.vehicles}/>
                     <Button buttonName={"Users"} to={ROUTES.users}/>
-                    <button className="navButton" onClick={() => {Logout(); navigation(ROUTES.login)}} > Logout </button>
+                    <Button buttonName={"Logout"} to={ROUTES.logout}/>
                 </div>
             </nav>
             <div className="redBar">DONT WORRY ABOUT IT -ETHAN</div>
