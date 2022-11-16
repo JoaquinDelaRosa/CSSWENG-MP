@@ -1,4 +1,5 @@
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestOrder } from "./RequestOrder";
 
 export const CreateOrder = (props : {observer : Function}) => {
@@ -14,8 +15,8 @@ export const CreateOrder = (props : {observer : Function}) => {
     };
 
     return (
-        <div>
+        <ModalWrapper front={"Create"}>
             <RequestOrder setResponse={setData}/>
-        </div> 
+        </ModalWrapper> 
     );
 }
