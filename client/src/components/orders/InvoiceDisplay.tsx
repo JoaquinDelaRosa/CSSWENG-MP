@@ -30,34 +30,38 @@ const DetailedInvoice = (props : {invoice? : Invoice}) => {
     if (props.invoice) {
         return (
             <>
-                <div>
-                    <p>
+            <br />
+            <br />
+                <div className="invoiceTags">
+                    
                         {"Amount: "}
-                        <NumberEntry number={props.invoice.amount}/>
-                    </p>
+                        <u><NumberEntry number={props.invoice.amount}/></u>
+                    
                 </div>
-
-                <div>
+                <br />
+                <div className="invoiceTags">
                     {"Date Paid: "}
                     <DateEntry date={props.invoice.datePaid}/>
                 </div>
-
-                <div>
-                    <p>
+                <br />
+                <div className="invoiceTags">
+                    
                         {"Deductible Due: "}
-                        <NumberEntry number={props.invoice.deductible}/>
-                    </p>
+                        <u><NumberEntry number={props.invoice.deductible}/></u>
+                    
                 </div>
-
-                <div>
-                    <p> Agent: {props.invoice.agentFirstName + " " + props.invoice.agentLastName}</p>
+                <br />
+                <br />
+                <br />
+                <div className="invoiceTags">
+                     Agent: <i>{props.invoice.agentFirstName + " " + props.invoice.agentLastName}</i>
                 </div>
-
-                <div>
-                    <p>
+                <br />
+                <div className="invoiceTags">
+                    
                         {"Commission: "}
-                        <NumberEntry number={props.invoice.agentCommission}/>
-                    </p>
+                        <u><NumberEntry number={props.invoice.agentCommission}/></u>
+                    
                 </div>
             </>
         );
