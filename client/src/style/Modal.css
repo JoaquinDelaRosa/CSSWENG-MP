@@ -230,3 +230,9 @@
 .editCol{
     width: 7.8em;
 }
+
+
+/* INVOICE DISPLAY */
+.invoiceTags{
+    font-size: 25px;
+}
