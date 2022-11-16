@@ -4,6 +4,8 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphabetic } from "../../utils/Regex";
 import { UserRequest } from "./UserDetails";
 
+export const DEFAULT = "DEFAULT";
+
 export const RequestUser = (props : {setResponse : Function, default? : UserRequest}) => {
     
     const {register, handleSubmit, formState: {errors}} = useForm<UserRequest>();
@@ -52,9 +54,11 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                 </div>
                 <div className="userRoleTag">
                     <label className="userSubText">User Role</label>
-                    <select className="userSubField" {...register('role', {required: true})} defaultValue={props.default && props.default.role ?  
-                            props.default.role : "DEFAULT"}>
-                        <option value="DEFAULT" disabled>-- Select Role --</option>
+                    <select className="userSubField" {...register('role', {required: true, validate: {
+                        isNotDefault: (v) => {return v !== DEFAULT} 
+                    }})} defaultValue={props.default && props.default.role ?  
+                            props.default.role : DEFAULT}>
+                        <option value={DEFAULT} disabled>-- Select Role --</option>
                         {
                             roles.map((value, index) => {
                                 return (
@@ -64,6 +68,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                             })
                         }
                     </select>
+                    {errors.role && <p> Role is required </p>}
                 </div>
                 <br />
                 <br />

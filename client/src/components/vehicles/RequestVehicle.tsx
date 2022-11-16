@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { isAlphabetic, isAlphaNumeric, isLicensePlate } from "../../utils/Regex";
 import { Vehicle, VehicleRequest } from "./VehicleDetails";
 
+const DEFAULT = "DEFAULT";
+
 export const RequestVehicle = (props : {setResponse : Function, default? : VehicleRequest, isInForm? : boolean}) => {
     
     const {register, handleSubmit, formState: {errors}} = useForm<VehicleRequest>()
@@ -67,11 +69,15 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
             </div>
             <div className="yearManufTag">
                 <label htmlFor='yearManufactured' className="vehicleSubText">Year Manufactured</label>
-                <select  className="vehicleSubField"
-                {...register('yearManufactured', {valueAsNumber: true, required: true})} 
+                <select  className="vehicleSubField" 
+                {...register('yearManufactured', {valueAsNumber: true, required: true, validate: {
+                    isValid : (v : any) => {
+                        return v!==DEFAULT;
+                    }
+                }})} 
                     defaultValue= {(props.default && props.default.yearManufactured) ? 
-                        props.default.yearManufactured.valueOf(): "DEFAULT"}>
-                    <option key={0} value="DEFAULT" disabled>  -- Select Year -- </option>
+                        props.default.yearManufactured.valueOf():  {DEFAULT}}>
+                    <option value={DEFAULT} disabled>  -- Select Year -- </option>
                     {
                         years.map((year, index) => {
                             return (
