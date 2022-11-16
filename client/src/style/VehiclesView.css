@@ -8,7 +8,6 @@ thead {
 
 .delCol, .editCol {
     background-color: #17190d;
-    column-width: 5rem;
     border: none;
 }
 
@@ -37,11 +36,9 @@ thead {
 .deleteBtn {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    width: 5rem;
 }
 
 .createBtn {
     margin-right: 1.8rem;
     float: right;
 }
-

@@ -172,7 +172,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
-                
+                <br />
                 <ModalWrapper front={"Add Expenses"}>
                     <ExpenseSubform setData={(expenses: Expense[]) => {
                         setValue("expenses", expenses)

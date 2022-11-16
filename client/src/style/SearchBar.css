@@ -12,8 +12,9 @@
     border: none;
     border-radius: 30px;
     background-color: #16405b;
-    text-align: center;
+    text-align: left;
     color: white;
+    float: left;
 }
 
 .searchBar::placeholder {

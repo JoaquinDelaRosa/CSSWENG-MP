@@ -1,5 +1,6 @@
 .customerNameCol{
     background-color: #762721;
+    width:20rem;
 }
 
 .emailCol{
@@ -9,4 +10,13 @@
 
 .mobileNumCol{
     background-color: #762721;
+    width: 25rem;
+}
+
+.editCol{
+    width: 10rem;
+}
+
+.delCol{
+    width: 7rem;
 }
