@@ -79,10 +79,16 @@
 span button {
     background-color: #762721;
     color: white;
+    border-radius: 5px;
     border: none;
     margin: auto 1px auto 1px;
     width: 5rem;
     height: 2rem;
+}
+
+span button:hover {
+    background-color: #d85e4b;
+    color: #f2d115;
 }
 
 span p {
