@@ -4,7 +4,7 @@ import { DeleteUser } from "./DeleteUser";
 import { UpdateUser } from "./UpdateUser";
 import { User } from "./UserDetails";
 
-export const UserRecord = (props : { user: User}) => {
+export const UserRecord = (props : { user: User, rerenderFlag: Function}) => {
     const [user, setUser] = useState<User | null>(props.user);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export const UserRecord = (props : { user: User}) => {
     };
 
     const onDelete = () => {
-        setUser(null);
+        props.rerenderFlag();
     }
 
     if (user) {

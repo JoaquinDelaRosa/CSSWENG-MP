@@ -12,33 +12,10 @@ const ViewCustomers = () => {
     const [customers, setCustomers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
 
-    const fetchCustomers = async () => {
-        await createAPIEndpoint(ENDPOINTS.customers).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const customerList = data.map((value: any) => {
-                    let customer: Customer = value;
-                    return customer;
-                });
-                
-                return customerList
-            })
-            .then((list) => {
-                setCustomers(list);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    useEffect(() => {
-        fetchCustomers();
-    }, []);
+    const [flag, setFlag] = useState(false);
 
     const updateView = () => {
-        fetchCustomers();
+        setFlag(!flag);
     }
 
     useEffect(() => { 
@@ -80,7 +57,7 @@ const ViewCustomers = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
@@ -109,7 +86,7 @@ const ViewCustomers = () => {
                 
                     <tbody className="tbodyDiv">
                         {customers.map((value, index) => {
-                            return (<CustomerRecord customer={value} key={index }/>);
+                            return (<CustomerRecord customer={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>

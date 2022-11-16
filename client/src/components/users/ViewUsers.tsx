@@ -12,33 +12,10 @@ const UsersView = () => {
     const [users, setUsers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
 
-    const fetchUsers = async () => {
-        await createAPIEndpoint(ENDPOINTS.users).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const usersList = data.map((value: any) => {
-                    let user: User = value;
-                    return user;
-                });
-
-                return usersList
-            })
-            .then((list) => {
-                setUsers(list);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
+    const [flag, setFlag] = useState(false);
 
     const updateView = () => {
-        fetchUsers();
+        setFlag(!flag);
     }
 
     useEffect(() => {
@@ -81,7 +58,7 @@ const UsersView = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterUser} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterUser} all={ENDPOINTS.users} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "username", description:"The username of the user"},
                 ]}/>
@@ -109,7 +86,7 @@ const UsersView = () => {
 
                     <tbody className="tbodyDiv">
                         {users.map((value, index) => {
-                            return (<UserRecord user={value} key={index }/>);
+                            return (<UserRecord user={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>

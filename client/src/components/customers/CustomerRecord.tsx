@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 
 
-export const CustomerRecord = (props : { customer: Customer}) => {
+export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Function}) => {
     const [customer, setCustomer] = useState<Customer | null>(props.customer);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export const CustomerRecord = (props : { customer: Customer}) => {
     };
 
     const onDelete = () => {
-        setCustomer(null);
+        props.rerenderFlag();
     }
 
     if (customer) {

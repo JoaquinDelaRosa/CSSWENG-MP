@@ -5,11 +5,13 @@ import { ALL_ROLES, Roles } from '../models/enum';
 import { makeCustomerArrayView, makeCustomerView } from '../projections/customer';
 
 const all = async (req: express.Request, res: express.Response) => {
+    const count = await Customer.countDocuments({});
+
     Customer.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(makeCustomerArrayView(data));
+        res.json({data: makeCustomerArrayView(data), count: count});
     })
 }
 
@@ -60,6 +62,7 @@ const remove = (req : express.Request, res : express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : CustomerQuery = makeQuery(req);
+    const count = await Customer.find(makeMongooseQuery(query)).countDocuments();
 
     console.log(query);
     Customer.aggregate([
@@ -76,14 +79,11 @@ const filter = async (req: express.Request, res: express.Response) => {
             }
         }
     ])
-    .match({
-        "name": {$regex: ".*" + query.name + ".*", $options: "i"}, 
-        "email" : {$regex: ".*" + query.email + ".*" , $options: "i"}, 
-        "mobileNumber": {$regex: ".*" + query.mobileNumber + ".*" , $options: "i"}})
+    .match(makeMongooseQuery(query))
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
-        res.json(makeCustomerArrayView(result));
+        res.json({data: makeCustomerArrayView(result), count: count});
         res.end();
     }).catch((err) => {
         console.log(err);
@@ -95,6 +95,16 @@ interface CustomerQuery {
     name : string,
     email: string,
     mobileNumber: string,
+}
+
+const makeMongooseQuery = (q : CustomerQuery) : any => {
+    let query =  {
+        name: {$regex: ".*" + q.name + ".*" , $options: "i"},
+        email: {$regex: ".*" + q.email + ".*" , $options: "i"},
+        mobileNumber: {$regex: ".*" + q.mobileNumber + ".*" , $options: "i"}
+    }
+
+    return query;
 }
 
 const makeQuery = (req : express.Request) : CustomerQuery => {
