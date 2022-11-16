@@ -91,9 +91,15 @@ const filter = async (req: express.Request, res: express.Response) => {
     })
     .then((data) => {
         return data.map((value) => value.id)
-    })
+    });
 
-    const finalQuery = {...mongooseQuery, customer: {$in : customerList}};
+    const vehicleList = await Vehicle.find({
+        licensePlate: mongooseQuery.vehicle
+    }).then((data) => {
+        return data.map((value) => value._id);
+    });
+
+    const finalQuery = {...mongooseQuery, customer: {$in : customerList}, vehicle: {$in: vehicleList}};
 
     const count = await Order.find(finalQuery).countDocuments();
     
@@ -111,12 +117,14 @@ const filter = async (req: express.Request, res: express.Response) => {
 interface OrderQuery {
     status : string,
     type: string,
-    customerName: string
+    customerName: string,
+    licensePlate: string
 }
 
 const makeMongooseQuery = (q : OrderQuery) : any => {
     let query =  {
         customer: {$regex: ".*" + q.customerName + ".*" , $options: "i"},
+        vehicle: {$regex: ".*" + q.licensePlate + ".*" , $options: "i"},
     };
 
     if (q.status !== "") {
@@ -134,7 +142,8 @@ const makeQuery = (req : express.Request)  : OrderQuery=> {
     return {
         status: (req.query.status) ? (req.query.status as string) : "",
         type: (req.query.type) ? (req.query.type as string) : "",
-        customerName: (req.query.customerName) ? (req.query.customerName as string): ""
+        customerName: (req.query.customerName) ? (req.query.customerName as string): "",
+        licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string): "",
     }
 }
 

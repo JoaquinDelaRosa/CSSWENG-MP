@@ -21,7 +21,8 @@ const searchOptions =[
         {name: "FLEET",      description:"The order is for a fleet of vehicles", tag: "type: FLEET"},
         {name: "INSURANCE ",      description:"The order for a vehicle with insurance", tag: "type: INSURANCE"},
 
-        {name: "customer", description: "The customer corresponding to the order"}
+        {name: "customer", description: "The customer corresponding to the order"},
+        {name: "vehicle", description: "The vehicle corresponding to the order"},
 ]
 
 
@@ -91,6 +92,7 @@ const queryParser = (q : string) => {
         status: "",
         type: "",
         customerName: "", 
+        licensePlate: "",
         skip: 0,
         limit: 1000
     };
@@ -108,6 +110,9 @@ const queryParser = (q : string) => {
         }
         else if (key === "customer"){
             query.customerName = value?.trim();
+        }
+        else if (key == "vehicle"){
+            query.licensePlate = value?.trim();
         }
     }
 
