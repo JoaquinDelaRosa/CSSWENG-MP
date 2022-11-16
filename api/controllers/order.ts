@@ -6,13 +6,15 @@ import { Vehicle } from '../models/vehicle';
 import { makeOrderArrayView, makeOrderView } from '../projections/order';
 
 const all = async (req: express.Request, res: express.Response) => {
+    const count = await Order.countDocuments({});
+
     Order.find({})
     .populate("customer")
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(makeOrderArrayView(data));
+        res.json({data: makeOrderArrayView(data), count: count});
     })
 };
 
@@ -70,14 +72,15 @@ const remove = (req: express.Request, res: express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : OrderQuery = makeQuery(req);
+    const count = await Order.find(makeMongooseQuery(query)).countDocuments();
 
-    Order.find({status: query.status, type: query.type})
+    Order.find(makeMongooseQuery(query))
     .populate("customer")
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(makeOrderArrayView(data));
+        res.json({data: makeOrderArrayView(data), count: count});
     });
 }
 
@@ -85,6 +88,14 @@ const filter = async (req: express.Request, res: express.Response) => {
 interface OrderQuery {
     status : string
     type: string
+}
+
+const makeMongooseQuery = (q : OrderQuery) : any => {
+    let query =  {
+        status: {$regex: ".*" + q.status + ".*" , $options: "i"},
+        type: {$regex: ".*" + q.type + ".*" , $options: "i"},
+    }
+    return query;
 }
 
 const makeQuery = (req : express.Request)  : OrderQuery=> {

@@ -6,93 +6,72 @@ import { RequestOrder } from "./RequestOrder";
 import { InvoiceDisplay } from "./InvoiceDisplay";
 import { DateEntry } from "../base/DateEntry";
 import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
+import { DeleteOrder } from "./DeleteOrder";
+import { UpdateOrder } from "./UpdateOrders";
 
-export const DeleteOrder = (props : {order : Order, observer : Function}) => {
-    const onSubmit = () => {
-        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : props.order.id})
-            .then((response) => {
-                props.observer();
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
+    const [order, setOrder] = useState<Order | null>(props.order);
+
+    useEffect(() => {
+        if (props && props.order){
+            setOrder(props.order);
+        } else {
+            setOrder(null);
+        }
+    }, [props, props.order])
+
+    const onUpdate = () => {
+        createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
+        .then((response) => {
+            setOrder(response.data);
+        })
+    };
+
+    const onDelete = () => {
+        props.rerenderFlag();
     }
 
-    return (
-      <div className="deleteBtn">
-        <button onClick={onSubmit}><i className="deleteIcon"></i> Delete </button>
-      </div> 
-    );
-}
+    if(order){
+        return (
+            <tr>
+                <td> <DeleteOrder order={props.order} observer={onDelete}/></td>
+                <td> <UpdateOrder order={props.order} observer={onUpdate}/></td>
+                <td> {props.order.status} </td>
 
-export const UpdateOrder = (props : {order : Order, observer : Function}) => {
-    const [data, setData] = useState<OrderRequest>();
-    
-    useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.updateOrder).post(data, {id: props.order.id})
-        .then(function (response) {
-            props.observer();
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data])
+                <td><DateEntry date={props.order.timeIn} /></td>
+                <td><DateEntry date={props.order.timeOut} /></td>
 
-    return (
-        <div>
-          <ModalWrapper front={"Edit"}>
-            <RequestOrder setResponse={setData} default={{
-                ...props.order, 
-                timeIn: new Date(props.order.timeIn), 
-                timeOut: new Date(props.order.timeOut),
-                customer : props.order.customer.id,
-                vehicle: props.order.vehicle.id,
-                expenses: props.order.expenses,
-            }}/>
-          </ModalWrapper>
-        </div>
-    )
-}
+                <td> {props.order?.customer?.name.val}</td>
+                <td> {props.order.type} </td>
+                <td> {props.order.company} </td>
+                <td> {props.order?.vehicle?.licensePlate }</td>
 
-export const OrderRecord = (props : { order: Order, observer: Function }) => {
-    return (
-        <tr>
-            <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
-            <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
-            <td> {props.order.status} </td>
+                <td>
+                    <InvoiceDisplay invoice={props.order?.invoice}/>
+                </td>
 
-            <td><DateEntry date={props.order.timeIn} /></td>
-            <td><DateEntry date={props.order.timeOut} /></td>
+                <td> {props.order.estimateNumber}</td>
+                <td> {props.order.scopeOfWork}</td>
+                <td>
+                    <p> 
+                        {"Total Expenses: " } 
+                    </p> 
+                    <>
+                    {
+                        props.order.expenses.reduce(
+                            (x, y) => {
+                                return x + y.amount.valueOf();
+                            }, 0).toFixed(2)
+                    }
+                    </>
+                    <ModalWrapper front={"View Expenses"}>
+                        <ExpensesDisplay expenses={props.order.expenses}/>
+                    </ModalWrapper>    
+                </td>
 
-            <td> {props.order?.customer?.name.val}</td>
-            <td> {props.order.type} </td>
-            <td> {props.order.company} </td>
-            <td> {props.order?.vehicle?.licensePlate }</td>
-
-            <td>
-                <InvoiceDisplay invoice={props.order?.invoice}/>
-            </td>
-
-            <td> {props.order.estimateNumber}</td>
-            <td> {props.order.scopeOfWork}</td>
-            <td>
-                <p> 
-                    {"Total Expenses: " } 
-                </p> 
-                <>
-                {
-                    props.order.expenses.reduce(
-                        (x, y) => {
-                            return x + y.amount.valueOf();
-                        }, 0).toFixed(2)
-                }
-                </>
-                <ModalWrapper front={"View Expenses"}>
-                    <ExpensesDisplay expenses={props.order.expenses}/>
-                </ModalWrapper>    
-            </td>
-
-        </tr> 
-     );
+            </tr> 
+        );
+    } else{
+        return null;
+    }
 }

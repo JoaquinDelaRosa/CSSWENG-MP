@@ -4,44 +4,31 @@ import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
 import "../../style/Hometables.css";
+import { Searchbar } from "../Searchbar";
 
 const OrdersView = () => {
 
     const [orders, setOrders] = useState([]);
+    const [queryResult, setQueryResult] = useState([]);
 
-    const fetchOrders = async () => {
-        await createAPIEndpoint(ENDPOINTS.orders).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const orderList = data.map((value: any) => {
-                    const order: Order = value;
-                    return order;
-                });
+    const [flag, setFlag] = useState(false);
 
-                return orderList;
-            })
-            .then((list) => {
-                setOrders(list);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    const updateView = () => {
+        setFlag(!flag);
+    }
 
     useEffect(() => {
-        fetchOrders();
-    }, []);
-
-    
-    const updateView = async () => {
-        fetchOrders();
-    }
+        setOrders(queryResult)
+    }, [queryResult]);
 
 
     return (
         <div className="FullPage">
+            <Searchbar path={ENDPOINTS.filterOrder} all={ENDPOINTS.orders} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+                options = {[
+                    {name: "status", description:"The status of the order"},
+                    {name: "type", description: "The type of the customer"},
+                ]}>
             <div className="objectView">
             <br />
             <table className="tableDiv">
@@ -64,7 +51,7 @@ const OrdersView = () => {
                 </thead>
                 <tbody className="tbodyDiv">
                     {orders.map((value, index) => {
-                        return (<OrderRecord order={value} key={index } observer={updateView}/>);
+                        return (<OrderRecord order={value} key={index } rerenderFlag={() => {setFlag(!flag)}}/>);
                     })}
                 </tbody>
             </table>
@@ -74,9 +61,35 @@ const OrdersView = () => {
             </div>
             
             </div>
+            </Searchbar>
         </div>
               
     );
+}
+
+const queryParser = (q : string) => {
+    const toks = q.split(',');
+    const query = {
+        status: "",
+        type: "",
+        skip: 0,
+        limit: 1000
+    };
+
+    for(let i = 0; i < toks.length; ++i){
+        const subtoks = toks[i].split(":");
+        const key = subtoks[0].trim();
+        const value = subtoks[1];
+
+        if (key === "status"){
+            query.status = value?.trim();
+        }
+        else if (key === "type"){
+            query.type = value?.trim();
+        }
+    }
+
+    return query;
 }
 
 export default OrdersView;
