@@ -5,7 +5,7 @@ const validateRole = (allowedRoles : string[]) => {
         if(allowedRoles.includes(res.locals.jwt.role))
             next();
         else {
-            res.status(401).json({
+            res.status(403).json({
                 message: 'You do not have permission to access this function'
             })
         }
