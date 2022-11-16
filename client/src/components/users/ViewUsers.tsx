@@ -98,6 +98,7 @@ const UsersView = () => {
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>
             </div> 
+            </div>
             </Searchbar>   
         </div>  
     );

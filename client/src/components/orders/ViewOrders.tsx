@@ -75,7 +75,7 @@ const OrdersView = () => {
             </table>
             <br />
             <div className="createBtn">
-                    <CreateOrder observer={updateView}/>
+                <CreateOrder observer={updateView}/>
             </div>
             
             </div>
