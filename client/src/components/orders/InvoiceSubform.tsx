@@ -8,7 +8,7 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
         <>
             <div>
                 <label htmlFor="invoiceAmount">Invoice Amount</label>
-                <input {... register("invoice.amount", {required : false})} type='text' name="invoice.amount" id="invoice.amount"
+                <input {... register("invoice.amount", {required : true})} type='text' name="invoice.amount" id="invoice.amount"
                     defaultValue={props.default?.amount.toString()}/>
                 {errors.invoice?.amount && <p>Invoice amount has wrong format</p>}
             </div>
@@ -40,8 +40,7 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
                 required: false ,valueAsDate: true})} 
                 defaultValue = {
                     props.default ? 
-                    props.default.datePaid.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
-                    .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                    props.default.datePaid : ""
                 }
                 type='date' name="invoice.datePaid" id="invoice.datePaid"/>
                 {errors.invoice?.datePaid && <p>Date is invalid</p>}
@@ -49,7 +48,12 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
 
             <div>
                 <label htmlFor="invoiceAgentCommision">Agent Commission</label>
-                <input {... register("invoice.agentCommission", {required : false})} type='text' name="invoice.agentCommission" id="invoice.agentCommission"/>
+                <input {... register("invoice.agentCommission", {required : false})} type='text' name="invoice.agentCommission" id="invoice.agentCommission"
+                defaultValue={
+                    props.default ? 
+                    props.default.agentCommission : 0
+                }
+                />
                 {errors.invoice?.agentCommission && <p>Agent Commission has wrong format</p>}
             </div>
         </>

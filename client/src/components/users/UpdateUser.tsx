@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { CustomerRequest } from "../customers/CustomerDetails";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestUser } from "./RequestUser";
 import { User } from "./UserDetails";
 

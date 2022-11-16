@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { Customer, CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
 
@@ -16,6 +16,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         .catch(function (error) {
             console.log(error);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
     return (

@@ -27,6 +27,7 @@ export const ENDPOINTS = {
     updateVehicle: 'vehicle/update',
     deleteVehicle: 'vehicle/delete',
     filterVehicle: 'vehicle/filter',
+    countVehicle: 'vehicle/count',
 
     orders: 'order/all',
     getOrder: "order/id",

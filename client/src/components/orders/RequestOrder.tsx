@@ -1,11 +1,11 @@
-import React, { useCallback, useDeferredValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
-import { Customer, CustomerRequest } from "../customers/CustomerDetails";
-import { RequestCustomer } from "../customers/RequestCustomer";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
+import { Expense } from "../expenses/ExpenseDetails";
+import { ExpenseSubform } from "../expenses/ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
@@ -15,7 +15,7 @@ const DEFAULT_TYPE : string = "DEFAULT";
 
 export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
     
-    const {register, handleSubmit, getValues, setValue, formState: {errors}} = useForm<OrderRequest>();
+    const {register, handleSubmit, getValues, setValue, watch, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
 
@@ -172,6 +172,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
+                
+                <ModalWrapper front={"Add Expenses"}>
+                    <ExpenseSubform setData={(expenses: Expense[]) => {
+                        setValue("expenses", expenses)
+                    }} default={watch("expenses")}/>
+                </ModalWrapper>
+                
                 <br />
                 <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>

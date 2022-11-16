@@ -6,13 +6,15 @@ import { Vehicle } from '../models/vehicle';
 import { makeOrderArrayView, makeOrderView } from '../projections/order';
 
 const all = async (req: express.Request, res: express.Response) => {
+    const count = await Order.countDocuments({});
+
     Order.find({})
     .populate("customer")
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(makeOrderArrayView(data));
+        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
     })
 };
 
@@ -70,27 +72,41 @@ const remove = (req: express.Request, res: express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : OrderQuery = makeQuery(req);
+    const mongooseQuery  = makeMongooseQuery(query);
 
-    Order.find({status: query.status, type: query.type})
+    const count = await Order.find(mongooseQuery).countDocuments();
+    
+    Order.find(mongooseQuery)
     .populate("customer")
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
-        res.json(makeOrderArrayView(data));
+        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
     });
 }
 
 
 interface OrderQuery {
-    status : string
-    type: string
+    status : string,
+    type: string,
+    customerName: string
+}
+
+const makeMongooseQuery = (q : OrderQuery) : any => {
+    let query =  {
+        status: {$regex: ".*" + q.status + ".*" , $options: "i"},
+        type: {$regex: ".*" + q.type + ".*" , $options: "i"},
+        customer: {$regex: ".*" + q.customerName + ".*" , $options: "i"},
+    }
+    return query;
 }
 
 const makeQuery = (req : express.Request)  : OrderQuery=> {
     return {
         status: (req.query.status) ? (req.query.status as string) : "",
         type: (req.query.type) ? (req.query.type as string) : "",
+        customerName: (req.query.customerName) ? (req.query.customerName as string): ""
     }
 }
 

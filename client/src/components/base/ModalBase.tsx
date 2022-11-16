@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../style/Modal.css"
+import "../../style/Modal.css"
 
 
 export const ModalWrapper = (props : {front : any, children : any}) => {

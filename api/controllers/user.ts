@@ -5,12 +5,14 @@ import { makeUserArrayView, makeUserView } from '../projections/user';
 import { randomUUID } from 'crypto';
 
 const all = async (req: express.Request, res: express.Response) => {
-        User.find({})
-        .skip(parseInt(req.query.skip as string))
-        .limit(parseInt(req.query.limit as string))
-        .then ((data) => {
-            res.json(makeUserArrayView(data));
-        })
+    const count = await User.countDocuments({});
+
+    User.find({})
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
+    .then ((data) => {
+        res.json({data: makeUserArrayView(data), count: count ? count : 0});
+    })
 };
 
 const id = async (req: express.Request, res: express.Response) => {
@@ -60,12 +62,13 @@ const remove = (req : express.Request, res : express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
         const query : UserQuery = makeQuery(req);
+        const count = await User.find(makeMongooseQuery(query)).countDocuments();
         
-        User.find({username: {$regex: ".*" + query.username + ".*" , $options: "i"}})
+        User.find(makeMongooseQuery(query))
         .skip(parseInt(req.query.skip as string))
         .limit(parseInt(req.query.limit as string))
         .then((result) => {
-            res.json(makeUserArrayView(result));
+            res.json({data : makeUserArrayView(result), count: count ? count : 0});
             res.end();
         }).catch((err) => {
             console.log(err);
@@ -76,6 +79,14 @@ const filter = async (req: express.Request, res: express.Response) => {
 
 interface UserQuery {
     username : string
+}
+
+const makeMongooseQuery = (q : UserQuery) : any => {
+    let query =  {
+        username: {$regex: ".*" + q.username + ".*" , $options: "i"}
+    }
+
+    return query;
 }
 
 const makeQuery = (req : express.Request) => {

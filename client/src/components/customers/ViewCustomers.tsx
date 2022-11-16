@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
@@ -13,45 +13,11 @@ const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-    const fetchCustomers = async () => {
-        await createAPIEndpoint(ENDPOINTS.customers).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const customerList = data.map((value: any) => {
-                    let customer: Customer = value;
-                    return customer;
-                });
-                
-                return customerList
-            })
-            .then((list) => {
-                setCustomers(list);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
 
-    useEffect(() => {
-        if(queryResult != null) {
-            if(queryResult.length != 0) {
-                setCustomers(queryResult)
-            }
-        }
-
-        if(!queryResult) {
-            fetchCustomers();
-        }   
-    }, [queryResult])
-
-    useEffect(() => {
-        fetchCustomers();
-    }, []);
+    const [flag, setFlag] = useState(false);
 
     const updateView = () => {
-        fetchCustomers();
+        setFlag(!flag);
     }
 
     useEffect(() => { 
@@ -93,12 +59,12 @@ const ViewCustomers = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
                     {name: "mobileNumber", description: "The mobile number of the customer"}
-                ]}/>
+                ]}>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -123,7 +89,7 @@ const ViewCustomers = () => {
                 
                     <tbody className="tbodyDiv">
                         {customers.map((value, index) => {
-                            return (<CustomerRecord customer={value} key={index }/>);
+                            return (<CustomerRecord customer={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>
@@ -134,6 +100,7 @@ const ViewCustomers = () => {
                 </ModalWrapper>
                 </div>
             </div>
+            </Searchbar>
         </div>      
     );
 }

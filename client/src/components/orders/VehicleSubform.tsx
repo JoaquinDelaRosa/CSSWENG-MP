@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { Customer, CustomerRequest } from "../customers/CustomerDetails";
-import { RequestCustomer } from "../customers/RequestCustomer";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestVehicle } from "../vehicles/RequestVehicle";
 import { Vehicle, VehicleRequest } from "../vehicles/VehicleDetails";
 
@@ -23,7 +21,7 @@ export const VehicleSubform = (props: {observer: Function}) => {
                 skip: 0, 
                 limit: 10})
             .then((res) => {
-                setOptions(res.data);
+                setOptions(res.data.data);
             })
             .catch((err) => {
                 console.log(err);

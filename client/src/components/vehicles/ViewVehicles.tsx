@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import "../../style/TablesView.css";
@@ -13,37 +13,16 @@ const ViewVehicles = () => {
     const [vehicles, setVehicles] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
 
-    const fetchVehicles = async () => {
-        await createAPIEndpoint(ENDPOINTS.vehicles).fetch()
-            .then((response) => {
-                return response.data;
-            })
-            .then((data) => {
-                const vehicleList = data.map((value: any) => {
-                    let vehicle: Vehicle = value;
-                    return vehicle;
-                });
-                return vehicleList;
-            })
-            .then((list) => {
-                setVehicles(list);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    };
-
-    useEffect(() => {
-        fetchVehicles();
-    }, []);
+    const [flag, setFlag] = useState(false);
 
     const updateView = () => {
-        fetchVehicles();
+        setFlag(!flag);
     }
 
     useEffect(() => {
         setVehicles(queryResult)
     }, [queryResult]);
+
 
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
@@ -80,13 +59,13 @@ const ViewVehicles = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterVehicle} setData={setQueryResult} queryParser={queryParser} 
+            <Searchbar path={ENDPOINTS.filterVehicle} all={ENDPOINTS.vehicles} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
                     {name: "model", description: "The model of the vehicle"},
                     {name: "yearManufactured", description: "The year manufactured of the vehicle"}
-                ]}/>
+                ]}>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -117,7 +96,7 @@ const ViewVehicles = () => {
 
                     <tbody className="tbodyDiv">
                         {vehicles.map((value, index) => {
-                            return(<VehicleRecord vehicle={value} key={index}/>);
+                            return(<VehicleRecord vehicle={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>
@@ -128,6 +107,8 @@ const ViewVehicles = () => {
                     </ModalWrapper>
                 </div>
             </div>
+            </Searchbar>
+
         </div>
     )
 }

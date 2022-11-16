@@ -1,87 +1,80 @@
 import { useState, useEffect } from "react";
 import { Order, OrderRequest } from "./OrderDetails";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../ModalBase";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestOrder } from "./RequestOrder";
+import { InvoiceDisplay } from "./InvoiceDisplay";
+import { DateEntry } from "../base/DateEntry";
+import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
+import { DeleteOrder } from "./DeleteOrder";
+import { UpdateOrder } from "./UpdateOrders";
 
-const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
+    const [order, setOrder] = useState<Order | null>(props.order);
 
-const DateEntry = (props: { date: string }) => {
-    const d: Date = new Date(props.date);
+    useEffect(() => {
+        if (props && props.order){
+            setOrder(props.order);
+        } else {
+            setOrder(null);
+        }
+    }, [props, props.order])
 
-    return (
-        <>
-            <td> {d.valueOf() !== 0 ? MONTHS[d.getMonth()] + " " + d.getDate() + " " + d.getFullYear() : ""}</td>
-        </>
-    );
-}
+    const onUpdate = () => {
+        createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
+        .then((response) => {
+            setOrder(response.data);
+        })
+    };
 
-export const DeleteOrder = (props : {order : Order, observer : Function}) => {
-    const onSubmit = () => {
-        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : props.order.id})
-            .then((response) => {
-                props.observer();
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+    const onDelete = () => {
+        props.rerenderFlag();
     }
 
-    return (
-      <div className="deleteBtn">
-        <button onClick={onSubmit}><i className="deleteIcon"></i></button>
-      </div> 
-    );
-}
 
-export const UpdateOrder = (props : {order : Order, observer : Function}) => {
-    const [data, setData] = useState<OrderRequest>();
-    
-    useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.updateOrder).post(data, {id: props.order.id})
-        .then(function (response) {
-            props.observer();
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    }, [data])
+    if(order){
+        return (
+            <tr>
+                <td> {props.order.status} </td>
 
-    return (
-        <div>
-          <ModalWrapper front={"Edit"}>
-            <RequestOrder setResponse={setData} default={{
-                ...props.order, 
-                timeIn: new Date(props.order.timeIn), 
-                timeOut: new Date(props.order.timeOut),
-                customer : props.order.customer.id,
-                vehicle: props.order.vehicle.id
-            }}/>
-          </ModalWrapper>
-        </div>
-    )
-}
+                <td><DateEntry date={props.order.timeIn} /></td>
+                <td><DateEntry date={props.order.timeOut} /></td>
 
-export const OrderRecord = (props : { order: Order, observer: Function }) => {
-    return (
-        <tr>
-            <td> {props.order.status} </td>
+                <td> {props.order?.customer?.name.val}</td>
+                <td> {props.order.type} </td>
+                <td> {props.order.company} </td>
+                <td> {props.order?.vehicle?.licensePlate }</td>
 
-            <DateEntry date={props.order.timeIn} />
-            <DateEntry date={props.order.timeOut} />
+                <td>
+                    <InvoiceDisplay invoice={props.order?.invoice}/>
+                </td>
 
-            <td> {props.order?.customer?.name.val}</td>
-            <td> {props.order.type} </td>
-            <td> {props.order.company} </td>
-            <td> {props.order?.vehicle?.licensePlate }</td>
+                <td> {props.order.estimateNumber}</td>
+                <td> {props.order.scopeOfWork}</td>
+                <td>
+                    <p> 
+                        {"Total Expenses: " } 
+                    </p> 
+                    <>
+                    {
+                        props.order.expenses.reduce(
+                            (x, y) => {
+                                return x + y.amount.valueOf();
+                            }, 0).toFixed(2)
+                    }
+                    </>
+                    <ModalWrapper front={"View Expenses"}>
+                        <ExpensesDisplay expenses={props.order.expenses}/>
+                    </ModalWrapper> 
+                       
+                </td>
 
-            <td> {"Sample text"} </td>
-            <td> {props.order.estimateNumber}</td>
-            <td> {props.order.scopeOfWork}</td>
-            <td> {"This is sample expenses"} </td>
+                <td> <UpdateOrder order={props.order} observer={onUpdate}/></td>
+                <td> <DeleteOrder order={props.order} observer={onDelete}/></td>
 
-            <td> <UpdateOrder order={props.order} observer={props.observer}/></td>
-            <td> <DeleteOrder order={props.order} observer={props.observer}/></td>
-        </tr> 
-     );
+            </tr> 
+        );
+    } else{
+        return null;
+    }
 }
