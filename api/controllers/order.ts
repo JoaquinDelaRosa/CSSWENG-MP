@@ -74,10 +74,30 @@ const filter = async (req: express.Request, res: express.Response) => {
     const query : OrderQuery = makeQuery(req);
     const mongooseQuery  = makeMongooseQuery(query);
 
-    const count = await Order.find(mongooseQuery).countDocuments();
-    console.log(mongooseQuery);
+    const customerList = await Customer.aggregate([
+        {
+            $project : {
+                "id": "$_id",
+                "firstName": "$firstName",
+                "lastName": "$lastName",
+                "name" : { 
+                    $concat : ["$firstName", " ", "$lastName"]
+                }
+            }
+        }
+    ])
+    .match({
+        name : mongooseQuery.customer
+    })
+    .then((data) => {
+        return data.map((value) => value.id)
+    })
+
+    const finalQuery = {...mongooseQuery, customer: {$in : customerList}};
+
+    const count = await Order.find(finalQuery).countDocuments();
     
-    Order.find(mongooseQuery)
+    Order.find(finalQuery)
     .populate("customer")
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
@@ -95,7 +115,9 @@ interface OrderQuery {
 }
 
 const makeMongooseQuery = (q : OrderQuery) : any => {
-    let query =  {};
+    let query =  {
+        customer: {$regex: ".*" + q.customerName + ".*" , $options: "i"},
+    };
 
     if (q.status !== "") {
         query["status"] = {$eq: q.status};
