@@ -15,8 +15,11 @@ export const CreateOrder = (props : {observer : Function}) => {
     };
 
     return (
-        <ModalWrapper front={"Create"}>
-            <RequestOrder setResponse={setData}/>
-        </ModalWrapper> 
+        <div>
+            <ModalWrapper front={"Create"}>
+                <RequestOrder setResponse={setData}/>
+            </ModalWrapper> 
+        </div>
+        
     );
 }
