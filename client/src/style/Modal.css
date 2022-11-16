@@ -40,7 +40,6 @@
 
 .closeButton {
     overflow: hidden;
-    padding-bottom: 5px;
 }
 
 .closeButton > button {
