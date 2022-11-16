@@ -1,7 +1,10 @@
+:root {
+    --background: #17190d;
+}
 
 .searchWrapper {
     width: 100%;
-    background-color: #17190d;
+    background-color: var(--background);
 }
 
 .searchBar {
@@ -71,4 +74,19 @@
     padding: 10px;
     text-align: center;
     color: white;
+}
+
+span button {
+    background-color: #762721;
+    color: white;
+    border: none;
+    margin: auto 1px auto 1px;
+    width: 5rem;
+    height: 2rem;
+}
+
+span p {
+    display: inline-block;
+    color: white;
+    margin: auto 10px auto 10px;
 }
