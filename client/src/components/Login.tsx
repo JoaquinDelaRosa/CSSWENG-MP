@@ -28,6 +28,10 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                     props.setIsLoggedIn(true);
                     sessionStorage.setItem("isLoggedIn", "true");
                 }
+                else {
+                    props.setIsLoggedIn(false);
+                    sessionStorage.setItem("isLoggedIn", "false");
+                }
                 
             })
             .catch((err: any) => {
