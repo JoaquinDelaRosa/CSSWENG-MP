@@ -6,13 +6,21 @@ import "../style/SearchBar.css"
 export interface SearchOption {
     name : string,
     description: string,
+    tag? : string
 }
+
+const LIMIT = 1000;
 
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
         <span>
             <button onClick={() => {
-                props.observer(props.option.name + ": ")
+                if (!props.option.tag) {
+                    props.observer(props.option.name + ": ")
+                }
+                else {
+                    props.observer(props.option.tag)
+                }
             }}> 
             {props.option.name} </button> 
         </span>
@@ -35,7 +43,6 @@ export const Searchbar = (props : {
     const [skip, setSkip] = useState(0);
     const [count, setCount] = useState(0);
 
-    const LIMIT = 2;
 
     const appendQuery = (val : string) => {
         if (query === "")

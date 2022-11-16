@@ -15,7 +15,7 @@ export const CustomerSubform = (props: {observer: Function}) => {
         } else {
             createAPIEndpoint(ENDPOINTS.filterCustomer).fetch({name: query.trim(), skip: 0, limit: 10})
             .then((res) => {
-                setOptions(res.data);
+                setOptions(res.data.data);
             })
             .catch((err) => {
                 console.log(err);

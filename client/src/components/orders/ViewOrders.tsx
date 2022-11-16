@@ -6,6 +6,25 @@ import { OrderRecord } from "./OrderRecord";
 import "../../style/Hometables.css";
 import { Searchbar } from "../Searchbar";
 
+const searchOptions =[
+        {name: "PAID",      description:"The order is paid", tag: "status: PAID"},
+        {name: "UNPAID",      description:"The order is unpaid", tag: "status: UNPAID"},
+        {name: "OK",      description:"The order is c/o the shop", tag: "status: OK"},
+        {name: "PENDING",      description:"The order is pending payment", tag: "status: PENDING"},
+        {name: "WITH BALANCE",      description:"The order has balance", tag: "status: WITH BALANCE"},
+        {name: "QUOTE OR CHECK ",      description:"The order has a quote or check", tag: "status: QUOTE OR CHECK"},
+        {name: "FOR LOA OR INVOICE ",      description:"The order has an LOA or an Invoice", tag: "status: FOR LOA OR INVOICE"},
+
+        
+        {name: "PERSONAL",      description:"The order has a scheduled personal appointment", tag: "type: PERSONAL"},
+        {name: "WALK IN",      description:"The order is for a walk-in customer", tag: "type: WALK IN"},
+        {name: "FLEET",      description:"The order is for a fleet of vehicles", tag: "type: FLEET"},
+        {name: "INSURANCE ",      description:"The order for a vehicle with insurance", tag: "type: INSURANCE"},
+
+        {name: "customer", description: "The customer corresponding to the order"}
+]
+
+
 const OrdersView = () => {
 
     const [orders, setOrders] = useState([]);
@@ -25,10 +44,7 @@ const OrdersView = () => {
     return (
         <div className="FullPage">
             <Searchbar path={ENDPOINTS.filterOrder} all={ENDPOINTS.orders} setData={setQueryResult} queryParser={queryParser} flag ={flag}
-                options = {[
-                    {name: "status", description:"The status of the order"},
-                    {name: "type", description: "The type of the customer"},
-                ]}>
+                options = {searchOptions}>
             <div className="objectView">
             <br />
             <table className="tableDiv">
@@ -72,6 +88,7 @@ const queryParser = (q : string) => {
     const query = {
         status: "",
         type: "",
+        customerName: "", 
         skip: 0,
         limit: 1000
     };
@@ -86,6 +103,9 @@ const queryParser = (q : string) => {
         }
         else if (key === "type"){
             query.type = value?.trim();
+        }
+        else if (key === "customer"){
+            query.customerName = value?.trim();
         }
     }
 
