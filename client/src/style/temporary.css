@@ -16,6 +16,7 @@ label {
 td {
     border: 1px solid;
     border: 1px var(--red1) solid;
+    padding: 0.5rem;
 }
 
 th, td {

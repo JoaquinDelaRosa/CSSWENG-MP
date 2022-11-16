@@ -54,7 +54,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                 <td>
                     <p> 
                         {"Total Expenses: " } 
-                    </p> 
+                     
                     <>
                     {
                         props.order.expenses.reduce(
@@ -63,6 +63,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                             }, 0).toFixed(2)
                     }
                     </>
+                    </p>
                     <ModalWrapper front={"View Expenses"}>
                         <ExpensesDisplay expenses={props.order.expenses}/>
                     </ModalWrapper> 
