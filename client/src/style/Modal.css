@@ -47,12 +47,14 @@
     background-color: var(--blue1);
     color: var(--white1);
     position: relative;
-    padding: 10px 15px;
+    padding: 10px 15px !important;
     float: right;
     border: none;
-    border-radius: 50%;
+    border-radius: 50% !important;
     font: "Montserrat";
+    font-size: 18px;
     font-weight: 900;
+    width: 3rem !important;
 }
 
 .closeButton > button:hover {
