@@ -23,11 +23,7 @@ const ProtectedRoute = (props : { isLoggedIn : boolean}) => {
 };
 
 export const Main = () => {
-    const [isLoggedIn ,setIsLoggedIn] = useState<boolean>(false)
-    
-    useEffect(() => {
-        setIsLoggedIn(sessionStorage.getItem("isLoggedIn") === "true")
-    }, [])
+    const [isLoggedIn ,setIsLoggedIn] = useState<boolean>(sessionStorage.getItem("isLoggedIn") === "true")
 
     return (    
         <Routes>
