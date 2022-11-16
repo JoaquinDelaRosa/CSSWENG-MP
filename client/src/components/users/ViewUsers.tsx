@@ -61,7 +61,7 @@ const UsersView = () => {
             <Searchbar path={ENDPOINTS.filterUser} all={ENDPOINTS.users} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "username", description:"The username of the user"},
-                ]}/>
+                ]}>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -94,7 +94,8 @@ const UsersView = () => {
                 <ModalWrapper front={"Create User"}> 
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>
-            </div>    
+            </div> 
+            </Searchbar>   
         </div>  
     );
 }

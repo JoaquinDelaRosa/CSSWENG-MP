@@ -62,7 +62,22 @@ const remove = (req : express.Request, res : express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : CustomerQuery = makeQuery(req);
-    const count = await Customer.find(makeMongooseQuery(query)).countDocuments();
+    const count = await Customer.aggregate([
+        {
+            $project : {
+                "id": "$_id",
+                "firstName": "$firstName",
+                "lastName": "$lastName",
+                "mobileNumber": "$mobileNumber",
+                "email": "$email",
+                "name" : { 
+                    $concat : ["$firstName", " ", "$lastName"]
+                }
+            }
+        }
+    ])
+    .match(makeMongooseQuery(query))
+    .count("count")
 
     console.log(query);
     Customer.aggregate([
@@ -83,7 +98,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
-        res.json({data: makeCustomerArrayView(result), count: count});
+        res.json({data: makeCustomerArrayView(result), count: count[0].count});
         res.end();
     }).catch((err) => {
         console.log(err);

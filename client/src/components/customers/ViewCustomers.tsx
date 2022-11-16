@@ -62,7 +62,7 @@ const ViewCustomers = () => {
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
                     {name: "mobileNumber", description: "The mobile number of the customer"}
-                ]}/>
+                ]}>
             <br />
             <div className="objectView">
                 <table className="tableDiv">
@@ -95,6 +95,7 @@ const ViewCustomers = () => {
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>
             </div>
+            </Searchbar>
         </div>      
     );
 }
