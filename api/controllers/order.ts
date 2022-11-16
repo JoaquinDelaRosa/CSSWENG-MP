@@ -75,6 +75,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     const mongooseQuery  = makeMongooseQuery(query);
 
     const count = await Order.find(mongooseQuery).countDocuments();
+    console.log(mongooseQuery);
     
     Order.find(mongooseQuery)
     .populate("customer")
@@ -94,11 +95,16 @@ interface OrderQuery {
 }
 
 const makeMongooseQuery = (q : OrderQuery) : any => {
-    let query =  {
-        status: {$regex: ".*" + q.status + ".*" , $options: "i"},
-        type: {$regex: ".*" + q.type + ".*" , $options: "i"},
-        customer: {$regex: ".*" + q.customerName + ".*" , $options: "i"},
+    let query =  {};
+
+    if (q.status !== "") {
+        query["status"] = {$eq: q.status};
     }
+    if (q.type !== "") {
+        query["type"] = {$eq: q.type};
+    }
+
+
     return query;
 }
 
