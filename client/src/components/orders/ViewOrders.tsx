@@ -53,7 +53,7 @@ const OrdersView = () => {
             <table className="tableDiv">
                 <thead>
                     <tr>
-                        
+                        <th className="orderVerification"> Verified </th>
                         <th className="statusCol"> Status </th>
                         <th className="timeCol"> Time In </th>
                         <th className="timeCol"> Time Out </th>

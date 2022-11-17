@@ -113,6 +113,21 @@ const filter = async (req: express.Request, res: express.Response) => {
     });
 }
 
+const verify = async (req: express.Request, res: express.Response) => {
+    console.log(req.body.isVerified)
+    Order.findByIdAndUpdate(req.query.id, {verified : req.body.isVerified},
+        (response, error) => {
+            if(response) {
+                console.log(response);
+                res.json({
+                    success: true,
+                })
+            }
+            else
+                console.log(error);
+        })
+}
+
 
 interface OrderQuery {
     status : string,
@@ -147,4 +162,4 @@ const makeQuery = (req : express.Request)  : OrderQuery=> {
     }
 }
 
-export default {all, id, create, update, remove, filter};
+export default {all, id, create, update, remove, filter, verify};

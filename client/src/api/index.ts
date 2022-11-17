@@ -36,6 +36,7 @@ export const ENDPOINTS = {
     updateOrder: "order/update",
     deleteOrder: "order/delete",
     filterOrder: 'order/filter',
+    verifyOrder: 'order/verify',
 
     getUser: "user/id",
     getUserView: 'user/view',

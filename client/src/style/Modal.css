@@ -144,7 +144,7 @@
     padding-left:2.5rem;
 }
 
-.orderScopeTag{
+.orderScopeTag{ 
     padding-left:2.5rem;
 }
 
@@ -179,6 +179,11 @@
 
 .userSubField{
     height: 2rem;
+}
+
+.orderVerification {
+    padding: 3rem;
+    background-color: #762721;
 }
 
 
