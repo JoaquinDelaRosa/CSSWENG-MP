@@ -70,6 +70,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.expenses])
 
+    useEffect(() => {
+        console.log(props.default?.timeIn.toISOString().split("T")[0]);
+     }, [props.default?.timeIn])
+     
     return (
         <div>
             <p className="modalHeader">Editing Order Table:</p>
@@ -103,6 +107,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <input className="orderSubField" {...register('timeIn', {
                         required: true, valueAsDate : true, validate: {
                             isAfterTimeIn: (v) =>{
+                                if (getValues("timeOut").valueOf() === 0){
+                                    return true;
+                                }
                                 if(isNaN(v.valueOf()))
                                     return false;
                                 return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
@@ -110,8 +117,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         }
                      })} defaultValue = {
                         props.default ? 
-                        props.default.timeIn.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
-                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                        props.default?.timeIn.toISOString().split("T")[0] : ""
                     }
                      type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
@@ -122,6 +128,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <input className="orderSubField" {...register('timeOut', {
                         required: false ,valueAsDate: true, validate: {
                             isAfterTimeIn: (v) =>{
+                                if (getValues("timeOut").valueOf() === 0){
+                                    return true;
+                                }
                                 if(isNaN(v.valueOf()))
                                     return true;
                                 return getValues("timeOut") >= getValues("timeIn");
