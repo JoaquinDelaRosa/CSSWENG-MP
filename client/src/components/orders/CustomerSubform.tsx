@@ -21,7 +21,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                 console.log(err);
             })
         }
-    } , [query])
+    } , [query, props.default])
 
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
@@ -41,7 +41,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
             <div>
                 <br /> 
                 {
-                    options.length === 0 && 
+                    (options.length === 0 || !props.default) && 
                     <p>No Customers were found.</p>
                 }
                 <br />

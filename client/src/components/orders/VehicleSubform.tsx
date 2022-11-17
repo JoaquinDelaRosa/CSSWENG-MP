@@ -10,9 +10,6 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
     const [vehicle, setVehicle] = useState<VehicleRequest>();
 
     useEffect(() => {
-        console.log(props.default);
-    }, [])
-    useEffect(() => {
         if (query === ""){
             setOptions([]);
         } else {
@@ -50,7 +47,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
             <div> 
             <br />
                 {
-                    options.length === 0 && 
+                    (options.length === 0 || !props.default) &&
                     <p> No Vehicles were found.</p>
                 }
                 {
