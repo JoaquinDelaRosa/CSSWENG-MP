@@ -63,6 +63,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.type])
 
+    useEffect(() => {
+        if (props.default?.expenses){
+            setValue("expenses", props.default?.expenses);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.default?.expenses])
+
     return (
         <div>
             <p className="modalHeader">Editing Order Table:</p>
