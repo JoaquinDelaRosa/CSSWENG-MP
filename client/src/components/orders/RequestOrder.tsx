@@ -49,6 +49,18 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         props.setResponse(data);
     });
 
+    useEffect(() => {
+        if (props.default?.status) {
+            setValue("status", props.default?.status)
+        }
+    }, [props.default?.status]);
+
+    useEffect(() => {
+        if (props.default?.type){
+            setValue("type", props.default?.type);
+        }
+    }, [props.default?.type])
+
     return (
         <div>
             <p className="modalHeader">Editing Order Table:</p>
@@ -62,7 +74,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             }
                         }})} 
                         defaultValue= {(props.default && props.default.status) ? 
-                            props.default.status : DEFAULT_STATUS}>
+                            props.default.status : DEFAULT_STATUS}
+                        >
                         <option value={DEFAULT_STATUS} disabled>-- Select Status --</option>
                         {
                             statuses.map((value, index) => {
