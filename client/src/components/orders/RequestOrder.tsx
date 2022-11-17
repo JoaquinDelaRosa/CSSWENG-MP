@@ -7,13 +7,13 @@ import { CustomerSubform } from "./CustomerSubform";
 import { Expense } from "../expenses/ExpenseDetails";
 import { ExpenseSubform } from "../expenses/ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
-import { OrderRequest } from "./OrderDetails";
+import { OrderRequest, OrderRequestDefault } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
 
-export const RequestOrder = (props : {setResponse : Function, default? : OrderRequest}) => {
+export const RequestOrder = (props : {setResponse : Function, default? : OrderRequestDefault}) => {
     
     const {register, handleSubmit, getValues, setValue, watch, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
@@ -141,7 +141,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label className="orderSubText">Customer Name</label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
-                    }}/>
+                    }} default={props.default?.customer}/>
                 </div> 
                 <br />
                 <div className="orderCompanyTag">

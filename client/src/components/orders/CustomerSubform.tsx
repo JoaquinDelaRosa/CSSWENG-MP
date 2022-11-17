@@ -4,7 +4,7 @@ import { Customer, CustomerRequest } from "../customers/CustomerDetails";
 import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../base/ModalBase";
 
-export const CustomerSubform = (props: {observer: Function}) => {
+export const CustomerSubform = (props: {observer: Function, default?: {id: string, name: string}}) => {
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Customer>>([]);
     const [customer, setCustomer] = useState<CustomerRequest>();
@@ -22,7 +22,7 @@ export const CustomerSubform = (props: {observer: Function}) => {
             })
         }
     } , [query])
-    
+
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
         .then(function (response) {
@@ -35,7 +35,8 @@ export const CustomerSubform = (props: {observer: Function}) => {
     };
     return (
         <div>
-            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : ""} />   
+            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : 
+            props.default? props.default?.name : ""} />   
 
             <div>
                 <br /> 
@@ -46,7 +47,7 @@ export const CustomerSubform = (props: {observer: Function}) => {
                 <br />
                 {
                     options.length !== 0 && 
-                    <select onChange={(e) => {props.observer(e.target.value)}}> 
+                    <select onChange={(e) => {props.observer(e.target.value)}} defaultValue={props.default?.id}> 
                         <option value={""}> {
                             <>{ "-- Select Customer --"}</> 
                         }

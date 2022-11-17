@@ -17,6 +17,23 @@ export interface OrderRequest {
     expenses: Array<Expense>
 }
 
+export interface OrderRequestDefault {
+    status: string,
+    timeIn: Date,
+    timeOut: Date,
+    customer : {
+        id: string,
+        name: string
+    },
+    type: string,
+    company: string,
+    vehicle: string,
+    estimateNumber: string,
+    scopeOfWork: string,
+    invoice: Invoice,
+    expenses: Array<Expense>
+}
+
 export interface Order {
     id: string,
     status: string, 
