@@ -7,6 +7,7 @@ import "../../style/TablesView.css";
 import "../../style/VehiclesView.css";
 import {Searchbar} from "../Searchbar";
 import { CreateVehicle } from "./CreateVehicle";
+import { isRole } from "../../utils/CheckRole";
 
 const ViewVehicles = () => {
 
@@ -88,8 +89,8 @@ const ViewVehicles = () => {
                             <th className="manufacturerCol"> Manufacturer </th>
                             <th className="modelCol"> Model </th>
                             <th className="yearmanufacturedCol"> Year Manufactured </th>
-                            <th className="editCol"></th>
-                            <th className="delCol"></th>
+                            <th hidden={isRole("VIEW")} className="editCol"></th>
+                            <th hidden={isRole("VIEW")} className="delCol"></th>
                         </tr>
                     </thead>
 
@@ -101,7 +102,7 @@ const ViewVehicles = () => {
                     </tbody>
                 </table>
                 <br></br>
-                <div className="createBtn">
+                <div hidden={isRole("VIEW")} className="createBtn">
                     <ModalWrapper front={"Create Vehicle"}>
                         <CreateVehicle observer={updateView}/>
                     </ModalWrapper>

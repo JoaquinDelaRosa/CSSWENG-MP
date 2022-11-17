@@ -5,6 +5,7 @@ import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import '../style/Hyperlink.css';
+import { removeRole, setRole } from '../utils/CheckRole';
 
 type LoginState = {
     username: string
@@ -27,10 +28,12 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                 if(response.data.auth) {
                     props.setIsLoggedIn(true);
                     sessionStorage.setItem("isLoggedIn", "true");
+                    setRole(response.data.token);
                 }
                 else {
                     props.setIsLoggedIn(false);
                     sessionStorage.setItem("isLoggedIn", "false");
+                    removeRole();
                 }
                 
             })

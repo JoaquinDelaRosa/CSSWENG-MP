@@ -22,7 +22,7 @@ const Navbar = () => {
                     <Button buttonName={"Logout"} to={ROUTES.logout}/>
                 </div>
             </nav>
-            <div className="redBar">DONT WORRY ABOUT IT -ETHAN</div>
+            <div className="redBar"></div>
         </header>
         
     );

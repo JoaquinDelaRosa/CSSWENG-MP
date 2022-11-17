@@ -11,15 +11,15 @@ export const ExpenseRecord = (props : {expense : Expense}) => {
     console.log(props.expense)
     return (
         <>
-            <td className="redDialogue">
+            <td>
                 {props.expense.description}
             </td>
 
-            <td className="redDialogue">
+            <td>
                 <NumberEntry number={props.expense.amount}/>
             </td>
 
-            <td className="redDialogue">
+            <td>
                 <DateEntry date={props.expense.dateRecorded}/>
             </td>
         </>

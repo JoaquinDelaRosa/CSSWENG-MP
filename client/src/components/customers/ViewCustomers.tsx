@@ -7,6 +7,7 @@ import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
 import "../../style/CustomerViews.css";
+import { isRole } from "../../utils/CheckRole";
 
 
 const ViewCustomers = () => {
@@ -82,8 +83,8 @@ const ViewCustomers = () => {
                             <th className="emailCol"> Email </th>
                             <th className="mobileNumCol"> Mobile Number </th>
 
-                            <th className="editCol"></th>
-                            <th className="delCol"></th>
+                            <th hidden={isRole("VIEW")} className="editCol"></th>
+                            <th hidden={isRole("VIEW")} className="delCol"></th>
                         </tr>
                     </thead>
                 
@@ -94,7 +95,7 @@ const ViewCustomers = () => {
                     </tbody>
                 </table>
                 <br />
-                <div className="createBtn">
+                <div hidden={isRole("VIEW")} className="createBtn">
                 <ModalWrapper front={"Create Customer"}> 
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>

@@ -7,6 +7,7 @@ import { UserRecord } from "./UserRecord";
 import "../../style/TablesView.css";
 import { Searchbar } from "../Searchbar";
 import "../../style/UsersView.css";
+import { isRole } from "../../utils/CheckRole";
 
 const UsersView = () => {
 
@@ -81,8 +82,8 @@ const UsersView = () => {
                             </th>
                             <th className="roleCol"> Role </th>
                             
-                            <th className="editCol"></th>
-                            <th className="delCol"></th>
+                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="editCol"></th>
+                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="delCol"></th>
                         </tr>
                     </thead>
 
@@ -93,7 +94,7 @@ const UsersView = () => {
                     </tbody>
                 </table>
                 <br />
-                <div className="createBtn">
+                <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="createBtn">
                 <ModalWrapper front={"Create User"}> 
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>

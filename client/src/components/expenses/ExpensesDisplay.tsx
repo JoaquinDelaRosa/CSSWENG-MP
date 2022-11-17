@@ -5,18 +5,19 @@ import { Expense } from "./ExpenseDetails";
 import { Invoice } from "../orders/InvoiceDetails"
 import { DeleteExpenses } from "./DeleteExpenses";
 import { UpdateExpense } from "./UpdateExpense";
+import "../../style/ExpensesView.css"
 
 export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 
-    if (props.expenses ){
+    if (props.expenses){
         return (
             <>
                 <table>
                     <thead>
-                        <tr className="redDialogue">
-                            <th> Description </th> 
-                            <th> Amount </th>
-                            <th> Date Recorded </th>
+                        <tr>
+                            <th className="expenseHeader"> Description </th> 
+                            <th className="expenseHeader"> Amount </th>
+                            <th className="expenseHeader"> Date Recorded </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,9 +46,9 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
                 <table>
                     <thead>
                         <tr className="redDialogue">
-                            <th> Description </th> 
-                            <th> Amount </th>
-                            <th> Date Recorded </th>
+                            <th className="expenseHeader"> Description </th> 
+                            <th className="expenseHeader"> Amount </th>
+                            <th className="expenseHeader"> Date Recorded </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,15 +83,15 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
 const ExpenseRecord = (props : {expense : Expense}) => {
     return (
         <>
-            <td className="redDialogue">
+            <td>
                 {props.expense.description}
             </td>
 
-            <td className="redDialogue">
+            <td>
                 <NumberEntry number={props.expense.amount}/>
             </td>
 
-            <td className="redDialogue">
+            <td>
                 <DateEntry date={props.expense.dateRecorded}/>
             </td>
         </>
