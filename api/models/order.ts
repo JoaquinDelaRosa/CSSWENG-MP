@@ -29,12 +29,12 @@ const OrderSchema = new mongoose.Schema({
     
     invoice: {
         id: {type: String, default: randomUUID()},
-        amount : mongoose.Types.Decimal128,
-        deductible : mongoose.Types.Decimal128,
-        agentFirstName : String,
-        agentLastName : String,
-        datePaid : Date,
-        agentCommission : mongoose.Types.Decimal128
+        amount : {type:mongoose.Types.Decimal128, default: 0},
+        deductible : {type:mongoose.Types.Decimal128, default: 0},
+        agentFirstName : {type: String, default: "No Agent"},
+        agentLastName : {type: String, default: "No Agent"},
+        datePaid : {type:Date, default: () => new Date(+new Date() + 7*24*60*60*1000)},
+        agentCommission : {type:mongoose.Types.Decimal128, default: 0},
     },
     estimateNumber: String,
     scopeOfWork: String,
