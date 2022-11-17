@@ -165,7 +165,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div>
                 <div className="orderScopeTag">
                     <label htmlFor="scopeOfWork" className="orderSubText">Scope of Work</label>
-                    <input className="orderSubField"{... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork"/>
+                    <input className="orderSubField"{... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
