@@ -8,6 +8,7 @@ import { DateEntry } from "../base/DateEntry";
 import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
 import { DeleteOrder } from "./DeleteOrder";
 import { UpdateOrder } from "./UpdateOrders";
+import { isRole } from "../../utils/CheckRole";
 
 export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
     const [order, setOrder] = useState<Order | null>(props.order);
@@ -70,8 +71,8 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                        
                 </td>
 
-                <td> <UpdateOrder order={props.order} observer={onUpdate}/></td>
-                <td> <DeleteOrder order={props.order} observer={onDelete}/></td>
+                <td hidden={isRole("VIEW")}> <UpdateOrder order={props.order} observer={onUpdate}/></td>
+                <td hidden={isRole("VIEW")}> <DeleteOrder order={props.order} observer={onDelete}/></td>
 
             </tr> 
         );

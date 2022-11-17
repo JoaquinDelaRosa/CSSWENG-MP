@@ -13,7 +13,7 @@ export const getRole = () =>  {
 }
 
 export const isRole = (x : string) => {
-    return sessionStorage.getItem("role")?.toLowerCase() === x;
+    return sessionStorage.getItem("role")?.toLowerCase() === x.toLowerCase();
 }
 
 export const setRole = (token : string) => {

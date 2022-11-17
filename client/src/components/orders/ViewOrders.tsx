@@ -5,6 +5,7 @@ import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
 import "../../style/Hometables.css";
 import { Searchbar } from "../Searchbar";
+import { isRole } from "../../utils/CheckRole";
 
 const searchOptions =[
         {name: "PAID",      description:"The order is paid", tag: "status: PAID"},
@@ -64,8 +65,8 @@ const OrdersView = () => {
                         <th className="othDetails"> Scope of Work </th>
                         <th className="othDetails"> Expenses </th>
     
-                        <th className="editCol"></th>
-                        <th className="delCol"></th>
+                        <th hidden={isRole("VIEW")} className="editCol"></th>
+                        <th hidden={isRole("VIEW")} className="delCol"></th>
                     </tr>
                 </thead>
                 <tbody className="tbodyDiv">
@@ -75,7 +76,7 @@ const OrdersView = () => {
                 </tbody>
             </table>
             <br />
-            <div className="createBtn">
+            <div hidden={isRole("VIEW")} className="createBtn">
                 <CreateOrder observer={updateView}/>
             </div>
             
