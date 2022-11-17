@@ -6,7 +6,7 @@ import { RequestUser } from "./RequestUser";
 import { User } from "./UserDetails";
 
 export const UpdateUser = (props : {user : User, observer : Function}) => {
-    const [data, setData] = useState<CustomerRequest>();
+    const [data, setData] = useState<User>();
     
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.updateUser).post(data, {id: props.user.id})
