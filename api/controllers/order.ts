@@ -37,17 +37,6 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const update = async (req: express.Request, res: express.Response) => {
-    const c_id = await Customer.exists({_id :req.body.customerId});
-    if (c_id == null){
-        res.end();
-        return;
-    }
-    const v_id = await Vehicle.exists({_id :req.body.vehicleId});
-    if (v_id == null){
-        res.end();
-        return;
-    }
-
     Order.updateOne({_id: req.query.id}, req.body, (error) => {
         if (error) {
             console.log(error);

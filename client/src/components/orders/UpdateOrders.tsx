@@ -8,6 +8,7 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
     const [data, setData] = useState<OrderRequest>();
     
     useEffect(() => {
+        console.log(data)
         createAPIEndpoint(ENDPOINTS.updateOrder).post(data, {id: props.order.id})
         .then(function (response) {
             props.observer();
