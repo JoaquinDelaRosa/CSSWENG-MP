@@ -9,6 +9,7 @@ import '../style/Hyperlink.css';
 interface RegistrationState {
     username: string,
     password: string,
+    new_password: string,
     firstName: string,
     lastName: string
 }
@@ -18,6 +19,7 @@ const Register = () => {
     const [formState, setFormState] = useState<RegistrationState>({
         username: "",
         password: "",
+        new_password: "",
         firstName: "",
         lastName: ""
     });
@@ -29,7 +31,12 @@ const Register = () => {
 
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
-        console.log(formState)
+        if(formState.password !== formState.new_password)
+            return;
+        
+        if (formState.username === "" || formState.firstName === ""  || formState.lastName === "" || formState.password === "")
+            return;
+            
         event.preventDefault();
         createAPIEndpoint(ENDPOINTS.register).post(formState)
             .then(function (response) {
