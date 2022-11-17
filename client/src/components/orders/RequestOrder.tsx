@@ -155,7 +155,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label className="orderSubText">Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);
-                    }}/>
+                    }} default={props.default?.vehicle}/>
                 </div> 
                 <br />
                 <div className="orderEstimateTag">

@@ -4,11 +4,14 @@ import { ModalWrapper } from "../base/ModalBase";
 import { RequestVehicle } from "../vehicles/RequestVehicle";
 import { Vehicle, VehicleRequest } from "../vehicles/VehicleDetails";
 
-export const VehicleSubform = (props: {observer: Function}) => {
+export const VehicleSubform = (props: {observer: Function, default?: {id: string, licensePlate: string}}) => {
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Vehicle>>([]);
     const [vehicle, setVehicle] = useState<VehicleRequest>();
 
+    useEffect(() => {
+        console.log(props.default);
+    }, [])
     useEffect(() => {
         if (query === ""){
             setOptions([]);
@@ -41,7 +44,8 @@ export const VehicleSubform = (props: {observer: Function}) => {
     };
     return (
         <div> 
-            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={vehicle ? vehicle.licensePlate : ""} />   
+            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={vehicle ? vehicle.licensePlate : 
+                props.default? props.default?.licensePlate : ""} />   
 
             <div> 
             <br />
@@ -51,7 +55,7 @@ export const VehicleSubform = (props: {observer: Function}) => {
                 }
                 {
                     options.length !== 0 && 
-                    <select onChange={(e) => {props.observer(e.target.value)}}> 
+                    <select onChange={(e) => {props.observer(e.target.value)}} defaultValue={props.default?.id}> 
                         <option value={""}> {
                             <>{ "-- Select Vehicle --"}</> 
                         }

@@ -27,7 +27,10 @@ export interface OrderRequestDefault {
     },
     type: string,
     company: string,
-    vehicle: string,
+    vehicle: {
+        id: string, 
+        licensePlate: string,
+    },
     estimateNumber: string,
     scopeOfWork: string,
     invoice: Invoice,
