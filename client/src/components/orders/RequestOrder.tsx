@@ -53,12 +53,14 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         if (props.default?.status) {
             setValue("status", props.default?.status)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.status]);
 
     useEffect(() => {
         if (props.default?.type){
             setValue("type", props.default?.type);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.type])
 
     return (
