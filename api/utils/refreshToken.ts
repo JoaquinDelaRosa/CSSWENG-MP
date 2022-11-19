@@ -1,10 +1,9 @@
 import jwt = require('jsonwebtoken');
-import { type } from 'os';
 import config from "../config/authConfig";
 
 const refreshToken = (refreshjwt : string) : string => {
 
-    const decoded = jwt.verify(refreshjwt, config.refreshToken.secret)
+    const decoded = jwt.verify(refreshjwt, config.refreshToken.secret);
 
     if(decoded) {
         return jwt.sign(
@@ -16,8 +15,11 @@ const refreshToken = (refreshjwt : string) : string => {
             {
                 expiresIn: config.token.expireTime,
                 issuer: decoded.accessIssuer,
-            },)
-    }
+            }
+        );
+    };
+
+    return "";
 }
 
 export default refreshToken;

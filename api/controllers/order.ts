@@ -3,7 +3,7 @@ import express = require('express');
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
 import { Vehicle } from '../models/vehicle';
-import { makeOrderArrayView, makeOrderView } from '../projections/order';
+import { makeOrderArrayView } from '../projections/order';
 
 const all = async (req: express.Request, res: express.Response) => {
     const count = await Order.countDocuments({});
@@ -15,7 +15,7 @@ const all = async (req: express.Request, res: express.Response) => {
     .limit(parseInt(req.query.limit as string))
     .then ((data) => {
         res.json({data: makeOrderArrayView(data), count: count ? count : 0});
-    })
+    });
 };
 
 const id = async (req: express.Request, res: express.Response) => {
@@ -24,7 +24,7 @@ const id = async (req: express.Request, res: express.Response) => {
     .populate("vehicle")
     .then((data) => {
         res.json(makeOrderArrayView(data));
-    })
+    });
 };
 
 const create = async (req: express.Request, res: express.Response) => {
@@ -59,11 +59,45 @@ const remove = (req: express.Request, res: express.Response) => {
     });
 };
 
+
+const verify = async (req: express.Request, res: express.Response) => {
+    console.log(req.body.isVerified)
+    Order.findByIdAndUpdate(req.query.id, {verified : req.body.isVerified},
+        (response, error) => {
+            if(response) {
+                console.log(response);
+                res.json({
+                    success: true,
+                })
+            }
+            else
+                console.log(error);
+        });
+}
+
+
 const filter = async (req: express.Request, res: express.Response) => {
     const query : OrderQuery = makeQuery(req);
     const mongooseQuery  = makeMongooseQuery(query);
 
-    const customerList = await Customer.aggregate([
+    const customerList = await getCustomerList(mongooseQuery);
+    const vehicleList = getVehicleList(mongooseQuery);
+    const finalQuery = {...mongooseQuery, customer: {$in : customerList}, vehicle: {$in: vehicleList}};
+
+    const count = await Order.find(finalQuery).countDocuments();
+    
+    Order.find(finalQuery)
+    .populate("customer")
+    .populate("vehicle")
+    .skip(parseInt(req.query.skip as string))
+    .limit(parseInt(req.query.limit as string))
+    .then ((data) => {
+        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
+    });
+}
+
+const getCustomerList = async (mongooseQuery : any) => {
+    return await Customer.aggregate([
         {
             $project : {
                 "id": "$_id",
@@ -81,42 +115,15 @@ const filter = async (req: express.Request, res: express.Response) => {
     .then((data) => {
         return data.map((value) => value.id)
     });
+}
 
-    const vehicleList = await Vehicle.find({
+const getVehicleList = async (mongooseQuery: any) => {
+    return await Vehicle.find({
         licensePlate: mongooseQuery.vehicle
     }).then((data) => {
         return data.map((value) => value._id);
     });
-
-    const finalQuery = {...mongooseQuery, customer: {$in : customerList}, vehicle: {$in: vehicleList}};
-
-    const count = await Order.find(finalQuery).countDocuments();
-    
-    Order.find(finalQuery)
-    .populate("customer")
-    .populate("vehicle")
-    .skip(parseInt(req.query.skip as string))
-    .limit(parseInt(req.query.limit as string))
-    .then ((data) => {
-        res.json({data: makeOrderArrayView(data), count: count ? count : 0});
-    });
 }
-
-const verify = async (req: express.Request, res: express.Response) => {
-    console.log(req.body.isVerified)
-    Order.findByIdAndUpdate(req.query.id, {verified : req.body.isVerified},
-        (response, error) => {
-            if(response) {
-                console.log(response);
-                res.json({
-                    success: true,
-                })
-            }
-            else
-                console.log(error);
-        })
-}
-
 
 interface OrderQuery {
     status : string,
@@ -148,7 +155,7 @@ const makeQuery = (req : express.Request)  : OrderQuery=> {
         type: (req.query.type) ? (req.query.type as string) : "",
         customerName: (req.query.customerName) ? (req.query.customerName as string): "",
         licensePlate: (req.query.licensePlate) ? (req.query.licensePlate as string): "",
-    }
+    };
 }
 
 export default {all, id, create, update, remove, filter, verify};

@@ -12,6 +12,7 @@ const register =  (req : express.Request, res : express.Response) => {
         password : Bcrypt.hashSync(req.body.password, 10),
         role : req.body.role
     }
+
     User.create({_id : randomUUID(), ...newUser})
     .then(() => {
         res.end()
@@ -84,7 +85,7 @@ const login = (req : express.Request, res : express.Response) => {
             auth : false, 
             error : error
         });
-    })
+    });
 }
 
 const logout = (req : express.Request, res : express.Response) => {

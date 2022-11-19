@@ -11,11 +11,11 @@ export const makeCustomerView = (document) => {
         },
         mobileNumber: document.mobileNumber,
         email: document.email
-    }
+    };
 }
 
 export const makeCustomerArrayView = (documents) => {
     return documents.map((val) => {
         return makeCustomerView(val)
-    })
+    });
 }
