@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Expense } from "./ExpenseDetails";
-import { ExpensesDisplay, ExpensesModifiableDisplay } from "./ExpensesDisplay";
 
 const defaultExpense = {
     amount: 0,

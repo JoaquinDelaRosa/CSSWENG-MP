@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { Order } from "./OrderDetails";
 
 export const DeleteOrder = (props : {order : Order, observer : Function}) => {

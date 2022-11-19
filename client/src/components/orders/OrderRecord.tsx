@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Order, OrderRequest } from "./OrderDetails";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { Order } from "./OrderDetails";
+import { createAPIEndpoint } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
-import { RequestOrder } from "./RequestOrder";
 import { InvoiceDisplay } from "./InvoiceDisplay";
 import { DateEntry } from "../base/DateEntry";
 import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
 import { DeleteOrder } from "./DeleteOrder";
 import { UpdateOrder } from "./UpdateOrders";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
     const [order, setOrder] = useState<Order | null>(props.order);
@@ -21,15 +21,17 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
             setOrder(null);
         }
     }, [props, props.order])
+    
     useEffect(() => {
         console.log(props.order.id)
         createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : isVerified}, {id: props.order.id})
         .then((response) => {
-            console.log("Verified")
+            console.log("Verified");
         })
         .catch((error) => {
-            console.log(error)
-        })
+            console.log(error);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isVerified])
     
 
@@ -37,7 +39,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
         createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
         .then((response) => {
             setOrder(response.data);
-        })
+        });
     };
 
     const onDelete = () => {
@@ -65,18 +67,20 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
 
                 <td> {props.order.estimateNumber}</td>
                 <td> {props.order.scopeOfWork}</td>
+
                 <td className="detailsViewExpensesButt">
                     <p> 
                         {"Total Expenses: " } 
                      
                     <>
-                    {
-                        props.order.expenses.reduce(
-                            (x, y) => {
-                                return x + y.amount.valueOf();
-                            }, 0).toFixed(2)
-                    }
+                        {
+                            props.order.expenses.reduce(
+                                (x, y) => {
+                                    return x + y.amount.valueOf();
+                                }, 0).toFixed(2)
+                        }
                     </>
+
                     </p>
                     <ModalWrapper front={"View Expenses"}>
                         <ExpensesDisplay expenses={props.order.expenses}/>

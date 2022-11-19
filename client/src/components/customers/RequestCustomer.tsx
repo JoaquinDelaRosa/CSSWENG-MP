@@ -41,34 +41,62 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
         <div>
             <div className="custFirstTag">
                 <label htmlFor="firstName" className="custSubText"> First Name </label>
-                <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
-                type="text" name = "firstName" defaultValue={props.default?.firstName} className="custSubField"/>
+                <input className="custSubField"{... register("firstName", {
+                        required : true, 
+                        pattern: isAlphabetic 
+                    })} 
+                />
+                    type="text" name = "firstName" 
+                    defaultValue={props.default?.firstName} 
+
                 {errors.firstName && <p>Customer First Name is required</p>}
             </div>
+
             <div className="custLastTag">
                 <label htmlFor="lastName" className="custSubText"> Last Name </label>
-                <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
-                type="text" name = "lastName" defaultValue={props.default?.lastName} className="custSubField"/>
+                <input className="custSubField" {... register("lastName", {
+                        required : true, 
+                        pattern: isAlphabetic 
+                    })} 
+                />
+                    type="text" 
+                    name = "lastName" 
+                    defaultValue={props.default?.lastName} 
+
                 {errors.lastName && <p>Customer Last Name is required</p>}
             </div>
+
             <div className="custEmailTag">
                 <label htmlFor="email" className="custSubText"> Email </label>
-                <input {... register("email", {required: true, 
-                                            pattern: { value: isEmail,
-                                            message: "invalid email address"}})} 
-                                            type="text" name="email"
-                                            defaultValue={props.default?.email} className="custSubField"/>
+                <input className="custSubField"{... register("email", {
+                        required: true, 
+                        pattern: { 
+                            value: isEmail, 
+                            message: "invalid email address"
+                        }
+                    })} 
+                />
+                    type="text" 
+                    name="email"
+                    defaultValue={props.default?.email} 
+
                 {errors.email && <p>Email is required</p>}
             </div>
+
             <div className="custMobTag">
                 <label htmlFor="mobileNumber" className="custSubText"> Mobile Number </label>
-                <input {... register("mobileNumber", {required: true, pattern: {
-                                                                    value: isMobileNumber,
-                                                                    message: "invalid mobile number"}})} 
-                                                                    type="text" name="mobileNumber"
-                                                                    defaultValue={props.default?.mobileNumber} className="custSubField"/>
+                <input className="custSubField" {... register("mobileNumber", {
+                        required: true, 
+                        pattern: {value: isMobileNumber, message: "invalid mobile number"}
+                    })} 
+                />
+                    type="text" 
+                    name="mobileNumber"
+                    defaultValue={props.default?.mobileNumber} 
+
                 {errors.mobileNumber && <p>Mobile Number is required</p>}
             </div>
+
             <br />
             <br />
         </div>

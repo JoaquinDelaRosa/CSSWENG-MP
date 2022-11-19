@@ -28,7 +28,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Enable cors
-
 var corsOptions = {
     origin: ["http://localhost:5000", "http://localhost:3000"],
     optionsSuccessStatus: 200,

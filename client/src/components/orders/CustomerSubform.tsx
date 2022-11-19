@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { Customer, CustomerRequest } from "../customers/CustomerDetails";
 import { RequestCustomer } from "../customers/RequestCustomer";
 import { ModalWrapper } from "../base/ModalBase";
+import { ENDPOINTS } from "../../api/endpoints";
 
 export const CustomerSubform = (props: {observer: Function, default?: {id: string, name: string}}) => {
     const [query, setQuery] = useState<string>("");
@@ -19,7 +20,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
         }
     } , [query, props.default])
 
@@ -31,12 +32,17 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
         })
         .catch(function (error) {
             console.log(error);
-        })
+        });
     };
+
     return (
         <div>
-            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : 
-            props.default? props.default?.name : ""} />   
+            <input 
+                onChange={(e) => {
+                    setQuery(e.target.value)} 
+                } 
+                defaultValue={customer ? customer.firstName + " " + customer.lastName : props.default? props.default?.name : ""}
+            />   
 
             <div>
                 <br /> 
@@ -44,6 +50,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                     (options.length === 0 || !props.default) && 
                     <p>No Customers were found.</p>
                 }
+
                 <br />
                 {
                     options.length !== 0 && 
@@ -60,11 +67,12 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                         }
                     </select>
                 }
+
                 {
                     <div className="createCustomerButt"> 
-                    <ModalWrapper front={"Create Customer"}> 
-                        <RequestCustomer setResponse={setData} default={customer}/>
-                    </ModalWrapper>
+                        <ModalWrapper front={"Create Customer"}> 
+                            <RequestCustomer setResponse={setData} default={customer}/>
+                        </ModalWrapper>
                     </div>
                 }
             </div>

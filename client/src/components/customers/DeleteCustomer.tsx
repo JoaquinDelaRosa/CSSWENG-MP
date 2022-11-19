@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { Customer } from "./CustomerDetails";
 
 export const DeleteCustomer = (props : {customer : Customer, observer : Function}) => {
@@ -9,7 +10,7 @@ export const DeleteCustomer = (props : {customer : Customer, observer : Function
             })
             .catch((err) => {
                 console.log(err)
-            })
+            });
     }
 
     return (

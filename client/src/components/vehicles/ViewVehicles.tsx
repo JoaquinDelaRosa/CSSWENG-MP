@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import "../../style/TablesView.css";
 import "../../style/VehiclesView.css";
-import {Searchbar} from "../Searchbar";
+import {ViewHandler} from "../view/ViewHandler";
 import { CreateVehicle } from "./CreateVehicle";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const ViewVehicles = () => {
 
     const [vehicles, setVehicles] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     const [flag, setFlag] = useState(false);
 
     const updateView = () => {
@@ -60,56 +58,64 @@ const ViewVehicles = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterVehicle} all={ENDPOINTS.vehicles} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler path={ENDPOINTS.filterVehicle} 
+                all={ENDPOINTS.vehicles} 
+                setData={setQueryResult} 
+                queryParser={queryParser} 
+                flag ={flag}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
                     {name: "model", description: "The model of the vehicle"},
                     {name: "yearManufactured", description: "The year manufactured of the vehicle"}
                 ]}>
-            <br />
-            <div className="objectView">
-                <table className="tableDiv">
-                    <thead>
-                        <tr>
-                            <th className="licenseCol"> License Plate 
-                                <span>
-                                    <div>
-                                        <button onClick={() => {
-                                            sortAlphabetically(true);
-                                        }}>▲</button>
-                                    </div>
-                                    <div>
-                                        <button onClick={() => {
-                                            sortAlphabetically(false);
-                                        }}>▼</button> 
-                                    </div>
-                                </span>
-                            </th>
-                            <th className="manufacturerCol"> Manufacturer </th>
-                            <th className="modelCol"> Model </th>
-                            <th className="yearmanufacturedCol"> Year Manufactured </th>
-                            <th hidden={isRole("VIEW")} className="editCol"></th>
-                            <th hidden={isRole("VIEW")} className="delCol"></th>
-                        </tr>
-                    </thead>
+                <br />
+                <div className="objectView">
+                    <table className="tableDiv">
+                        <thead>
+                            <tr>
+                                <th className="licenseCol"> License Plate 
+                                    <span>
+                                        <div>
+                                            <button onClick={() => {
+                                                sortAlphabetically(true);
+                                            }}>▲</button>
+                                        </div>
+                                        <div>
+                                            <button onClick={() => {
+                                                sortAlphabetically(false);
+                                            }}>▼</button> 
+                                        </div>
+                                    </span>
+                                </th>
+                                <th className="manufacturerCol"> Manufacturer </th>
+                                <th className="modelCol"> Model </th>
+                                <th className="yearmanufacturedCol"> Year Manufactured </th>
+                                <th hidden={isRole("VIEW")} className="editCol"></th>
+                                <th hidden={isRole("VIEW")} className="delCol"></th>
+                            </tr>
+                        </thead>
 
 
-                    <tbody className="tbodyDiv">
-                        {vehicles.map((value, index) => {
-                            return(<VehicleRecord vehicle={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
-                        })}
-                    </tbody>
-                </table>
-                <br></br>
-                <div hidden={isRole("VIEW")} className="createBtn">
-                    <ModalWrapper front={"Create Vehicle"}>
+                        <tbody className="tbodyDiv">
+                            {vehicles.map((value, index) => {
+                                return(
+                                    <VehicleRecord vehicle={value} key={index} 
+                                        rerenderFlag={() => {
+                                            setFlag(!flag)
+                                        }}
+                                    />
+                                );
+                            })}
+                        </tbody>
+                    </table>
+
+                    <br/>
+                    <div hidden={isRole("VIEW")} className="createBtn">
                         <CreateVehicle observer={updateView}/>
-                    </ModalWrapper>
+                    </div>
                 </div>
-            </div>
-            </Searchbar>
-
+            </ViewHandler>
         </div>
     )
 }

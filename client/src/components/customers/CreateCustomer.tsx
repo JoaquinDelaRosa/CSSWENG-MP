@@ -1,7 +1,10 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestCustomer } from "./RequestCustomer";
 
 export const CreateCustomer = (props : {observer : Function}) => {
+
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
         .then(function (response) {
@@ -13,8 +16,8 @@ export const CreateCustomer = (props : {observer : Function}) => {
     };
 
     return (
-        <div>
+        <ModalWrapper front={"Create Customer"}> 
             <RequestCustomer setResponse={setData}/>
-        </div> 
+        </ModalWrapper>
     );
 }

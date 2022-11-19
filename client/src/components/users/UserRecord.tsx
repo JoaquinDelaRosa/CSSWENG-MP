@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { isRole } from "../../utils/CheckRole";
 import { DeleteUser } from "./DeleteUser";
 import { UpdateUser } from "./UpdateUser";
@@ -20,7 +21,7 @@ export const UserRecord = (props : { user: User, rerenderFlag: Function}) => {
         createAPIEndpoint(ENDPOINTS.getUser).fetch({id : props.user.id})
         .then((response) => {
             setUser(response.data);
-        })
+        });
     };
 
     const onDelete = () => {

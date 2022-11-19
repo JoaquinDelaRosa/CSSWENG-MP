@@ -1,19 +1,17 @@
 export const NumberEntry = (props : {number? : number}) => {
-    return (
-        <>
-            {
-                props.number && 
-                <>
+    if (props.number) {
+        return (
+            <>
                 {isNaN(parseFloat(props.number.toString())) ? 0.00 : 
                 parseFloat(props.number.toString()).toFixed(2)}
-                </>
-            }
-            {
-                !props.number && 
-                <>
-                    {"0.00"}
-                </>
-            }
-        </>
-    ) 
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                {"0.00"}
+            </>
+        );
+    }
 }

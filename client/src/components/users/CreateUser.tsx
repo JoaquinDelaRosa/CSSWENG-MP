@@ -1,4 +1,6 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestUser } from "./RequestUser";
 
 export const CreateUser = (props : {observer : Function}) => {
@@ -9,12 +11,14 @@ export const CreateUser = (props : {observer : Function}) => {
         })
         .catch(function (error) {
             console.log(error);
-        })
+        });
     };
 
     return (
         <div>
-            <RequestUser setResponse={setData}/>
+            <ModalWrapper front={"Create User"}> 
+                <RequestUser setResponse={setData}/>
+            </ModalWrapper>
         </div> 
     );
 }

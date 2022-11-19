@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Expense } from "./ExpenseDetails";
-import { ExpensesDisplay, ExpensesModifiableDisplay } from "./ExpensesDisplay";
+import { ExpensesModifiableDisplay } from "./ExpensesDisplay";
 
 const defaultExpense = {
     amount: 0,
@@ -8,7 +8,7 @@ const defaultExpense = {
     dateRecorded: Date.now().toString()
 };
 
-export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]}) => {
+export const ExpensesSubform = (props: {setData : Function,  default? : Expense[]}) => {
     const [expenses, setExpenses] = useState<Array<Expense>>(props.default ? props.default : []);
     const [expense, setExpense] = useState<Expense>(defaultExpense);
 

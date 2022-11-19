@@ -1,17 +1,18 @@
-import { createAPIEndpoint, ENDPOINTS } from "../api"
+import { createAPIEndpoint} from "../api"
+import { ENDPOINTS } from "../api/endpoints"
 
 export const isCustomerExists = (id: number, setter: any) => {
     if(Number.isNaN(id)) {
         setter(false)
-        return
+        return;
     }
             
     createAPIEndpoint(ENDPOINTS.getCustomer).fetch({"id" : id})
         .then((response) => {
             if(response.data)
-                setter(true)
+                setter(true);
             else
-                setter(false)
+                setter(false);
         })
         .catch((err) => {
             console.log(err);
@@ -27,9 +28,9 @@ export const isVehicleExists = (id: number, setter: any) => {
     createAPIEndpoint(ENDPOINTS.getVehicle).fetch({"id" : id})
         .then((response) => {
             if(response.data)
-                setter(true)
+                setter(true);
             else
-                setter(false)
+                setter(false);
         })
         .catch((err) => {
             console.log(err);
@@ -38,16 +39,16 @@ export const isVehicleExists = (id: number, setter: any) => {
 
 export const isOrderExists = (id: number, setter: any) => {
     if(Number.isNaN(id)) {
-        setter(false)
-        return
+        setter(false);
+        return;
     }
             
     createAPIEndpoint(ENDPOINTS.getOrder).fetch({"id" : id})
         .then((response) => {
             if(response.data)
-                setter(true)
+                setter(true);
             else
-                setter(false)
+                setter(false);
         })
         .catch((err) => {
             console.log(err);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { ModalWrapper } from "../base/ModalBase";
 import { RequestVehicle } from "../vehicles/RequestVehicle";
 import { Vehicle, VehicleRequest } from "../vehicles/VehicleDetails";
@@ -66,11 +67,11 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
                     </select>
                 }
                 { 
-                <div className="createVehicleButt">
-                <ModalWrapper front={"Create Vehicle"}> 
-                    <RequestVehicle setResponse={setData} default={vehicle}/>
-                </ModalWrapper>
-                </div>
+                    <div className="createVehicleButt">
+                        <ModalWrapper front={"Create Vehicle"}> 
+                            <RequestVehicle setResponse={setData} default={vehicle}/>
+                        </ModalWrapper>
+                    </div>
                 }
             </div>
         </div>

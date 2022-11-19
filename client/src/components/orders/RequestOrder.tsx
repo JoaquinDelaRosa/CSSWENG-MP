@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
 import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { Expense } from "../expenses/ExpenseDetails";
-import { ExpenseSubform } from "../expenses/ExpenseSubform";
+import { ExpensesSubform } from "../expenses/ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest, OrderRequestDefault } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
@@ -29,7 +30,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     const onSubmit = handleSubmit(async (data) => {
@@ -51,7 +52,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
     useEffect(() => {
         if (props.default?.status) {
-            setValue("status", props.default?.status)
+            setValue("status", props.default?.status);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.status]);
@@ -69,26 +70,23 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.expenses])
-
-    useEffect(() => {
-        console.log(props.default?.timeIn.toISOString().split("T")[0]);
-     }, [props.default?.timeIn])
      
     return (
         <div>
             <p className="modalHeader">Editing Order Table:</p>
+
             <form className="formStyle" onSubmit={onSubmit}>
                 <div className="orderStatTag">
                     <label className="orderSubText">Order Status</label>
-                    <select className="orderSubField" {...register('status', {required: true, 
+                    <select className="orderSubField" {...register('status', {
+                        required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_STATUS;
                             }
                         }})} 
-                        defaultValue= {(props.default && props.default.status) ? 
-                            props.default.status : DEFAULT_STATUS}
-                        >
+                        defaultValue= {(props.default && props.default.status) ? props.default.status : DEFAULT_STATUS}
+                    >
                         <option value={DEFAULT_STATUS} disabled>-- Select Status --</option>
                         {
                             statuses.map((value, index) => {
@@ -99,13 +97,16 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             })
                         }
                     </select>
+
                     {errors.status && <p> Status has not been set</p>}
                 </div>
 
                 <div className="timeInTag">
                     <label className="orderSubText">Time In</label>
                     <input className="orderSubField" {...register('timeIn', {
-                        required: true, valueAsDate : true, validate: {
+                        required: true, 
+                        valueAsDate : true, 
+                        validate: {
                             isAfterTimeIn: (v) =>{
                                 if (getValues("timeOut").valueOf() === 0){
                                     return true;
@@ -115,11 +116,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
                             }
                         }
-                     })} defaultValue = {
-                        props.default ? 
-                        props.default?.timeIn.toISOString().split("T")[0] : ""
-                    }
+                     })} 
+                        defaultValue = {props.default ? props.default?.timeIn.toISOString().split("T")[0] : ""}
                      type='date' name="timeIn" id ="timeIn"/>
+
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
 
@@ -136,26 +136,30 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn");
                             }
                         }
-                    })} defaultValue = {
-                        props.default ? 
-                        props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
-                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
-                    }
+                    })} 
+                        defaultValue = {
+                            props.default ? 
+                            props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
+                            .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                        }
                     type='date' name="timeOut" id="timeOut"/>
+
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 
                 <div className="custTypeTag">
                     <label className="orderSubText">Customer Type</label>
-                    <select className="orderSubField" {...register('type', {required: true, 
+                    <select className="orderSubField" {...register('type', {
+                        required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_TYPE
                             }
                         }})} 
-                        defaultValue= {(props.default && props.default.type) ? 
-                            props.default.type.valueOf() : DEFAULT_TYPE}>
+                        defaultValue= {(props.default && props.default.type) ? props.default.type.valueOf() : DEFAULT_TYPE}>
+
                         <option value={DEFAULT_TYPE} disabled>-- Select Type --</option>
+
                         {
                             types.map((value, index) => {
                                 return (
@@ -165,6 +169,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             })
                         }
                     </select>
+
                     {errors.type && <p> Customer Type has not been set</p>}
                 </div> 
 
@@ -174,11 +179,17 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         setValue("customer", value);
                     }} default={props.default?.customer}/>
                 </div> 
+
                 <br />
                 <div className="orderCompanyTag">
                     <label htmlFor="company" className="orderSubText">Company</label>
-                    <input {... register("company", {required : false})}  
-                        type='text' name="company" id="company" defaultValue={props.default?.company} className="orderSubField"/>
+                    <input className="orderSubField" {... register("company", {
+                            required : false
+                        })}  
+                        type='text' name="company" id="company" 
+                        defaultValue={props.default?.company}
+                    />
+
                     {errors.company && <p>Invalid company</p>}
                 </div>
 
@@ -186,26 +197,44 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <label className="orderSubText">Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);
-                    }} default={props.default?.vehicle}/>
+                    }} 
+                    default={props.default?.vehicle}/>
                 </div> 
+
                 <br />
                 <div className="orderEstimateTag">
                     <label htmlFor="estimateNumber" className="orderSubText">Estimate Code</label>
-                    <input className="orderSubField" {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
+                    <input className="orderSubField" {... register("estimateNumber", {
+                            required : false, 
+                            pattern: isAlphaNumeric
+                        })} 
+                        type='text' name="estimateNumber" id="estimateNumber" 
+                        defaultValue={props.default?.estimateNumber}
+                    />
+
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
+
                 <div className="orderScopeTag">
                     <label htmlFor="scopeOfWork" className="orderSubText">Scope of Work</label>
-                    <input className="orderSubField"{... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
+                    <input className="orderSubField"{... register("scopeOfWork", {
+                            required : true
+                        })} 
+                        type='text' name="scopeOfWork" id="scopeOfWork" 
+                        defaultValue={props.default?.scopeOfWork}
+                    />
+
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
+                
                 <br />
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
+
                 <br />
                 <ModalWrapper front={"Add Expenses"}>
-                    <ExpenseSubform setData={(expenses: Expense[]) => {
+                    <ExpensesSubform setData={(expenses: Expense[]) => {
                         setValue("expenses", expenses)
                     }} default={watch("expenses")}/>
                 </ModalWrapper>

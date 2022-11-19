@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../base/ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
 import "../../style/TablesView.css";
-import { Searchbar } from "../Searchbar";
+import { ViewHandler } from "../view/ViewHandler";
 import "../../style/UsersView.css";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const UsersView = () => {
 
     const [users, setUsers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     const [flag, setFlag] = useState(false);
 
     const updateView = () => {
@@ -60,11 +58,16 @@ const UsersView = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterUser} all={ENDPOINTS.users} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler path={ENDPOINTS.filterUser} 
+                all={ENDPOINTS.users} 
+                setData={setQueryResult} 
+                queryParser={queryParser} 
+                flag ={flag}
                 options = {[
                     {name: "username", description:"The username of the user"},
                 ]}>
             <br />
+
             <div className="objectView">
                 <table className="tableDiv">
                     <thead>
@@ -89,18 +92,23 @@ const UsersView = () => {
 
                     <tbody className="tbodyDiv">
                         {users.map((value, index) => {
-                            return (<UserRecord user={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
+                            return (
+                                <UserRecord user={value} key={index} 
+                                    rerenderFlag={() => {
+                                        setFlag(!flag)}
+                                    }
+                                />
+                            );
                         })}
                     </tbody>
                 </table>
+
                 <br />
                 <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="createBtn">
-                <ModalWrapper front={"Create User"}> 
                     <CreateUser observer={updateView}/>
-                </ModalWrapper>
-            </div> 
+                </div> 
             </div>
-            </Searchbar>   
+            </ViewHandler>   
         </div>  
     );
 }

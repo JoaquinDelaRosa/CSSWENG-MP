@@ -1,6 +1,6 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { VehicleRequest } from './VehicleDetails';
-import { useEffect, useState } from "react";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
+import { ModalWrapper } from "../base/ModalBase";
 import { RequestVehicle } from "./RequestVehicle";
 
 export const CreateVehicle = (props : {observer : Function}) => {
@@ -14,10 +14,11 @@ export const CreateVehicle = (props : {observer : Function}) => {
         })
     };
         
-    
     return (
         <div>
-            <RequestVehicle setResponse={setData}/>
+            <ModalWrapper front={"Create Vehicle"}>
+                <RequestVehicle setResponse={setData}/>
+            </ModalWrapper>
         </div>
     )
 }

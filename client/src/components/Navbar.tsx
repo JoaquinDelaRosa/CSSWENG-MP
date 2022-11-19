@@ -5,7 +5,9 @@ import "../style/NavStyle.css"
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
     return (
-        <button className="navButton" onClick={(e) => {e.preventDefault(); navigation(props.to);}}> {props.buttonName} </button>
+        <button className="navButton" onClick={(e) => {e.preventDefault(); navigation(props.to);}}> 
+            {props.buttonName} 
+        </button>
     )
 }
 

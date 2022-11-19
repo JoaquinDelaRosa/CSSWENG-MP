@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { ENDPOINTS } from "../../api";
-import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import "../../style/TablesView.css";
-import {Searchbar} from "../Searchbar";
+import {ViewHandler} from "../view/ViewHandler";
 import "../../style/CustomerViews.css";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 
 const ViewCustomers = () => {
 
     const [customers, setCustomers] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     const [flag, setFlag] = useState(false);
 
     const updateView = () => {
@@ -28,8 +26,8 @@ const ViewCustomers = () => {
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
             customers.sort((a : Customer, b : Customer) => {
-                let fa = a.name.val.toLowerCase(),
-                    fb = b.name.val.toLowerCase();
+                let fa = a.name.val.toLowerCase();
+                let fb = b.name.val.toLowerCase();
 
                 if (fa < fb) {
                     return -1;
@@ -42,8 +40,8 @@ const ViewCustomers = () => {
         }
         else{
             customers.sort((a : Customer, b : Customer) => {
-                let fa = a.name.val.toLowerCase(),
-                    fb = b.name.val.toLowerCase();
+                let fa = a.name.val.toLowerCase();
+                let fb = b.name.val.toLowerCase();
 
                 if (fa < fb) {
                     return 1;
@@ -60,48 +58,58 @@ const ViewCustomers = () => {
 
     return (
         <div className="FullPage">
-            <Searchbar path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler path={ENDPOINTS.filterCustomer} 
+                all={ENDPOINTS.customers} 
+                setData={setQueryResult} 
+                queryParser={queryParser} 
+                flag ={flag}
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
                     {name: "mobileNumber", description: "The mobile number of the customer"}
                 ]}>
             <br />
-            <div className="objectView">
-                <table className="tableDiv">
-                    <thead>
-                        <tr>
-                            <th className="customerNameCol"> Name 
-                                <button onClick={() => {
-                                    sortAlphabetically(true);
-                                }}>▲</button>
 
-                                <button onClick={() => {
-                                    sortAlphabetically(false);
-                                }}>▼</button> 
-                            </th>
-                            <th className="emailCol"> Email </th>
-                            <th className="mobileNumCol"> Mobile Number </th>
+                <div className="objectView">
+                    <table className="tableDiv">
+                        <thead>
+                            <tr>
+                                <th className="customerNameCol"> Name 
+                                    <button onClick={() => {
+                                        sortAlphabetically(true);
+                                    }}>▲</button>
 
-                            <th hidden={isRole("VIEW")} className="editCol"></th>
-                            <th hidden={isRole("VIEW")} className="delCol"></th>
-                        </tr>
-                    </thead>
-                
-                    <tbody className="tbodyDiv">
-                        {customers.map((value, index) => {
-                            return (<CustomerRecord customer={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
-                        })}
-                    </tbody>
-                </table>
-                <br />
-                <div hidden={isRole("VIEW")} className="createBtn">
-                <ModalWrapper front={"Create Customer"}> 
-                    <CreateCustomer observer={updateView}/>
-                </ModalWrapper>
+                                    <button onClick={() => {
+                                        sortAlphabetically(false);
+                                    }}>▼</button> 
+                                </th>
+                                <th className="emailCol"> Email </th>
+                                <th className="mobileNumCol"> Mobile Number </th>
+
+                                <th hidden={isRole("VIEW")} className="editCol"></th>
+                                <th hidden={isRole("VIEW")} className="delCol"></th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody className="tbodyDiv">
+                            {customers.map((value, index) => {
+                                return (
+                                    <CustomerRecord customer={value} key={index} 
+                                        rerenderFlag={() => {
+                                            setFlag(!flag)
+                                        }}
+                                    />
+                                );
+                            })}
+                        </tbody>
+                    </table>
+
+                    <br />
+                    <div hidden={isRole("VIEW")} className="createBtn">
+                        <CreateCustomer observer={updateView}/>
+                    </div>
                 </div>
-            </div>
-            </Searchbar>
+            </ViewHandler>
         </div>      
     );
 }

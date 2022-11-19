@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { ModalWrapper } from "../base/ModalBase";
 import { Customer, CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
@@ -23,7 +24,11 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         <div>
           <ModalWrapper front={"Edit"}>
             <RequestCustomer setResponse={setData} 
-                default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
+                default={{
+                    firstName: props.customer.name.firstName, 
+                    lastName: props.customer.name.lastName, 
+                    ...props.customer
+                }}/>
           </ModalWrapper>
         </div>
     )

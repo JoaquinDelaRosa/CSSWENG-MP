@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { Vehicle } from "./VehicleDetails";
 
 export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) => {

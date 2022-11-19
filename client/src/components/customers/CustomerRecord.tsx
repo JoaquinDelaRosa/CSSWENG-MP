@@ -3,8 +3,9 @@ import "../../style/TableButtons.css";
 import { DeleteCustomer } from "./DeleteCustomer";
 import { UpdateCustomer } from "./UpdateCustomer";
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 
 export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Function}) => {
@@ -22,7 +23,7 @@ export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Funct
         createAPIEndpoint(ENDPOINTS.getCustomer).fetch({id : props.customer.id})
         .then((response) => {
             setCustomer(response.data);
-        })
+        });
     };
 
     const onDelete = () => {

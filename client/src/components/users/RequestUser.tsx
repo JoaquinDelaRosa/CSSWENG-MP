@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { isAlphabetic } from "../../utils/Regex";
 import { UserRequest } from "./UserDetails";
 
@@ -21,7 +22,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     
@@ -33,31 +34,60 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
         <div>
             <p className="modalHeader">Editing User Table:</p>
             <br />
+
             <form className="formStyle" onSubmit={onSubmit}>
+
                 <div className="firstNameTag">
                     <label htmlFor="firstName" className="userSubText"> First Name </label>
-                    <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
-                    type="text" name = "firstName" defaultValue={props.default?.firstName} className="userSubField"/>
+                    <input className="userSubField" {... register("firstName", {
+                            required : true, 
+                            pattern: isAlphabetic 
+                        })}
+                        type="text" name = "firstName" 
+                        defaultValue={props.default?.firstName} 
+                    />
+                    
                     {errors.firstName && <p>User First Name is required</p>}
                 </div>
+
                 <div className="lastNameTag">
                     <label htmlFor="lastName" className="userSubText"> Last Name </label>
-                    <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
-                    type="text" name = "lastName" defaultValue={props.default?.lastName} className="userSubField"/>
+                    <input className="userSubField" {... register("lastName", {
+                            required : true, 
+                            pattern: isAlphabetic 
+                        })}
+                        type="text" name = "lastName" 
+                        defaultValue={props.default?.lastName} 
+                    />
+
                     {errors.lastName && <p>User Last Name is required</p>}
                 </div>
+
                 <div className="usernameTag">
                     <label htmlFor="username" className="userSubText"> Username </label>
-                    <input {... register("username", {required : true })} 
-                    type="text" name = "username" defaultValue={props.default?.username} className="userSubField"/>
+                    <input className="userSubField" {... register("username", {
+                            required : true 
+                        })} 
+                        type="text" name = "username" 
+                        defaultValue={props.default?.username}/>
+                    
                     {errors.username && <p>Username is required</p>}
                 </div>
+
                 <div className="userRoleTag">
                     <label className="userSubText">User Role</label>
-                    <select className="userSubField" {...register('role', {required: true, validate: {
-                        isNotDefault: (v) => {return v !== DEFAULT} 
-                    }})} defaultValue={props.default && props.default.role ?  
-                            props.default.role : DEFAULT}>
+                    <select className="userSubField" {...register('role', {
+                            required: true, 
+                            validate: {
+                                isNotDefault: (v) => {
+                                    return v !== DEFAULT
+                                } 
+                            }
+                        })} 
+                        defaultValue={props.default && props.default.role ?  
+                        props.default.role : DEFAULT}
+                    >
+                        
                         <option value={DEFAULT} disabled>-- Select Role --</option>
                         {
                             roles.map((value, index) => {
@@ -67,9 +97,11 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                                 );
                             })
                         }
+
                     </select>
                     {errors.role && <p> Role is required </p>}
                 </div>
+                
                 <br />
                 <br />
                 <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS} from '../api';
+import { createAPIEndpoint} from '../api';
 import '../style/LoginFull.css';
 import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import '../style/Hyperlink.css';
 import { removeRole, setRole } from '../utils/CheckRole';
+import { ENDPOINTS } from '../api/endpoints';
 
 type LoginState = {
     username: string
@@ -50,10 +51,9 @@ const Login = (props: {setIsLoggedIn : Function}) => {
     return (
         <div className="fullPage" >
             <div className="loginBox">
-                <div className="loginLogo">
-                </div>
-                <div className="rightBG">
-                </div>
+                <div className="loginLogo"/>
+                <div className="rightBG"/>
+
                 <div className="loginForm">
                     <form className="loginUI" autoComplete="off">
                         <span>
@@ -65,6 +65,7 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                             <br />
                             <br />
                         </span>
+
                         <span>
                             <input className="textField passwordField"
                                 type="password"
@@ -75,12 +76,13 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                             <br />
                             <br />
                         </span>
+
                         <span>
                             <input className="loginButton"
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
-                        <p >Don't have an account? 
-                                &nbsp;
+
+                        <p >Don't have an account? &nbsp;
                             <span className="redDialogue">
                                 <Link to= {ROUTES.register}>
                                  Sign up now.
