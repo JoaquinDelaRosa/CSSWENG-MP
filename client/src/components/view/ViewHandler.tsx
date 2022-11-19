@@ -6,7 +6,7 @@ import { SearchOption } from "./SearchOptionBar";
 import { SearchBar } from "./SearchBar";
 import { PaginationHandler } from "./PaginationHandler";
 
-const LIMIT = 25;
+const LIMIT = 1;
 
 export const ViewHandler = (props : {
     setData: Function, 

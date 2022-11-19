@@ -1,5 +1,3 @@
-const LIMIT = 1;
-
 export const PaginationHandler = (props: {
     count : number,
     limit: number, 
@@ -11,8 +9,8 @@ export const PaginationHandler = (props: {
     const setCurrentPage = props.setCurrentPage;
 
     const moveToNextPage = (skipAhead: Boolean) => {
-        const recordCount = Math.ceil(count/LIMIT);
-
+        const recordCount = Math.ceil(count/props.limit);
+        console.log(recordCount);
         if(currentPage === recordCount){
             console.log("end of results");
         }
