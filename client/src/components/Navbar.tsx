@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../api/routes";
-import { Nav, NavButtons } from "../style/NavStyle";
+import { Nav, NavButtons, NavSeparator } from "../style/NavStyle";
 
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
@@ -22,7 +22,7 @@ const Navbar = () => {
                     <Button buttonName={"Logout"} to={ROUTES.logout}/>
                 </NavButtons>
             </nav>
-            <div></div>
+            <NavSeparator></NavSeparator>
         </Nav>
         
     );
