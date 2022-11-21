@@ -6,6 +6,8 @@ import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
 import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
+import { OptionButton } from "../../style/SearchbarStyle";
+import { TableBody, TableHead } from "../../style/TableStyle";
 
 const UsersView = () => {
 
@@ -64,31 +66,30 @@ const UsersView = () => {
                 ]}>
             <br />
                 <table>
-                    <thead>
+                    <TableHead>
                         <tr>
                             <th> First Name </th>
                             <th> Last Name</th>
                             <th> Username 
-                                <button onClick={() => {
+                                <OptionButton onClick={() => {
                                     sortAlphabetically(true);
-                                }}>▲</button>
-
-                                <button onClick={() => {
+                                }}>▲</OptionButton>
+                                <OptionButton onClick={() => {
                                     sortAlphabetically(false);
-                                }}>▼</button>
+                                }}>▼</OptionButton>
                             </th>
                             <th> Role </th>
                             
                             <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")}></th>
                             <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")}></th>
                         </tr>
-                    </thead>
+                    </TableHead>
 
-                    <tbody>
+                    <TableBody>
                         {users.map((value, index) => {
                             return (<UserRecord user={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
-                    </tbody>
+                    </TableBody>
                 </table>
                 <br />
                 <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>

@@ -6,6 +6,9 @@ import { VehicleRecord } from "./VehicleRecord";
 import {Searchbar} from "../Searchbar";
 import { CreateVehicle } from "./CreateVehicle";
 import { isRole } from "../../utils/CheckRole";
+import { SortButton } from "../../style/SortButtons";
+import { OptionButton } from "../../style/SearchbarStyle";
+import { TableBody, TableHead } from "../../style/TableStyle";
 
 const ViewVehicles = () => {
 
@@ -68,21 +71,15 @@ const ViewVehicles = () => {
             <br />
 
                 <table>
-                    <thead>
+                    <TableHead>
                         <tr>
-                            <th> License Plate 
-                                <span>
-                                    <div>
-                                        <button onClick={() => {
-                                            sortAlphabetically(true);
-                                        }}>▲</button>
-                                    </div>
-                                    <div>
-                                        <button onClick={() => {
-                                            sortAlphabetically(false);
-                                        }}>▼</button> 
-                                    </div>
-                                </span>
+                            <th> License Plate
+                                <OptionButton onClick={() => {
+                                    sortAlphabetically(true);
+                                }}>▲</OptionButton>
+                                <OptionButton onClick={() => {
+                                    sortAlphabetically(false);
+                                }}>▼</OptionButton>
                             </th>
                             <th> Manufacturer </th>
                             <th> Model </th>
@@ -90,14 +87,14 @@ const ViewVehicles = () => {
                             <th hidden={isRole("VIEW")}></th>
                             <th hidden={isRole("VIEW")}></th>
                         </tr>
-                    </thead>
+                    </TableHead>
 
 
-                    <tbody>
+                    <TableBody>
                         {vehicles.map((value, index) => {
                             return(<VehicleRecord vehicle={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
-                    </tbody>
+                    </TableBody>
                 </table>
                 <br></br>
                 <div hidden={isRole("VIEW")}>

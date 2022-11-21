@@ -5,6 +5,7 @@ import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
 import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
+import { TableBody, TableHead } from "../../style/TableStyle";
 
 const searchOptions =[
         {name: "PAID",      description:"The order is paid", tag: "status: PAID"},
@@ -49,7 +50,7 @@ const OrdersView = () => {
                 options = {searchOptions}>
             <br />
             <table>
-                <thead>
+                <TableHead>
                     <tr>
                         <th> Verified </th>
                         <th> Status </th>
@@ -67,12 +68,12 @@ const OrdersView = () => {
                         <th hidden={isRole("VIEW")}></th>
                         <th hidden={isRole("VIEW")}></th>
                     </tr>
-                </thead>
-                <tbody>
+                </TableHead>
+                <TableBody>
                     {orders.map((value, index) => {
                         return (<OrderRecord order={value} key={index } rerenderFlag={() => {setFlag(!flag)}}/>);
                     })}
-                </tbody>
+                </TableBody>
             </table>
             <br />
             <div hidden={isRole("VIEW")}>

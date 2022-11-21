@@ -6,6 +6,8 @@ import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
 import {Searchbar} from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
+import { OptionButton } from "../../style/SearchbarStyle";
+import { TableBody, TableHead } from "../../style/TableStyle";
 
 
 const ViewCustomers = () => {
@@ -67,16 +69,15 @@ const ViewCustomers = () => {
             <br />
       
                 <table>
-                    <thead>
+                    <TableHead>
                         <tr>
                             <th> Name 
-                                <button onClick={() => {
+                                <OptionButton onClick={() => {
                                     sortAlphabetically(true);
-                                }}>▲</button>
-
-                                <button onClick={() => {
+                                }}>▲</OptionButton>
+                                <OptionButton onClick={() => {
                                     sortAlphabetically(false);
-                                }}>▼</button> 
+                                }}>▼</OptionButton>
                             </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
@@ -84,13 +85,13 @@ const ViewCustomers = () => {
                             <th hidden={isRole("VIEW")}></th>
                             <th hidden={isRole("VIEW")}></th>
                         </tr>
-                    </thead>
+                    </TableHead>
                 
-                    <tbody>
+                    <TableBody>
                         {customers.map((value, index) => {
                             return (<CustomerRecord customer={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
-                    </tbody>
+                    </TableBody>
                 </table>
                 <br />
                 <div hidden={isRole("VIEW")}>

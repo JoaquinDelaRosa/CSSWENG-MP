@@ -32,7 +32,6 @@ const NavButtons = styles.div`
         background-color: rgb(255,255,255);
         border: none;
         color: var(---accent);
-        font-style: italic;
         font-weight: 600;
         font-size: 1.6em;
         text-align: center;

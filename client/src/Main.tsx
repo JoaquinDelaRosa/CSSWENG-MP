@@ -10,7 +10,7 @@ import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
 import { WithNav } from "./AddNav";
 import { useEffect, useState } from "react";
-import { Logout } from "./utils/Logout";
+import Logout from "./utils/Logout";
 
 
 

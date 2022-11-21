@@ -2,8 +2,8 @@ import styles from 'styled-components';
 
 const SearchWrapper = styles.div`
     width: 100%;
-    height: 4em;
-    background-color: var(--background);
+    height: 5rem;
+    background-color: var(---background);
 
     /* Actual Searchbar*/
     > input {
