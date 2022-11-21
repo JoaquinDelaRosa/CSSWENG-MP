@@ -12,9 +12,9 @@ const Modal = styles.div`
     justify-content: center;
 
     > .modalBackground {
-        background-color: #5a0707;
+        background-color: var(---modalbackground);
         border-radius: 15px;
-        height: 30rem;
+        height: fit-content;
         width: 35rem;
         overflow-y: auto;
     }
@@ -42,7 +42,7 @@ const CloseModal = styles.div`
 
 
     > button {
-        background-color: #062437;
+        background-color: var(---modalbackground);
         color: white;
         position: relative;
         padding: 10px 10px;

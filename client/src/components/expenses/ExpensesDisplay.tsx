@@ -5,21 +5,22 @@ import { Expense } from "./ExpenseDetails";
 import { Invoice } from "../orders/InvoiceDetails"
 import { DeleteExpenses } from "./DeleteExpenses";
 import { UpdateExpense } from "./UpdateExpense";
+import { TableBody, TableHead, TableWrapper } from "../../style/ExpenseTable";
 
 export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 
     if (props.expenses){
         return (
-            <>
+            <TableWrapper>
                 <table>
-                    <thead>
+                    <TableHead>
                         <tr>
                             <th> Description </th> 
                             <th> Amount </th>
                             <th> Date Recorded </th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    </TableHead>
+                    <TableBody>
                     {
                         props.expenses.map((value, index) => {
                             return (
@@ -29,9 +30,9 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
                             )
                         })
                     }
-                    </tbody>
+                    </TableBody>
                 </table>
-            </>
+            </TableWrapper>
         )
     }
     return null;
