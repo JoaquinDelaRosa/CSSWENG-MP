@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import "../../style/TableButtons.css";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { DeleteVehicle } from "./DeleteVehicle";
 import { UpdateVehicle } from "./UpdateVehicle";
 import { Vehicle} from "./VehicleDetails";
-import "../../style/VehiclesView.css";
 import { isRole } from "../../utils/CheckRole";
 
 export const VehicleRecord = (props : { vehicle: Vehicle, rerenderFlag: Function}) => {

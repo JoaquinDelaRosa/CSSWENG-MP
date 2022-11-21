@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { createAPIEndpoint, ENDPOINTS} from '../api';
-import '../style/LoginFull.css';
-import '../style/LoginDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
-import '../style/Hyperlink.css';
 import { removeRole, setRole } from '../utils/CheckRole';
 
 type LoginState = {
@@ -48,16 +45,16 @@ const Login = (props: {setIsLoggedIn : Function}) => {
     }
 
     return (
-        <div className="fullPage" >
-            <div className="loginBox">
-                <div className="loginLogo">
+        <div>
+            <div>
+                <div>
                 </div>
-                <div className="rightBG">
+                <div>
                 </div>
-                <div className="loginForm">
-                    <form className="loginUI" autoComplete="off">
+                <div>
+                    <form autoComplete="off">
                         <span>
-                            <input className="textField usernameField"
+                            <input
                                 name="username"
                                 value={state.username}
                                 placeholder="Username"
@@ -66,7 +63,7 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                             <br />
                         </span>
                         <span>
-                            <input className="textField passwordField"
+                            <input
                                 type="password"
                                 name="password"
                                 placeholder="Password"
@@ -76,12 +73,12 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                             <br />
                         </span>
                         <span>
-                            <input className="loginButton"
+                            <input
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
                         <p >Don't have an account? 
                                 &nbsp;
-                            <span className="redDialogue">
+                            <span>
                                 <Link to= {ROUTES.register}>
                                  Sign up now.
                                 </Link>

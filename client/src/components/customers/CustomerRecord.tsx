@@ -1,5 +1,4 @@
 import { Customer } from "./CustomerDetails";
-import "../../style/TableButtons.css";
 import { DeleteCustomer } from "./DeleteCustomer";
 import { UpdateCustomer } from "./UpdateCustomer";
 import { useEffect, useState } from "react";

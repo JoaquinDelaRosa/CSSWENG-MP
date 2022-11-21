@@ -61,7 +61,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                     </select>
                 }
                 {
-                    <div className="createCustomerButt"> 
+                    <div> 
                     <ModalWrapper front={"Create Customer"}> 
                         <RequestCustomer setResponse={setData} default={customer}/>
                     </ModalWrapper>

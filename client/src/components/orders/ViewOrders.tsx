@@ -3,7 +3,6 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { CreateOrder } from "./CreateOrder";
 import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
-import "../../style/Hometables.css";
 import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
 
@@ -45,39 +44,39 @@ const OrdersView = () => {
 
 
     return (
-        <div className="FullPage">
+        <div>
             <Searchbar path={ENDPOINTS.filterOrder} all={ENDPOINTS.orders} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {searchOptions}>
-            <div className="objectView">
+            <div>
             <br />
-            <table className="tableDiv">
+            <table>
                 <thead>
                     <tr>
-                        <th className="orderVerification"> Verified </th>
-                        <th className="statusCol"> Status </th>
-                        <th className="timeCol"> Time In </th>
-                        <th className="timeCol"> Time Out </th>
-                        <th className="customerCol"> Customer Name </th>
-                        <th className="customerCol"> Customer Type </th>
-                        <th className="customerColCompany"> Company </th>
-                        <th className="othDetails"> License Plate </th>
-                        <th className="othDetails"> Invoice Details </th>
-                        <th className="othDetails"> Estimate Number </th>
-                        <th className="othDetails"> Scope of Work </th>
-                        <th className="othDetails"> Expenses </th>
+                        <th> Verified </th>
+                        <th> Status </th>
+                        <th> Time In </th>
+                        <th> Time Out </th>
+                        <th> Customer Name </th>
+                        <th> Customer Type </th>
+                        <th> Company </th>
+                        <th> License Plate </th>
+                        <th> Invoice Details </th>
+                        <th> Estimate Number </th>
+                        <th> Scope of Work </th>
+                        <th> Expenses </th>
     
-                        <th hidden={isRole("VIEW")} className="editCol"></th>
-                        <th hidden={isRole("VIEW")} className="delCol"></th>
+                        <th hidden={isRole("VIEW")}></th>
+                        <th hidden={isRole("VIEW")}></th>
                     </tr>
                 </thead>
-                <tbody className="tbodyDiv">
+                <tbody>
                     {orders.map((value, index) => {
                         return (<OrderRecord order={value} key={index } rerenderFlag={() => {setFlag(!flag)}}/>);
                     })}
                 </tbody>
             </table>
             <br />
-            <div hidden={isRole("VIEW")} className="createBtn">
+            <div hidden={isRole("VIEW")}>
                 <CreateOrder observer={updateView}/>
             </div>
             

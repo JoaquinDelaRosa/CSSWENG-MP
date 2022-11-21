@@ -15,22 +15,22 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
 
     return (
         <div>
-            <p className="modalHeader">Editing Vehicle Table</p>
+            <p>Editing Vehicle Table</p>
             {
                 !isInForm && 
-                <form className="formStyle" onSubmit={onSubmit} autoComplete="off">
+                <form onSubmit={onSubmit} autoComplete="off">
                     <RequestVehicleForm errors={errors} register={register} default={props.default}/>
-                    <div className="submitButton">
-                        <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
+                    <div>
+                        <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                     </div>
                 </form>
             }
             <br />
             {
                 isInForm && 
-                <div className="formStyle" onSubmit={onSubmit}>
+                <div onSubmit={onSubmit}>
                     <RequestVehicleForm errors={errors} register={register} default={props.default}/>
-                    <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
+                    <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </div>
             }
         </div> 
@@ -46,30 +46,30 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
     const errors = props.errors;
     return (
         <>
-            <div className="licensePlateTag">
-                <label htmlFor='licensePlate' className="vehicleSubText">License Plate</label>
-                <input className="vehicleSubField"
+            <div>
+                <label htmlFor='licensePlate'>License Plate</label>
+                <input
                 {... register('licensePlate', {required: true, pattern: isLicensePlate})}
                 type="text" name="licensePlate" defaultValue={props.default?.licensePlate}/>
                 {errors.licensePlate && <p>License Plate is Required</p>}
             </div>
-            <div className="manufactTag">
-                <label htmlFor='manufacturer' className="vehicleSubText" >Manufacturer</label>
-                <input className="vehicleSubField"
+            <div>
+                <label htmlFor='manufacturer' >Manufacturer</label>
+                <input
                 {... register('manufacturer', {required: true, pattern: isAlphabetic})}
                 type="text" name="manufacturer" defaultValue={props.default?.manufacturer}/>
                 {errors.manufacturer && <p>Manufacturer is Required</p>}
             </div>
-            <div className="modelTag">
-                <label htmlFor='model' className="vehicleSubText" >Model</label>
-                <input className="vehicleSubField"
+            <div>
+                <label htmlFor='model'>Model</label>
+                <input
                 {... register('model', {required: true, pattern: isAlphaNumeric})}
                 type="text" name="model" defaultValue={props.default?.model}/>
                 {errors.model && <p>Model is Required</p>}
             </div>
-            <div className="yearManufTag">
-                <label htmlFor='yearManufactured' className="vehicleSubText">Year Manufactured</label>
-                <select  className="vehicleSubField" 
+            <div>
+                <label htmlFor='yearManufactured'>Year Manufactured</label>
+                <select
                 {...register('yearManufactured', {valueAsNumber: true, required: true, validate: {
                     isValid : (v : any) => {
                         return v!==DEFAULT;

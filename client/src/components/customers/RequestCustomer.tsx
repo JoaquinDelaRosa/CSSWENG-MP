@@ -13,20 +13,20 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
 
     return (
         <div>
-            <p className="modalHeader">Editing Customer Table:</p>
+            <p>Editing Customer Table:</p>
             {
                 !isInForm && 
-                <form className="formStyle" onSubmit={onSubmit} autoComplete="off">
+                <form onSubmit={onSubmit} autoComplete="off">
                     <RequestCustomerForm errors={errors} register={register} default={props.default}/>
-                    <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
+                    <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </form>
             }
             <br />
             {
                 isInForm && 
-                <div className="formStyle" onSubmit={onSubmit}>
+                <div onSubmit={onSubmit}>
                     <RequestCustomerForm errors={errors} register={register} default={props.default}/>
-                    <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
+                    <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </div>
             }
         </div> 
@@ -39,34 +39,34 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
 
     return (
         <div>
-            <div className="custFirstTag">
-                <label htmlFor="firstName" className="custSubText"> First Name </label>
+            <div>
+                <label htmlFor="firstName"> First Name </label>
                 <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
-                type="text" name = "firstName" defaultValue={props.default?.firstName} className="custSubField"/>
+                type="text" name = "firstName" defaultValue={props.default?.firstName}/>
                 {errors.firstName && <p>Customer First Name is required</p>}
             </div>
-            <div className="custLastTag">
-                <label htmlFor="lastName" className="custSubText"> Last Name </label>
+            <div>
+                <label htmlFor="lastName"> Last Name </label>
                 <input {... register("lastName", {required : true, pattern: isAlphabetic })} 
-                type="text" name = "lastName" defaultValue={props.default?.lastName} className="custSubField"/>
+                type="text" name = "lastName" defaultValue={props.default?.lastName}/>
                 {errors.lastName && <p>Customer Last Name is required</p>}
             </div>
-            <div className="custEmailTag">
-                <label htmlFor="email" className="custSubText"> Email </label>
+            <div>
+                <label htmlFor="email"> Email </label>
                 <input {... register("email", {required: true, 
                                             pattern: { value: isEmail,
                                             message: "invalid email address"}})} 
                                             type="text" name="email"
-                                            defaultValue={props.default?.email} className="custSubField"/>
+                                            defaultValue={props.default?.email}/>
                 {errors.email && <p>Email is required</p>}
             </div>
-            <div className="custMobTag">
-                <label htmlFor="mobileNumber" className="custSubText"> Mobile Number </label>
+            <div>
+                <label htmlFor="mobileNumber"> Mobile Number </label>
                 <input {... register("mobileNumber", {required: true, pattern: {
                                                                     value: isMobileNumber,
                                                                     message: "invalid mobile number"}})} 
                                                                     type="text" name="mobileNumber"
-                                                                    defaultValue={props.default?.mobileNumber} className="custSubField"/>
+                                                                    defaultValue={props.default?.mobileNumber}/>
                 {errors.mobileNumber && <p>Mobile Number is required</p>}
             </div>
             <br />

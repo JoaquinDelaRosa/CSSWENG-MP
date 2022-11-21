@@ -76,11 +76,11 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
      
     return (
         <div>
-            <p className="modalHeader">Editing Order Table:</p>
-            <form className="formStyle" onSubmit={onSubmit}>
-                <div className="orderStatTag">
-                    <label className="orderSubText">Order Status</label>
-                    <select className="orderSubField" {...register('status', {required: true, 
+            <p>Editing Order Table:</p>
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label>Order Status</label>
+                    <select {...register('status', {required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_STATUS;
@@ -102,9 +102,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.status && <p> Status has not been set</p>}
                 </div>
 
-                <div className="timeInTag">
-                    <label className="orderSubText">Time In</label>
-                    <input className="orderSubField" {...register('timeIn', {
+                <div>
+                    <label>Time In</label>
+                    <input {...register('timeIn', {
                         required: true, valueAsDate : true, validate: {
                             isAfterTimeIn: (v) =>{
                                 if (getValues("timeOut").valueOf() === 0){
@@ -123,9 +123,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                      {errors.timeIn && <p>Time in is invalid</p>}
                 </div>
 
-                <div className="timeOutTag">
-                    <label className="orderSubText">Time Out</label>
-                    <input className="orderSubField" {...register('timeOut', {
+                <div>
+                    <label>Time Out</label>
+                    <input {...register('timeOut', {
                         required: false ,valueAsDate: true, validate: {
                             isAfterTimeIn: (v) =>{
                                 if (getValues("timeOut").valueOf() === 0){
@@ -145,9 +145,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
                 </div>
                 
-                <div className="custTypeTag">
-                    <label className="orderSubText">Customer Type</label>
-                    <select className="orderSubField" {...register('type', {required: true, 
+                <div>
+                    <label>Customer Type</label>
+                    <select {...register('type', {required: true, 
                         validate: {
                             isNotDefault: (v) => {
                                 return v !== DEFAULT_TYPE
@@ -168,35 +168,35 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.type && <p> Customer Type has not been set</p>}
                 </div> 
 
-                <div className="custNameTag">
-                    <label className="orderSubText">Customer Name</label>
+                <div>
+                    <label>Customer Name</label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
                     }} default={props.default?.customer}/>
                 </div> 
                 <br />
-                <div className="orderCompanyTag">
-                    <label htmlFor="company" className="orderSubText">Company</label>
+                <div>
+                    <label htmlFor="company">Company</label>
                     <input {... register("company", {required : false})}  
-                        type='text' name="company" id="company" defaultValue={props.default?.company} className="orderSubField"/>
+                        type='text' name="company" id="company" defaultValue={props.default?.company}/>
                     {errors.company && <p>Invalid company</p>}
                 </div>
 
-                <div className="orderLicenseTag">
-                    <label className="orderSubText">Vehicle</label>
+                <div>
+                    <label>Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);
                     }} default={props.default?.vehicle}/>
                 </div> 
                 <br />
-                <div className="orderEstimateTag">
-                    <label htmlFor="estimateNumber" className="orderSubText">Estimate Code</label>
-                    <input className="orderSubField" {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
+                <div>
+                    <label htmlFor="estimateNumber">Estimate Code</label>
+                    <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
-                <div className="orderScopeTag">
-                    <label htmlFor="scopeOfWork" className="orderSubText">Scope of Work</label>
-                    <input className="orderSubField"{... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
+                <div>
+                    <label htmlFor="scopeOfWork">Scope of Work</label>
+                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
@@ -211,7 +211,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </ModalWrapper>
                 
                 <br />
-                <input type='button' name="submit" className="submit" onClick={onSubmit}value={"SUBMIT"} />
+                <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
         </div> 
     );

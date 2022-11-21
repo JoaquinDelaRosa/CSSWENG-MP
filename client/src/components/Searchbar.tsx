@@ -1,7 +1,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { createAPIEndpoint } from "../api"
-import "../style/SearchBar.css"
 
 export interface SearchOption {
     name : string,
@@ -125,8 +124,8 @@ export const Searchbar = (props : {
     }, [currentPage]);
 
     return (
-        <div className="searchWrapper">
-            <input  className="searchBar searchField" placeholder="Search" value={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
+        <div>
+            <input placeholder="Search" value={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
             {isVisible && props.options.map((value, index) => {
                 return ( 
                     <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 

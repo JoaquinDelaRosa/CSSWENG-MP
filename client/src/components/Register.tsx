@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import '../style/RegistFull.css';
-import '../style/RegistDiv.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
-import '../style/Hyperlink.css';
 
 interface RegistrationState {
     username: string,
@@ -48,50 +45,50 @@ const Register = () => {
     };
 
     return (
-        <div className="fullPage">
-            <div className="registerBox">
-                <div className="leftBG">
+        <div>
+            <div>
+                <div>
                 </div>
-                <div className="registLogo">
+                <div>
                 </div>
-                <div className="registerForm">
-                    <form className="registerUI" autoComplete="off">
-                        <span className="customerName">
-                            <input type="text" className="firstName"
+                <div>
+                    <form autoComplete="off">
+                        <span>
+                            <input type="text"
                                 name="firstName"
                                 placeholder="First Name"
                                 onChange={(e) => { onInputChange("firstName", e.target.value); }} />
 
-                            <input type="text" className="lastName"
+                            <input type="text"
                                 name="lastName"
                                 placeholder="Last Name"
                                 onChange={(e) => { onInputChange("lastName", e.target.value); }} />
                             <br />
                         </span>
 
-                        <input type="text" className="textRegister usernameField"
+                        <input type="text"
                             name="username"
                             placeholder="Username"
                             onChange={(e) => { onInputChange("username", e.target.value); }} />
                         <br />
 
-                        <input type="password" className="textRegister passwordField"
+                        <input type="password"
                             name="password"
                             placeholder="Password"
                             onChange={(e) => { onInputChange("password", e.target.value); }} />
                         <br />
 
-                        <input type="password" className="textRegister passwordField"
+                        <input type="password"
                             name="new_password"
                             placeholder="Confirm Password"
                             onChange={(e) => { onInputChange("new_password", e.target.value); }} />
                         <br />
 
-                        <input type='button' className="registButton"
+                        <input type='button'
                             name="submit"
                             onClick={onSubmit}
                             value={"Sign Up"} />
-                        <p className="loginDial">Already have an account? &nbsp;<span className="redDialogue"><Link to={ROUTES.login}>
+                        <p>Already have an account? &nbsp;<span><Link to={ROUTES.login}>
                             Login here.</Link></span></p>
                     </form>
                     

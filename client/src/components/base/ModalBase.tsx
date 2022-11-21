@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../../style/Modal.css"
 
 
 export const ModalWrapper = (props : {front : any, children : any}) => {
@@ -24,19 +23,19 @@ export const ModalWrapper = (props : {front : any, children : any}) => {
     return (
         <>
             {!isVisible && (
-                <div className="editBtn"> 
+                <div> 
                     <button onClick={() => {setIsVisible(true)}}> 
-                        <i className="icon">&nbsp;</i>
+                        <i>&nbsp;</i>
                         {props.front}
                     </button>
                 </div>
             )}
             {isVisible && (
-            <div className="modal" onClick={() => {cancel();}}> 
-                <div className="modalBackground" onClick={(e) => {e.stopPropagation();}}>
-                    <div className="modalContent">
-                        <div className="closeButton">
-                            <button className="modalCreateX"onClick={() => {cancel()}}>X</button>
+            <div onClick={() => {cancel();}}> 
+                <div onClick={(e) => {e.stopPropagation();}}>
+                    <div>
+                        <div>
+                            <button onClick={() => {cancel()}}>X</button>
                         </div>
                         {props.children}
                     </div>

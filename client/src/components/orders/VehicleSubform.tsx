@@ -66,7 +66,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
                     </select>
                 }
                 { 
-                <div className="createVehicleButt">
+                <div>
                 <ModalWrapper front={"Create Vehicle"}> 
                     <RequestVehicle setResponse={setData} default={vehicle}/>
                 </ModalWrapper>

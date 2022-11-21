@@ -1,0 +1,11 @@
+.admin-theme {
+    ---accent: #960b0b;
+    ---tableprimary: #762721;
+    ---tablesecondary: #890b0b;
+
+   }
+.employee-theme {
+    ---accent: #062437;
+    ---tableprimary: #16405b;
+    ---tablesecondary: #3b7396;
+}

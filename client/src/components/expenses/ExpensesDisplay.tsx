@@ -5,7 +5,6 @@ import { Expense } from "./ExpenseDetails";
 import { Invoice } from "../orders/InvoiceDetails"
 import { DeleteExpenses } from "./DeleteExpenses";
 import { UpdateExpense } from "./UpdateExpense";
-import "../../style/ExpensesView.css"
 
 export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 
@@ -15,9 +14,9 @@ export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
                 <table>
                     <thead>
                         <tr>
-                            <th className="expenseHeader"> Description </th> 
-                            <th className="expenseHeader"> Amount </th>
-                            <th className="expenseHeader"> Date Recorded </th>
+                            <th> Description </th> 
+                            <th> Amount </th>
+                            <th> Date Recorded </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,10 +44,10 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
             <>
                 <table>
                     <thead>
-                        <tr className="redDialogue">
-                            <th className="expenseHeader"> Description </th> 
-                            <th className="expenseHeader"> Amount </th>
-                            <th className="expenseHeader"> Date Recorded </th>
+                        <tr>
+                            <th> Description </th> 
+                            <th> Amount </th>
+                            <th> Date Recorded </th>
                         </tr>
                     </thead>
                     <tbody>

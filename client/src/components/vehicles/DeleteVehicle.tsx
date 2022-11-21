@@ -13,8 +13,8 @@ export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) 
     }
 
     return (
-      <div className="deleteBtn">
-        <button onClick={onSubmit}><i className="deleteIcon"></i></button>
+      <div>
+        <button onClick={onSubmit}><i></i></button>
       </div> 
     );
 }

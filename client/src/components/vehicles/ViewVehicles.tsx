@@ -3,8 +3,6 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
-import "../../style/TablesView.css";
-import "../../style/VehiclesView.css";
 import {Searchbar} from "../Searchbar";
 import { CreateVehicle } from "./CreateVehicle";
 import { isRole } from "../../utils/CheckRole";
@@ -59,7 +57,7 @@ const ViewVehicles = () => {
     };
 
     return (
-        <div className="FullPage">
+        <div>
             <Searchbar path={ENDPOINTS.filterVehicle} all={ENDPOINTS.vehicles} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
@@ -68,11 +66,11 @@ const ViewVehicles = () => {
                     {name: "yearManufactured", description: "The year manufactured of the vehicle"}
                 ]}>
             <br />
-            <div className="objectView">
-                <table className="tableDiv">
+            <div>
+                <table>
                     <thead>
                         <tr>
-                            <th className="licenseCol"> License Plate 
+                            <th> License Plate 
                                 <span>
                                     <div>
                                         <button onClick={() => {
@@ -86,23 +84,23 @@ const ViewVehicles = () => {
                                     </div>
                                 </span>
                             </th>
-                            <th className="manufacturerCol"> Manufacturer </th>
-                            <th className="modelCol"> Model </th>
-                            <th className="yearmanufacturedCol"> Year Manufactured </th>
-                            <th hidden={isRole("VIEW")} className="editCol"></th>
-                            <th hidden={isRole("VIEW")} className="delCol"></th>
+                            <th> Manufacturer </th>
+                            <th> Model </th>
+                            <th> Year Manufactured </th>
+                            <th hidden={isRole("VIEW")}></th>
+                            <th hidden={isRole("VIEW")}></th>
                         </tr>
                     </thead>
 
 
-                    <tbody className="tbodyDiv">
+                    <tbody>
                         {vehicles.map((value, index) => {
                             return(<VehicleRecord vehicle={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>
                 <br></br>
-                <div hidden={isRole("VIEW")} className="createBtn">
+                <div hidden={isRole("VIEW")}>
                     <ModalWrapper front={"Create Vehicle"}>
                         <CreateVehicle observer={updateView}/>
                     </ModalWrapper>

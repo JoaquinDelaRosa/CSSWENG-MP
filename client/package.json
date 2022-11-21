@@ -17,8 +17,10 @@
     "react-async": "^10.0.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.38.0",
+    "react-jss": "^10.9.2",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },

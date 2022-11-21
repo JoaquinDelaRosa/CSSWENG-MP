@@ -59,13 +59,13 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                 <td> {props.order.company} </td>
                 <td> {props.order?.vehicle?.licensePlate }</td>
 
-                <td className="detailsViewExpensesButt">
+                <td>
                     <InvoiceDisplay invoice={props.order?.invoice}/>
                 </td>
 
                 <td> {props.order.estimateNumber}</td>
                 <td> {props.order.scopeOfWork}</td>
-                <td className="detailsViewExpensesButt">
+                <td>
                     <p> 
                         {"Total Expenses: " } 
                      

@@ -4,9 +4,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
-import "../../style/TablesView.css";
 import { Searchbar } from "../Searchbar";
-import "../../style/UsersView.css";
 import { isRole } from "../../utils/CheckRole";
 
 const UsersView = () => {
@@ -59,19 +57,19 @@ const UsersView = () => {
 
 
     return (
-        <div className="FullPage">
+        <div>
             <Searchbar path={ENDPOINTS.filterUser} all={ENDPOINTS.users} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "username", description:"The username of the user"},
                 ]}>
             <br />
-            <div className="objectView">
-                <table className="tableDiv">
+            <div>
+                <table>
                     <thead>
                         <tr>
-                            <th className="firstNameCol"> First Name </th>
-                            <th className="lastNameCol"> Last Name</th>
-                            <th className="usernameCol"> Username 
+                            <th> First Name </th>
+                            <th> Last Name</th>
+                            <th> Username 
                                 <button onClick={() => {
                                     sortAlphabetically(true);
                                 }}>▲</button>
@@ -80,21 +78,21 @@ const UsersView = () => {
                                     sortAlphabetically(false);
                                 }}>▼</button>
                             </th>
-                            <th className="roleCol"> Role </th>
+                            <th> Role </th>
                             
-                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="editCol"></th>
-                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="delCol"></th>
+                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")}></th>
+                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")}></th>
                         </tr>
                     </thead>
 
-                    <tbody className="tbodyDiv">
+                    <tbody>
                         {users.map((value, index) => {
                             return (<UserRecord user={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>
                 <br />
-                <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")} className="createBtn">
+                <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
                 <ModalWrapper front={"Create User"}> 
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>

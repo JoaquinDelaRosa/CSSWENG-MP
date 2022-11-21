@@ -4,9 +4,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
-import "../../style/TablesView.css";
 import {Searchbar} from "../Searchbar";
-import "../../style/CustomerViews.css";
 import { isRole } from "../../utils/CheckRole";
 
 
@@ -59,7 +57,7 @@ const ViewCustomers = () => {
     };
 
     return (
-        <div className="FullPage">
+        <div>
             <Searchbar path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "name", description:"The name of the customer"},
@@ -67,11 +65,11 @@ const ViewCustomers = () => {
                     {name: "mobileNumber", description: "The mobile number of the customer"}
                 ]}>
             <br />
-            <div className="objectView">
-                <table className="tableDiv">
+            <div>
+                <table>
                     <thead>
                         <tr>
-                            <th className="customerNameCol"> Name 
+                            <th> Name 
                                 <button onClick={() => {
                                     sortAlphabetically(true);
                                 }}>▲</button>
@@ -80,22 +78,22 @@ const ViewCustomers = () => {
                                     sortAlphabetically(false);
                                 }}>▼</button> 
                             </th>
-                            <th className="emailCol"> Email </th>
-                            <th className="mobileNumCol"> Mobile Number </th>
+                            <th> Email </th>
+                            <th> Mobile Number </th>
 
-                            <th hidden={isRole("VIEW")} className="editCol"></th>
-                            <th hidden={isRole("VIEW")} className="delCol"></th>
+                            <th hidden={isRole("VIEW")}></th>
+                            <th hidden={isRole("VIEW")}></th>
                         </tr>
                     </thead>
                 
-                    <tbody className="tbodyDiv">
+                    <tbody>
                         {customers.map((value, index) => {
                             return (<CustomerRecord customer={value} key={index} rerenderFlag={() => {setFlag(!flag)}}/>);
                         })}
                     </tbody>
                 </table>
                 <br />
-                <div hidden={isRole("VIEW")} className="createBtn">
+                <div hidden={isRole("VIEW")}>
                 <ModalWrapper front={"Create Customer"}> 
                     <CreateCustomer observer={updateView}/>
                 </ModalWrapper>
