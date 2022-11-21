@@ -12,7 +12,6 @@ import { ENDPOINTS } from "../../api/endpoints";
 
 export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
     const [order, setOrder] = useState<Order | null>(props.order);
-    const [isVerified, setIsVerified] = useState<boolean>(props.order.verified);
 
     useEffect(() => {
         if (props && props.order){
@@ -21,18 +20,17 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
             setOrder(null);
         }
     }, [props, props.order])
-    
-    useEffect(() => {
-        createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : isVerified}, {id: props.order.id})
+
+    const onVerify = (val : boolean) => {
+        console.log("This ran");
+        createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : val}, {id: props.order.id})
         .then((response) => {
             console.log("Verified");
         })
         .catch((error) => {
             console.log(error);
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isVerified])
-    
+    }
 
     const onUpdate = () => {
         createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
@@ -49,7 +47,10 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
     if(order){
         return (
             <tr>
-                <td> <input type="checkbox" defaultChecked={isVerified} onChange={(e) => setIsVerified(!isVerified)}/> </td>
+                <td> <input type="checkbox" defaultChecked={props.order.isVerified} onChange={(e) => {
+                        onVerify(!props.order.isVerified);
+                    }
+                }/> </td>
                 <td> {props.order.status} </td>
 
                 <td><DateEntry date={props.order.timeIn} /></td>

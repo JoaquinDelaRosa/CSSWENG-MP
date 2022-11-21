@@ -31,29 +31,33 @@ export const ViewHandler = (props : {
             setQuery(query + ", " + val);
     }
 
-    const runQuery = useCallback(() => {
+    const runQuery = useCallback(async () => {
         if (query === ""){
-            createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
+            await createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
-                props.setData(response.data.data);
-
                 const c = response.data.count;
                 setCount(c);
                 if (c < skip) {
                     setCurrentPage(Math.ceil(c / LIMIT))
                 }
+                return response.data.data;
+            })
+            .then((data) => {
+                props.setData(data);
             })
         }
         else {
-            createAPIEndpoint(props.path).fetch({...props.queryParser(query.trim()), skip: skip, limit : LIMIT})
+            await createAPIEndpoint(props.path).fetch({...props.queryParser(query.trim()), skip: skip, limit : LIMIT})
             .then((response) => {
-                props.setData(response.data.data);
-
                 const c = response.data.count;
                 setCount(c);
                 if (c < skip) {
                     setCurrentPage(Math.ceil(c / LIMIT))
                 }
+                return response.data.data;
+            })
+            .then((data) => {
+                props.setData(data);
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

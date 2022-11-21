@@ -5,7 +5,6 @@ import { makeCustomerArrayView, makeCustomerView } from '../projections/customer
 
 const all = async (req: express.Request, res: express.Response) => {
     const count = await Customer.countDocuments({});
-
     Customer.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))

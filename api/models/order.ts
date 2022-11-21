@@ -45,7 +45,8 @@ const OrderSchema = new mongoose.Schema({
         description: String,
         amount: mongoose.Types.Decimal128,
     }],
-    verified: {
+    
+    isVerified: {
         type: Boolean,
         default: false,
     }

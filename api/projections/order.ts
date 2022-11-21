@@ -7,6 +7,7 @@ export const makeOrderView = (document) => {
     
     return {
         id: document._id,
+        isVerified: document.isVerified,
         status: document.status,
         timeIn: document.timeIn,
         timeOut: document.timeOut,
