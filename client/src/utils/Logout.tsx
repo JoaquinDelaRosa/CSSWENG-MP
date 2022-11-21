@@ -1,4 +1,5 @@
 
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { createAPIEndpoint } from "../api"
 import { ENDPOINTS } from "../api/endpoints"
@@ -7,14 +8,18 @@ import { removeRole } from "./CheckRole"
 
 export const Logout = (props: {setIsLoggedIn : Function}) => {
     const navigation = useNavigate();
+
+    useEffect(() => {
+        navigation(ROUTES.login)
+    }, [props.setIsLoggedIn])
     
     createAPIEndpoint(ENDPOINTS.logout).post({})
-    .then(response => {
-        console.log(response);
-        props.setIsLoggedIn(false);
+    .then(() => {
         sessionStorage.setItem("isLoggedIn", "false");
         removeRole();
-        navigation(ROUTES.login)
+    })
+    .then(() => {        
+        props.setIsLoggedIn(false);
     })
     .catch((err) => {
         console.log(err)
