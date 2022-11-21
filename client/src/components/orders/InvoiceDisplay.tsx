@@ -16,7 +16,7 @@ export const InvoiceDisplay = (props : {invoice? : Invoice}) => {
                 </div>
 
                 <div>
-                    <ModalWrapper front={"Details"}>
+                    <ModalWrapper front={"..."}>
                         <DetailedInvoice invoice={props.invoice}/>
                     </ModalWrapper>
                 </div>

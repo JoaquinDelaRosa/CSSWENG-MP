@@ -78,7 +78,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                     }
                     </>
                     </p>
-                    <ModalWrapper front={"View Expenses"}>
+                    <ModalWrapper front={"..."}>
                         <ExpensesDisplay expenses={props.order.expenses}/>
                     </ModalWrapper> 
                        

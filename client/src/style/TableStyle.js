@@ -34,7 +34,4 @@ const TableBody = styles.tbody`
     }
 `
 
-const MoreButton = styles.button`
-    
-`
 export {TableWrapper, TableHead, TableBody}

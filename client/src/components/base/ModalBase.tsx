@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Modal, ModalButton, ModalContent } from "../../style/ModalStyle";
 
 
 export const ModalWrapper = (props : {front : any, children : any}) => {
@@ -16,32 +17,36 @@ export const ModalWrapper = (props : {front : any, children : any}) => {
             }
         }
         
-        document.addEventListener('keydown', handleEscapeKey)
-        return () => document.removeEventListener('keydown', handleEscapeKey)
+        document.addEventListener('keydown', handleEscapeKey);
+        return () => document.removeEventListener('keydown', handleEscapeKey);
       }, [])
-
-    return (
-        <>
-            {!isVisible && (
+    
+    if (!isVisible) {
+        return (
+            <>
                 <div> 
-                    <button onClick={() => {setIsVisible(true)}}> 
-                        <i>&nbsp;</i>
+                    <ModalButton onClick={() => {setIsVisible(true)}}> 
+                        <i className="icon">&nbsp;</i>
                         {props.front}
-                    </button>
+                    </ModalButton>
                 </div>
-            )}
-            {isVisible && (
-            <div onClick={() => {cancel();}}> 
-                <div onClick={(e) => {e.stopPropagation();}}>
-                    <div>
-                        <div>
-                            <button onClick={() => {cancel()}}>X</button>
-                        </div>
-                        {props.children}
+            </>
+        );
+    }
+    else {
+        return (
+            <>
+                <Modal onClick={() => {cancel();}}> 
+                    <div className="modalBackground" onClick={(e) => {e.stopPropagation();}}>
+                        <ModalContent>
+                            <div>
+                                <button onClick={() => {cancel()}}>X</button>
+                            </div>
+                            {props.children}
+                        </ModalContent>
                     </div>
-                </div>
-            </div>
-            )}
-        </>
-    );
+                </Modal>
+            </>
+        )
+    }
 }
