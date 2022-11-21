@@ -1,5 +1,6 @@
 import styles from 'styled-components';
 
+// SAME NAMES AS IN TABLE STYLE BUT DOES NOT AFFECT IT
 const TableWrapper = styles.div`
 
     > table {

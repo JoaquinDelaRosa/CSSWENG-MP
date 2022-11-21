@@ -7,7 +7,7 @@ export const DeleteExpenses = (props : {observer : Function, index : number}) =>
 
     return (
         <DeleteContainer>
-            <button onClick={onClick}> Delete </button>
+            <button onClick={onClick}><i className="deleteIcon"></i> </button>
         </DeleteContainer>
     );
 } 
