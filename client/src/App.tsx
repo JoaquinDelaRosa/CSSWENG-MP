@@ -4,8 +4,9 @@ import Login from './components/Login';
 import { Main } from './Main';
 
 // Styles
-import './style/AppStyle.css'
 import './style/RoleThemes.css'
+import './style/AppStyle.css'
+
 
 function App() {
   return (

@@ -2,10 +2,12 @@
     ---accent: #960b0b;
     ---tableprimary: #762721;
     ---tablesecondary: #890b0b;
+    ---background: #17190d;
 
    }
 .employee-theme {
     ---accent: #062437;
     ---tableprimary: #16405b;
     ---tablesecondary: #3b7396;
+    ---background: #17190d;
 }

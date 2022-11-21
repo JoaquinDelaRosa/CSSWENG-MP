@@ -2,6 +2,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { createAPIEndpoint } from "../api"
 
+import PageButtonWrapper from "../style/PageButtonStyle";
+import { OptionButton, SearchWrapper } from "../style/SearchbarStyle";
+
 export interface SearchOption {
     name : string,
     description: string,
@@ -13,7 +16,7 @@ const LIMIT = 25;
 const SearchOptionBar = (props : {option : SearchOption, observer: Function})  => {
     return (
         <span>
-            <button onClick={() => {
+            <OptionButton onClick={() => {
                 if (!props.option.tag) {
                     props.observer(props.option.name + ": ")
                 }
@@ -21,7 +24,7 @@ const SearchOptionBar = (props : {option : SearchOption, observer: Function})  =
                     props.observer(props.option.tag)
                 }
             }}> 
-            {props.option.name} </button> 
+            {props.option.name} </OptionButton> 
         </span>
     );
 }
@@ -124,7 +127,7 @@ export const Searchbar = (props : {
     }, [currentPage]);
 
     return (
-        <div>
+        <SearchWrapper>
             <input placeholder="Search" value={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
             {isVisible && props.options.map((value, index) => {
                 return ( 
@@ -134,7 +137,7 @@ export const Searchbar = (props : {
 
             {props.children}
 
-            <span>
+            <PageButtonWrapper>
                 <button onClick={() => {
                     previousPage(true)
                 }}>⮜⮜</button>
@@ -154,7 +157,7 @@ export const Searchbar = (props : {
                 <button onClick={() => {
                     nextPage(true)
                 }}>⮞⮞</button> 
-            </span>
-        </div>
+            </PageButtonWrapper>
+        </SearchWrapper>
     )
 }

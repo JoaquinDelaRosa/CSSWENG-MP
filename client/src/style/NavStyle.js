@@ -1,4 +1,3 @@
-import React from "react";
 import styles from 'styled-components';
 
 const Nav = styles.header`
@@ -11,7 +10,7 @@ const Nav = styles.header`
     margin-bottom: 1.5em;
 
     > nav {
-        background-color: rgb(255,255,255));
+        background-color: rgb(255,255,255);
         display: flex;
         flex-direction: row;
         height: 120%;
