@@ -22,6 +22,11 @@ const TableHead = styles.thead`
         border-collapse: collapse;
         background-color: var(---tableprimary);
     }
+
+    tr > th {
+        width: 3rem;
+        border: 1px var(---tableprimary) solid;
+    }
 `
 
 

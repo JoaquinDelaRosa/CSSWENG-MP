@@ -7,7 +7,6 @@ const Modal = styles.div`
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--dark1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,8 +14,8 @@ const Modal = styles.div`
     > .modalBackground {
         background-color: #5a0707;
         border-radius: 15px;
-        height: 27rem;
-        width: 40rem;
+        height: 30rem;
+        width: 35rem;
         overflow-y: auto;
     }
 `
@@ -38,8 +37,22 @@ const ModalButton = styles.button`
     width: fit-content;
 `
 
-const CloseButton = styles.thead`
+const CloseModal = styles.div`
+    overflow: hidden;
 
+
+    > button {
+        background-color: #062437;
+        color: white;
+        position: relative;
+        padding: 10px 10px;
+        float: right;
+        border: none;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: 900;
+        width: 3rem
+    }
 `
 
-export {ModalButton, CloseButton, Modal, ModalContent}
+export {ModalButton, CloseModal, Modal, ModalContent}

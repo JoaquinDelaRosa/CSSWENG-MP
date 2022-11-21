@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal, ModalButton, ModalContent } from "../../style/ModalStyle";
+import { CloseModal, Modal, ModalButton, ModalContent } from "../../style/ModalStyle";
 
 
 export const ModalWrapper = (props : {front : any, children : any}) => {
@@ -39,9 +39,9 @@ export const ModalWrapper = (props : {front : any, children : any}) => {
                 <Modal onClick={() => {cancel();}}> 
                     <div className="modalBackground" onClick={(e) => {e.stopPropagation();}}>
                         <ModalContent>
-                            <div>
+                            <CloseModal>
                                 <button onClick={() => {cancel()}}>X</button>
-                            </div>
+                            </CloseModal>
                             {props.children}
                         </ModalContent>
                     </div>

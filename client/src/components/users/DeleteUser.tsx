@@ -1,4 +1,5 @@
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { DeleteContainer } from "../../style/DeleteButton";
 import { User } from "./UserDetails";
 
 export const DeleteUser = (props : {user : User, observer : Function}) => {
@@ -13,8 +14,8 @@ export const DeleteUser = (props : {user : User, observer : Function}) => {
     }
 
     return (
-      <div>
+      <DeleteContainer>
         <button onClick={onSubmit}><i></i></button>
-      </div> 
+      </DeleteContainer> 
     );
 }
