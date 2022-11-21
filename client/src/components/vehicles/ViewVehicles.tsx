@@ -66,7 +66,7 @@ const ViewVehicles = () => {
                     {name: "yearManufactured", description: "The year manufactured of the vehicle"}
                 ]}>
             <br />
-            <div>
+
                 <table>
                     <thead>
                         <tr>
@@ -105,7 +105,7 @@ const ViewVehicles = () => {
                         <CreateVehicle observer={updateView}/>
                     </ModalWrapper>
                 </div>
-            </div>
+            
             </Searchbar>
 
         </div>

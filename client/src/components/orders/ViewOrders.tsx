@@ -47,7 +47,6 @@ const OrdersView = () => {
         <div>
             <Searchbar path={ENDPOINTS.filterOrder} all={ENDPOINTS.orders} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {searchOptions}>
-            <div>
             <br />
             <table>
                 <thead>
@@ -78,8 +77,6 @@ const OrdersView = () => {
             <br />
             <div hidden={isRole("VIEW")}>
                 <CreateOrder observer={updateView}/>
-            </div>
-            
             </div>
             </Searchbar>
         </div>

@@ -63,7 +63,6 @@ const UsersView = () => {
                     {name: "username", description:"The username of the user"},
                 ]}>
             <br />
-            <div>
                 <table>
                     <thead>
                         <tr>
@@ -97,7 +96,6 @@ const UsersView = () => {
                     <CreateUser observer={updateView}/>
                 </ModalWrapper>
             </div> 
-            </div>
             </Searchbar>   
         </div>  
     );

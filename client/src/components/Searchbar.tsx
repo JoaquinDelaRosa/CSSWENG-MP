@@ -4,6 +4,8 @@ import { createAPIEndpoint } from "../api"
 
 import PageButtonWrapper from "../style/PageButtonStyle";
 import { OptionButton, SearchWrapper } from "../style/SearchbarStyle";
+import { MainWrapper } from "../style/MainWrapperStyle";
+import { TableWrapper } from "../style/TableStyle";
 
 export interface SearchOption {
     name : string,
@@ -127,15 +129,20 @@ export const Searchbar = (props : {
     }, [currentPage]);
 
     return (
-        <SearchWrapper>
-            <input placeholder="Search" value={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
-            {isVisible && props.options.map((value, index) => {
-                return ( 
-                    <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/> 
-                )})
-            }
-
-            {props.children}
+        <MainWrapper>
+            <SearchWrapper>
+                <input placeholder="Search" value={query} onChange={(e) => {setQuery(e.target.value)}} onClick={() => {setIsVisible(true)}}/>
+                {isVisible && props.options.map((value, index) => {
+                    return (
+                        <SearchOptionBar option={value} observer={appendQuery} key={index + 1}/>
+                    )})
+                }
+            </SearchWrapper>
+            
+            <TableWrapper>
+                {props.children}
+            </TableWrapper>
+            
 
             <PageButtonWrapper>
                 <button onClick={() => {
@@ -158,6 +165,6 @@ export const Searchbar = (props : {
                     nextPage(true)
                 }}>⮞⮞</button> 
             </PageButtonWrapper>
-        </SearchWrapper>
+        </MainWrapper>
     )
 }
