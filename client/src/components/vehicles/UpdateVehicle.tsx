@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle, VehicleRequest } from "./VehicleDetails";
 import { RequestVehicle } from "./RequestVehicle";
+import { ENDPOINTS } from "../../api/endpoints";
 
 export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
     const [data, setData] = useState<VehicleRequest>();

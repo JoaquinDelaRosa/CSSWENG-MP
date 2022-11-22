@@ -1,6 +1,4 @@
 import "../../style/TableButtons.css";
-import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { Expense } from "./ExpenseDetails";
 import { DateEntry } from "../base/DateEntry";
 import { NumberEntry } from "../base/NumberEntry";

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { isAlphabetic, isAlphaNumeric, isLicensePlate } from "../../utils/Regex";
-import { Vehicle, VehicleRequest } from "./VehicleDetails";
+import { VehicleRequest } from "./VehicleDetails";
 
 const DEFAULT = "DEFAULT";
 

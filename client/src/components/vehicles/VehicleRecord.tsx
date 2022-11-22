@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { DeleteVehicle } from "./DeleteVehicle";
 import { UpdateVehicle } from "./UpdateVehicle";
 import { Vehicle} from "./VehicleDetails";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 export const VehicleRecord = (props : { vehicle: Vehicle, rerenderFlag: Function}) => {
     const [vehicle, setVehicle] = useState<Vehicle | null>(props.vehicle);

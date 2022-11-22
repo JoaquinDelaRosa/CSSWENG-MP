@@ -8,9 +8,9 @@ import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
 import UsersView from "./components/users/ViewUsers";
-import { WithNav } from "./AddNav";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {Logout} from "./utils/Logout";  
+import { WithNav } from "./WithNav";
 
 
 
@@ -43,10 +43,6 @@ export const Main = () => {
                         element={<Register/> }
                     />
                 </>
-                
-      
-            
-            
             
                 <Route element={<WithNav/>}>
                     <Route path={ROUTES.customers} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>

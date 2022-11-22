@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS} from '../api';
+import { createAPIEndpoint} from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { removeRole, setRole } from '../utils/CheckRole';
 import { SignBox, LoginDiv, SignPage, RightImage, SignUp } from '../style/SignStyle';
 import { RedDialogue } from '../style/Dialogue';
+import { ENDPOINTS } from '../api/endpoints';
 
 
 type LoginState = {

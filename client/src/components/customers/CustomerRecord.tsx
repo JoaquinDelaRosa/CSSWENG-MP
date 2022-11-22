@@ -2,8 +2,9 @@ import { Customer } from "./CustomerDetails";
 import { DeleteCustomer } from "./DeleteCustomer";
 import { UpdateCustomer } from "./UpdateCustomer";
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 
 export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Function}) => {

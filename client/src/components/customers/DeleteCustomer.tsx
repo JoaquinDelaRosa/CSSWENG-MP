@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { DeleteContainer, DelIcon } from "../../style/DeleteButton";
 import { Customer } from "./CustomerDetails";
 

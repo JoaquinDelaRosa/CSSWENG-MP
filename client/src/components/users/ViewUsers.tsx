@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
@@ -9,6 +8,7 @@ import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const UsersView = () => {
 

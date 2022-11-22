@@ -1,8 +1,6 @@
 import { DateEntry } from "../base/DateEntry";
-import { ModalWrapper } from "../base/ModalBase";
 import { NumberEntry } from "../base/NumberEntry";
 import { Expense } from "./ExpenseDetails";
-import { Invoice } from "../orders/InvoiceDetails"
 import { DeleteExpenses } from "./DeleteExpenses";
 import { UpdateExpense } from "./UpdateExpense";
 import { TableBody, TableHead, TableWrapper } from "../../style/ExpenseTable";

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
@@ -9,6 +8,7 @@ import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
+import { ENDPOINTS } from "../../api/endpoints";
 
 
 const ViewCustomers = () => {

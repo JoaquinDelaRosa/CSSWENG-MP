@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { RequestCustomer } from "./RequestCustomer";
 
 export const CreateCustomer = (props : {observer : Function}) => {

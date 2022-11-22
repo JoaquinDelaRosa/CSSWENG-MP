@@ -1,6 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
-import { VehicleRequest } from './VehicleDetails';
-import { useEffect, useState } from "react";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { RequestVehicle } from "./RequestVehicle";
 
 export const CreateVehicle = (props : {observer : Function}) => {
