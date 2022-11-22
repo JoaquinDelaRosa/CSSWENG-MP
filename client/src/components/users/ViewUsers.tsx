@@ -8,6 +8,7 @@ import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
+import { CreateButton } from "../../style/CreateButton";
 
 const UsersView = () => {
 
@@ -92,11 +93,11 @@ const UsersView = () => {
                     </TableBody>
                 </table>
                 <br />
-                <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
-                <ModalWrapper front={"Create User"}> 
-                    <CreateUser observer={updateView}/>
-                </ModalWrapper>
-            </div> 
+                <CreateButton hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
+                    <ModalWrapper front={"Create User"}> 
+                        <CreateUser observer={updateView}/>
+                    </ModalWrapper>
+                </CreateButton> 
             </Searchbar>   
         </div>  
     );
