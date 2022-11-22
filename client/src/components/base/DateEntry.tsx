@@ -1,4 +1,4 @@
-const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+const MONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const DateEntry = (props: { date: string }) => {
     const d: Date = new Date(props.date);

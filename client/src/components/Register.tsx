@@ -51,8 +51,7 @@ const Register = () => {
         <SignPage>
             <SignBox>
                 <LeftImage/>
-                <div className='RegistLogo'>
-                </div>
+                <div className='RegistLogo'/>
                 <RegisterDiv>
                     <form autoComplete="off">
                         <span>
@@ -90,9 +89,18 @@ const Register = () => {
                             name="submit"
                             onClick={onSubmit}
                             value={"Sign Up"} />
+
                         <SignUp>
-                        <p>Already have an account? &nbsp;<span><Link to={ROUTES.login}>
-                            <RedDialogue>Login here</RedDialogue></Link></span></p>
+                            <p>
+                                Already have an account? &nbsp;
+                                <span>
+                                    <Link to={ROUTES.login}>
+                                        <RedDialogue>
+                                            Login here
+                                        </RedDialogue>
+                                    </Link>
+                                </span>
+                            </p>
                         </SignUp>
                     </form>
                     

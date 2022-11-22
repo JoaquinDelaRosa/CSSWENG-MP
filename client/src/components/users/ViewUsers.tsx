@@ -3,7 +3,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
-import { Searchbar } from "../Searchbar";
+import { ViewHandler } from "../view/ViewHandler";
 import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
@@ -61,7 +61,12 @@ const UsersView = () => {
 
     return (
         <div>
-            <Searchbar path={ENDPOINTS.filterUser} all={ENDPOINTS.users} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler 
+                path={ENDPOINTS.filterUser} 
+                all={ENDPOINTS.users} 
+                setData={setQueryResult} 
+                queryParser={queryParser} 
+                flag ={flag}
                 options = {[
                     {name: "username", description:"The username of the user"},
                 ]}>
@@ -98,7 +103,7 @@ const UsersView = () => {
                         <CreateUser observer={updateView}/>
                     </ModalWrapper>
                 </CreateButton> 
-            </Searchbar>   
+            </ViewHandler>   
         </div>  
     );
 }

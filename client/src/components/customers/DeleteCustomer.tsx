@@ -11,7 +11,7 @@ export const DeleteCustomer = (props : {customer : Customer, observer : Function
             })
             .catch((err) => {
                 console.log(err)
-            })
+            });
     }
 
     return (

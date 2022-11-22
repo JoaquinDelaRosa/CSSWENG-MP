@@ -22,7 +22,7 @@ export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Funct
         createAPIEndpoint(ENDPOINTS.getCustomer).fetch({id : props.customer.id})
         .then((response) => {
             setCustomer(response.data);
-        })
+        });
     };
 
     const onDelete = () => {

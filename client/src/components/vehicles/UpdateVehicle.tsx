@@ -15,7 +15,7 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
         })
         .catch(function (error) {
             console.log(error);
-        })
+        });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 

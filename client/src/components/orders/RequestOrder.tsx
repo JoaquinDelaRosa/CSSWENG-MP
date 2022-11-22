@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
@@ -31,7 +31,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     const onSubmit = handleSubmit(async (data) => {
@@ -53,7 +53,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
     useEffect(() => {
         if (props.default?.status) {
-            setValue("status", props.default?.status)
+            setValue("status", props.default?.status);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.status]);
@@ -138,7 +138,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return getValues("timeOut") >= getValues("timeIn");
                             }
                         }
-                    })} defaultValue = {
+                    })}
+                    defaultValue = {
                         props.default ? 
                         props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
                         .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
@@ -176,7 +177,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         setValue("customer", value);
                     }} default={props.default?.customer}/>
                 </div> 
+
                 <br />
+
                 <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : false})}  
@@ -190,29 +193,34 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         setValue("vehicle", value);
                     }} default={props.default?.vehicle}/>
                 </div> 
+
                 <br />
+
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
                     <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
+
                 <div>
                     <label htmlFor="scopeOfWork">Scope of Work</label>
                     <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
+
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
                 <br />
+
                 <ModalWrapper front={"Add Expenses"}>
                     <ExpenseSubform setData={(expenses: Expense[]) => {
                         setValue("expenses", expenses)
                     }} default={watch("expenses")}/>
                 </ModalWrapper>
-                
                 <br />
+                
                 <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
         </FormDivStyle> 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CreateOrder } from "./CreateOrder";
 import { OrderRecord } from "./OrderRecord";
-import { Searchbar } from "../Searchbar";
+import { ViewHandler } from "../view/ViewHandler";
 import { isRole } from "../../utils/CheckRole";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
@@ -46,40 +46,47 @@ const OrdersView = () => {
 
     return (
         <div>
-            <Searchbar path={ENDPOINTS.filterOrder} all={ENDPOINTS.orders} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler 
+                path={ENDPOINTS.filterOrder} 
+                all={ENDPOINTS.orders} 
+                setData={setQueryResult} 
+                queryParser={queryParser} 
+                flag ={flag}
                 options = {searchOptions}>
-            <br />
-            <table>
-                <TableHead>
-                    <tr>
-                        <th> Verified </th>
-                        <th> Status </th>
-                        <th> Time In </th>
-                        <th> Time Out </th>
-                        <th> Customer Name </th>
-                        <th> Customer Type </th>
-                        <th> Company </th>
-                        <th> License Plate </th>
-                        <th> Invoice Details </th>
-                        <th> Estimate Number </th>
-                        <th> Scope of Work </th>
-                        <th> Expenses </th>
-    
-                        <th hidden={isRole("VIEW")}></th>
-                        <th hidden={isRole("VIEW")}></th>
-                    </tr>
-                </TableHead>
-                <TableBody>
-                    {orders.map((value, index) => {
-                        return (<OrderRecord order={value} key={index } rerenderFlag={() => {setFlag(!flag)}}/>);
-                    })}
-                </TableBody>
-            </table>
-            <br />
-            <CreateButton hidden={isRole("VIEW")}>
-                <CreateOrder observer={updateView}/>
-            </CreateButton>
-            </Searchbar>
+
+                <br />
+                <table>
+                    <TableHead>
+                        <tr>
+                            <th> Verified </th>
+                            <th> Status </th>
+                            <th> Time In </th>
+                            <th> Time Out </th>
+                            <th> Customer Name </th>
+                            <th> Customer Type </th>
+                            <th> Company </th>
+                            <th> License Plate </th>
+                            <th> Invoice Details </th>
+                            <th> Estimate Number </th>
+                            <th> Scope of Work </th>
+                            <th> Expenses </th>
+        
+                            <th hidden={isRole("VIEW")}></th>
+                            <th hidden={isRole("VIEW")}></th>
+                        </tr>
+                    </TableHead>
+                    <TableBody>
+                        {orders.map((value, index) => {
+                            return (<OrderRecord order={value} key={index } rerenderFlag={() => {setFlag(!flag)}}/>);
+                        })}
+                    </TableBody>
+                </table>
+                <br />
+                
+                <CreateButton hidden={isRole("VIEW")}>
+                    <CreateOrder observer={updateView}/>
+                </CreateButton>
+            </ViewHandler>
 
         </div>
               

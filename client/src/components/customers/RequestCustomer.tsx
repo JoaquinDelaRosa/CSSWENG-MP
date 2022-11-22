@@ -54,20 +54,29 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
             </div>
             <div>
                 <label htmlFor="email"> Email </label>
-                <input {... register("email", {required: true, 
-                                            pattern: { value: isEmail,
-                                            message: "invalid email address"}})} 
-                                            type="text" name="email"
-                                            defaultValue={props.default?.email}/>
+                <input {... register("email", {
+                        required: true, 
+                        pattern: { 
+                            value: isEmail,
+                            message: "invalid email address"
+                        }
+                    })} 
+                    type="text" name="email"
+                    defaultValue={props.default?.email}
+                />
                 {errors.email && <p>Email is required</p>}
             </div>
             <div>
                 <label htmlFor="mobileNumber"> Mobile Number </label>
-                <input {... register("mobileNumber", {required: true, pattern: {
-                                                                    value: isMobileNumber,
-                                                                    message: "invalid mobile number"}})} 
-                                                                    type="text" name="mobileNumber"
-                                                                    defaultValue={props.default?.mobileNumber}/>
+                <input {... register("mobileNumber", {
+                        required: true, 
+                        pattern: {
+                            value: isMobileNumber,
+                            message: "invalid mobile number"
+                        }
+                    })} 
+                    type="text" name="mobileNumber"
+                    defaultValue={props.default?.mobileNumber}/>
                 {errors.mobileNumber && <p>Mobile Number is required</p>}
             </div>
             <br />

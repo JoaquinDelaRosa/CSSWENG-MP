@@ -5,12 +5,6 @@ export interface CustomerRequest {
     email : string
 }
 
-// TODO: Remove this.
-export interface CustomerTypeKVP {
-    id: number,
-    name: string
-}
-
 export interface Customer {
     id : string,
     name: {

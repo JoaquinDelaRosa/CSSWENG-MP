@@ -9,7 +9,6 @@ export const Logout = (props: {setIsLoggedIn : Function}) => {
     const navigation = useNavigate()
     createAPIEndpoint(ENDPOINTS.logout).post({})
     .then(response => {
-        console.log(response)
         props.setIsLoggedIn(false);
         sessionStorage.setItem("isLoggedIn", "false");
         removeRole();

@@ -24,7 +24,12 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
         <div>
           <ModalWrapper front={"Edit"}>
             <RequestCustomer setResponse={setData} 
-                default={{firstName: props.customer.name.firstName, lastName: props.customer.name.lastName, ...props.customer}}/>
+                default={{
+                    firstName: props.customer.name.firstName, 
+                    lastName: props.customer.name.lastName, 
+                    ...props.customer
+                }}
+                />
           </ModalWrapper>
         </div>
     )

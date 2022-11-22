@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
-import {Searchbar} from "../Searchbar";
+import {ViewHandler} from "../view/ViewHandler";
 import { CreateVehicle } from "./CreateVehicle";
 import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
@@ -61,7 +61,11 @@ const ViewVehicles = () => {
 
     return (
         <div>
-            <Searchbar path={ENDPOINTS.filterVehicle} all={ENDPOINTS.vehicles} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler 
+                path={ENDPOINTS.filterVehicle} 
+                all={ENDPOINTS.vehicles} setData={setQueryResult} 
+                queryParser={queryParser}
+                flag ={flag}
                 options = {[
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
@@ -96,14 +100,15 @@ const ViewVehicles = () => {
                         })}
                     </TableBody>
                 </table>
-                <br></br>
+
+                <br/>
                 <CreateButton hidden={isRole("VIEW")}>
                     <ModalWrapper front={"Create Vehicle"}>
                         <CreateVehicle observer={updateView}/>
                     </ModalWrapper>
                 </CreateButton>
             
-            </Searchbar>
+            </ViewHandler>
 
         </div>
     )

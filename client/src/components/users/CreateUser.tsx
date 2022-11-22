@@ -10,7 +10,7 @@ export const CreateUser = (props : {observer : Function}) => {
         })
         .catch(function (error) {
             console.log(error);
-        })
+        });
     };
 
     return (

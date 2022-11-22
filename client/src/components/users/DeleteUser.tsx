@@ -11,7 +11,7 @@ export const DeleteUser = (props : {user : User, observer : Function}) => {
             })
             .catch((err) => {
                 console.log(err)
-            })
+            });
     }
 
     return (

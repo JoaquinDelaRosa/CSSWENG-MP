@@ -23,7 +23,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, []);
 
     

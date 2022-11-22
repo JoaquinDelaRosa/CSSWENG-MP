@@ -79,8 +79,7 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
                         <SignUp>
-                        <p >Don't have an account? 
-                                &nbsp;
+                        <p >Don't have an account? &nbsp;
                             <span>
                                 <Link to= {ROUTES.register}>
                                  <RedDialogue>Sign up now.</RedDialogue>

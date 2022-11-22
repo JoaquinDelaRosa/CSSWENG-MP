@@ -3,7 +3,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
-import {Searchbar} from "../Searchbar";
+import {ViewHandler} from "../view/ViewHandler";
 import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
@@ -29,8 +29,8 @@ const ViewCustomers = () => {
     const sortAlphabetically = (isAsc: Boolean ) => {
         if(isAsc){
             customers.sort((a : Customer, b : Customer) => {
-                let fa = a.name.val.toLowerCase(),
-                    fb = b.name.val.toLowerCase();
+                let fa = a.name.val.toLowerCase();
+                let fb = b.name.val.toLowerCase();
 
                 if (fa < fb) {
                     return -1;
@@ -43,8 +43,8 @@ const ViewCustomers = () => {
         }
         else{
             customers.sort((a : Customer, b : Customer) => {
-                let fa = a.name.val.toLowerCase(),
-                    fb = b.name.val.toLowerCase();
+                let fa = a.name.val.toLowerCase();
+                let fb = b.name.val.toLowerCase();
 
                 if (fa < fb) {
                     return 1;
@@ -61,7 +61,7 @@ const ViewCustomers = () => {
 
     return (
         <div>
-            <Searchbar path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
+            <ViewHandler path={ENDPOINTS.filterCustomer} all={ENDPOINTS.customers} setData={setQueryResult} queryParser={queryParser} flag ={flag}
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
@@ -96,12 +96,10 @@ const ViewCustomers = () => {
                 </table>
                 <br />
                 <CreateButton hidden={isRole("VIEW")}>
-                    <ModalWrapper front={"Create Customer"}> 
-                        <CreateCustomer observer={updateView}/>
-                    </ModalWrapper>
+                    <CreateCustomer observer={updateView}/>
                 </CreateButton>
            
-            </Searchbar>
+            </ViewHandler>
         </div>      
     );
 }

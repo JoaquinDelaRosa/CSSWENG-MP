@@ -30,6 +30,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
         .catch((error) => {
             console.log(error)
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isVerified])
     
 
@@ -37,7 +38,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
         createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
         .then((response) => {
             setOrder(response.data);
-        })
+        });
     };
 
     const onDelete = () => {

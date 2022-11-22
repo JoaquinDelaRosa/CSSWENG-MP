@@ -1,9 +1,8 @@
-import { DateEntry } from "../base/DateEntry";
-import { NumberEntry } from "../base/NumberEntry";
 import { Expense } from "./ExpenseDetails";
 import { DeleteExpenses } from "./DeleteExpenses";
 import { UpdateExpense } from "./UpdateExpense";
 import { TableBody, TableHead, TableWrapper } from "../../style/ExpenseTable";
+import { ExpenseRecord } from "./ExpenseRecord";
 
 export const ExpensesDisplay = (props : {expenses? : Array<Expense>}) => {
 
@@ -76,22 +75,4 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
         )
     }
     return null;
-}
-
-const ExpenseRecord = (props : {expense : Expense}) => {
-    return (
-        <>
-            <td>
-                {props.expense.description}
-            </td>
-
-            <td>
-                <NumberEntry number={props.expense.amount}/>
-            </td>
-
-            <td>
-                <DateEntry date={props.expense.dateRecorded}/>
-            </td>
-        </>
-    )
 }

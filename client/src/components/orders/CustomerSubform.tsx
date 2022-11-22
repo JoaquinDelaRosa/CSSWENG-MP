@@ -20,7 +20,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
         }
     } , [query, props.default])
 
@@ -32,7 +32,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
         })
         .catch(function (error) {
             console.log(error);
-        })
+        });
     };
     return (
         <div>
@@ -44,7 +44,10 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                 <br />
                 {
                     options.length !== 0 && 
-                    <select onChange={(e) => {props.observer(e.target.value)}} defaultValue={props.default?.id}> 
+                    <select onChange={(e) => {
+                            props.observer(e.target.value)}
+                        } 
+                        defaultValue={props.default?.id}> 
                         <option value={""}> {
                             <>{ "-- Select Customer --"}</> 
                         }

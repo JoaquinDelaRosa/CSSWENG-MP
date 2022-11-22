@@ -6,7 +6,9 @@ import { Nav, NavButtons, NavSeparator } from "../style/NavStyle";
 const Button = (props: {buttonName : string, to: string}) => {
     const navigation = useNavigate();
     return (
-        <button onClick={(e) => {e.preventDefault(); navigation(props.to);}}> {props.buttonName} </button>
+        <button onClick={(e) => {e.preventDefault(); navigation(props.to);}}> 
+            {props.buttonName} 
+        </button>
     )
 }
 
