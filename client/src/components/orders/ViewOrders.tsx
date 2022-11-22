@@ -6,6 +6,7 @@ import { OrderRecord } from "./OrderRecord";
 import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
 import { TableBody, TableHead } from "../../style/TableStyle";
+import { CreateButton } from "../../style/CreateButton";
 
 const searchOptions =[
         {name: "PAID",      description:"The order is paid", tag: "status: PAID"},
@@ -76,10 +77,11 @@ const OrdersView = () => {
                 </TableBody>
             </table>
             <br />
-            <div hidden={isRole("VIEW")}>
+            <CreateButton hidden={isRole("VIEW")}>
                 <CreateOrder observer={updateView}/>
-            </div>
+            </CreateButton>
             </Searchbar>
+
         </div>
               
     );

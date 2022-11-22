@@ -6,6 +6,7 @@
     ---tablecolor: #ae6565;
     ---background: white;
     ---modalbackground: #5a0707;
+    ---createButton: #16405b;
 
    }
 .employee-theme {
@@ -13,6 +14,7 @@
     ---tableprimary: #16405b;
     ---tablesecondary: #3b7396;
     ---tableborder: #380404;
-    ---tablecolor: #ae6565
+    ---tablecolor: #ae6565;
     ---background: white;
+    ---createButton: #16405b;
 }
