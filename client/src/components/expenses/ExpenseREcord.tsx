@@ -1,8 +1,6 @@
-import "../../style/TableButtons.css";
 import { Expense } from "./ExpenseDetails";
 import { DateEntry } from "../base/DateEntry";
 import { NumberEntry } from "../base/NumberEntry";
-
 
 
 export const ExpenseRecord = (props : {expense : Expense}) => {
