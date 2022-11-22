@@ -20,13 +20,13 @@ export const PaginationHandler = (props : {
         }
         else if(skipAhead && currentPage + 10 > recordCount){
             const lastPage = recordCount - currentPage 
-            setCurrentPage((page: number) => page + lastPage);
+            setCurrentPage(lastPage);
         }
         else if(skipAhead && currentPage + 10 < recordCount){
-            setCurrentPage((page: number) => page + 10);
+            setCurrentPage(currentPage + 10);
         }
         else if(!skipAhead && currentPage + 1 <= recordCount){
-            setCurrentPage((page: number) => page + 1);
+            setCurrentPage(currentPage + 1);
         }
     }
   
@@ -38,10 +38,10 @@ export const PaginationHandler = (props : {
             setCurrentPage(1);
         }
         else if(skipAhead && currentPage - 10 > 0){
-            setCurrentPage((page: number) => page - 10);
+            setCurrentPage(currentPage - 10);
         }
         else if(!skipAhead && currentPage - 1 > 0){
-            setCurrentPage((page: number) => page - 1);
+            setCurrentPage(currentPage - 1);
         }
     }
 

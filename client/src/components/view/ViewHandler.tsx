@@ -27,8 +27,9 @@ export const ViewHandler = (props : {
     const appendQuery = (val : string) => {
         if (query === "")
             setQuery(query + " " + val);
-        else 
+        else {
             setQuery(query + ", " + val);
+        }
     }
 
     const runQuery = useCallback(() => {
@@ -39,9 +40,7 @@ export const ViewHandler = (props : {
 
                 const c = response.data.count;
                 setCount(c);
-                if (c < skip) {
-                    setCurrentPage(Math.ceil(c / LIMIT))
-                }
+                setCurrentPage(1);
             })
         }
         else {
@@ -51,9 +50,7 @@ export const ViewHandler = (props : {
 
                 const c = response.data.count;
                 setCount(c);
-                if (c < skip) {
-                    setCurrentPage(Math.ceil(c / LIMIT))
-                }
+                setCurrentPage(1);
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
