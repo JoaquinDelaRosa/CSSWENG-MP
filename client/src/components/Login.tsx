@@ -3,7 +3,7 @@ import { createAPIEndpoint, ENDPOINTS} from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { removeRole, setRole } from '../utils/CheckRole';
-import { LoginBox, LoginDiv, LoginPage, RightImage, SignUp } from '../style/LoginStyle';
+import { SignBox, LoginDiv, SignPage, RightImage, SignUp } from '../style/SignStyle';
 import { RedDialogue } from '../style/Dialogue';
 
 
@@ -48,8 +48,8 @@ const Login = (props: {setIsLoggedIn : Function}) => {
     }
 
     return (
-        <LoginPage>
-            <LoginBox>
+        <SignPage>
+            <SignBox>
                 <div className='LoginLogo'></div>
                 <RightImage></RightImage>
                 <LoginDiv>
@@ -89,8 +89,8 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                         </SignUp>
                     </form>
                 </LoginDiv>
-            </LoginBox>
-        </LoginPage>
+            </SignBox>
+        </SignPage>
     );
 }
 

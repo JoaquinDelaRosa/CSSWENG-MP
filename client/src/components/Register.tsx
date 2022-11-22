@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { createAPIEndpoint, ENDPOINTS } from '../api';
+import { LeftImage, RegisterDiv, SignBox, SignPage, SignUp } from '../style/SignStyle';
+import { RedDialogue } from '../style/Dialogue';
 
 interface RegistrationState {
     username: string,
@@ -45,13 +47,12 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <div>
-                <div>
+        <SignPage>
+            <SignBox>
+                <LeftImage/>
+                <div className='RegistLogo'>
                 </div>
-                <div>
-                </div>
-                <div>
+                <RegisterDiv>
                     <form autoComplete="off">
                         <span>
                             <input type="text"
@@ -88,13 +89,15 @@ const Register = () => {
                             name="submit"
                             onClick={onSubmit}
                             value={"Sign Up"} />
+                        <SignUp>
                         <p>Already have an account? &nbsp;<span><Link to={ROUTES.login}>
-                            Login here.</Link></span></p>
+                            <RedDialogue>Login here</RedDialogue></Link></span></p>
+                        </SignUp>
                     </form>
                     
-                </div>
-            </div>
-        </div>
+                </RegisterDiv>
+            </SignBox>
+        </SignPage>
           
     );
 }
