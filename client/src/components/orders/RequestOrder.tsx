@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
 import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
@@ -10,6 +10,7 @@ import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest, OrderRequestDefault } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
 import { FormDivStyle } from "../../style/FormStyle";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";

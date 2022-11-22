@@ -9,7 +9,7 @@ const count = async (req: express.Request, res: express.Response) => {
     Vehicle.countDocuments({})
     .then((count) => {
         res.json({vehicleCount: count});
-    })
+    });
 };
 
 const all = async (req: express.Request, res: express.Response) => {
@@ -20,28 +20,28 @@ const all = async (req: express.Request, res: express.Response) => {
     .limit(parseInt(req.query.limit as string))
     .then((data) => {
         res.json({data : makeVehicleArrayView(data), count: count ? count : 0});
-    })
+    });
 };
 
 const id = async (req: express.Request, res: express.Response) => {
     Vehicle.findOne({_id : req.query.id})
     .then((data) => {
         res.json(makeVehicleView(data));
-    })
+    });
 };
 
 const create = (req: express.Request, res: express.Response) => {
     Vehicle.create({_id: randomUUID(), ...req.body, })
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-        .finally(() => {
-            res.json(req.body);
-            res.end();
-        });
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+    .finally(() => {
+        res.json(req.body);
+        res.end();
+    });
 };
 
 
@@ -55,7 +55,7 @@ const update = (req: express.Request, res: express.Response) => {
             res.json(req.body);
         }
         res.end();
-    })
+    });
 };
 
 const remove = (req: express.Request, res: express.Response) => {
@@ -66,7 +66,7 @@ const remove = (req: express.Request, res: express.Response) => {
     .catch((err) => {
     console.log(err);
     res.end();
-    });;
+    });
 };
 
 const filter = async (req: express.Request, res: express.Response) => {

@@ -10,6 +10,28 @@ const clearRefreshToken = (res : Response) => {
 const clearAccessToken = (res : Response) => {
     res.clearCookie("jwtacc")
 }
+
+const handleRefreshTokenExpired = (res : Response, error: any) => {
+    clearRefreshToken(res);
+    return res.json({
+        message: "Refresh token expired, please log in again",
+        error,
+        auth: false,
+    }).end();
+}
+
+const handleAccessTokenExpired = (res: Response, token : any ) => {
+    clearAccessToken(res);
+    res.cookie('jwtacc', token, 
+            {
+                httpOnly: false,
+                secure: true,
+                sameSite: "none",
+            })
+    res.locals.jwt = jwt.verify(token, config.token.secret, {issuer: config.token.issuer})
+   
+}
+
 const validateToken = (req : Request, res : Response, next : NextFunction) => {
     const refToken = req.cookies.jwt;
 
@@ -21,32 +43,20 @@ const validateToken = (req : Request, res : Response, next : NextFunction) => {
                 jwt.verify(refToken, config.refreshToken.secret, (error, refreshDecoded) => {
                     // refresh token
                     if(error) {
-                        clearRefreshToken(res);
-                        return res.json({
-                            message: "Refresh token expired, please log in again",
-                            error,
-                            auth: false,
-                        }).end()
+                        handleRefreshTokenExpired(res, error)
                     }
                     
                     token = refreshToken(refToken)
                     
                     if(token) {
-                        clearAccessToken(res);
-                        res.cookie('jwtacc', token, 
-                                {
-                                    httpOnly: false,
-                                    secure: true,
-                                    sameSite: "none",
-                                })
-                        res.locals.jwt = jwt.verify(token, config.token.secret, {issuer: config.token.issuer})
+                        handleAccessTokenExpired(res, token)
                         next();
                     }
                     else {
                         return res.json({
                             message: 'Reassigning token failure in authValidation middleware',
                             auth: false
-                        }).end()
+                        }).end();
                     }
                 });
 

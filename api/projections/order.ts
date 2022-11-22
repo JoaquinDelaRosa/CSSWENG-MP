@@ -21,13 +21,13 @@ export const makeOrderView = (document) => {
             return makeExpenseView(value)
         }),
         verified: document.verified
-    }
+    };
 }
 
 export const makeOrderArrayView = (documents) => {
     return documents.map((val) => {
         return makeOrderView(val)
-    })
+    });
 }
 
 const makeInvoiceView = (invoice) => {
@@ -39,7 +39,7 @@ const makeInvoiceView = (invoice) => {
         agentLastName : invoice.agentLastName,
         datePaid : invoice.datePaid,
         agentCommission : parseFloat(invoice.agentCommission)
-    }
+    };
 }
 
 const makeExpenseView = (expense) => {
@@ -47,6 +47,6 @@ const makeExpenseView = (expense) => {
         dateRecorded: expense.dateRecorded,
         description: expense.description,
         amount: parseFloat(expense.amount)
-    }
+    };
 }
 

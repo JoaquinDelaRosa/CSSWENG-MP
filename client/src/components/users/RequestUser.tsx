@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
 import { FormDivStyle } from "../../style/FormStyle";
 import { isAlphabetic } from "../../utils/Regex";
 import { UserRequest } from "./UserDetails";

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { CreateOrder } from "./CreateOrder";
-import { Order } from "./OrderDetails";
 import { OrderRecord } from "./OrderRecord";
 import { Searchbar } from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const searchOptions =[
         {name: "PAID",      description:"The order is paid", tag: "status: PAID"},

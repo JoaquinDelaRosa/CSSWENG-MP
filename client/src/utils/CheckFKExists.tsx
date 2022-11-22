@@ -1,4 +1,5 @@
-import { createAPIEndpoint, ENDPOINTS } from "../api"
+import { createAPIEndpoint } from "../api"
+import { ENDPOINTS } from "../api/endpoints"
 
 export const isCustomerExists = (id: number, setter: any) => {
     if(Number.isNaN(id)) {

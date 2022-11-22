@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
-import { createAPIEndpoint, ENDPOINTS } from '../api';
+import { createAPIEndpoint } from '../api';
 import { LeftImage, RegisterDiv, SignBox, SignPage, SignUp } from '../style/SignStyle';
 import { RedDialogue } from '../style/Dialogue';
+import { ENDPOINTS } from '../api/endpoints';
 
 interface RegistrationState {
     username: string,

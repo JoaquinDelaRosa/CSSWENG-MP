@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import {Searchbar} from "../Searchbar";
 import { CreateVehicle } from "./CreateVehicle";
 import { isRole } from "../../utils/CheckRole";
-import { SortButton } from "../../style/SortButtons";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
+import { ENDPOINTS } from "../../api/endpoints";
 
 const ViewVehicles = () => {
 

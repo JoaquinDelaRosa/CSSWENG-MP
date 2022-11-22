@@ -1,6 +1,7 @@
 
 import { useNavigate } from "react-router-dom"
-import { createAPIEndpoint, ENDPOINTS } from "../api"
+import { createAPIEndpoint } from "../api"
+import { ENDPOINTS } from "../api/endpoints"
 import { ROUTES } from "../api/routes"
 import { removeRole } from "./CheckRole"
 

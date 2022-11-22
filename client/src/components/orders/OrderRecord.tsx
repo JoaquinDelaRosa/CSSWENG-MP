@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Order, OrderRequest } from "./OrderDetails";
-import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { Order } from "./OrderDetails";
+import { createAPIEndpoint } from "../../api";
 import { ModalWrapper } from "../base/ModalBase";
-import { RequestOrder } from "./RequestOrder";
 import { InvoiceDisplay } from "./InvoiceDisplay";
 import { DateEntry } from "../base/DateEntry";
 import { ExpensesDisplay } from "../expenses/ExpensesDisplay";
 import { DeleteOrder } from "./DeleteOrder";
 import { UpdateOrder } from "./UpdateOrders";
 import { isRole } from "../../utils/CheckRole";
+import { ENDPOINTS } from "../../api/endpoints";
 
 export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
     const [order, setOrder] = useState<Order | null>(props.order);
