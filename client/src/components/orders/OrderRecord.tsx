@@ -48,7 +48,10 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
     if(order){
         return (
             <tr>
-                <td> <input type="checkbox" defaultChecked={props.order.isVerified} onChange={(e) => {
+                <td> <input type="checkbox" 
+                    key ={props.order.id} 
+                    defaultChecked={props.order.isVerified} 
+                    onChange={(e) => {
                         onVerify(!props.order.isVerified);
                     }
                 }/> </td>
