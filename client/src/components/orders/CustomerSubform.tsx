@@ -45,12 +45,6 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
             />   
 
             <div>
-                <br /> 
-                {
-                    (options.length === 0 || !props.default) && 
-                    <p>No Customers were found.</p>
-                }
-
                 <br />
                 {
                     options.length !== 0 && 

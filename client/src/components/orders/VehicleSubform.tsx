@@ -48,10 +48,6 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
             <div> 
             <br />
                 {
-                    (options.length === 0 || !props.default) &&
-                    <p> No Vehicles were found.</p>
-                }
-                {
                     options.length !== 0 && 
                     <select onChange={(e) => {props.observer(e.target.value)}} defaultValue={props.default?.id}> 
                         <option value={""}> {
