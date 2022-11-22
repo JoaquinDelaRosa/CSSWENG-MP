@@ -7,6 +7,7 @@ export const makeOrderView = (document) => {
     
     return {
         id: document._id,
+        isVerified: document.isVerified,
         status: document.status,
         timeIn: document.timeIn,
         timeOut: document.timeOut,
@@ -20,7 +21,6 @@ export const makeOrderView = (document) => {
         expenses: document.expenses.map((value) => {
             return makeExpenseView(value)
         }),
-        verified: document.verified
     };
 }
 

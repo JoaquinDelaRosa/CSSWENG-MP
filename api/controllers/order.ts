@@ -61,10 +61,9 @@ const remove = (req: express.Request, res: express.Response) => {
 
 const verify = async (req: express.Request, res: express.Response) => {
     console.log(req.body.isVerified)
-    Order.findByIdAndUpdate(req.query.id, {verified : req.body.isVerified},
+    Order.findByIdAndUpdate(req.query.id, {isVerified : req.body.isVerified},
         (response, error) => {
             if(response) {
-                console.log(response);
                 res.json({
                     success: true,
                 })

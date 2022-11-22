@@ -31,7 +31,6 @@ const OrdersView = () => {
 
     const [orders, setOrders] = useState([]);
     const [queryResult, setQueryResult] = useState([]);
-
     const [flag, setFlag] = useState(false);
 
     const updateView = () => {

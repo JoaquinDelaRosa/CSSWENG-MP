@@ -38,8 +38,8 @@ export interface OrderRequestDefault {
 }
 
 export interface Order {
-    verified: boolean,
     id: string,
+    isVerified: boolean,
     status: string, 
     timeIn: string,
     timeOut: string,
