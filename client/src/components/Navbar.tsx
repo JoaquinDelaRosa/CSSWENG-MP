@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <Nav>
             <nav>
-                <img src={require("../style/images/TOPTECH AUTOWORKS LOGO.png")} alt="logo"></img>
+                <img src={require("../style/images/TOPTECH_AUTOWORKS_LOGO.png")} alt="logo"></img>
                 <NavButtons>
                     <Button buttonName={"Orders"} to={ROUTES.orders}/>
                     <Button buttonName={"Customers"} to={ROUTES.customers}/>

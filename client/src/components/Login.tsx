@@ -3,6 +3,9 @@ import { createAPIEndpoint, ENDPOINTS} from '../api';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
 import { removeRole, setRole } from '../utils/CheckRole';
+import { LoginBox, LoginDiv, LoginPage, RightImage, SignUp } from '../style/LoginStyle';
+import { RedDialogue } from '../style/Dialogue';
+
 
 type LoginState = {
     username: string
@@ -45,13 +48,11 @@ const Login = (props: {setIsLoggedIn : Function}) => {
     }
 
     return (
-        <div>
-            <div>
-                <div>
-                </div>
-                <div>
-                </div>
-                <div>
+        <LoginPage>
+            <LoginBox>
+                <div className='LoginLogo'></div>
+                <RightImage></RightImage>
+                <LoginDiv>
                     <form autoComplete="off">
                         <span>
                             <input
@@ -76,18 +77,20 @@ const Login = (props: {setIsLoggedIn : Function}) => {
                             <input
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
+                        <SignUp>
                         <p >Don't have an account? 
                                 &nbsp;
                             <span>
                                 <Link to= {ROUTES.register}>
-                                 Sign up now.
+                                 <RedDialogue>Sign up now.</RedDialogue>
                                 </Link>
                             </span>
                         </p>
+                        </SignUp>
                     </form>
-                </div>
-            </div>
-        </div>
+                </LoginDiv>
+            </LoginBox>
+        </LoginPage>
     );
 }
 
