@@ -62,22 +62,7 @@ const remove = (req : express.Request, res : express.Response) => {
 
 const filter = async (req: express.Request, res: express.Response) => {
     const query : CustomerQuery = makeQuery(req);
-    const count = await Customer.aggregate([
-        {
-            $project : {
-                "id": "$_id",
-                "firstName": "$firstName",
-                "lastName": "$lastName",
-                "mobileNumber": "$mobileNumber",
-                "email": "$email",
-                "name" : { 
-                    $concat : ["$firstName", " ", "$lastName"]
-                }
-            }
-        }
-    ])
-    .match(makeMongooseQuery(query))
-    .count("count")
+    const count = await getCount(query);
 
     Customer.aggregate([
         {
@@ -104,6 +89,25 @@ const filter = async (req: express.Request, res: express.Response) => {
         console.log(err);
         res.end();
     })
+}
+
+const getCount = async (query) => {
+    return await Customer.aggregate([
+        {
+            $project : {
+                "id": "$_id",
+                "firstName": "$firstName",
+                "lastName": "$lastName",
+                "mobileNumber": "$mobileNumber",
+                "email": "$email",
+                "name" : { 
+                    $concat : ["$firstName", " ", "$lastName"]
+                }
+            }
+        }
+    ])
+    .match(makeMongooseQuery(query))
+    .count("id")
 }
 
 interface CustomerQuery {

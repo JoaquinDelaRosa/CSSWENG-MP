@@ -10,8 +10,6 @@ const refreshToken = {
     secret: REFRESH_KEY
 }
 
-
-
 const token = {
     expireTime: JWT_EXPIRE_TIME,
     issuer: JWT_ISSUER,

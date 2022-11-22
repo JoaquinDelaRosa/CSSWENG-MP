@@ -7,7 +7,7 @@ const validateRole = (allowedRoles : string[]) => {
         else {
             res.status(403).json({
                 message: 'You do not have permission to access this function'
-            })
+            });
         }
     }
 }

@@ -84,7 +84,7 @@ const login = (req : express.Request, res : express.Response) => {
             auth : false, 
             error : error
         });
-    })
+    });
 }
 
 const logout = (req : express.Request, res : express.Response) => {
