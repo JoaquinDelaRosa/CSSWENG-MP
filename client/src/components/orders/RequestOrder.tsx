@@ -21,6 +21,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     const [types, setTypes] = useState<Array<string>>([]);
 
     useEffect(() => {
+        setValue("invoice.deductible", 0);
+    }, [])
+
+    useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
             .then((response) => {
                 return response.data;
