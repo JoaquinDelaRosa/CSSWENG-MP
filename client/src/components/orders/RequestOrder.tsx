@@ -9,6 +9,7 @@ import { ExpenseSubform } from "../expenses/ExpenseSubform";
 import { InvoiceSubform } from "./InvoiceSubform";
 import { OrderRequest, OrderRequestDefault } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
+import { FormDivStyle } from "../../style/FormStyle";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
@@ -75,8 +76,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
      }, [props.default?.timeIn])
      
     return (
-        <div>
-            <p>Editing Order Table:</p>
+        <FormDivStyle>
+            <p>Editing Order Table</p>
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
@@ -213,7 +214,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <br />
                 <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
-        </div> 
+        </FormDivStyle> 
     );
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint, ENDPOINTS } from "../../api";
+import { FormDivStyle } from "../../style/FormStyle";
 import { isAlphabetic } from "../../utils/Regex";
 import { UserRequest } from "./UserDetails";
 
@@ -30,7 +31,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
     });
 
     return (
-        <div>
+        <FormDivStyle>
             <p>Editing User Table:</p>
             <br />
             <form onSubmit={onSubmit}>
@@ -74,6 +75,6 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                 <br />
                 <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
-        </div> 
+        </FormDivStyle> 
     );
 }

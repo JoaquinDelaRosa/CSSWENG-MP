@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { FormDivStyle } from "../../style/FormStyle";
 import { isAlphabetic, isAlphaNumeric, isLicensePlate } from "../../utils/Regex";
 import { Vehicle, VehicleRequest } from "./VehicleDetails";
 
@@ -14,7 +15,7 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
     });
 
     return (
-        <div>
+        <FormDivStyle>
             <p>Editing Vehicle Table</p>
             {
                 !isInForm && 
@@ -33,7 +34,7 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                     <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </div>
             }
-        </div> 
+        </FormDivStyle> 
     );
 }
 

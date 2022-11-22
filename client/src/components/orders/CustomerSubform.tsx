@@ -35,15 +35,11 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
     };
     return (
         <div>
-            <input onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : 
+            <input type="text" onChange={(e) => {setQuery(e.target.value)} } defaultValue={customer ? customer.firstName + " " + customer.lastName : 
             props.default? props.default?.name : ""} />   
 
             <div>
                 <br /> 
-                {
-                    (options.length === 0 || !props.default) && 
-                    <p>No Customers were found.</p>
-                }
                 <br />
                 {
                     options.length !== 0 && 
