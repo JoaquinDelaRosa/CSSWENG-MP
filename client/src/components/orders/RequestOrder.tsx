@@ -71,11 +71,11 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default?.expenses])
-
-    useEffect(() => {
-        console.log(props.default?.timeIn.toISOString().split("T")[0]);
-     }, [props.default?.timeIn])
      
+    useEffect(() => {
+        setValue("invoice.deductible", 0);
+    }, [])
+    
     return (
         <FormDivStyle>
             <p>Editing Order Table</p>
