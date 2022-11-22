@@ -9,6 +9,7 @@ import { isRole } from "../../utils/CheckRole";
 import { SortButton } from "../../style/SortButtons";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
+import { CreateButton } from "../../style/CreateButton";
 
 const ViewVehicles = () => {
 
@@ -97,11 +98,11 @@ const ViewVehicles = () => {
                     </TableBody>
                 </table>
                 <br></br>
-                <div hidden={isRole("VIEW")}>
+                <CreateButton hidden={isRole("VIEW")}>
                     <ModalWrapper front={"Create Vehicle"}>
                         <CreateVehicle observer={updateView}/>
                     </ModalWrapper>
-                </div>
+                </CreateButton>
             
             </Searchbar>
 

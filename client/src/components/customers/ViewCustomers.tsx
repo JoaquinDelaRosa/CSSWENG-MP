@@ -8,6 +8,7 @@ import {Searchbar} from "../Searchbar";
 import { isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
+import { CreateButton } from "../../style/CreateButton";
 
 
 const ViewCustomers = () => {
@@ -94,11 +95,11 @@ const ViewCustomers = () => {
                     </TableBody>
                 </table>
                 <br />
-                <div hidden={isRole("VIEW")}>
-                <ModalWrapper front={"Create Customer"}> 
-                    <CreateCustomer observer={updateView}/>
-                </ModalWrapper>
-                </div>
+                <CreateButton hidden={isRole("VIEW")}>
+                    <ModalWrapper front={"Create Customer"}> 
+                        <CreateCustomer observer={updateView}/>
+                    </ModalWrapper>
+                </CreateButton>
            
             </Searchbar>
         </div>      
