@@ -22,7 +22,6 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
         }
     }, [props, props.order])
     useEffect(() => {
-        console.log(props.order.id)
         createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : isVerified}, {id: props.order.id})
         .then((response) => {
             console.log("Verified")

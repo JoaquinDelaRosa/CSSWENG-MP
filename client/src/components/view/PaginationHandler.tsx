@@ -12,7 +12,7 @@ export const PaginationHandler = (props : {
     const currentPage = props.currentPage;
     const setCurrentPage = props.setCurrentPage;
 
-    const nextPage = (skipAhead: Boolean) => {
+    const moveToNextPage = (skipAhead: Boolean) => {
         const recordCount = Math.ceil(count/LIMIT);
 
         if(currentPage === recordCount){
@@ -30,7 +30,7 @@ export const PaginationHandler = (props : {
         }
     }
   
-    const previousPage = (skipAhead: Boolean) => {
+    const moveToPreviousPage = (skipAhead: Boolean) => {
         if(currentPage === 1){
             console.log("start of results");
         }
@@ -48,10 +48,10 @@ export const PaginationHandler = (props : {
     return (
         <PageButtonWrapper>
             <button onClick={() => {
-                previousPage(true)
+                moveToPreviousPage(true)
             }}>⮜⮜</button>
             <button onClick={() => {
-                previousPage(false)
+                moveToPreviousPage(false)
             }}>
                     ⮜
             </button>
@@ -59,12 +59,12 @@ export const PaginationHandler = (props : {
             <p>{currentPage}</p>
 
             <button onClick={() => {
-                nextPage(false)
+                moveToNextPage(false)
             }}>
                     ⮞
             </button> 
             <button onClick={() => {
-                nextPage(true)
+                moveToNextPage(true)
             }}>⮞⮞</button> 
         </PageButtonWrapper>
     )

@@ -39,7 +39,6 @@ const OrdersView = () => {
     }
 
     useEffect(() => {
-        console.log(queryResult);
         setOrders(queryResult)
     }, [queryResult]);
 

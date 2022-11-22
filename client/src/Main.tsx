@@ -15,7 +15,6 @@ import { WithNav } from "./WithNav";
 
 
 const ProtectedRoute = (props : { isLoggedIn : boolean}) => {
-    console.log(props.isLoggedIn)
     if (!props.isLoggedIn) {
       return (<Navigate to="/login"/>);    
     }
