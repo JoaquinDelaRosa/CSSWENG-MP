@@ -35,8 +35,8 @@ export const CustomerRecord = (props : { customer: Customer, rerenderFlag: Funct
                 <td> {customer?.name.val} </td>
                 <td> {customer?.email} </td>
                 <td> {customer?.mobileNumber} </td>
-                <td hidden={isRole("VIEW")}> <UpdateCustomer customer={props.customer} observer={onUpdate}/></td>
-                <td hidden={isRole("VIEW")}> <DeleteCustomer customer={props.customer} observer={onDelete}/></td>
+                <td hidden={isRole("VIEW")}> <UpdateCustomer customer={customer} observer={onUpdate}/></td>
+                <td hidden={isRole("VIEW")}> <DeleteCustomer customer={customer} observer={onDelete}/></td>
             </tr> 
         );
     } else {

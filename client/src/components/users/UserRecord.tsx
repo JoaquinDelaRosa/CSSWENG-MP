@@ -35,8 +35,8 @@ export const UserRecord = (props : { user: User, rerenderFlag: Function}) => {
                 <td> {user?.lastName} </td>
                 <td> {user?.username} </td>
                 <td> {user?.role} </td>
-                <td hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> <UpdateUser user={props.user} observer={onUpdate}/></td>
-                <td hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> <DeleteUser user={props.user} observer={onDelete}/></td>
+                <td hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> <UpdateUser user={user} observer={onUpdate}/></td>
+                <td hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> <DeleteUser user={user} observer={onDelete}/></td>
             </tr> 
         );
     }

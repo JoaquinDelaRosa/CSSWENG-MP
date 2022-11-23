@@ -35,8 +35,8 @@ export const VehicleRecord = (props : { vehicle: Vehicle, rerenderFlag: Function
                 <td> {vehicle?.manufacturer} </td>
                 <td> {vehicle?.model} </td>
                 <td> {vehicle?.yearManufactured} </td>
-                <td hidden={isRole("VIEW")}> <UpdateVehicle vehicle={props.vehicle} observer={onUpdate}/></td>
-                <td hidden={isRole("VIEW")}> <DeleteVehicle vehicle={props.vehicle} observer={onDelete}/></td>
+                <td hidden={isRole("VIEW")}> <UpdateVehicle vehicle={vehicle} observer={onUpdate}/></td>
+                <td hidden={isRole("VIEW")}> <DeleteVehicle vehicle={vehicle} observer={onDelete}/></td>
             </tr> 
         );
     } else{
