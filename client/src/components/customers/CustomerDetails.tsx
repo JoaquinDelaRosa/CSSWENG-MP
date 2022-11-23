@@ -2,7 +2,10 @@ export interface CustomerRequest {
     firstName: string,
     lastName: string,
     mobileNumber : string,
-    email : string
+    email : string,
+    company : string,
+    insurance : string,
+    remarks : string
 }
 
 export interface Customer {
@@ -13,5 +16,8 @@ export interface Customer {
         val: string,
     },
     mobileNumber : string,
-    email : string
+    email : string,
+    company : string,
+    insurance : string,
+    remarks : string
 }

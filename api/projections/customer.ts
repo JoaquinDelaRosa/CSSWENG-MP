@@ -10,7 +10,10 @@ export const makeCustomerView = (document) => {
             val: document.firstName + " " +  document.lastName,
         },
         mobileNumber: document.mobileNumber,
-        email: document.email
+        email: document.email,
+        company: document.company,
+        insurance: document.insurance,
+        remarks: document.remarks
     };
 }
 

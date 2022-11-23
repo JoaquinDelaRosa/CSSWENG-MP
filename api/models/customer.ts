@@ -13,7 +13,10 @@ export const CustomerSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     mobileNumber: String,
-    email: String
+    email: String,
+    company: String,
+    insurance: String,
+    remarks: String
 }, {_id: false});
 
 export const Customer = mongoose.model('Customer', CustomerSchema);

@@ -74,7 +74,10 @@ const filter = async (req: express.Request, res: express.Response) => {
                 "email": "$email",
                 "name" : { 
                     $concat : ["$firstName", " ", "$lastName"]
-                }
+                },
+                "company": "$company",
+                "insurance": "$insurance",
+                "remarks": "$remarks"
             }
         }
     ])
@@ -102,7 +105,10 @@ const getCount = async (query) => {
                 "email": "$email",
                 "name" : { 
                     $concat : ["$firstName", " ", "$lastName"]
-                }
+                },
+                "company": "$company",
+                "insurance": "$insurance",
+                "remarks": "$remarks"
             }
         }
     ])
@@ -114,13 +120,19 @@ interface CustomerQuery {
     name : string,
     email: string,
     mobileNumber: string,
+    company: string,
+    insurance: string,
+    remarks: string
 }
 
 const makeMongooseQuery = (q : CustomerQuery) : any => {
     let query =  {
         name: {$regex: ".*" + q.name + ".*" , $options: "i"},
         email: {$regex: ".*" + q.email + ".*" , $options: "i"},
-        mobileNumber: {$regex: ".*" + q.mobileNumber + ".*" , $options: "i"}
+        mobileNumber: {$regex: ".*" + q.mobileNumber + ".*" , $options: "i"},
+        company: {$regex: ".*" + q.company + ".*" , $options: "i"},
+        insurance: {$regex: ".*" + q.insurance + ".*" , $options: "i"},
+        remarks: {$regex: ".*" + q.remarks + ".*" , $options: "i"}
     }
 
     return query;
@@ -131,6 +143,9 @@ const makeQuery = (req : express.Request) : CustomerQuery => {
         name: (req.query.name) ? (req.query.name as string) : "",
         email: (req.query.email) ? (req.query.email as string) : "",
         mobileNumber: (req.query.mobileNumber) ? (req.query.mobileNumber as string) : "",
+        company: (req.query.company) ? (req.query.company as string) : "",
+        insurance: (req.query.insurance) ? (req.query.insurance as string) : "",
+        remarks: (req.query.remarks) ? (req.query.remarks as string) : ""
     }
 }
 
