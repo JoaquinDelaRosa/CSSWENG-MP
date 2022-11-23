@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint } from "../../api";
 import { ENDPOINTS } from "../../api/endpoints";
+import { EditButton } from "../../style/EditButton";
 import { ModalWrapper } from "../base/ModalBase";
 import { Order, OrderRequest } from "./OrderDetails";
 import { RequestOrder } from "./RequestOrder";
@@ -20,7 +21,7 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
     }, [data])
 
     return (
-        <div>
+        <EditButton>
           <ModalWrapper front={"Edit"}>
             <RequestOrder setResponse={setData} default={{
                 ...props.order, 
@@ -38,6 +39,6 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
                 scopeOfWork: props.order?.scopeOfWork
             }}/>
           </ModalWrapper>
-        </div>
+        </EditButton>
     )
 }
