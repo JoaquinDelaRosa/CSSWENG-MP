@@ -39,16 +39,16 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
 
     if (props.expenses ){
         return (
-            <>
+            <TableWrapper>
                 <table>
-                    <thead>
+                    <TableHead>
                         <tr>
                             <th> Description </th> 
                             <th> Amount </th>
                             <th> Date Recorded </th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    </TableHead>
+                    <TableBody>
                     {
                         props.expenses.map((value, index) => {
                             return (
@@ -69,9 +69,9 @@ export const ExpensesModifiableDisplay = (props : {observer : Function , expense
                             )
                         })
                     }
-                    </tbody>
+                    </TableBody>
                 </table>
-            </>
+            </TableWrapper>
         )
     }
     return null;

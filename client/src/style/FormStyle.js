@@ -40,7 +40,7 @@ const FormDivStyle = styles.div`
         width: 10rem;
     }
 
-    input[name="submit"] {
+    input[name="submit"], input[name="add"] {
         background-color: var(---submitButton);
         color: white;
         border: none;
@@ -49,8 +49,9 @@ const FormDivStyle = styles.div`
         margin: 0.5rem;
         font-weight: bold;
     }
+    
 
-    input[name="submit"]:hover {
+    input[name="submit"]:hover , input[name="add"]:hover {
         background-color: rgb(255,255,255,0.1);
         color: white;
     }
