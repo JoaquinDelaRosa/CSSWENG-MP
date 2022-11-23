@@ -4,6 +4,7 @@ import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle, VehicleRequest } from "./VehicleDetails";
 import { RequestVehicle } from "./RequestVehicle";
 import { ENDPOINTS } from "../../api/endpoints";
+import { EditButton } from "../../style/EditButton";
 
 export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
     const [data, setData] = useState<VehicleRequest>();
@@ -20,10 +21,10 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
     }, [data])
 
     return (
-        <div>
+        <EditButton>
           <ModalWrapper front={"Edit"}>
             <RequestVehicle setResponse={setData} default={props.vehicle}/>
           </ModalWrapper>
-        </div>
+        </EditButton>
     )
 }

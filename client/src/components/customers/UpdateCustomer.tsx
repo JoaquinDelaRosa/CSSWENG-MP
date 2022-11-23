@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createAPIEndpoint } from "../../api";
 import { ENDPOINTS } from "../../api/endpoints";
+import { EditButton } from "../../style/EditButton";
 import { ModalWrapper } from "../base/ModalBase";
 import { Customer, CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
@@ -21,7 +22,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
     }, [data])
 
     return (
-        <div>
+        <EditButton>
           <ModalWrapper front={"Edit"}>
             <RequestCustomer setResponse={setData} 
                 default={{
@@ -31,6 +32,6 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
                 }}
                 />
           </ModalWrapper>
-        </div>
+        </EditButton>
     )
 }

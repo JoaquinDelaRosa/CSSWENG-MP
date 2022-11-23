@@ -78,7 +78,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     
     return (
         <FormDivStyle>
-            <p>Editing Order Table</p>
+            <p>Order Table</p>
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
