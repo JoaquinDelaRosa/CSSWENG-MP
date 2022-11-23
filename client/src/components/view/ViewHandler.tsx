@@ -5,7 +5,7 @@ import { createAPIEndpoint } from "../../api"
 import { MainWrapper } from "../../style/MainWrapperStyle";
 import { TableWrapper } from "../../style/TableStyle";
 import { LIMIT, PaginationHandler } from "./PaginationHandler";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "./Searchbar";
 import { SearchOption } from "./SearchOptionsBar";
 
 export const ViewHandler = (props : {
@@ -33,6 +33,7 @@ export const ViewHandler = (props : {
     }
 
     const runQuery = useCallback(() => {
+        console.log("hellloooooooo")
         if (query === ""){
             createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
@@ -40,7 +41,6 @@ export const ViewHandler = (props : {
 
                 const c = response.data.count;
                 setCount(c);
-                setCurrentPage(1);
             })
         }
         else {
@@ -50,7 +50,6 @@ export const ViewHandler = (props : {
 
                 const c = response.data.count;
                 setCount(c);
-                setCurrentPage(1);
             })
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,6 +64,10 @@ export const ViewHandler = (props : {
     useEffect(() => {
         setSkip((currentPage-1) * LIMIT)
     }, [currentPage]);
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [count]);
 
     return (
         <MainWrapper>

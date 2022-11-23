@@ -57,27 +57,27 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                 }/> </td>
                 <td> {props.order.status} </td>
 
-                <td><DateEntry date={props.order.timeIn} /></td>
-                <td><DateEntry date={props.order.timeOut} /></td>
+                <td><DateEntry date={props.order?.timeIn} /></td>
+                <td><DateEntry date={props.order?.timeOut} /></td>
 
-                <td> {props.order?.customer?.name.val}</td>
-                <td> {props.order.type} </td>
-                <td> {props.order.company} </td>
+                <td> {props.order?.customer?.name?.val}</td>
+                <td> {props.order?.type} </td>
+                <td> {props.order?.company} </td>
                 <td> {props.order?.vehicle?.licensePlate }</td>
 
                 <td>
                     <InvoiceDisplay invoice={props.order?.invoice}/>
                 </td>
 
-                <td> {props.order.estimateNumber}</td>
-                <td> {props.order.scopeOfWork}</td>
+                <td> {props.order?.estimateNumber}</td>
+                <td> {props.order?.scopeOfWork}</td>
                 <td>
                     <p> 
                         {"Total Expenses: " } 
                      
                     <>
                     {
-                        props.order.expenses.reduce(
+                        props.order?.expenses.reduce(
                             (x, y) => {
                                 return x + y.amount.valueOf();
                             }, 0).toFixed(2)
@@ -85,7 +85,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                     </>
                     </p>
                     <ModalWrapper front={"..."}>
-                        <ExpensesDisplay expenses={props.order.expenses}/>
+                        <ExpensesDisplay expenses={props.order?.expenses}/>
                     </ModalWrapper> 
                        
                 </td>

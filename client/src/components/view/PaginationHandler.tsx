@@ -1,6 +1,6 @@
 import PageButtonWrapper from "../../style/PageButtonStyle";
 
-export const LIMIT = 1;
+export const LIMIT = 2;
 
 export const PaginationHandler = (props : {
     count: number ,

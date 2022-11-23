@@ -24,18 +24,18 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
           <ModalWrapper front={"Edit"}>
             <RequestOrder setResponse={setData} default={{
                 ...props.order, 
-                timeIn: new Date(props.order.timeIn), 
-                timeOut: new Date(props.order.timeOut),
+                timeIn: new Date(props.order?.timeIn), 
+                timeOut: new Date(props.order?.timeOut),
                 customer: {
-                    id: props.order.customer.id,
-                    name: props.order.customer.name.val
+                    id: props.order?.customer?.id,
+                    name: props.order?.customer?.name?.val
                 },
                 vehicle: {
-                    id: props.order.vehicle.id,
-                    licensePlate: props.order.vehicle.licensePlate
+                    id: props.order?.vehicle?.id,
+                    licensePlate: props.order?.vehicle?.licensePlate
                 },
-                expenses: props.order.expenses,
-                scopeOfWork: props.order.scopeOfWork
+                expenses: props.order?.expenses,
+                scopeOfWork: props.order?.scopeOfWork
             }}/>
           </ModalWrapper>
         </div>
