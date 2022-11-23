@@ -6,7 +6,7 @@ const TableWrapper = styles.div`
     > table {
         color: white;
         width: 100%;
-        font-size: 16px;
+        font-size: 14px;
         border-collapse: collapse;
         margin-left: auto;
         margin-right: auto;

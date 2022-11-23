@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
 
 const defaultExpense = {
@@ -15,7 +16,7 @@ export const UpdateExpense = (props: {setData : Function,  default : Expense}) =
         setExpense(defaultExpense);
     }
     return (
-        <>
+        <ModalWrapper front={"Edit"}>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount" 
@@ -47,6 +48,6 @@ export const UpdateExpense = (props: {setData : Function,  default : Expense}) =
             </div>
             
             <input type="button" name="submit" onClick={onChange} value={"Apply"}/>
-        </>
+        </ModalWrapper>
     );
 }
