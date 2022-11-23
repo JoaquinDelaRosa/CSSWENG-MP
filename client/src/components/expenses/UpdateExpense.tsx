@@ -8,7 +8,7 @@ const defaultExpense = {
 };
 
 export const UpdateExpense = (props: {setData : Function,  default : Expense}) => {
-    const [expense, setExpense] = useState<Expense>(defaultExpense);
+    const [expense, setExpense] = useState<Expense>(props.default);
 
     const onChange = () => {
         props.setData(expense);
@@ -19,7 +19,7 @@ export const UpdateExpense = (props: {setData : Function,  default : Expense}) =
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount" 
-                    value={expense.dateRecorded}
+                    value={new Date(expense.dateRecorded).toISOString().split("T")[0]}
                     onChange = {(e) => {
                         setExpense({...expense, dateRecorded: e.target.value})
                     }}
