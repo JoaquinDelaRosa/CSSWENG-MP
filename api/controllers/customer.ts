@@ -83,7 +83,7 @@ const filter = async (req: express.Request, res: express.Response) => {
     .limit(parseInt(req.query.limit as string))
     .then((result) => {
         res.json({data: makeCustomerArrayView(result), 
-            count: (count && count[0] && count[0].count)?  count[0].count : 0});
+            count: (count && count[0] && count[0]["count"] ?  count[0]["count"] : 0)});
         res.end();
     }).catch((err) => {
         console.log(err);
@@ -107,7 +107,7 @@ const getCount = async (query) => {
         }
     ])
     .match(makeMongooseQuery(query))
-    .count("id")
+    .count("count")
 }
 
 interface CustomerQuery {

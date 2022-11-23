@@ -19,9 +19,9 @@ export const ViewHandler = (props : {
 }) => {
 
     const [query, setQuery] = useState<string>("");
-    const [currentPage, setCurrentPage] = useState(1);
     const [skip, setSkip] = useState(0);
     const [count, setCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
 
     const appendQuery = (val : string) => {
@@ -33,7 +33,6 @@ export const ViewHandler = (props : {
     }
 
     const runQuery = useCallback(() => {
-        console.log("hellloooooooo")
         if (query === ""){
             createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
@@ -49,6 +48,7 @@ export const ViewHandler = (props : {
                 props.setData(response.data.data);
 
                 const c = response.data.count;
+                console.log(c);
                 setCount(c);
             })
         }
@@ -62,11 +62,11 @@ export const ViewHandler = (props : {
     }, [query, runQuery, skip])
 
     useEffect(() => {
-        setSkip((currentPage-1) * LIMIT)
+        setSkip((currentPage-1) * LIMIT);
     }, [currentPage]);
 
     useEffect(() => {
-        setCurrentPage(1)
+        setCurrentPage(1);
     }, [count]);
 
     return (

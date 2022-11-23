@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import PageButtonWrapper from "../../style/PageButtonStyle";
 
 export const LIMIT = 2;
@@ -7,10 +8,12 @@ export const PaginationHandler = (props : {
     currentPage: number ,
     setCurrentPage: Function
 }) => {
-    
-    const count = props.count;
-    const currentPage = props.currentPage;
-    const setCurrentPage = props.setCurrentPage;
+    const [count, setCount] = useState(props.count);
+    const [currentPage, setCurrentPage] = [props.currentPage, props.setCurrentPage]
+
+    useEffect(() => {
+        setCount(props.count);
+    }, [props.count])
 
     const jumpToPage = (jump: number) => {
         if (currentPage + jump < 1){
