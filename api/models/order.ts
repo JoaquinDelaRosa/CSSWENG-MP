@@ -24,7 +24,6 @@ const OrderSchema = new mongoose.Schema({
         enum: TypeEnum,
         default: DEFAULT_TYPE
     },
-    company: String,
     vehicle : {type: String, ref: 'Vehicle'},
     
     invoice: {

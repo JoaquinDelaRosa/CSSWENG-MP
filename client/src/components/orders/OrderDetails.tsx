@@ -26,7 +26,6 @@ export interface OrderRequestDefault {
         name: string
     },
     type: string,
-    company: string,
     vehicle: {
         id: string, 
         licensePlate: string,

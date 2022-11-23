@@ -181,13 +181,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <br />
 
                 <div>
-                    <label htmlFor="company">Company</label>
-                    <input {... register("company", {required : false})}  
-                        type='text' name="company" id="company" defaultValue={props.default?.company} autoComplete="off"/>
-                    {errors.company && <p>Invalid company</p>}
-                </div>
-
-                <div>
                     <label>Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);

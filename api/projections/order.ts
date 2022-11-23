@@ -13,7 +13,6 @@ export const makeOrderView = (document) => {
         timeOut: document.timeOut,
         customer: makeCustomerView(document.customer),
         type: document.type,
-        company: document.company,
         vehicle: makeVehicleView(document.vehicle),
         invoice: makeInvoiceView(document.invoice),
         estimateNumber: document.estimateNumber,

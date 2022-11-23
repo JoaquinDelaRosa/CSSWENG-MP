@@ -62,7 +62,6 @@ const OrdersView = () => {
                             <th> Time Out </th>
                             <th> Customer Name </th>
                             <th> Customer Type </th>
-                            <th> Company </th>
                             <th> License Plate </th>
                             <th> Invoice Details </th>
                             <th> Estimate Number </th>
