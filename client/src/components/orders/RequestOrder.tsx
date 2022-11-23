@@ -88,7 +88,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return v !== DEFAULT_STATUS;
                             }
                         }})} 
-                        value = {(props.default && props.default.status) ? 
+                        value = {(watch("status")) ? 
                             watch("status"): DEFAULT_STATUS}
                         >
                         <option value={DEFAULT_STATUS} disabled>-- Select Status --</option>
@@ -183,7 +183,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <div>
                     <label htmlFor="company">Company</label>
                     <input {... register("company", {required : false})}  
-                        type='text' name="company" id="company" defaultValue={props.default?.company}/>
+                        type='text' name="company" id="company" defaultValue={props.default?.company} autoComplete="off"/>
                     {errors.company && <p>Invalid company</p>}
                 </div>
 
@@ -198,13 +198,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
 
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
-                    <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber}/>
+                    <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber} autoComplete="off"/>
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
 
                 <div>
                     <label htmlFor="scopeOfWork">Scope of Work</label>
-                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork}/>
+                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork} autoComplete="off"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
