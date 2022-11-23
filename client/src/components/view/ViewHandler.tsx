@@ -5,7 +5,7 @@ import { createAPIEndpoint } from "../../api"
 import { MainWrapper } from "../../style/MainWrapperStyle";
 import { TableWrapper } from "../../style/TableStyle";
 import { LIMIT, PaginationHandler } from "./PaginationHandler";
-import { SearchBar } from "./Searchbar";
+import { SearchBar } from "./SearchBar";
 import { SearchOption } from "./SearchOptionsBar";
 
 export const ViewHandler = (props : {
