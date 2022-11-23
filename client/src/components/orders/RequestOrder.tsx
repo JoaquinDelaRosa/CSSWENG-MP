@@ -88,8 +88,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                                 return v !== DEFAULT_STATUS;
                             }
                         }})} 
-                        defaultValue= {(props.default && props.default.status) ? 
-                            props.default.status : DEFAULT_STATUS}
+                        value = {(props.default && props.default.status) ? 
+                            watch("status"): DEFAULT_STATUS}
                         >
                         <option value={DEFAULT_STATUS} disabled>-- Select Status --</option>
                         {
@@ -109,12 +109,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <input {...register('timeIn', {
                         required: true, valueAsDate : true, validate: {
                             isAfterTimeIn: (v) =>{
-                                if (getValues("timeOut").valueOf() === 0){
+                                if (watch("timeOut").valueOf() === 0){
                                     return true;
                                 }
                                 if(isNaN(v.valueOf()))
                                     return false;
-                                return getValues("timeOut") >= getValues("timeIn") || isNaN(getValues("timeOut").valueOf());
+                                return watch("timeOut") >= watch("timeIn") || isNaN(watch("timeOut").valueOf());
                             }
                         }
                      })} defaultValue = {
@@ -130,12 +130,12 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     <input {...register('timeOut', {
                         required: false ,valueAsDate: true, validate: {
                             isAfterTimeIn: (v) =>{
-                                if (getValues("timeOut").valueOf() === 0){
+                                if (watch("timeOut").valueOf() === 0){
                                     return true;
                                 }
                                 if(isNaN(v.valueOf()))
                                     return true;
-                                return getValues("timeOut") >= getValues("timeIn");
+                                return watch("timeOut") >= watch("timeIn");
                             }
                         }
                     })}
@@ -157,7 +157,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                             }
                         }})} 
                         defaultValue= {(props.default && props.default.type) ? 
-                            props.default.type.valueOf() : DEFAULT_TYPE}>
+                            watch("type") : DEFAULT_TYPE}>
                         <option value={DEFAULT_TYPE} disabled>-- Select Type --</option>
                         {
                             types.map((value, index) => {
