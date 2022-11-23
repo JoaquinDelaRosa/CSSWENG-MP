@@ -12,46 +12,25 @@ export const PaginationHandler = (props : {
     const currentPage = props.currentPage;
     const setCurrentPage = props.setCurrentPage;
 
-    const moveToNextPage = (skipAhead: Boolean) => {
-        const recordCount = Math.ceil(count/LIMIT);
-
-        if(currentPage === recordCount){
-            console.log("end of results");
-        }
-        else if(skipAhead && currentPage + 10 > recordCount){
-            const lastPage = recordCount - currentPage 
-            setCurrentPage(lastPage);
-        }
-        else if(skipAhead && currentPage + 10 < recordCount){
-            setCurrentPage(currentPage + 10);
-        }
-        else if(!skipAhead && currentPage + 1 <= recordCount){
-            setCurrentPage(currentPage + 1);
-        }
-    }
-  
-    const moveToPreviousPage = (skipAhead: Boolean) => {
-        if(currentPage === 1){
-            console.log("start of results");
-        }
-        else if(skipAhead && currentPage - 10 < 1){
+    const jumpToPage = (jump: number) => {
+        if (currentPage + jump < 1){
             setCurrentPage(1);
         }
-        else if(skipAhead && currentPage - 10 > 0){
-            setCurrentPage(currentPage - 10);
+        else if (currentPage + jump > Math.ceil(count / LIMIT)) {
+            setCurrentPage(Math.ceil(count / LIMIT));
         }
-        else if(!skipAhead && currentPage - 1 > 0){
-            setCurrentPage(currentPage - 1);
+        else {
+            setCurrentPage(currentPage + jump);
         }
     }
 
     return (
         <PageButtonWrapper>
             <button onClick={() => {
-                moveToPreviousPage(true)
+                jumpToPage(-10)
             }}>⮜⮜</button>
             <button onClick={() => {
-                moveToPreviousPage(false)
+                jumpToPage(-1)
             }}>
                     ⮜
             </button>
@@ -59,12 +38,12 @@ export const PaginationHandler = (props : {
             <p>{currentPage}</p>
 
             <button onClick={() => {
-                moveToNextPage(false)
+                jumpToPage(1)
             }}>
                     ⮞
             </button> 
             <button onClick={() => {
-                moveToNextPage(true)
+                jumpToPage(10)
             }}>⮞⮞</button> 
         </PageButtonWrapper>
     )
