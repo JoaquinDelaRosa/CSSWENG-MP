@@ -3,7 +3,7 @@ import express = require('express');
 import { Customer } from '../models/customer';
 import { Order } from '../models/order';
 import { Vehicle } from '../models/vehicle';
-import { makeOrderArrayView } from '../projections/order';
+import { makeOrderArrayView, makeOrderView } from '../projections/order';
 
 const all = async (req: express.Request, res: express.Response) => {
     const count = await Order.countDocuments({});
@@ -23,7 +23,7 @@ const id = async (req: express.Request, res: express.Response) => {
     .populate("customer")
     .populate("vehicle")
     .then((data) => {
-        res.json(makeOrderArrayView(data));
+        res.json(makeOrderView(data));
     });
 };
 

@@ -34,7 +34,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
     
 
     const onUpdate = () => {
-        createAPIEndpoint(ENDPOINTS.getVehicle).fetch({id : props.order.id})
+        createAPIEndpoint(ENDPOINTS.getOrder).fetch({id : props.order.id})
         .then((response) => {
             setOrder(response.data);
         });
@@ -50,36 +50,36 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
             <tr>
                 <td hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> 
                     <input type="checkbox" 
-                        key ={props.order.id} 
-                        defaultChecked={props.order.isVerified} 
+                        key ={order.id} 
+                        defaultChecked={order.isVerified} 
                         onChange={(e) => {
-                            onVerify(!props.order.isVerified);
+                            onVerify(!order.isVerified);
                         }
                     }/> 
                 </td>
-                <td> {props.order.status} </td>
+                <td> {order.status} </td>
 
-                <td><DateEntry date={props.order?.timeIn} /></td>
-                <td><DateEntry date={props.order?.timeOut} /></td>
+                <td><DateEntry date={order?.timeIn} /></td>
+                <td><DateEntry date={order?.timeOut} /></td>
 
-                <td> {props.order?.customer?.name?.val}</td>
-                <td> {props.order?.type} </td>
-                <td> {props.order?.company} </td>
-                <td> {props.order?.vehicle?.licensePlate }</td>
+                <td> {order?.customer?.name?.val}</td>
+                <td> {order?.type} </td>
+                <td> {order?.company} </td>
+                <td> {order?.vehicle?.licensePlate }</td>
 
                 <td>
-                    <InvoiceDisplay invoice={props.order?.invoice}/>
+                    <InvoiceDisplay invoice={order?.invoice}/>
                 </td>
 
-                <td> {props.order?.estimateNumber}</td>
-                <td> {props.order?.scopeOfWork}</td>
+                <td> {order?.estimateNumber}</td>
+                <td> {order?.scopeOfWork}</td>
                 <td>
                     <p> 
                         {"Total Expenses: " } 
                      
                     <>
                     {
-                        props.order?.expenses.reduce(
+                        order?.expenses.reduce(
                             (x, y) => {
                                 return x + y.amount.valueOf();
                             }, 0).toFixed(2)
@@ -87,13 +87,13 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                     </>
                     </p>
                     <ModalWrapper front={"..."}>
-                        <ExpensesDisplay expenses={props.order?.expenses}/>
+                        <ExpensesDisplay expenses={order?.expenses}/>
                     </ModalWrapper> 
                        
                 </td>
 
-                <td hidden={isRole("VIEW")}> <UpdateOrder order={props.order} observer={onUpdate}/></td>
-                <td hidden={isRole("VIEW")}> <DeleteOrder order={props.order} observer={onDelete}/></td>
+                <td hidden={isRole("VIEW")}> <UpdateOrder order={order} observer={onUpdate}/></td>
+                <td hidden={isRole("VIEW")}> <DeleteOrder order={order} observer={onDelete}/></td>
 
             </tr> 
         );

@@ -47,7 +47,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             });
     }, []);
 
-    const onSubmit = handleSubmit(async (data) => {
+    const onSubmit = handleSubmit((data) => {
         props.setResponse(data);
     });
 
