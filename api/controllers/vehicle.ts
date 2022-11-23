@@ -90,7 +90,10 @@ interface VehicleQuery {
     licensePlate: string,
     model: string,
     manufacturer: string,
-    yearManufactured: number
+    yearManufactured: number,
+    color: string,
+    engine: string,
+    remarks: string,
 }
 
 const makeMongooseQuery = (q : VehicleQuery) : any => {
@@ -113,6 +116,9 @@ const makeQuery = (req : express.Request) : VehicleQuery=> {
         model: (req.query.model) ? (req.query.model as string) : "",
         manufacturer: (req.query.manufacturer) ? (req.query.manufacturer as string) : "",
         yearManufactured: (req.query.yearManufactured) ? parseInt(req.query.yearManufactured as string) : -1,
+        color: (req.query.color) ? (req.query.color as string) : "",
+        engine: (req.query.engine) ? (req.query.engine as string) : "",
+        remarks: (req.query.remarks) ? (req.query.remarks as string) : "",
     }
 }
 

@@ -89,6 +89,24 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
                 </select>
                 {errors.yearManufactured && <p>Year Manufactured is Required</p>}
             </div>
+            <div>
+                <label htmlFor='color'>Color</label>
+                <input
+                {... register('color', {pattern: isAlphaNumeric})}
+                type="text" name="color" defaultValue={props.default?.color}/>
+            </div>
+            <div>
+                <label htmlFor='engine'>Engine</label>
+                <input
+                {... register('engine', {pattern: isAlphaNumeric})}
+                type="text" name="engine" defaultValue={props.default?.engine}/>
+            </div>
+            <div>
+                <label htmlFor='remarks'>Remarks</label>
+                <input
+                {... register('remarks', {pattern: isAlphaNumeric})}
+                type="text" name="remarks" defaultValue={props.default?.remarks}/>
+            </div>
             <br />
             <br />
         </>

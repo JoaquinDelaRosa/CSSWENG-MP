@@ -3,6 +3,9 @@ export interface VehicleRequest {
     manufacturer: string,
     model: string,
     yearManufactured: Number
+    color: string,
+    engine: string,
+    remarks: string,
 }
 
 
@@ -11,5 +14,8 @@ export interface Vehicle {
     licensePlate: string,
     manufacturer: string,
     model: string,
-    yearManufactured: number
+    yearManufactured: number,
+    color: string,
+    engine: string,
+    remarks: string,
 }

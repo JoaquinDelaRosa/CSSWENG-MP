@@ -9,6 +9,9 @@ export const VehicleSchema = new mongoose.Schema({
     manufacturer : String,
     model : String,
     yearManufactured : Number,
+    color: String,
+    engine: String,
+    remarks: String,
 }, {_id: false});
 
 export const Vehicle = mongoose.model('Vehicle', VehicleSchema);

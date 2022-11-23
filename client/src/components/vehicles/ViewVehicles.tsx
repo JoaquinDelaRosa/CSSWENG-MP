@@ -88,8 +88,12 @@ const ViewVehicles = () => {
                             <th> Manufacturer </th>
                             <th> Model </th>
                             <th> Year Manufactured </th>
+                            <th> Color </th>
+                            <th> Engine </th>
+                            <th> Remarks </th>
                             <th hidden={isRole("VIEW")}></th>
                             <th hidden={isRole("VIEW")}></th>
+
                         </tr>
                     </TableHead>
 

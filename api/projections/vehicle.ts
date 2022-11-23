@@ -7,7 +7,11 @@ export const makeVehicleView = (document) => {
         licensePlate: document.licensePlate,
         manufacturer: document.manufacturer,
         model: document.model,
-        yearManufactured: document.yearManufactured
+        yearManufactured: document.yearManufactured,
+        color: document.color,
+        engine: document.engine,
+        remarks: document.remarks
+
     };
 }
 
