@@ -1,13 +1,14 @@
 .admin-theme {
-    ---accent: #960b0b;
+    ---accent: #9b6666;
     ---tableprimary: #494141;
-    ---tablesecondary: #890b0b;
+    ---tablesecondary: #b6abab;
     ---tableborder: #380404;
     ---tablecolor: #aa9d9d;
     ---background: white;
     ---modalbackground: #494141;
     ---createButton: #aa9d9d;
     ---submitButton: #460505;
+    ---modalBorder: #d6c1c1;
 
    }
 .employee-theme {

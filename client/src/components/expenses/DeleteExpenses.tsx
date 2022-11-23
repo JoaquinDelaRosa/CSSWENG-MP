@@ -1,4 +1,4 @@
-import { DeleteContainer } from "../../style/DeleteButton";
+import { ExpDelContainer, ExpDelIcon } from "../../style/DeleteButton";
 
 export const DeleteExpenses = (props : {observer : Function, index : number}) => {
     const onClick = () => {
@@ -6,8 +6,8 @@ export const DeleteExpenses = (props : {observer : Function, index : number}) =>
     }
 
     return (
-        <DeleteContainer>
-            <button onClick={onClick}><i className="deleteIcon"></i> </button>
-        </DeleteContainer>
+        <ExpDelContainer>
+            <button onClick={onClick}><ExpDelIcon></ExpDelIcon></button>
+        </ExpDelContainer>
     );
 } 

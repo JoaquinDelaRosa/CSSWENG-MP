@@ -10,6 +10,7 @@ const Modal = styles.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid white;
 
     > .modalBackground {
         background-color: var(---modalbackground);
@@ -17,6 +18,7 @@ const Modal = styles.div`
         height: fit-content;
         width: 35rem;
         overflow-y: auto;
+        border: 3px solid var(---modalBorder);
     }
 `
 
