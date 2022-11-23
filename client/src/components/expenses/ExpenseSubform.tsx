@@ -31,7 +31,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     }, [props.default])
 
     return (
-        <>
+        <>  
             <ExpensesModifiableDisplay expenses={expenses} observer={onChange}/>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
