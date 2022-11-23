@@ -65,7 +65,9 @@ const ViewCustomers = () => {
                 options = {[
                     {name: "name", description:"The name of the customer"},
                     {name: "email", description: "The email of the customer"},
-                    {name: "mobileNumber", description: "The mobile number of the customer"}
+                    {name: "mobileNumber", description: "The mobile number of the customer"},
+                    {name: "company", description: "The company of the customer"},
+                    {name: "insurance", description: "The insurance company of the customer"}
                 ]}>
             <br />
       
@@ -82,6 +84,9 @@ const ViewCustomers = () => {
                             </th>
                             <th> Email </th>
                             <th> Mobile Number </th>
+                            <th> Company </th>
+                            <th> Insurance </th>
+                            <th> Remarks </th>
 
                             <th hidden={isRole("VIEW")}></th>
                             <th hidden={isRole("VIEW")}></th>

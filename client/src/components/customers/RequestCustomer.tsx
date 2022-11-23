@@ -79,6 +79,24 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
                     defaultValue={props.default?.mobileNumber}/>
                 {errors.mobileNumber && <p>Mobile Number is required</p>}
             </div>
+            <div>
+                <label htmlFor="company"> Company </label>
+                <input {... register("company", {required : false})} 
+                type="text" name = "company" defaultValue={props.default?.company}/>
+                {errors.company && <p>Company name is wrong format</p>}
+            </div>
+            <div>
+                <label htmlFor="insurance"> Insurance </label>
+                <input {... register("insurance", {required : false})} 
+                type="text" name = "insurance" defaultValue={props.default?.insurance}/>
+                {errors.insurance && <p>Insurance is wrong format</p>}
+            </div>
+            <div>
+                <label htmlFor="remarks"> Remarks </label>
+                <input {... register("remarks", {required : false})} 
+                type="text" name = "remarks" defaultValue={props.default?.remarks}/>
+                {errors.remarks && <p>remarks is wrong format</p>}
+            </div>
             <br />
             <br />
         </div>
