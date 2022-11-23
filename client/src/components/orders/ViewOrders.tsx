@@ -56,7 +56,7 @@ const OrdersView = () => {
                 <table>
                     <TableHead>
                         <tr>
-                            <th> Verified </th>
+                            <th hidden={isRole("VIEW") || isRole("VIEW_EDIT")}> Verified </th>
                             <th> Status </th>
                             <th> Time In </th>
                             <th> Time Out </th>
@@ -116,7 +116,7 @@ const queryParser = (q : string) => {
         else if (key === "customer"){
             query.customerName = value?.trim();
         }
-        else if (key == "vehicle"){
+        else if (key === "vehicle"){
             query.licensePlate = value?.trim();
         }
     }
