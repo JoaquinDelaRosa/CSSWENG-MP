@@ -77,10 +77,6 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    useEffect(() => {
-
-    }, watch("expenses"))
-    
     return (
         <FormDivStyle>
             <p><u>-- Order --</u></p>
@@ -147,8 +143,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     })}
                     defaultValue = {
                         props.default ? 
-                        props.default.timeOut.toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'})
-                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : ""
+                        props.default?.timeIn.toISOString().split("T")[0] : ""
                     }
                     type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
@@ -222,7 +217,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <br />
                 <br />
                 <br />
-                <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
+                <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
             </form>
             <br />
             <br />
