@@ -28,10 +28,6 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
         setExpenses(expenses);
     }
 
-    useEffect(() => {
-        console.log(props.default);
-    }, [props.default])
-
     return (
         <ModalWrapper front={"Add Expenses"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <ExpensesModifiableDisplay expenses={expenses} observer={onChange}/>
