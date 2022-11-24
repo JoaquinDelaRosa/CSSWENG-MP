@@ -1,11 +1,12 @@
 import styles from 'styled-components';
 
 const PageButtonWrapper = styles.div`
+    padding-left: 1rem;
     font-weight: 800;
-    text-align: center;
+    text-align: left;
     > p {
         display: inline-block;
-        padding: 1em
+        padding: 1em;
     }
 
     > button {

@@ -2,6 +2,7 @@ import styles from 'styled-components';
 
 const CreateButton = styles.div`
     display: inline-block;
+    padding-top: 0.5rem;
     div > .createBtn {
         background-color: var(---createButton);
         color: white;

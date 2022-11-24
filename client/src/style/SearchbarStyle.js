@@ -11,8 +11,8 @@ const SearchWrapper = styles.div`
         background-size: 1.5rem;
         background-repeat: no-repeat;
         background-position: 14.5rem 0.3rem;
-        margin-left: 2em;
-        margin-top: 1em;
+        margin-left: 78.2rem;
+        margin-top: 2rem;
         width: 20em;
         height: 2.8em;
         border: none;
