@@ -18,6 +18,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     const onSubmit = () => {
         props.setData(expenses);
         setExpense(defaultExpense);
+        setIsVisible(false);
     }
 
     const onAdd = () => {
