@@ -79,7 +79,7 @@ const filter = async (req: express.Request, res: express.Response) => {
 
     const customerList = await getCustomerList(mongooseQuery);
     const vehicleList = await getVehicleList(mongooseQuery);
-    const finalQuery = {...mongooseQuery, customer: {$in : [customerList, ""]}, vehicle: {$in: [vehicleList, ""]}};
+    const finalQuery = {...mongooseQuery, customer: {$in : [...customerList, ""]}, vehicle: {$in: [...vehicleList, ""]}};
 
     const count = await Order.find(finalQuery).countDocuments();
     
