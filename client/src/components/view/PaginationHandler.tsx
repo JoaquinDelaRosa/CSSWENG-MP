@@ -16,7 +16,10 @@ export const PaginationHandler = (props : {
     }, [props.count])
 
     const jumpToPage = (jump: number) => {
-        if (currentPage + jump < 1){
+        if (count === 0){
+            setCurrentPage(1)
+        }
+        else if (currentPage + jump < 1){
             setCurrentPage(1);
         }
         else if (currentPage + jump > Math.ceil(count / LIMIT)) {

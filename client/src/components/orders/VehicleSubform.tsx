@@ -11,6 +11,8 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
     const [vehicle, setVehicle] = useState<VehicleRequest>();
 
     useEffect(() => {
+        props.observer("");
+
         if (query === ""){
             setOptions([]);
         } else {
