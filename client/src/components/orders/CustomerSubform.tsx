@@ -11,6 +11,8 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
     const [customer, setCustomer] = useState<CustomerRequest>();
 
     useEffect(() => {
+        props.observer("");
+        
         if (query === ""){
             setOptions([]);
         } else {
@@ -22,6 +24,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                 console.log(err);
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [query, props.default])
 
     const setData = (data : any) => {
