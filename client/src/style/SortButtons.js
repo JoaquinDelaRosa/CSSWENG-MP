@@ -10,6 +10,8 @@ const SortButton = styles.span`
         width: 5rem;
         height: 2rem;
     }
+
+    
 `
 
 export {SortButton}
