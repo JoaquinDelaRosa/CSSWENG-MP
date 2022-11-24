@@ -3,11 +3,6 @@ import { ConvertDate } from "../../utils/ConvertDate";
 import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
 
-const defaultExpense = {
-    amount: 0,
-    description: "",
-    dateRecorded: new Date()
-};
 
 export const UpdateExpense = (props: {setData : Function,  default : Expense}) => {
     const [expense, setExpense] = useState<Expense>(props.default);
