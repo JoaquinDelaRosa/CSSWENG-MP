@@ -44,7 +44,7 @@ const CloseModal = styles.div`
 
 
     > button {
-        background-color: var(---modalbackground);
+        background-color: var(---closeButton);
         color: white;
         position: relative;
         padding: 10px 10px;
@@ -54,6 +54,10 @@ const CloseModal = styles.div`
         font-size: 18px;
         font-weight: 900;
         width: 3rem
+    }
+
+    button:hover{
+        background-color: var(---transitionhover);
     }
 `
 
