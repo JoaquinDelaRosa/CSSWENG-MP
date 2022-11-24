@@ -29,7 +29,7 @@ const FormDivStyle = styles.div`
         text-align: left;
     }
 
-    input[type="text"], select, input[type="date"] {
+    input[type="text"], select, input[type="date"], textarea {
         background-color: var(---tablecolor);
         color: white;
         padding: 5px;
@@ -56,6 +56,11 @@ const FormDivStyle = styles.div`
         color: white;
     }
 
+    .largeBox textarea{
+        height: 8rem;
+        text-align: left;
+
+    }
 `
 
 

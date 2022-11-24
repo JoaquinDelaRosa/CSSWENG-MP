@@ -78,7 +78,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     
     return (
         <FormDivStyle>
-            <p><u>Editing Order Table:</u></p>
+            <p><u>-- Editing Order Table: --</u></p>
             <br />
             <form onSubmit={onSubmit}>
                 <div>
@@ -180,7 +180,9 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div> 
 
                 <br />
-
+                <br />
+                <br />
+                <br />
                 <div>
                     <label>Vehicle</label>
                     <VehicleSubform observer={(value : string) => {
@@ -189,20 +191,24 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div> 
 
                 <br />
-
+                <br />
+                <br />
+                <br />
                 <div>
                     <label htmlFor="estimateNumber">Estimate Code</label>
                     <input {... register("estimateNumber", {required : false, pattern: isAlphaNumeric})} type='text' name="estimateNumber" id="estimateNumber" defaultValue={props.default?.estimateNumber} autoComplete="off"/>
                     {errors.estimateNumber && <p>Estimate Code is in an improper format</p>}
                 </div>
 
-                <div>
+                <div className="largeBox">
                     <label htmlFor="scopeOfWork">Scope of Work</label>
-                    <input {... register("scopeOfWork", {required : true})} type='text' name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork} autoComplete="off"/>
+                    <textarea {... register("scopeOfWork", {required : true})} name="scopeOfWork" id="scopeOfWork" defaultValue={props.default?.scopeOfWork} autoComplete="off"/>
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
-
+                <br />
+                <br />
+                <br />
                 <ModalWrapper front={"Add Invoice"}>
                     <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 </ModalWrapper>
@@ -214,7 +220,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     }} default={watch("expenses")}/>
                 </ModalWrapper>
                 <br />
-                
+                <br />
+                <br />
                 <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
             <br />

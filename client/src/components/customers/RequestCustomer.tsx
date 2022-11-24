@@ -14,7 +14,7 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
 
     return (
         <FormDivStyle>
-            <p>Editing Customer Table:</p>
+            <p>Customer</p>
             {
                 !isInForm && 
                 <form onSubmit={onSubmit} autoComplete="off">
@@ -91,9 +91,9 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
                 type="text" name = "insurance" defaultValue={props.default?.insurance}/>
                 {errors.insurance && <p>Insurance is wrong format</p>}
             </div>
-            <div>
+            <div className="largeBox">
                 <label htmlFor="remarks"> Remarks </label>
-                <input {... register("remarks", {required : false})} 
+                <textarea {... register("remarks", {required : false})} 
                 type="text" name = "remarks" defaultValue={props.default?.remarks}/>
                 {errors.remarks && <p>remarks is wrong format</p>}
             </div>

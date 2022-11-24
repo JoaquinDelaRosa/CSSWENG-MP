@@ -101,9 +101,9 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
                 {... register('engine', {pattern: isAlphaNumeric})}
                 type="text" name="engine" defaultValue={props.default?.engine}/>
             </div>
-            <div>
+            <div className="largeBox">
                 <label htmlFor='remarks'>Remarks</label>
-                <input
+                <textarea
                 {... register('remarks', {pattern: isAlphaNumeric})}
                 type="text" name="remarks" defaultValue={props.default?.remarks}/>
             </div>
