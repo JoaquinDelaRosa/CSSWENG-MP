@@ -33,7 +33,8 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
 
     return (
         <FormDivStyle>
-            <p>Editing User Table:</p>
+            <p><u>-- User --</u></p>
+            <br />
             <br />
             <form onSubmit={onSubmit}>
                 <div>
