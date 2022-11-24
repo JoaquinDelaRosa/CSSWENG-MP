@@ -78,7 +78,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     
     return (
         <FormDivStyle>
-            <p>Order Table</p>
+            <p><u>Editing Order Table:</u></p>
+            <br />
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Order Status</label>
@@ -216,6 +217,8 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 
                 <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
             </form>
+            <br />
+            <br />
         </FormDivStyle> 
     );
 }
