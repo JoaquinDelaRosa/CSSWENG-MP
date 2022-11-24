@@ -10,6 +10,7 @@ import { OrderRequest, OrderRequestDefault } from "./OrderDetails";
 import { VehicleSubform } from "./VehicleSubform";
 import { FormDivStyle } from "../../style/FormStyle";
 import { ENDPOINTS } from "../../api/endpoints";
+import { ConvertDate } from "../../utils/ConvertDate";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
@@ -121,7 +122,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                         }
                      })} defaultValue = {
                         props.default ? 
-                        props.default?.timeIn.toISOString().split("T")[0] : ""
+                        ConvertDate(props.default?.timeIn) : ""
                     }
                      type='date' name="timeIn" id ="timeIn"/>
                      {errors.timeIn && <p>Time in is invalid</p>}
@@ -143,7 +144,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     })}
                     defaultValue = {
                         props.default ? 
-                            (props.default?.timeOut.valueOf() === 0 ? "mm-dd-yyyy" : props.default?.timeOut.toISOString().split("T")[0]) : ""
+                            (props.default?.timeOut.valueOf() === 0 ? "mm-dd-yyyy" : ConvertDate(props.default?.timeOut)) : ""
                     }
                     type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}

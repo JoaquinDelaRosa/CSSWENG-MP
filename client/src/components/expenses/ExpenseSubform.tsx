@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
 import { ExpensesModifiableDisplay } from "./ExpensesDisplay";
