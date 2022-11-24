@@ -16,7 +16,8 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
 
     return (
         <FormDivStyle>
-            <p>Editing Vehicle Table</p>
+            <p><u>-- Vehicle --</u></p>
+            <br />
             {
                 !isInForm && 
                 <form onSubmit={onSubmit} autoComplete="off">
@@ -34,6 +35,8 @@ export const RequestVehicle = (props : {setResponse : Function, default? : Vehic
                     <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </div>
             }
+            <br />
+            <br />
         </FormDivStyle> 
     );
 }
@@ -101,6 +104,7 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
                 {... register('engine', {pattern: isAlphaNumeric})}
                 type="text" name="engine" defaultValue={props.default?.engine}/>
             </div>
+            <br />
             <div className="largeBox">
                 <label htmlFor='remarks'>Remarks</label>
                 <textarea
