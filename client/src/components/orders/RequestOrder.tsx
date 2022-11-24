@@ -143,7 +143,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     })}
                     defaultValue = {
                         props.default ? 
-                        props.default?.timeIn.toISOString().split("T")[0] : ""
+                            (props.default?.timeOut.valueOf() === 0 ? "mm-dd-yyyy" : props.default?.timeOut.toISOString().split("T")[0]) : ""
                     }
                     type='date' name="timeOut" id="timeOut"/>
                     {errors.timeOut && <p>Time out is earlier than Time in</p>}
