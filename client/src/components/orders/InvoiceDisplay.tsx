@@ -35,15 +35,15 @@ const DetailedInvoice = (props : {invoice? : Invoice}) => {
         return (
             <InvoiceText>
                 {"Amount: "}
-                <u><NumberEntry number={props.invoice.amount} /></u><br/>
+                <u><NumberEntry number={props.invoice.amount} /></u><br/><br/>
                 {"Date Paid: "}
-                <DateEntry date={props.invoice.datePaid} /><br/>
+                <DateEntry date={props.invoice.datePaid} /><br/><br/>
                 {"Deductible Due: "}
                 <u>
-                    <NumberEntry number={props.invoice.deductible} /></u><br/>
-                        Agent: <i>{props.invoice.agentFirstName + " " + props.invoice.agentLastName}</i><br/>
+                    <NumberEntry number={props.invoice.deductible} /></u><br/><br/>
+                        Agent: <i>{props.invoice.agentFirstName + " " + props.invoice.agentLastName}</i><br/><br/>
                 {"Commission: "}
-                <u><NumberEntry number={props.invoice.agentCommission} /></u><br/>
+                <u><NumberEntry number={props.invoice.agentCommission} /></u><br/><br/>
                 
                 <div/>
             </InvoiceText>
