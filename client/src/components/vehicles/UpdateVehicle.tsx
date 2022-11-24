@@ -14,6 +14,7 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
         createAPIEndpoint(ENDPOINTS.updateVehicle).post(data, {id: props.vehicle.id})
         .then(function (response) {
             props.observer();
+            setIsVisible(false);
         })
         .catch(function (error) {
             console.log(error);

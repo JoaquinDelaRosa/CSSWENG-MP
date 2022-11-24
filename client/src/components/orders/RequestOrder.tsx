@@ -76,6 +76,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
         setValue("invoice.deductible", 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+
+    }, watch("expenses"))
     
     return (
         <FormDivStyle>
@@ -214,6 +218,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <ExpenseSubform setData={(expenses: Expense[]) => {
                     setValue("expenses", expenses)
                 }} default={watch("expenses")}/>
+
                 <br />
                 <br />
                 <br />
