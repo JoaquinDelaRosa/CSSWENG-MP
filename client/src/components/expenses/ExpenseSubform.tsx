@@ -20,6 +20,9 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     }
 
     const onAdd = () => {
+        if (isNaN(Date.parse(expense.dateRecorded)))
+            return
+
         setExpenses([...expenses, expense]);
         setExpense(defaultExpense);
     }
