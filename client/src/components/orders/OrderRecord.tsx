@@ -12,6 +12,7 @@ import { ENDPOINTS } from "../../api/endpoints";
 
 export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => {
     const [order, setOrder] = useState<Order | null>(props.order);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
         if (props && props.order){
@@ -85,7 +86,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
                     }
                     </>
                     </p>
-                    <ModalWrapper front={"..."}>
+                    <ModalWrapper front={"..."} isVisible={isVisible} setIsVisible={setIsVisible}>
                         <ExpensesDisplay expenses={order?.expenses}/>
                     </ModalWrapper> 
                        

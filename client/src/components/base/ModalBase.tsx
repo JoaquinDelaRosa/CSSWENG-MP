@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { CloseModal, Modal, ModalButton, ModalContent } from "../../style/ModalStyle";
 
 
-export const ModalWrapper = (props : {front : any, children : any}) => {
+export const ModalWrapper = (props : {front : any, children : any, isVisible : boolean, setIsVisible: Function}) => {
 
-    const [isVisible, setIsVisible] = useState(false);
+    let [isVisible, setIsVisible] = [props.isVisible, props.setIsVisible];
 
     const cancel = () => {
-        setIsVisible(false)
+        setIsVisible(false);
     }
-    
+
     useEffect(() => {
         function handleEscapeKey(event: KeyboardEvent) {
             if (event.code === 'Escape') {
@@ -20,7 +20,7 @@ export const ModalWrapper = (props : {front : any, children : any}) => {
         document.addEventListener('keydown', handleEscapeKey);
         return () => document.removeEventListener('keydown', handleEscapeKey);
       }, [])
-    
+
     if (!isVisible) {
         return (
             <>

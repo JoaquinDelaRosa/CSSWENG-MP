@@ -8,6 +8,7 @@ import { EditButton } from "../../style/EditButton";
 
 export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
     const [data, setData] = useState<VehicleRequest>();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
     
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.updateVehicle).post(data, {id: props.vehicle.id})
@@ -22,7 +23,7 @@ export const UpdateVehicle = (props : {vehicle : Vehicle, observer : Function}) 
 
     return (
         <EditButton>
-          <ModalWrapper front={"Edit"}>
+          <ModalWrapper front={"Edit"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <RequestVehicle setResponse={setData} default={props.vehicle}/>
           </ModalWrapper>
         </EditButton>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ModalWrapper } from "../base/ModalBase";
 import { CreateUser } from "./CreateUser";
 import { User } from "./UserDetails";
 import { UserRecord } from "./UserRecord";
@@ -98,10 +97,9 @@ const UsersView = () => {
                     </TableBody>
                 </table>
                 <br />
+
                 <CreateButton hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
-                    <ModalWrapper front={"Create User"}> 
-                        <CreateUser observer={updateView}/>
-                    </ModalWrapper>
+                    <CreateUser observer={updateView}/>
                 </CreateButton> 
             </ViewHandler>   
         </div>  

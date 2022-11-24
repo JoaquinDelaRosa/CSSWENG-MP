@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { InvoiceText } from "../../style/InvoiceStyle";
 import { DateEntry } from "../base/DateEntry";
 import { ModalWrapper } from "../base/ModalBase";
@@ -5,6 +6,8 @@ import { NumberEntry } from "../base/NumberEntry";
 import { Invoice } from "./InvoiceDetails"
 
 export const InvoiceDisplay = (props : {invoice? : Invoice}) => {
+    
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     if (props.invoice ){
         return (
@@ -17,7 +20,7 @@ export const InvoiceDisplay = (props : {invoice? : Invoice}) => {
                 </div>
 
                 <div>
-                    <ModalWrapper front={"..."}>
+                    <ModalWrapper front={"..."} isVisible={isVisible} setIsVisible={setIsVisible}>
                         <DetailedInvoice invoice={props.invoice}/>
                     </ModalWrapper>
                 </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
 import { ExpensesModifiableDisplay } from "./ExpensesDisplay";
 
@@ -11,6 +12,7 @@ const defaultExpense = {
 export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]}) => {
     const [expenses, setExpenses] = useState<Array<Expense>>(props.default ? props.default : []);
     const [expense, setExpense] = useState<Expense>(defaultExpense);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     const onSubmit = () => {
         props.setData(expenses);
@@ -31,7 +33,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     }, [props.default])
 
     return (
-        <>  
+        <ModalWrapper front={"Add Expenses"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <ExpensesModifiableDisplay expenses={expenses} observer={onChange}/>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
@@ -65,6 +67,6 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
             
             <input type="button" name="add" onClick={onAdd} value={"Add Expense"}/>
             <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
-        </>
+        </ModalWrapper>
     );
 }

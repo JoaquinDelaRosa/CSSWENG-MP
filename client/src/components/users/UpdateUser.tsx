@@ -8,11 +8,13 @@ import { User } from "./UserDetails";
 
 export const UpdateUser = (props : {user : User, observer : Function}) => {
     const [data, setData] = useState<User>();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
     
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.updateUser).post(data, {id: props.user.id})
         .then(function (response) {
             props.observer();
+            setIsVisible(false);
         })
         .catch(function (error) {
             console.log(error);
@@ -22,7 +24,7 @@ export const UpdateUser = (props : {user : User, observer : Function}) => {
 
     return (
         <EditButton>
-          <ModalWrapper front={"Edit"}>
+          <ModalWrapper front={"Edit"} isVisible = {isVisible} setIsVisible ={setIsVisible}>
             <RequestUser setResponse={setData} default={props.user}/>
           </ModalWrapper>
         </EditButton>

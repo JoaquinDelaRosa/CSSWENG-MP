@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ModalWrapper } from "../base/ModalBase";
 import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import {ViewHandler} from "../view/ViewHandler";
@@ -107,9 +106,7 @@ const ViewVehicles = () => {
 
                 <br/>
                 <CreateButton hidden={isRole("VIEW")}>
-                    <ModalWrapper front={"Create Vehicle"}>
-                        <CreateVehicle observer={updateView}/>
-                    </ModalWrapper>
+                    <CreateVehicle observer={updateView}/>
                 </CreateButton>
             
             </ViewHandler>

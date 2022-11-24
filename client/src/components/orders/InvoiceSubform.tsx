@@ -1,11 +1,15 @@
+import { useState } from "react";
+import { ModalWrapper } from "../base/ModalBase";
 import { Invoice } from "./InvoiceDetails"
 
 export const InvoiceSubform = (props: {register : any, errors : any, default? : Invoice}) => {
     const register = props.register;
     const errors = props.errors;
 
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+
     return (
-        <>
+        <ModalWrapper front={"Add Invoice"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <div>
                 <label htmlFor="invoiceAmount">Invoice Amount</label>
                 <input {... register("invoice.amount", {required : true})} type='text' name="invoice.amount" id="invoice.amount"
@@ -56,6 +60,6 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
                 />
                 {errors.invoice?.agentCommission && <p>Agent Commission has wrong format</p>}
             </div>
-        </>
+        </ModalWrapper>
     )
 }

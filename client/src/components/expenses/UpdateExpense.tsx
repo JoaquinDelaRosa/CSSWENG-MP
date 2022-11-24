@@ -10,13 +10,14 @@ const defaultExpense = {
 
 export const UpdateExpense = (props: {setData : Function,  default : Expense}) => {
     const [expense, setExpense] = useState<Expense>(props.default);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     const onChange = () => {
         props.setData(expense);
         setExpense(defaultExpense);
     }
     return (
-        <ModalWrapper front={"Edit"}>
+        <ModalWrapper front={"Edit"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount" 

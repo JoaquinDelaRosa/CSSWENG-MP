@@ -10,9 +10,11 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
     const [options, setOptions] = useState<Array<Customer>>([]);
     const [customer, setCustomer] = useState<CustomerRequest>();
 
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+
     useEffect(() => {
         props.observer("");
-        
+
         if (query === ""){
             setOptions([]);
         } else {
@@ -31,6 +33,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
         .then(function (response) {
             setCustomer(response.data);
+            setIsVisible(false);
             props.observer(response.data.id);
         })
         .catch(function (error) {
@@ -65,7 +68,7 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
                 }
                 {
                     <div> 
-                    <ModalWrapper front={"Create Customer"}> 
+                    <ModalWrapper front={"Create Customer"} isVisible={isVisible} setIsVisible={setIsVisible}> 
                         <RequestCustomer setResponse={setData} default={customer}/>
                     </ModalWrapper>
                     </div>

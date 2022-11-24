@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { createAPIEndpoint } from "../../api";
 import { isAlphaNumeric} from "../../utils/Regex";
-import { ModalWrapper } from "../base/ModalBase";
 import { CustomerSubform } from "./CustomerSubform";
 import { Expense } from "../expenses/ExpenseDetails";
 import { ExpenseSubform } from "../expenses/ExpenseSubform";
@@ -17,9 +16,10 @@ const DEFAULT_TYPE : string = "DEFAULT";
 
 export const RequestOrder = (props : {setResponse : Function, default? : OrderRequestDefault}) => {
     
-    const {register, handleSubmit, getValues, setValue, watch, formState: {errors}} = useForm<OrderRequest>();
+    const {register, handleSubmit, setValue, watch, formState: {errors}} = useForm<OrderRequest>();
     const [statuses, setStatuses] = useState<Array<string>>([]);
     const [types, setTypes] = useState<Array<string>>([]);
+
 
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.orderStatuses).fetch()
@@ -74,6 +74,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
      
     useEffect(() => {
         setValue("invoice.deductible", 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     return (
@@ -206,19 +207,13 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                     {errors.scopeOfWork && <p>Scope of Work is required</p>}
                 </div>
                 <br />
-                <br />
-                <br />
-                <br />
-                <ModalWrapper front={"Add Invoice"}>
-                    <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
-                </ModalWrapper>
+
+                <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
                 <br />
 
-                <ModalWrapper front={"Add Expenses"}>
-                    <ExpenseSubform setData={(expenses: Expense[]) => {
-                        setValue("expenses", expenses)
-                    }} default={watch("expenses")}/>
-                </ModalWrapper>
+                <ExpenseSubform setData={(expenses: Expense[]) => {
+                    setValue("expenses", expenses)
+                }} default={watch("expenses")}/>
                 <br />
                 <br />
                 <br />

@@ -9,11 +9,13 @@ import { RequestCustomer } from "./RequestCustomer";
 
 export const UpdateCustomer = (props : {customer : Customer, observer : Function}) => {
     const [data, setData] = useState<CustomerRequest>();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
     
     useEffect(() => {
         createAPIEndpoint(ENDPOINTS.updateCustomer).post(data, {id: props.customer.id})
         .then(function (response) {
             props.observer();
+            setIsVisible(false);
         })
         .catch(function (error) {
             console.log(error);
@@ -23,7 +25,7 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
 
     return (
         <EditButton>
-          <ModalWrapper front={"Edit"}>
+          <ModalWrapper front={"Edit"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <RequestCustomer setResponse={setData} 
                 default={{
                     firstName: props.customer.name.firstName, 

@@ -9,6 +9,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
     const [query, setQuery] = useState<string>("");
     const [options, setOptions] = useState<Array<Vehicle>>([]);
     const [vehicle, setVehicle] = useState<VehicleRequest>();
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
         props.observer("");
@@ -30,6 +31,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
                 console.log(err);
             })
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [query])
     
     const setData = (data : any) => {
@@ -37,6 +39,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
         .then(function (response) {
             setVehicle(response.data);
             props.observer(response.data.id);
+            setIsVisible(false);
         })
         .catch(function (error) {
             console.log(error);
@@ -66,7 +69,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
                 }
                 { 
                 <div>
-                <ModalWrapper front={"Create Vehicle"}> 
+                <ModalWrapper front={"Create Vehicle"} isVisible={isVisible} setIsVisible={setIsVisible}> 
                     <RequestVehicle setResponse={setData} default={vehicle}/>
                 </ModalWrapper>
                 </div>

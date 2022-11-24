@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ModalWrapper } from "../base/ModalBase";
 import { CreateCustomer } from "./CreateCustomer";
 import { Customer } from "./CustomerDetails";
 import { CustomerRecord } from "./CustomerRecord";
