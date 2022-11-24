@@ -91,12 +91,12 @@ const Register = () => {
                             value={"Sign Up"} />
 
                         <SignUp>
-                            <p>
+                            <p className="registerDialogue">
                                 Already have an account? &nbsp;
                                 <span>
                                     <Link to={ROUTES.login}>
                                         <RedDialogue>
-                                            Login here
+                                            Login here.
                                         </RedDialogue>
                                     </Link>
                                 </span>

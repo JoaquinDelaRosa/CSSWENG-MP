@@ -10,7 +10,7 @@ const SignPage = styles.div`
     display: block;
     width: 100%;
     height: 100%;
-    padding-top: 4rem;
+    padding-top: 4.5rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-image: url(${image});
     background-size: cover;
@@ -26,8 +26,8 @@ const SignBox = styles.div`
     border-radius: 3.1rem;
     border-style: solid;
     background-color: white;
-    width: 90rem;
-    height: 40rem;
+    width: 80rem;
+    height: 38rem;
     margin: auto;
     /* padding: 0; */
     border: 0;
@@ -40,7 +40,7 @@ const SignBox = styles.div`
         width: 100%;
         background: url(${logo});
         background-position: left;
-        background-position-x: 5rem;
+        background-position-x: 2.7rem;
         background-repeat: no-repeat;
         background-size: 35rem 10rem;
         position: absolute;
@@ -52,7 +52,7 @@ const SignBox = styles.div`
         width: 100%;
         background: url(${logo});
         background-position: right;
-        background-position-x: 50rem;
+        background-position-x: 43rem;
         background-repeat: no-repeat;
         background-size: 35rem 10rem;
         position: absolute;
@@ -63,7 +63,7 @@ const RightImage = styles.div`
     height: 100%;
     background-image: url(${rightBG});
     background-position: center;
-    background-position-x: 47rem;
+    background-position-x: 41.5rem;
     background-position-y: -5rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -75,7 +75,7 @@ const LeftImage = styles.div`
     height: 100%;
     background-image: url(${rightBG});
     background-position: left;
-    background-position-x: 43em;
+    background-position-x: 39rem;
     background-position-y: -5rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -97,7 +97,7 @@ const LoginDiv = styles.div`
         border: none;
         justify-content: center;
         padding-top: 17rem;
-        margin-left: 8rem;
+        margin-left: 4.7rem;
     }
 
     input {
@@ -108,7 +108,7 @@ const LoginDiv = styles.div`
         background-repeat: no-repeat;
         background-size: 1.5rem;
         background-position: 1rem;
-        font-size: 24px;
+        font-size: 20px;
         border: none;
         background-color: #D0D0D0;
         border-radius: 2rem;
@@ -143,8 +143,8 @@ const RegisterDiv = styles.div`
         width: 85rem;
         border: none;
         justify-content: center;
-        padding-top: 14.5rem;
-        padding-left: 53rem;
+        padding-top: 13.5rem;
+        padding-left: 45rem;
     }
     
     input {
@@ -155,7 +155,7 @@ const RegisterDiv = styles.div`
         background-repeat: no-repeat;
         background-size: 1.5rem;
         background-position: 1rem;
-        font-size: 24px;
+        font-size: 20px;
         border: none;
         background-color: rgb(245,245,245);
         border-radius: 2rem;
@@ -195,7 +195,10 @@ const SignUp = styles.div`
         font-weight: 800;
     }
 
-    
+    .registerDialogue{
+        width:100%;
+        padding-left:4rem;
+    }
 `
 
 
