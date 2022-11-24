@@ -6,7 +6,7 @@ const SortButton = styles.span`
         color: white;
         border-radius: 5px;
         border: none;
-        margin: auto 1px auto 1px;
+        margin: 0.5px 1px auto 1px;
         width: 5rem;
         height: 2rem;
     }

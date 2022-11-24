@@ -1,16 +1,17 @@
 .admin-theme {
-    ---accent: #aa1b1b;
+    ---accent: #883030;
     ---tableprimary: #494141;
     ---transitionhover: #332d2d;
     ---closeButton: #554b4b;
     ---tablesecondary: #b6abab;
     ---tableborder: #380404;
-    ---tablecolor: #918383;
+    ---tablecolor: #7e7575;
     ---background: white;
     ---modalbackground: #252121;
     ---createButton: #423d3d;
     ---submitButton: #473f3f;
     ---modalBorder: #d6c1c1;
+    ---sortButtonHover: #5c637e;
 
    }
 .employee-theme {

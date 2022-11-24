@@ -2,7 +2,7 @@ import styles from 'styled-components';
 
 const SearchWrapper = styles.div`
     width: 100%;
-    height: 5rem;
+    height: 3rem;
     background-color: var(---background);
 
     /* Actual Searchbar*/
@@ -11,8 +11,9 @@ const SearchWrapper = styles.div`
         background-size: 1.5rem;
         background-repeat: no-repeat;
         background-position: 14.5rem 0.3rem;
-        margin-left: 78.2rem;
-        margin-top: 2rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
         width: 20em;
         height: 2.8em;
         border: none;
@@ -36,10 +37,15 @@ const OptionButton = styles.button`
     color: white;
     border-radius: 5px;
     border: none;
-    margin: 1.3em 1px 0em;
+    margin: 0.1px 1px 0em;
     width: fit-content;
     height: 2rem;
     overflow: hidden;
+    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    :hover {
+        background-color: var(---sortButtonHover);
+    }
 `
 
 export {SearchWrapper, OptionButton}

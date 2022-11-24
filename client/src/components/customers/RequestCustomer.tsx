@@ -14,7 +14,7 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
 
     return (
         <FormDivStyle>
-            <p>Customer</p>
+            <p><u>-- Customer --</u></p>
             {
                 !isInForm && 
                 <form onSubmit={onSubmit} autoComplete="off">
@@ -30,6 +30,8 @@ export const RequestCustomer = (props : {setResponse : Function, default? : Cust
                     <input type='button' name="submit" onClick={onSubmit}value={"SUBMIT"} />
                 </div>
             }
+            <br />
+            <br />
         </FormDivStyle> 
     );
 }
@@ -40,6 +42,7 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
 
     return (
         <div>
+            <br />
             <div>
                 <label htmlFor="firstName"> First Name </label>
                 <input {... register("firstName", {required : true, pattern: isAlphabetic })} 
@@ -91,6 +94,7 @@ const RequestCustomerForm = (props : {register : Function, errors : any, default
                 type="text" name = "insurance" defaultValue={props.default?.insurance}/>
                 {errors.insurance && <p>Insurance is wrong format</p>}
             </div>
+            <br />
             <div className="largeBox">
                 <label htmlFor="remarks"> Remarks </label>
                 <textarea {... register("remarks", {required : false})} 
