@@ -17,11 +17,12 @@ const SearchWrapper = styles.div`
         height: 2.8em;
         border: none;
         border-radius: 30px;
-        background-color: #16405b;
+        background-color: var(---tableprimary);
         text-align: center;
         float: left;
 
         color: white;
+        font-weight:bold;
     }
 
     > input::placeholder {
