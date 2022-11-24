@@ -32,6 +32,8 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     return (
         <ModalWrapper front={"Add Expenses"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <ExpensesModifiableDisplay expenses={expenses} observer={onChange}/>
+            <br />
+            <br />
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount"
@@ -41,7 +43,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
                     }}
                 />
             </div>
-
+                    
             <div>
                 <label htmlFor="expenses.amount"> Amount</label>
                 <input type='text' name="expenses.amount" id="expenses.amount"
@@ -61,9 +63,11 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
                     }}
                 />
             </div>
-            
+            <br /><br />
             <input type="button" name="add" onClick={onAdd} value={"Add Expense"}/>
             <input type='button' name="submit" onClick={onSubmit}value={"Submit"} />
+            <br />
+            <br />
         </ModalWrapper>
     );
 }
