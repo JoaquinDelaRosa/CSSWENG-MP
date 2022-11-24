@@ -28,10 +28,6 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
         setExpenses(expenses);
     }
 
-    useEffect(() => {
-        console.log(props.default);
-    }, [props.default])
-
     return (
         <ModalWrapper front={"Add Expenses"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <ExpensesModifiableDisplay expenses={expenses} observer={onChange}/>
@@ -50,7 +46,7 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
                 <input type='text' name="expenses.amount" id="expenses.amount"
                     value={expense.amount}
                     onChange = {(e) => {
-                        setExpense({...expense, amount: parseInt(e.target.value)})
+                        setExpense({...expense, amount: isNaN(parseInt(e.target.value)) ? 0 : parseInt(e.target.value)})
                     }}
                 />
             </div>

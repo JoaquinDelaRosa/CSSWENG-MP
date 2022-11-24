@@ -31,10 +31,10 @@ export const CustomerSubform = (props: {observer: Function, default?: {id: strin
 
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addCustomer).post(data)
-        .then(function (response) {
+        .then((response) => {
             setCustomer(response.data);
-            setIsVisible(false);
             props.observer(response.data.id);
+            setIsVisible(false);
         })
         .catch(function (error) {
             console.log(error);

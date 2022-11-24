@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PageButtonWrapper from "../../style/PageButtonStyle";
 
-export const LIMIT = 2;
+export const LIMIT = 10;
 
 export const PaginationHandler = (props : {
     count: number ,

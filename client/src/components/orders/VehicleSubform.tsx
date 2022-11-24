@@ -36,7 +36,7 @@ export const VehicleSubform = (props: {observer: Function, default?: {id: string
     
     const setData = (data : any) => {
         createAPIEndpoint(ENDPOINTS.addVehicle).post(data)
-        .then(function (response) {
+        .then((response) => {
             setVehicle(response.data);
             props.observer(response.data.id);
             setIsVisible(false);

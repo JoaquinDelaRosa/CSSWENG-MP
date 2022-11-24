@@ -10,10 +10,6 @@ const SortButton = styles.span`
         width: 5rem;
         height: 2rem;
     }
-
-    button:hover {
-        background-color: var(---sortButtonHover);
-    }
 `
 
 export {SortButton}
