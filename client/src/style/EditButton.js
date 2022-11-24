@@ -8,6 +8,10 @@ const EditButton = styles.div`
         border: none;
         font-size: large;
     }
+
+    .createBtn:hover{
+        background-color: var(---transitionhover);
+    }
 `
 
 export {EditButton}

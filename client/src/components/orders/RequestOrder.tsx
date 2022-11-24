@@ -173,7 +173,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div> 
 
                 <div>
-                    <label>Search by Customer Name</label>
+                    <label>Customer Name</label>
                     <CustomerSubform observer={(value : string) => {
                         setValue("customer", value);
                     }} default={props.default?.customer}/>
@@ -184,7 +184,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 <br />
                 <br />
                 <div>
-                    <label>Search by Vehicle License Plate</label>
+                    <label>Vehicle License Plate</label>
                     <VehicleSubform observer={(value : string) => {
                         setValue("vehicle", value);
                     }} default={props.default?.vehicle}/>
