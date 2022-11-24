@@ -12,6 +12,10 @@ const DeleteContainer = styles.div`
         padding: 1rem 1.5rem;
         font-size: large;
     }
+
+    button:hover{
+        background-color: var(---transitionhover);
+    }
 `
 
 const DelIcon = styles.div`

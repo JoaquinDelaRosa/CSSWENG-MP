@@ -13,6 +13,10 @@ const CreateButton = styles.div`
     }
     float: right;
     padding-right: 20px;
+
+    .createBtn:hover{
+        background-color: var(---transitionhover);
+    }
 `
 
 export {CreateButton}

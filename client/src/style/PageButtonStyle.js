@@ -18,6 +18,10 @@ const PageButtonWrapper = styles.div`
         height: 2rem;
 
     }
+
+    button:hover{
+        background-color: var(---transitionhover);
+    }
 `
 
 export default PageButtonWrapper;

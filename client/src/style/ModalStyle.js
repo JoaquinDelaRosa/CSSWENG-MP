@@ -37,6 +37,10 @@ const ModalButton = styles.button`
     font-size: 0.8vw;
     width: -moz-fit-content;
     width: fit-content;
+    
+    :hover{
+        background-color: var(---transitionhover);
+    }
 `
 
 const CloseModal = styles.div`
@@ -56,7 +60,7 @@ const CloseModal = styles.div`
         width: 3rem
     }
 
-    button:hover{
+    button:hover {
         background-color: var(---transitionhover);
     }
 `
