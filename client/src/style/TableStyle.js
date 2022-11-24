@@ -37,6 +37,11 @@ const TableBody = styles.tbody`
         border: 1px var(---tableprimary) solid;
         padding: 0.5rem;
     }
+
+    input[type="checkbox"]{
+        height: 2rem;
+        width: 2rem;
+    }
 `
 
 export {TableWrapper, TableHead, TableBody}
