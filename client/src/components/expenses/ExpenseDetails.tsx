@@ -1,5 +1,5 @@
 export interface Expense {
-    dateRecorded : string,
+    dateRecorded : Date,
     description : string,
     amount : number,
 }

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ConvertDate } from "../../utils/ConvertDate";
 import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
 import { ExpensesModifiableDisplay } from "./ExpensesDisplay";
@@ -6,7 +7,7 @@ import { ExpensesModifiableDisplay } from "./ExpensesDisplay";
 const defaultExpense = {
     amount: 0,
     description: "",
-    dateRecorded: Date.now().toString()
+    dateRecorded: new Date()
 };
 
 export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]}) => {
@@ -20,9 +21,6 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     }
 
     const onAdd = () => {
-        if (isNaN(Date.parse(expense.dateRecorded)))
-            return
-
         setExpenses([...expenses, expense]);
         setExpense(defaultExpense);
     }
@@ -37,9 +35,9 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
             <div>
                 <label htmlFor="expenses.dateRecorded">Date Recorded</label>
                 <input type='date' name="expenses.dateRecorded" id="expenses.amount"
-                    value={expense.dateRecorded}
+                    value={ConvertDate(expense.dateRecorded)}
                     onChange = {(e) => {
-                        setExpense({...expense, dateRecorded: e.target.value})
+                        setExpense({...expense, dateRecorded: new Date(e.target.value)})
                     }}
                 />
             </div>

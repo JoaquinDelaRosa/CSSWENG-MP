@@ -16,7 +16,7 @@ export const ExpenseRecord = (props : {expense : Expense}) => {
             </td>
 
             <td>
-                <DateEntry date={props.expense.dateRecorded}/>
+                <DateEntry date={props.expense.dateRecorded.toDateString()}/>
             </td>
         </>
     )
