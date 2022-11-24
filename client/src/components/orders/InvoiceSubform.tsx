@@ -12,7 +12,7 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
         <ModalWrapper front={"Add Invoice"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <div>
                 <label htmlFor="invoiceAmount">Invoice Amount</label>
-                <input {... register("invoice.amount", {required : true})} type='text' name="invoice.amount" id="invoice.amount"
+                <input {... register("invoice.amount", {required : false})} type='text' name="invoice.amount" id="invoice.amount"
                     defaultValue={props.default?.amount.toString()}/>
                 {errors.invoice?.amount && <p>Invoice amount has wrong format</p>}
             </div>
