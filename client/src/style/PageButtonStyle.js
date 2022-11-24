@@ -4,6 +4,7 @@ const PageButtonWrapper = styles.div`
     padding-left: 1rem;
     font-weight: 800;
     text-align: left;
+    margin-top: -0.75rem;
     > p {
         display: inline-block;
         padding: 1em;
