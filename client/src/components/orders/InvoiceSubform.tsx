@@ -11,6 +11,7 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
     return (
         <ModalWrapper front={"Add Invoice"} isVisible={isVisible} setIsVisible={setIsVisible}>
             <div>
+                <br />
                 <label htmlFor="invoiceAmount">Invoice Amount</label>
                 <input {... register("invoice.amount", {required : false})} type='text' name="invoice.amount" id="invoice.amount"
                     defaultValue={props.default?.amount.toString()}/>
@@ -60,6 +61,7 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
                 />
                 {errors.invoice?.agentCommission && <p>Agent Commission has wrong format</p>}
             </div>
+            <br />
         </ModalWrapper>
     )
 }
