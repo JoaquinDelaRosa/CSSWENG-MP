@@ -8,7 +8,7 @@
     "start-server": "cd api && npm run start",
     "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "build": "concurrently \"npm run build-client\" \"npm run build-server\"",
-    "recursive-install": "npm i && npm run install-client && npm run install-server"
+    "recursive-install": "npm i && npm run install-server && npm run install-client "
   },
   "dependencies": {
     "concurrently": "^7.5.0",
