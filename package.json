@@ -2,12 +2,13 @@
   "scripts": {
     "start-client": "cd client && npm run start",
     "start-server": "cd api && npm run start",
-    "build-client": "cd client && react-scripts build",
+    "build-client": "cd client && npm run build",
     "build-server": "cd api && tsc --build",
-    "start": "concurrently \"npm run start-client\" \"npm run start-server\"", 
+    "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "build": "concurrently \"npm run build-client\" \"npm run build-server\""
   },
   "dependencies": {
-    "concurrently": "^7.5.0"
+    "concurrently": "^7.5.0",
+    "vercel": "^28.5.6"
   }
 }
