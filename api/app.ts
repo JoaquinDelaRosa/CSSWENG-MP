@@ -1,7 +1,7 @@
-import * as express from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import { AddressInfo } from "net";
-import * as path from 'path';
+import path from 'path';
 import cookieparser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
