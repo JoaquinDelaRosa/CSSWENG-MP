@@ -1,11 +1,14 @@
 {
   "scripts": {
+    "install-client": "cd client && npm i",
+    "install-server": "cd api && npm i",
+    "build-client": "cd client &&  npm run build",
+    "build-server": "cd api && tsc --build",
     "start-client": "cd client && npm run start",
     "start-server": "cd api && npm run start",
-    "build-client": "cd client && npm run build",
-    "build-server": "cd api && tsc --build",
     "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
-    "build": "concurrently \"npm run build-client\" \"npm run build-server\""
+    "build": "concurrently \"npm run build-client\" \"npm run build-server\"",
+    "install": "npm i && npm run install-client && npm run install-server"
   },
   "dependencies": {
     "concurrently": "^7.5.0",
