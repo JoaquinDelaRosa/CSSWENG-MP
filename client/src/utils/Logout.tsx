@@ -11,6 +11,7 @@ export const Logout = (props: {setIsLoggedIn : Function}) => {
 
     useEffect(() => {
         navigation(ROUTES.login);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.setIsLoggedIn])
 
     createAPIEndpoint(ENDPOINTS.logout).post({})

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CloseModal, Modal, ModalButton, ModalContent } from "../../style/ModalStyle";
 
 
@@ -19,6 +19,7 @@ export const ModalWrapper = (props : {front : any, children : any, isVisible : b
         
         document.addEventListener('keydown', handleEscapeKey);
         return () => document.removeEventListener('keydown', handleEscapeKey);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
     if (!isVisible) {
