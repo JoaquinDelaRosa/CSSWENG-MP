@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "concurrently": "^7.5.0",
+    "create-react-app": "^5.0.1",
     "vercel": "^28.5.6"
   }
 }
