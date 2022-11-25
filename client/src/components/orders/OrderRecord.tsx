@@ -23,7 +23,7 @@ export const OrderRecord = (props : { order: Order, rerenderFlag: Function}) => 
     }, [props, props.order])
 
     const onVerify = (val : boolean) => {
-        createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : props.order.isVerified}, {id: props.order.id})
+        createAPIEndpoint(ENDPOINTS.verifyOrder).post({isVerified : val}, {id: props.order.id})
         .then((response) => {
             console.log("Verified")
         })
