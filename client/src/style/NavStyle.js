@@ -10,7 +10,7 @@ const Nav = styles.header`
     margin-bottom: 1.5em;
 
     > nav {
-        background-color: rgb(255,255,255);
+        background-color: #eeeff1;
         display: flex;
         flex-direction: row;
         height: 120%;
@@ -29,7 +29,7 @@ const NavButtons = styles.div`
     position: sticky;
 
     > button {
-        background-color: rgb(255,255,255);
+        background-color: #eeeff1;
         border: none;
         color: var(---accent);
         font-weight: 600;
