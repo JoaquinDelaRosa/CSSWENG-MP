@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const debug = require('debug')('my express app');
 const app = express();
 
-const cors = require('cors');
+import cors = require('cors');
 
 
 // connections
