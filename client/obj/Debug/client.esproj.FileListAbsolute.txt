@@ -8,3 +8,5 @@ C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.Sugges
 C:\Users\cheng\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
 C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
 C:\Users\Joseph Ano\Documents\GitHub\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache
+D:\College\AY 22-23\TERM 1\CSSWENG\CSSWENG-MP\JoaquinDelaRosa\CSSWENG-MP\client\obj\Debug\client.esproj.SuggestedBindingRedirects.cache
+D:\College\AY 22-23\TERM 1\CSSWENG\CSSWENG-MP\JoaquinDelaRosa\CSSWENG-MP\client\obj\Debug\client.esproj.CoreCompileInputs.cache

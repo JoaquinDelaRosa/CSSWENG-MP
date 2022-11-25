@@ -1,83 +1,56 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { createAPIEndpoint, ENDPOINTS } from '../../api';
-import { isExpenseExists } from '../../utils/CheckFKExists';
-import { isAlphabetic } from '../../utils/Regex';
-import { ExpenseRequest } from './ExpenseDetails';
+import { useEffect, useState } from "react";
+import { ConvertDate } from "../../utils/ConvertDate";
+import { ModalWrapper } from "../base/ModalBase";
+import { Expense } from "./ExpenseDetails";
 
 
-const UpdateExpense = () => {
-    const [modifiedId, setModifiedId] = useState<number>(-1);
-    const {register, handleSubmit, formState: {errors}} = useForm<ExpenseRequest>()
-    const [expenseExists, setExpenseExists] = useState<boolean>(true);
+export const UpdateExpense = (props: {setData : Function,  default : Expense}) => {
+    const [expense, setExpense] = useState<Expense>(props.default);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.updateExpense).patch(data, { "id": modifiedId })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    });
-
-    const onModifiedIdChanged = (id: number) => {
-        if(Number.isNaN(id))
-            return
-        setModifiedId(id);
-        createAPIEndpoint(ENDPOINTS.getExpense).fetch({"id" : id})
-            .then((response) => {
-                return response.data;
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    const onChange = () => {
+        props.setData(expense);
+        setExpense(expense)
     }
 
+    useEffect(() => {
+        setExpense(props.default)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.default])
+
     return (
-        <div>
-            <p> Update </p>
-            <form>
-                <div>
-                    <label> Id </label>
-                    <input type="number" name="id"
-                    onChange={(e) => {
-                        onModifiedIdChanged(parseInt(e.target.value));
-                        isExpenseExists(parseInt(e.target.value),setExpenseExists);
-                        }}/>
-                    <p hidden={expenseExists}>Expense does not exist</p>
-                </div>
-                <div>
-                      <label htmlFor="dateRecorded"> Date Recorded </label>
-                      <input {...register('dateRecorded', {required: true})} 
-                      type="date" name="dateRecorded"/>
-                      {errors.dateRecorded && <p> Date Recorded is required</p>}
-                  </div>
-                  <div>
-                      <label htmlFor="description"> Description </label>
-                      <input {...register('description', {required: true, pattern: isAlphabetic })} 
-                      type="text" name="description"/>
-                      {errors.description && <p> Description is required</p>}
-                  </div>
-                  <div>
-                      <label htmlFor="amount"> Amount </label>
-                      <input {...register('amount', {required: true})} 
-                      type="number" name="amount"/>
-                      {errors.amount && <p> Amount is required</p>}
-                  </div>
-                  <div>
-                      <label htmlFor="orderId"> Order ID </label>
-                      <input {...register('orderId', {required: true})} 
-                      type="number" name="orderId"/>
-                      {errors.orderId && <p> Order ID is required</p>}
-                  </div>
-                <input type='button' name="submit" onClick={onSubmit} value={"Submit"} />
-            </form>
-        </div>  
+        <ModalWrapper front={"Edit"} isVisible={isVisible} setIsVisible={setIsVisible}>
+            <div>
+                <label htmlFor="expenses.dateRecorded">Date Recorded</label>
+                <input type='date' name="expenses.dateRecorded" id="expenses.amount" 
+                    value={ConvertDate(new Date(expense.dateRecorded))}
+                    onChange = {(e) => {
+                        setExpense({...expense, dateRecorded: new Date(e.target.value)})
+                    }}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="expenses.amount"> Amount</label>
+                <input type='text' name="expenses.amount" id="expenses.amount" 
+                    value={expense.amount}
+                    onChange = {(e) => {
+                        setExpense({...expense, amount: parseInt(e.target.value)})
+                    }}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="expenses.description">Description</label>
+                <input type='text' name="expenses.description" id="expenses.description" 
+                    value={expense.description}
+                    onChange = {(e) => {
+                        setExpense({...expense, description: e.target.value});
+                    }}
+                />
+            </div>
+            
+            <input type="button" name="submit" onClick={onChange} value={"Apply"}/>
+        </ModalWrapper>
     );
 }
-
-export default UpdateExpense;

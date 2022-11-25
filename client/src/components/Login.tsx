@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { createAPIEndpoint, ENDPOINTS, updateToken } from '../api';
-import '../style/LoginFull.css';
-import '../style/LoginDiv.css';
-import { useNavigate } from 'react-router-dom';
+import { createAPIEndpoint} from '../api';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../api/routes';
+import { removeRole, setRole } from '../utils/CheckRole';
+import { SignBox, LoginDiv, SignPage, RightImage, SignUp } from '../style/SignStyle';
+import { RedDialogue } from '../style/Dialogue';
+import { ENDPOINTS } from '../api/endpoints';
+
 
 type LoginState = {
     username: string
     password: string
 };
 
-const Login = () => {
+const Login = (props: {setIsLoggedIn : Function}) => {
     const [state, setState] = useState<LoginState>({
         username: "",
         password: ""
@@ -21,12 +24,19 @@ const Login = () => {
 
     const onSubmit = (event: React.SyntheticEvent<HTMLInputElement>) => {
         createAPIEndpoint(ENDPOINTS.login).post(state)
-            .then((response: any) => {
-                console.log(response.data.split("\""));
-                updateToken(response.data.split("\"")[0]);
-            })
-            .then(() => {
+            .then((response) => {
                 navigation(ROUTES.orders);
+                if(response.data.auth) {
+                    props.setIsLoggedIn(true);
+                    sessionStorage.setItem("isLoggedIn", "true");
+                    setRole(response.data.token);
+                }
+                else {
+                    props.setIsLoggedIn(false);
+                    sessionStorage.setItem("isLoggedIn", "false");
+                    removeRole();
+                }
+                
             })
             .catch((err: any) => {
                 console.log(err);
@@ -39,16 +49,14 @@ const Login = () => {
     }
 
     return (
-        <div className="FullPage" >
-            <div className="loginBox">
-                <div className="loginLogo">
-                </div>
-                <div className="rightBG">
-                </div>
-                <div className="loginForm">
-                    <form className="loginUI">
+        <SignPage>
+            <SignBox>
+                <div className='LoginLogo'></div>
+                <RightImage></RightImage>
+                <LoginDiv>
+                    <form autoComplete="off">
                         <span>
-                            <input className="textField usernameField"
+                            <input
                                 name="username"
                                 value={state.username}
                                 placeholder="Username"
@@ -57,7 +65,7 @@ const Login = () => {
                             <br />
                         </span>
                         <span>
-                            <input className="textField passwordField"
+                            <input
                                 type="password"
                                 name="password"
                                 placeholder="Password"
@@ -67,14 +75,22 @@ const Login = () => {
                             <br />
                         </span>
                         <span>
-                            <input className="loginButton"
+                            <input
                                 type='button' name="submit" onClick={onSubmit} value={"Sign In"} />
                         </span>
-                        <p >Don't have an account? <span className="redDialogue">Sign up now.</span></p>
+                        <SignUp>
+                            <p> Don't have an account? &nbsp;
+                                <span>
+                                    <Link to= {ROUTES.register}>
+                                        <RedDialogue>Sign up now.</RedDialogue>
+                                    </Link>
+                                </span>
+                            </p>
+                        </SignUp>
                     </form>
-                </div>
-            </div>
-        </div>
+                </LoginDiv>
+            </SignBox>
+        </SignPage>
     );
 }
 

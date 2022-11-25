@@ -1,39 +1,22 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { createAPIEndpoint, ENDPOINTS } from '../../api';
-import { isVehicleExists } from '../../utils/CheckFKExists';
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
+import { DeleteContainer, DelIcon } from "../../style/DeleteButton";
+import { Vehicle } from "./VehicleDetails";
 
-const DeleteVehicle = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{id : number}>();
-    const [vehicleExists, setVehicleExists] = useState<boolean>(true);
-
-    const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : data.id})
+export const DeleteVehicle = (props : {vehicle : Vehicle, observer : Function}) => {
+    const onSubmit = () => {
+        createAPIEndpoint(ENDPOINTS.deleteVehicle).delete({"id" : props.vehicle.id})
             .then((response) => {
-                console.log(response)
+                props.observer();
             })
             .catch((err) => {
                 console.log(err)
             })
-    })
+    }
 
     return (
-        <div>
-            <p> Delete </p>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="vehicleId"> Input Vehicle ID </label>
-                    <input {... register('id', {required : true,
-                    onChange: (e)=> {
-                        isVehicleExists(parseInt(e.target.value), setVehicleExists);
-                    }})} type="number" name="id"/>
-                    {errors.id && <p>Vehicle ID is required</p>}
-                    <p hidden={vehicleExists}> Vehicle does not exist</p>
-                </div>
-                <input type='button'name="submit" onClick={onSubmit} value={"Submit"} />
-            </form>
-        </div>
+      <DeleteContainer>
+            <button onClick={onSubmit}><DelIcon></DelIcon> </button>
+      </DeleteContainer>
     );
 }
-
-export default DeleteVehicle;

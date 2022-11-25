@@ -3,13 +3,19 @@ export interface VehicleRequest {
     manufacturer: string,
     model: string,
     yearManufactured: Number
+    color: string,
+    engine: string,
+    remarks: string,
 }
 
 
 export interface Vehicle {
-    id : number,
+    id : string,
     licensePlate: string,
     manufacturer: string,
     model: string,
-    yearManufactured: number
+    yearManufactured: number,
+    color: string,
+    engine: string,
+    remarks: string,
 }

@@ -1,58 +1,89 @@
-import { Route, Routes } from "react-router-dom";
-import AddCustomer from "./components/customers/AddCustomer";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import ViewCustomers from "./components/customers/ViewCustomers";
 import Home from "./components/Home";
-import ViewInvoices from "./components/invoice/ViewInvoices";
 import Login from "./components/Login";
 import OrdersView from "./components/orders/ViewOrders";
-import RegisterUser from "./components/RegisterUser";
+import Register from "./components/Register";
 import ViewVehicles from "./components/vehicles/ViewVehicles";
 import "./style/temporary.css";
 import { ROUTES } from "./api/routes";
-import ViewExpenses from "./components/expenses/ViewExpense";
+import UsersView from "./components/users/ViewUsers";
+import { useState } from "react";
+import {Logout} from "./utils/Logout";  
+import { WithNav } from "./WithNav";
 
+
+
+const ProtectedRoute = (props : { isLoggedIn : boolean}) => {
+    if (!props.isLoggedIn) {
+      return (<Navigate to="/login"/>);    
+    }
+    return <Outlet/>
+};
 
 export const Main = () => {
-    return (
+    const [isLoggedIn ,setIsLoggedIn] = useState<boolean>(sessionStorage.getItem("isLoggedIn") === "true")
+
+    return (    
         <Routes>
-            <Route
-                path="/"
-                element={<Login/> }
-            />
+                <>
+                    <Route
+                    path="/"
+                    element={<Login setIsLoggedIn={setIsLoggedIn}/> }
+                    />
+
+                    <Route
+                        path={ROUTES.login}
+                        element={<Login setIsLoggedIn={setIsLoggedIn}/> }
+                    />
+
+                    <Route
+                        path={ROUTES.register }
+                        element={<Register/> }
+                    />
+                </>
+            
+                <Route element={<WithNav/>}>
+                    <Route path={ROUTES.customers} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route
+                            path={ROUTES.customers }
+                            element={<ViewCustomers/> }
+                        />
+                    </Route>
+                    <Route path={ROUTES.vehicles} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route
+                            path={ROUTES.vehicles }
+                            element={<ViewVehicles/> }
+                        />
+                    </Route>
+
+                    <Route path={ROUTES.orders} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route
+                            path={ROUTES.orders }
+                            element={<OrdersView/> }
+                        />
+                    </Route>
+
+                    <Route path={ROUTES.users} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route
+                            path={ROUTES.users }
+                            element={<UsersView/> }
+                        />
+                    </Route>
+
+                    <Route path={ROUTES.home} element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route
+                            path={ROUTES.home}
+                            element={<Home/>}
+                        />
+                    </Route>
+                </Route>
+            
+            
 
             <Route
-                path={ROUTES.login}
-                element={<Login/> }
-            />
-
-            <Route
-                path={ROUTES.register }
-                element={<RegisterUser/> }
-            />
-
-            <Route
-                path={ROUTES.customers }
-                element={<ViewCustomers/> }
-            />
-
-            <Route 
-                path={ROUTES.vehicles }
-                element={<ViewVehicles/> }
-            />
-
-            <Route
-                path={ROUTES.orders }
-                element={<OrdersView/> }
-            />
-
-            <Route 
-                path={ROUTES.invoices }
-                element={<ViewInvoices/> }
-            />
-
-            <Route 
-                path={ROUTES.expenses }
-                element={<ViewExpenses/> }
+                path={ROUTES.logout}
+                element={<Logout setIsLoggedIn={setIsLoggedIn}/>}
             />
 
         </Routes>

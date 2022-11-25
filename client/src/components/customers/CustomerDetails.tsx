@@ -2,17 +2,22 @@ export interface CustomerRequest {
     firstName: string,
     lastName: string,
     mobileNumber : string,
-    email : string
-}
-
-export interface CustomerTypeKVP {
-    id: number,
-    name: string
+    email : string,
+    company : string,
+    insurance : string,
+    remarks : string
 }
 
 export interface Customer {
-    id : number,
-    name: string,
-    mobileNumber? : string,
-    email? : string
+    id : string,
+    name: {
+        firstName: string,
+        lastName: string,
+        val: string,
+    },
+    mobileNumber : string,
+    email : string,
+    company : string,
+    insurance : string,
+    remarks : string
 }

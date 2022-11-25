@@ -1,40 +1,22 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { createAPIEndpoint, ENDPOINTS } from '../../api';
-import { isOrderExists } from '../../utils/CheckFKExists';
+import { createAPIEndpoint } from "../../api";
+import { ENDPOINTS } from "../../api/endpoints";
+import { DeleteContainer, DelIcon } from "../../style/DeleteButton";
+import { Order } from "./OrderDetails";
 
-
-const DeleteOrder = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<{ id: number }>();
-    const [orderExists, setOrderExists] = useState<boolean>(true);
-
-    const onSubmit = handleSubmit((data) => {
-        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : data.id})
+export const DeleteOrder = (props : {order : Order, observer : Function}) => {
+    const onSubmit = () => {
+        createAPIEndpoint(ENDPOINTS.deleteOrder).delete({"id" : props.order.id})
             .then((response) => {
-                console.log(response)
+                props.observer();
             })
             .catch((err) => {
                 console.log(err)
             })
-    })
+    }
 
     return (
-        <div className="FormDiv">
-            <p> Delete </p>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="orderId"> Input Order ID </label>
-                    <input {... register('id', {required : true,
-                    onChange: (e)=> {
-                        isOrderExists(parseInt(e.target.value), setOrderExists);
-                    }})} type="number" name="id"/>
-                    {errors.id && <p>Order ID is required</p>}
-                    <p hidden={orderExists}> Order does not exist</p>
-                </div>
-                <input type='button'name="submit" onClick={onSubmit} value={"Submit"} />
-            </form>
-        </div>
+      <DeleteContainer>
+            <button onClick={onSubmit}><DelIcon></DelIcon> </button>
+      </DeleteContainer>
     );
 }
-
-export default DeleteOrder;

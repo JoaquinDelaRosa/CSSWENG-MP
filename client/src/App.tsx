@@ -1,15 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Login from './components/Login';
 import { Main } from './Main';
+
+// Styles
+import './style/RoleThemes.css'
+import './style/AppStyle.css'
+
 
 function App() {
   return (
-      <div >
-          <header >
-              <Main/>
-          </header>
+      <div className="admin-theme">
+        <Main/>
       </div>
   );
 }

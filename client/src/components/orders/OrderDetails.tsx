@@ -1,39 +1,56 @@
 import { Customer } from "../customers/CustomerDetails"
 import { Expense } from "../expenses/ExpenseDetails"
-import { Invoice } from "../invoice/InvoiceDetails"
+import { Invoice } from "./InvoiceDetails"
 import { Vehicle } from "../vehicles/VehicleDetails"
 
-export interface OrderStatusKVP {
-    id: number,
-    name: string
-}
-
 export interface OrderRequest {
-    status: number,
+    status: string,
     timeIn: Date,
     timeOut: Date,
-    customerId: number,
-    customerTypeId: number,
+    customer : string,
+    type: string,
     company: string,
-    vehicleId: number,
-    invoiceId: number,
+    vehicle: string,
     estimateNumber: string,
     scopeOfWork: string,
-    expenses: number
+    invoice: Invoice,
+    expenses: Array<Expense>
+}
+
+export interface OrderRequestDefault {
+    status: string,
+    timeIn: Date,
+    timeOut: Date,
+    customer : {
+        id: string,
+        name: string
+    },
+    type: string,
+    vehicle: {
+        id: string, 
+        licensePlate: string,
+    },
+    estimateNumber: string,
+    scopeOfWork: string,
+    invoice: Invoice,
+    expenses: Array<Expense>
 }
 
 export interface Order {
-    orderId: number,
+    id: string,
+    isVerified: boolean,
     status: string, 
     timeIn: string,
     timeOut: string,
-    customerDetails: Customer,
-    vehicleDetails: Vehicle,
-    invoiceDetails: Invoice,
-    customerType: string,
+    
+    customer: Customer,
+    type: string,
     company: string,
+    vehicle: Vehicle,
+
     estimateNumber: string,
     scopeOfWork: string,
-    expenses: Array<Expense>
+    expenses: Array<Expense>,
+    invoice: Invoice
 }
 
