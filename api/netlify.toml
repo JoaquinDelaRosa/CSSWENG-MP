@@ -2,6 +2,6 @@
     functions="dist"
 
 [[redirects]]
-    to = ”/.netlify/functions/api:splat”
-    from = "/*"
-    status = 200
+    to="https://autoworks-logger-api.netlify.app/"
+    from="/*"
+    status=200 
