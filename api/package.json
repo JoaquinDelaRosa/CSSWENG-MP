@@ -27,6 +27,7 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.12.1",
     "mongoose": "6.6.0",
     "pug": "^2.0.4",
     "serverless-http": "^3.1.0",

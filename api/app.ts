@@ -18,6 +18,26 @@ import cors = require('cors');
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose.connect(CONNECTION_STRING);
 
+// MongoDB + AWS integration
+const { MongoClient } = require('mongodb');
+const client = new MongoClient(process.env.MONGODB_URI, {
+  auth: {
+    username: "Admin",
+    password: "oA5IQmJy33VXrIz"
+  },
+
+  authSource: '$external',
+  authMechanism: 'MONGODB-AWS'
+});
+
+module.exports.handler = async function () {
+  const databases = await client.db('autoworks').command({ listDatabases: 1 });
+  return {
+    statusCode: 200,
+    databases: databases
+  };
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
