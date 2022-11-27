@@ -40,13 +40,14 @@ const vehicle_1 = __importDefault(require("./routes/vehicle"));
 const enums_1 = __importDefault(require("./routes/enums"));
 const index_1 = __importDefault(require("./routes/index"));
 // route calls
-app.use('/api/authz', authz_1.default);
-app.use('/api/user', user_1.default);
-app.use('/api/vehicle', vehicle_1.default);
-app.use('/api/order', order_1.default);
-app.use('/api/customer', customer_1.default);
-app.use('/api', enums_1.default);
-app.use('/', index_1.default);
+const BASE = './netlify/functions';
+app.use(BASE + '/api/authz', authz_1.default);
+app.use(BASE + '/api/user', user_1.default);
+app.use(BASE + '/api/vehicle', vehicle_1.default);
+app.use(BASE + '/api/order', order_1.default);
+app.use(BASE + '/api/customer', customer_1.default);
+app.use(BASE + '/api', enums_1.default);
+app.use(BASE + '/', index_1.default);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
     const err = new Error('Not Found');

@@ -49,13 +49,15 @@ import enumRoutes from './routes/enums';
 
 import indexRoute from './routes/index';
 // route calls
-app.use('/api/authz', authzRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/vehicle', vehicleRoutes);
-app.use('/api/order', orderRoutes);
-app.use('/api/customer', customerRoutes);
-app.use('/api', enumRoutes);
-app.use('/', indexRoute);
+const BASE = './netlify/functions'
+
+app.use(BASE + '/api/authz', authzRoutes);
+app.use(BASE + '/api/user', userRoutes);
+app.use(BASE + '/api/vehicle', vehicleRoutes);
+app.use(BASE + '/api/order', orderRoutes);
+app.use(BASE + '/api/customer', customerRoutes);
+app.use(BASE + '/api', enumRoutes);
+app.use(BASE + '/', indexRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
