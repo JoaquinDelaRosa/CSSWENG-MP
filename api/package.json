@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --project",
+    "build": "tsc --build",
     "clean": "tsc --build --clean",
     "start": "tsc --build && node ./dist/app.js --ignore client"
   },
