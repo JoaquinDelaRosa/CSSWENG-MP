@@ -40,7 +40,7 @@ const vehicle_1 = __importDefault(require("./routes/vehicle"));
 const enums_1 = __importDefault(require("./routes/enums"));
 const index_1 = __importDefault(require("./routes/index"));
 // route calls
-const BASE = './netlify/functions';
+const BASE = '/.netlify/functions';
 app.use(BASE + '/api/authz', authz_1.default);
 app.use(BASE + '/api/user', user_1.default);
 app.use(BASE + '/api/vehicle', vehicle_1.default);
