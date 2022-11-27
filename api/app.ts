@@ -100,7 +100,7 @@ const server = app.listen(app.get('port'), function () {
 
 const { MongoClient } = require("mongodb");
 
-const mongoClient = new MongoClient(CONNECTION_STRING);
+const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
 const clientPromise = mongoClient.connect();
 
 module.exports.handler = serverless(app)
