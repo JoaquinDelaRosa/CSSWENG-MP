@@ -181,3 +181,6 @@ client/obj/Debug/client.esproj.FileListAbsolute.txt
 *.map
 .vs/AutoWorks/v17/fileList.bin
 .vs/AutoWorks/v17/fileList.bin
+
+# Local Netlify folder
+.netlify

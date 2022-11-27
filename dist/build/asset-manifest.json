@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8dfb448f.css",
+    "main.js": "/static/js/main.8fb4bee5.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/lovelyredcarREAL.png": "/static/media/lovelyredcarREAL.13d6696e6975871e9713.png",
+    "static/media/SL_110720_37770_21.jpg": "/static/media/SL_110720_37770_21.350e147740bda12ff21e.jpg",
+    "static/media/SL_042620_30310_19.jpg": "/static/media/SL_042620_30310_19.b70524e0fd5e26809241.jpg",
+    "static/media/TOPTECH_AUTOWORKS_LOGO.png": "/static/media/TOPTECH_AUTOWORKS_LOGO.d27da9b359743885b584.png",
+    "static/media/trash-icon.png": "/static/media/trash-icon.42926b6cf63e6ee77c98.png",
+    "static/media/user-svgrepo-com.svg": "/static/media/user-svgrepo-com.3d34eed26df53fb0ae9b8c9ef175f406.svg",
+    "index.html": "/index.html",
+    "main.8dfb448f.css.map": "/static/css/main.8dfb448f.css.map",
+    "main.8fb4bee5.js.map": "/static/js/main.8fb4bee5.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8dfb448f.css",
+    "static/js/main.8fb4bee5.js"
+  ]
+}
