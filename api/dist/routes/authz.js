@@ -9,4 +9,5 @@ const router = express.Router();
 router.post('/register', authz_1.default.register);
 router.post('/login', authz_1.default.login);
 router.post('/logout', authz_1.default.logout);
+
 exports.default = router;
