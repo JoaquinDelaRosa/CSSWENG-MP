@@ -2,6 +2,6 @@
     functions="dist"
 
 [[redirects]]
+    to = ”/.netlify/functions/api:splat”
     from = "/*"
-    to = "/"
     status = 200
