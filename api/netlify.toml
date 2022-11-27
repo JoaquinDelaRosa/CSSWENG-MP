@@ -1,7 +1,2 @@
 [build]
     functions="dist"
-
-[[redirects]]
-    to="https://autoworks-logger-api.netlify.app/"
-    from="/*"
-    status=200 
