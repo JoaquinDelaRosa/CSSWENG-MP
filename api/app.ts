@@ -5,6 +5,7 @@ import path from 'path';
 import cookieparser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
+const serverless = require('serverless-http')
 
 const debug = require('debug')('my express app');
 const app = express();
@@ -93,3 +94,5 @@ app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${(server.address() as AddressInfo).port}`);
 });
+
+module.exports.handler = serverless(app)
