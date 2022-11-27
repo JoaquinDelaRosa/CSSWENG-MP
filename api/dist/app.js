@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -25,25 +16,6 @@ const cors = require("cors");
 // connections
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose_1.default.connect(CONNECTION_STRING);
-// MongoDB + AWS integration
-const { MongoClient } = require('mongodb');
-const client = new MongoClient(process.env.MONGODB_URI, {
-    auth: {
-        username: "Admin",
-        password: "oA5IQmJy33VXrIz"
-    },
-    authSource: '$external',
-    authMechanism: 'MONGODB-AWS'
-});
-module.exports.handler = function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        const databases = yield client.db('autoworks').command({ listDatabases: 1 });
-        return {
-            statusCode: 200,
-            databases: databases
-        };
-    });
-};
 // view engine setup
 app.set('views', path_1.default.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -108,4 +80,7 @@ app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${server.address().port}`);
 });
+const { MongoClient } = require("mongodb");
+const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
+const clientPromise = mongoClient.connect();
 module.exports.handler = serverless(app);
