@@ -18,26 +18,6 @@ import cors = require('cors');
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
 const mongo = mongoose.connect(CONNECTION_STRING);
 
-// MongoDB + AWS integration
-const { MongoClient } = require('mongodb');
-const client = new MongoClient(CONNECTION_STRING, {
-  auth: {
-    username: "Admin",
-    password: "oA5IQmJy33VXrIz"
-  },
-
-  authSource: '$external',
-  authMechanism: 'MONGODB-AWS'
-});
-
-module.exports.handler = async function () {
-  const databases = await client.db('autoworks').command({ listDatabases: 1 });
-  return {
-    statusCode: 200,
-    databases: databases
-  };
-};
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -118,4 +98,19 @@ const server = app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${(server.address() as AddressInfo).port}`);
 });
 
-module.exports.handler = serverless(app)
+const { MongoClient } = require("mongodb");
+
+const mongoClient = new MongoClient(process.env.MONGODB_URI);
+const clientPromise = mongoClient.connect();
+const handler = async (event) => {
+    try {
+        const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
+        const collection = database.collection(process.env.MONGODB_COLLECTION);
+        // Function logic here ...
+    } catch (error) {
+        return { statusCode: 500, body: error.toString() }
+    }
+}
+
+// module.exports.handler = serverless(app)
+module.exports = { handler }
