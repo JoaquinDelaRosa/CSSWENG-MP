@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Enable cors
 
 var corsOptions = {
-    origin: true,
+    origin: ["https://toptech-autoworks-logger.netlify.app", "https://autoworks-logger-api.netlify.app"],
     optionsSuccessStatus: 200,
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', "access-control-allow-credentials"],
