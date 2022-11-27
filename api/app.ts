@@ -9,6 +9,7 @@ const serverless = require('serverless-http')
 
 const debug = require('debug')('my express app');
 const app = express();
+const pug = require('pug');
 
 import cors = require('cors');
 
