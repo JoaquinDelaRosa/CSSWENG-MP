@@ -50,7 +50,7 @@ import enumRoutes from './routes/enums';
 
 import indexRoute from './routes/index';
 // route calls
-const BASE = '/.netlify/functions'
+const BASE = ''
 
 app.use(BASE + '/api/authz', authzRoutes);
 app.use(BASE + '/api/user', userRoutes);
