@@ -100,17 +100,7 @@ const server = app.listen(app.get('port'), function () {
 
 const { MongoClient } = require("mongodb");
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI);
+const mongoClient = new MongoClient(CONNECTION_STRING);
 const clientPromise = mongoClient.connect();
-const handler = async (event) => {
-    try {
-        const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
-        const collection = database.collection(process.env.MONGODB_COLLECTION);
-        // Function logic here ...
-    } catch (error) {
-        return { statusCode: 500, body: error.toString() }
-    }
-}
 
-// module.exports.handler = serverless(app)
-module.exports = { handler }
+module.exports.handler = serverless(app)
