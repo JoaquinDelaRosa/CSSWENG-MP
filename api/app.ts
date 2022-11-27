@@ -14,11 +14,6 @@ import cors = require('cors');
 const { MongoClient } = require("mongodb");
 
 
-
-// connections
-const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
-const mongo = mongoose.connect(CONNECTION_STRING);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
