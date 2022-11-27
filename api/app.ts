@@ -20,7 +20,7 @@ const mongo = mongoose.connect(CONNECTION_STRING);
 
 // MongoDB + AWS integration
 const { MongoClient } = require('mongodb');
-const client = new MongoClient(process.env.MONGODB_URI, {
+const client = new MongoClient(CONNECTION_STRING, {
   auth: {
     username: "Admin",
     password: "oA5IQmJy33VXrIz"

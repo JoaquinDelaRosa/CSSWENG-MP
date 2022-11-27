@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && \"./node_modules/.bin/netlify-lambda.cmd build dist\"",
     "clean": "tsc --build --clean",
-    "start": "tsc --build && node ./dist/app.js --ignore client"
+    "start": "tsc --build && \"./node_modules/.bin/netlify-lambda.cmd serve dist\""
   },
   "description": "api",
   "author": {
@@ -27,9 +27,9 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.12.1",
     "mongoose": "6.6.0",
-    "pug": "^2.0.4",
+    "netlify-lambda": "^2.0.15",
+    "pug": "^2.0.0-rc.3",
     "serverless-http": "^3.1.0",
     "typescript": "~4.8.x"
   },
