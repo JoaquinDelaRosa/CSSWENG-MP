@@ -1,7 +1,7 @@
 import axios from "axios";
 const Cookies = require('js-cookie')
 
-export const BASE_URL = 'http://localhost:3000/'
+export const BASE_URL = 'https://autoworks-logger-api.netlify.app/'
 
 
 export const createAPIEndpoint = (endpoint : string) => {
