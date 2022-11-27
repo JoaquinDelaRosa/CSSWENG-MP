@@ -5,13 +5,14 @@ import path from 'path';
 import cookieparser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
-const serverless = require('serverless-http')
 
 const debug = require('debug')('my express app');
 const app = express();
 const pug = require('pug');
 
 import cors = require('cors');
+const { MongoClient } = require("mongodb");
+
 
 
 // connections
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Enable cors
 
 var corsOptions = {
-    origin: ["https://toptech-autoworks-logger.netlify.app", "https://autoworks-logger-api.netlify.app, https://cssweng-mp-production.up.railway.app/"],
+    origin: ["https://toptech-autoworks-logger.netlify.app", "https://autoworks-logger-api.netlify.app", "https://autoworks-api.up.railway.app/"],
     optionsSuccessStatus: 200,
     credentials: true,
     allowedHeaders: ['Origin', 'X-Requested-With',  'Accept', 'Content-Type', 'Authorization', "access-control-allow-credentials"],
@@ -92,15 +93,12 @@ app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-
     });
 });
 
+const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
+const clientPromise = mongoClient.connect();
+
 app.set('port', process.env.PORT || 3000);
 
 const server = app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${(server.address() as AddressInfo).port}`);
 });
 
-const { MongoClient } = require("mongodb");
-
-const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
-const clientPromise = mongoClient.connect();
-
-module.exports.handler = serverless(app)

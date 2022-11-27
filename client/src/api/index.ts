@@ -1,7 +1,7 @@
 import axios from "axios";
 const Cookies = require('js-cookie')
 
-export const BASE_URL = 'https://cssweng-mp-production.up.railway.app/'
+export const BASE_URL = 'https://autoworks-api.up.railway.app/'
 
 
 export const createAPIEndpoint = (endpoint : string) => {
