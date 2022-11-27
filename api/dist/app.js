@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const serverless = require('serverless-http');
 const debug = require('debug')('my express app');
 const app = (0, express_1.default)();
+const pug = require('pug');
 const cors = require("cors");
 // connections
 const CONNECTION_STRING = "mongodb+srv://Admin:oA5IQmJy33VXrIzj@autoworks.jagxl7s.mongodb.net/autoworks?retryWrites=true&w=majority";
