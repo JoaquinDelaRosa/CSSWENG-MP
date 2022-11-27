@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build && \"./node_modules/.bin/netlify-lambda.cmd build dist\"",
+    "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "start": "tsc --build && \"./node_modules/.bin/netlify-lambda.cmd serve dist\""
+    "start": "tsc --build && node ./dist/app.js --ignore-client"
   },
   "description": "api",
   "author": {
