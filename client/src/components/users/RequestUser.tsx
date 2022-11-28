@@ -10,7 +10,7 @@ export const DEFAULT = "DEFAULT";
 
 export const RequestUser = (props : {setResponse : Function, default? : UserRequest}) => {
     
-    const {register, handleSubmit, formState: {errors}} = useForm<UserRequest>();
+    const {register, handleSubmit, formState: {errors}, setValue} = useForm<UserRequest>();
     const [roles, setRoles] = useState<Array<string>>([]);
     
     useEffect(() => {
@@ -25,6 +25,16 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                 console.log(err);
             });
     }, []);
+
+    useEffect(() => {
+        if (props.default){
+            setValue("firstName", props.default.firstName)
+            setValue("lastName", props.default.lastName)
+            setValue("id", props.default.id)
+            setValue("role", props.default.role)
+            setValue("username", props.default.username)
+        }
+    }, [props.default])
 
     
     const onSubmit = handleSubmit((data) => {
