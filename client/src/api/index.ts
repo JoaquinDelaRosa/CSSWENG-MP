@@ -1,8 +1,10 @@
 import axios from "axios";
 const Cookies = require('js-cookie')
 
-export const BASE_URL = 'https://autoworks-api.up.railway.app/'
+const DEPLOYMENT_BASE_URL = 'https://autoworks-api.up.railway.app/'
+const DEVELOPMENT_BASE_URL = "http://localhost:3000/"
 
+export const BASE_URL = DEVELOPMENT_BASE_URL
 
 export const createAPIEndpoint = (endpoint : string) => {
     axios.defaults.withCredentials = true
