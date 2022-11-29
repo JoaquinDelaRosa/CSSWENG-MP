@@ -53,28 +53,24 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
     });
 
     useEffect(() => {
-        if (props.default?.status) {
+        if (props.default) {
             setValue("status", props.default?.status);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.default?.status]);
-
-    useEffect(() => {
-        if (props.default?.type){
             setValue("type", props.default?.type);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.default?.type])
-
-    useEffect(() => {
-        if (props.default?.expenses){
             setValue("expenses", props.default?.expenses);
+            setValue("customer", props.default?.customer.id);
+            setValue("vehicle", props.default?.vehicle.id);
+
+            setValue("invoice", props.default?.invoice);
+            setValue("scopeOfWork", props.default?.scopeOfWork);
+            setValue("estimateNumber", props.default?.estimateNumber);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.default?.expenses])
-     
+    }, [props.default]);
+
     useEffect(() => {
         setValue("invoice.deductible", 0);
+        setValue("invoice.amount", 0)
+        setValue("invoice.agentCommission", 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
