@@ -117,6 +117,8 @@ const queryParser = (q : string) => {
         limit: 1000,
         email: "",
         mobileNumber: "",
+        company: "",
+        insurance: ""
     };
 
     for(let i = 0; i < toks.length; ++i){
@@ -132,6 +134,12 @@ const queryParser = (q : string) => {
         }
         else if (key === "email"){
             query.email = value?.trim();
+        }
+        else if (key === "company"){
+            query.company = value?.trim();
+        }
+        else if (key === "insurance"){
+            query.insurance = value?.trim();
         }
     }
 
