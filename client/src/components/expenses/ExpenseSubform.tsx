@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConvertDate } from "../../utils/ConvertDate";
 import { ModalWrapper } from "../base/ModalBase";
 import { Expense } from "./ExpenseDetails";
@@ -11,7 +11,7 @@ const defaultExpense = {
 };
 
 export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]}) => {
-    const [expenses, setExpenses] = useState<Array<Expense>>(props.default ? props.default : []);
+    const [expenses, setExpenses] = useState<Array<Expense>>([]);
     const [expense, setExpense] = useState<Expense>(defaultExpense);
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -29,6 +29,11 @@ export const ExpenseSubform = (props: {setData : Function,  default? : Expense[]
     const onChange = (expenses : Array<Expense>) => {
         setExpenses(expenses);
     }
+
+    useEffect(() => {
+        if (props.default)
+            setExpenses(props.default);
+    }, [props.default])
 
     return (
         <ModalWrapper front={"Add Expenses"} isVisible={isVisible} setIsVisible={setIsVisible}>
