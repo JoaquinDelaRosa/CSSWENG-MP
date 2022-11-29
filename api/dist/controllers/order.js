@@ -21,6 +21,7 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         .populate("vehicle")
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
+        .sort({ $natural: -1 })
         .then((data) => {
         res.json({ data: (0, order_2.makeOrderArrayView)(data), count: count ? count : 0 });
     });

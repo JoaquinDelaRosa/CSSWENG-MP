@@ -23,6 +23,7 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     vehicle_1.Vehicle.find({})
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
+        .sort({ $natural: -1 })
         .then((data) => {
         res.json({ data: (0, vehicle_2.makeVehicleArrayView)(data), count: count ? count : 0 });
     });
@@ -86,7 +87,9 @@ const makeMongooseQuery = (q) => {
     let query = {
         licensePlate: { $regex: ".*" + q.licensePlate + ".*", $options: "i" },
         model: { $regex: ".*" + q.model + ".*", $options: "i" },
-        manufacturer: { $regex: ".*" + q.manufacturer + ".*", $options: "i" }
+        manufacturer: { $regex: ".*" + q.manufacturer + ".*", $options: "i" },
+        color: { $regex: ".*" + q.color + ".*", $options: "i" },
+        engine: { $regex: ".*" + q.engine + ".*", $options: "i" }
     };
     if (q.yearManufactured > 0) {
         query["yearManufactured"] = q.yearManufactured;

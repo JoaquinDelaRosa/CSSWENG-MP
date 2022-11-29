@@ -17,6 +17,7 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     customer_1.Customer.find({})
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
+        .sort({ $natural: -1 })
         .then((data) => {
         res.json({ data: (0, customer_2.makeCustomerArrayView)(data), count: count ? count : 0 });
     });

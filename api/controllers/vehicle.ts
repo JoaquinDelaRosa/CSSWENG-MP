@@ -18,6 +18,7 @@ const all = async (req: express.Request, res: express.Response) => {
     Vehicle.find({})
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
+    .sort({$natural:-1})
     .then((data) => {
         res.json({data : makeVehicleArrayView(data), count: count ? count : 0});
     });
@@ -100,7 +101,10 @@ const makeMongooseQuery = (q : VehicleQuery) : any => {
     let query =  {
         licensePlate: {$regex: ".*" + q.licensePlate + ".*" , $options: "i"},
         model: {$regex: ".*" + q.model + ".*" , $options: "i"},
-        manufacturer: {$regex: ".*" + q.manufacturer + ".*" , $options: "i"}
+        manufacturer: {$regex: ".*" + q.manufacturer + ".*" , $options: "i"},
+        color: {$regex: ".*" + q.color + ".*" , $options: "i"},
+        engine: {$regex: ".*" + q.engine + ".*" , $options: "i"}
+
     }
 
     if (q.yearManufactured > 0){
