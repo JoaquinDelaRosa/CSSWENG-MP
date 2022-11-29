@@ -3,7 +3,7 @@ import { Vehicle } from "./VehicleDetails";
 import { VehicleRecord } from "./VehicleRecord";
 import {ViewHandler} from "../view/ViewHandler";
 import { CreateVehicle } from "./CreateVehicle";
-import { isRole } from "../../utils/CheckRole";
+import { getRole, isRole } from "../../utils/CheckRole";
 import { OptionButton } from "../../style/SearchbarStyle";
 import { TableBody, TableHead } from "../../style/TableStyle";
 import { CreateButton } from "../../style/CreateButton";
@@ -23,6 +23,10 @@ const ViewVehicles = () => {
     useEffect(() => {
         setVehicles(queryResult)
     }, [queryResult]);
+
+    useEffect(() => {
+        console.log(getRole())
+    }, []);
 
 
     const sortAlphabetically = (isAsc: Boolean ) => {
