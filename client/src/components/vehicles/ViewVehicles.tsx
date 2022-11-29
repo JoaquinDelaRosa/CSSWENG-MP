@@ -69,7 +69,9 @@ const ViewVehicles = () => {
                     {name: "licensePlate", description:"The license plate of the vehicle"},
                     {name: "manufacturer", description: "The manufacturer of the vehicle"},
                     {name: "model", description: "The model of the vehicle"},
-                    {name: "yearManufactured", description: "The year manufactured of the vehicle"}
+                    {name: "yearManufactured", description: "The year manufactured of the vehicle"},
+                    {name: "color", description: "The color of the vehicle"},
+                    {name: "engine", description: "The engine model of the vehicle"}
                 ]}>
             <br />
 
@@ -122,6 +124,8 @@ const queryParser = (q : string) => {
         manufacturer: "",
         model: "",
         yearManufactured: 0,
+        color: "",
+        engine: "",
         skip: 0,
         limit: 1000
     };
@@ -142,6 +146,12 @@ const queryParser = (q : string) => {
         }
         else if (key === "yearManufactured"){
             query.yearManufactured = parseInt(value?.trim());
+        }
+        else if (key === "color"){
+            query.color = value?.trim();
+        }
+        else if (key === "engine"){
+            query.engine = value?.trim();
         }
     }
 

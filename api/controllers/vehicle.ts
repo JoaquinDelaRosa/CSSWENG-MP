@@ -100,7 +100,10 @@ const makeMongooseQuery = (q : VehicleQuery) : any => {
     let query =  {
         licensePlate: {$regex: ".*" + q.licensePlate + ".*" , $options: "i"},
         model: {$regex: ".*" + q.model + ".*" , $options: "i"},
-        manufacturer: {$regex: ".*" + q.manufacturer + ".*" , $options: "i"}
+        manufacturer: {$regex: ".*" + q.manufacturer + ".*" , $options: "i"},
+        color: {$regex: ".*" + q.color + ".*" , $options: "i"},
+        engine: {$regex: ".*" + q.engine + ".*" , $options: "i"}
+
     }
 
     if (q.yearManufactured > 0){

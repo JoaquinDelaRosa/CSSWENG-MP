@@ -71,6 +71,7 @@ const remove = (req, res) => {
 const filter = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = makeQuery(req);
     const count = yield vehicle_1.Vehicle.find(makeMongooseQuery(query)).countDocuments();
+    console.log(req.query);
     vehicle_1.Vehicle.find(makeMongooseQuery(query))
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
@@ -86,7 +87,9 @@ const makeMongooseQuery = (q) => {
     let query = {
         licensePlate: { $regex: ".*" + q.licensePlate + ".*", $options: "i" },
         model: { $regex: ".*" + q.model + ".*", $options: "i" },
-        manufacturer: { $regex: ".*" + q.manufacturer + ".*", $options: "i" }
+        manufacturer: { $regex: ".*" + q.manufacturer + ".*", $options: "i" },
+        color: { $regex: ".*" + q.color + ".*", $options: "i" },
+        engine: { $regex: ".*" + q.engine + ".*", $options: "i" }
     };
     if (q.yearManufactured > 0) {
         query["yearManufactured"] = q.yearManufactured;
