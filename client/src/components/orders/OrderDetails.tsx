@@ -9,7 +9,6 @@ export interface OrderRequest {
     timeOut: Date,
     customer : string,
     type: string,
-    company: string,
     vehicle: string,
     estimateNumber: string,
     scopeOfWork: string,

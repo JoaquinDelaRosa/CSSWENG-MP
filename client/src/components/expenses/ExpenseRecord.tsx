@@ -1,10 +1,10 @@
 import { Expense } from "./ExpenseDetails";
 import { DateEntry } from "../base/DateEntry";
 import { NumberEntry } from "../base/NumberEntry";
+import { ConvertDate } from "../../utils/ConvertDate";
 
 
 export const ExpenseRecord = (props : {expense : Expense}) => {
-    console.log(props.expense)
     return (
         <>
             <td>
@@ -16,7 +16,7 @@ export const ExpenseRecord = (props : {expense : Expense}) => {
             </td>
 
             <td>
-                <DateEntry date={props.expense.dateRecorded.toDateString()}/>
+                <DateEntry date={ConvertDate(new Date(props.expense.dateRecorded))}/>
             </td>
         </>
     )
