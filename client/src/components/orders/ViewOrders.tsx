@@ -80,9 +80,11 @@ const OrdersView = () => {
                 </table>
                 <br />
                 
-                <CreateButton hidden={isRole("VIEW")}>
-                    <CreateOrder observer={updateView}/>
-                </CreateButton>
+                <div hidden={isRole("VIEW")}>
+                    <CreateButton hidden={isRole("VIEW")}>
+                        <CreateOrder observer={updateView}/>
+                    </CreateButton>
+                </div>
             </ViewHandler>
 
         </div>

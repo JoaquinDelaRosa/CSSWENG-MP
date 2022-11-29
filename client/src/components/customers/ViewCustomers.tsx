@@ -99,9 +99,11 @@ const ViewCustomers = () => {
                     </TableBody>
                 </table>
                 <br />
-                <CreateButton hidden={isRole("VIEW")}>
-                    <CreateCustomer observer={updateView}/>
-                </CreateButton>
+                <div hidden={isRole("VIEW")}>
+                    <CreateButton hidden={isRole("VIEW")}>
+                        <CreateCustomer observer={updateView}/>
+                    </CreateButton>
+                </div>
            
             </ViewHandler>
         </div>      

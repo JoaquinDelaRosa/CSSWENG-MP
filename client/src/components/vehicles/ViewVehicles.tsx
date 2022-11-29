@@ -111,9 +111,11 @@ const ViewVehicles = () => {
                 </table>
 
                 <br/>
-                <CreateButton hidden={isRole("VIEW")}>
-                    <CreateVehicle observer={updateView}/>
-                </CreateButton>
+                <div hidden={isRole("VIEW")}>
+                    <CreateButton>
+                        <CreateVehicle observer={updateView}/>
+                    </CreateButton>
+                </div>
             
             </ViewHandler>
 
