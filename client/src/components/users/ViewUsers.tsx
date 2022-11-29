@@ -98,9 +98,11 @@ const UsersView = () => {
                 </table>
                 <br />
 
-                <CreateButton hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
-                    <CreateUser observer={updateView}/>
-                </CreateButton> 
+                <div hidden={isRole("VIEW") || isRole("VIEW_EDIT")}>
+                    <CreateButton>
+                        <CreateUser observer={updateView}/>
+                    </CreateButton>
+                </div>
             </ViewHandler>   
         </div>  
     );
