@@ -23,6 +23,7 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     vehicle_1.Vehicle.find({})
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))
+        .sort({ $natural: -1 })
         .then((data) => {
         res.json({ data: (0, vehicle_2.makeVehicleArrayView)(data), count: count ? count : 0 });
     });
@@ -71,7 +72,6 @@ const remove = (req, res) => {
 const filter = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = makeQuery(req);
     const count = yield vehicle_1.Vehicle.find(makeMongooseQuery(query)).countDocuments();
-    console.log(req.query);
     vehicle_1.Vehicle.find(makeMongooseQuery(query))
         .skip(parseInt(req.query.skip))
         .limit(parseInt(req.query.limit))

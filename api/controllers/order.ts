@@ -13,6 +13,7 @@ const all = async (req: express.Request, res: express.Response) => {
     .populate("vehicle")
     .skip(parseInt(req.query.skip as string))
     .limit(parseInt(req.query.limit as string))
+    .sort({$natural:-1})
     .then ((data) => {
         res.json({data: makeOrderArrayView(data), count: count ? count : 0});
     });
