@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createAPIEndpoint } from "../../api";
 import { ENDPOINTS } from "../../api/endpoints";
 import { EditButton } from "../../style/EditButton";
+import { isRole } from "../../utils/CheckRole";
 import { ModalWrapper } from "../base/ModalBase";
 import { Customer, CustomerRequest } from "./CustomerDetails";
 import { RequestCustomer } from "./RequestCustomer";
@@ -12,6 +13,9 @@ export const UpdateCustomer = (props : {customer : Customer, observer : Function
     const [isVisible, setIsVisible] = useState<boolean>(false);
     
     useEffect(() => {
+        if (isRole("VIEW"))
+            return;
+
         createAPIEndpoint(ENDPOINTS.updateCustomer).post(data, {id: props.customer.id})
         .then(function (response) {
             props.observer();

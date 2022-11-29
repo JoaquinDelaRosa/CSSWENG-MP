@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createAPIEndpoint } from "../../api";
 import { ENDPOINTS } from "../../api/endpoints";
 import { EditButton } from "../../style/EditButton";
+import { isRole } from "../../utils/CheckRole";
 import { ModalWrapper } from "../base/ModalBase";
 import { Order, OrderRequest } from "./OrderDetails";
 import { RequestOrder } from "./RequestOrder";
@@ -11,6 +12,8 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     
     useEffect(() => {
+        if (isRole("VIEW")) 
+            return;
         createAPIEndpoint(ENDPOINTS.updateOrder).post(data, {id: props.order.id})
         .then(function (response) {
             props.observer();
