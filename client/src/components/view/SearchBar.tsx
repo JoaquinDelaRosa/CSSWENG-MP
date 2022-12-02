@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchWrapper } from "../../style/SearchbarStyle";
+import { OptionBar, SearchWrapper } from "../../style/SearchbarStyle";
 import { SearchOption, SearchOptionBar } from "./SearchOptionsBar";
 
 
@@ -22,11 +22,14 @@ export const SearchBar = (props :{
             onClick={() => {
                 setIsVisible(true)
             }}/>
-        {isVisible && props.options.map((value, index) => {
-            return (
-                <SearchOptionBar option={value} observer={props.appendQuery} key={index + 1}/>
-            )})
-        }
+
+            <OptionBar>
+                {isVisible && props.options.map((value, index) => {
+                    return (
+                        <SearchOptionBar option={value} observer={props.appendQuery} key={index + 1}/>
+                    )})
+                }
+            </OptionBar>
         </SearchWrapper>
     );   
 
