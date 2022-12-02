@@ -10,7 +10,7 @@ export const DEFAULT = "DEFAULT";
 
 export const RequestUser = (props : {setResponse : Function, default? : UserRequest}) => {
     
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm<UserRequest>();
+    const {register, watch, handleSubmit, formState: {errors}, setValue} = useForm<UserRequest>();
     const [roles, setRoles] = useState<Array<string>>([]);
     
     useEffect(() => {
@@ -32,7 +32,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
             setValue("lastName", props.default.lastName)
             setValue("id", props.default.id)
             setValue("role", props.default.role)
-            setValue("username", props.default.username)
+            setValue("username", props.default.username);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default])
@@ -70,8 +70,7 @@ export const RequestUser = (props : {setResponse : Function, default? : UserRequ
                     <label>User Role</label>
                     <select {...register('role', {required: true, validate: {
                         isNotDefault: (v) => {return v !== DEFAULT} 
-                    }})} defaultValue={props.default && props.default.role ?  
-                            props.default.role : DEFAULT}>
+                    }})} value={watch("role") ? watch("role") : DEFAULT}>
                         <option value={DEFAULT} disabled>-- Select Role --</option>
                         {
                             roles.map((value, index) => {
