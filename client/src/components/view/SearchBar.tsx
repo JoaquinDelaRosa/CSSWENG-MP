@@ -25,7 +25,7 @@ export const SearchBar = (props :{
                 setValue(e.target.value);
                 setTimeout(() => {
                     props.setQuery(e.target.value)}
-                , 500);
+                , 1000);
             }} 
             onClick={() => {
                 setIsVisible(true)
