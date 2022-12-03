@@ -33,7 +33,6 @@ export const ViewHandler = (props : {
     }
 
     const runQuery = useCallback(() => {
-        console.log(query.length);
         if (query === ""){
             createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
@@ -49,6 +48,7 @@ export const ViewHandler = (props : {
                 props.setData(response.data.data);
 
                 const c = response.data.count;
+                console.log(c);
                 setCount(c);
             })
         }
