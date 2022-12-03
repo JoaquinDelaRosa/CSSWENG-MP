@@ -37,7 +37,8 @@ export const ViewHandler = (props : {
             createAPIEndpoint(props.all).fetch({skip : skip, limit : LIMIT})
             .then((response) => {
                 props.setData(response.data.data);
-
+                
+                console.log(response);
                 const c = response.data.count;
                 setCount(c);
             })
@@ -47,6 +48,7 @@ export const ViewHandler = (props : {
             .then((response) => {
                 props.setData(response.data.data);
 
+                console.log(response);
                 const c = response.data.count;
                 console.log(c);
                 setCount(c);
