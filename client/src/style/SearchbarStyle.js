@@ -11,7 +11,7 @@ const SearchWrapper = styles.div`
         background-repeat: no-repeat;
         background-position: 14.5rem 0.3rem;
         margin-left: 1rem;
-        margin-top: 0.rem;
+        margin-top: 1rem;
         margin-right: 1rem;
         width: 20em;
         height: 2.8em;
@@ -32,7 +32,7 @@ const SearchWrapper = styles.div`
 `
 
 const OptionBar = styles.div`
-    margin-top: 2.5rem;
+    margin-top: 2.0rem;
 `
 
 const OptionButton = styles.button`
@@ -40,7 +40,7 @@ const OptionButton = styles.button`
     color: white;
     border-radius: 5px;
     border: none;
-    margin: 0.1px 1px 0.1em;
+    margin: 0.1px 1px 0em;
     width: fit-content;
     height: 2rem;
     overflow: hidden;
