@@ -32,7 +32,7 @@ const SearchWrapper = styles.div`
 `
 
 const OptionBar = styles.div`
-    margin-top: 2.0rem;
+    padding-top: 1.15rem;
 `
 
 const OptionButton = styles.button`
