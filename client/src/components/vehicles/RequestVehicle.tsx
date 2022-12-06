@@ -54,21 +54,21 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
                 <label htmlFor='licensePlate'>License Plate</label>
                 <input
                 {... register('licensePlate', {required: true, pattern: isLicensePlate})}
-                type="text" name="licensePlate" defaultValue={props.default?.licensePlate}/>
+                type="text" name="licensePlate" defaultValue={props.default?.licensePlate} autoComplete="off"/>
                 {errors.licensePlate && <p>License Plate is Required</p>}
             </div>
             <div>
                 <label htmlFor='manufacturer' >Manufacturer</label>
                 <input
                 {... register('manufacturer', {required: true, pattern: isAlphabetic})}
-                type="text" name="manufacturer" defaultValue={props.default?.manufacturer}/>
+                type="text" name="manufacturer" defaultValue={props.default?.manufacturer} autoComplete="off"/>
                 {errors.manufacturer && <p>Manufacturer is Required</p>}
             </div>
             <div>
                 <label htmlFor='model'>Model</label>
                 <input
                 {... register('model', {required: true, pattern: isAlphaNumeric})}
-                type="text" name="model" defaultValue={props.default?.model}/>
+                type="text" name="model" defaultValue={props.default?.model} autoComplete="off"/>
                 {errors.model && <p>Model is Required</p>}
             </div>
             <div>
@@ -96,20 +96,20 @@ const RequestVehicleForm = (props : {register : Function, errors : any, default?
                 <label htmlFor='color'>Color</label>
                 <input
                 {... register('color', {pattern: isAlphaNumeric})}
-                type="text" name="color" defaultValue={props.default?.color}/>
+                type="text" name="color" defaultValue={props.default?.color} autoComplete="off"/>
             </div>
             <div>
                 <label htmlFor='engine'>Engine</label>
                 <input
                 {... register('engine', {pattern: isAlphaNumeric})}
-                type="text" name="engine" defaultValue={props.default?.engine}/>
+                type="text" name="engine" defaultValue={props.default?.engine} autoComplete="off"/>
             </div>
             <br />
             <div className="largeBox">
                 <label htmlFor='remarks'>Remarks</label>
                 <textarea
                 {... register('remarks', {pattern: isAlphaNumeric})}
-                type="text" name="remarks" defaultValue={props.default?.remarks}/>
+                type="text" name="remarks" defaultValue={props.default?.remarks} autoComplete="off"/>
             </div>
             <br />
             <br />
