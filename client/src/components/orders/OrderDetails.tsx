@@ -1,6 +1,6 @@
 import { Customer } from "../customers/CustomerDetails"
 import { Expense } from "../expenses/ExpenseDetails"
-import { Invoice } from "./InvoiceDetails"
+import { Invoice, InvoiceRequest } from "./InvoiceDetails"
 import { Vehicle } from "../vehicles/VehicleDetails"
 
 export interface OrderRequest {
@@ -12,7 +12,7 @@ export interface OrderRequest {
     vehicle: string,
     estimateNumber: string,
     scopeOfWork: string,
-    invoice: Invoice,
+    invoice: InvoiceRequest,
     expenses: Array<Expense>
 }
 
@@ -31,7 +31,7 @@ export interface OrderRequestDefault {
     },
     estimateNumber: string,
     scopeOfWork: string,
-    invoice: Invoice,
+    invoice: InvoiceRequest
     expenses: Array<Expense>
 }
 

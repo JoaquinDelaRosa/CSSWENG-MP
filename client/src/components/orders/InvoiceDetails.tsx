@@ -3,7 +3,7 @@ export interface InvoiceRequest {
     deductible: number,
     agentFirstName: string,
     agentLastName: string,
-    datePaid : string,
+    datePaid : Date,
     agentCommission : number
 }
 

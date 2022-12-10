@@ -59,17 +59,20 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
             setValue("expenses", props.default?.expenses);
             setValue("customer", props.default?.customer.id);
             setValue("vehicle", props.default?.vehicle.id);
-            setValue("invoice", props.default?.invoice);
             setValue("scopeOfWork", props.default?.scopeOfWork);
             setValue("estimateNumber", props.default?.estimateNumber);
+            setValue("invoice", props.default?.invoice);
+
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.default]);
 
     useEffect(() => {
-        setValue("invoice.deductible", 0);
-        setValue("invoice.amount", 0)
-        setValue("invoice.agentCommission", 0);
+        if (!props.default) {
+            setValue("invoice.deductible", 0);
+            setValue("invoice.amount", 0);
+            setValue("invoice.agentCommission", 0);
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -203,7 +206,7 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div>
                 <br />
 
-                <InvoiceSubform default={props.default?.invoice}  errors={errors}  register={register}/>
+                <InvoiceSubform default={watch("invoice")}  errors={errors}  register={register}/>
                 <br />
 
                 <ExpenseSubform setData={(expenses: Expense[]) => {

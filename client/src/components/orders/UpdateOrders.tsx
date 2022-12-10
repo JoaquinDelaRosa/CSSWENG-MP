@@ -40,6 +40,10 @@ export const UpdateOrder = (props : {order : Order, observer : Function}) => {
                     id: props.order?.vehicle?.id,
                     licensePlate: props.order?.vehicle?.licensePlate
                 },
+                invoice: {
+                    ...props.order.invoice,
+                    datePaid: new Date(props.order?.invoice.datePaid)
+                },
                 expenses: props.order?.expenses,
                 scopeOfWork: props.order?.scopeOfWork
             }}/>
