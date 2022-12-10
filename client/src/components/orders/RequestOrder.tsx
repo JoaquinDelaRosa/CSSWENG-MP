@@ -11,6 +11,7 @@ import { VehicleSubform } from "./VehicleSubform";
 import { FormDivStyle } from "../../style/FormStyle";
 import { ENDPOINTS } from "../../api/endpoints";
 import { ConvertDate } from "../../utils/ConvertDate";
+import { InvoiceRequest } from "./InvoiceDetails";
 
 const DEFAULT_STATUS : string = "DEFAULT";
 const DEFAULT_TYPE : string = "DEFAULT";
@@ -206,7 +207,10 @@ export const RequestOrder = (props : {setResponse : Function, default? : OrderRe
                 </div>
                 <br />
 
-                <InvoiceSubform default={watch("invoice")}  errors={errors}  register={register}/>
+                <InvoiceSubform setValue={(invoice : InvoiceRequest) =>{
+                    setValue("invoice", invoice);
+                }}
+                    default={watch("invoice")}  errors={errors} />
                 <br />
 
                 <ExpenseSubform setData={(expenses: Expense[]) => {
