@@ -67,8 +67,8 @@ export const InvoiceSubform = (props: {register : any, errors : any, default? : 
                 })}
 
                 defaultValue = {
-                    props.default ? 
-                    (props.default?.datePaid.valueOf() === 0 ? "mm-dd-yyyy" : ConvertDate(props.default?.datePaid)) : ""
+                    props.default && props.default.datePaid ? 
+                    (props.default.datePaid.valueOf() === 0 ? "mm-dd-yyyy" : ConvertDate(props.default.datePaid)) : ""
                 }
                 type ="date" name="invoice.datePaid" id="invoice.datePaid"/>
                 {errors.invoice?.datePaid && <p>Date is invalid</p>}
